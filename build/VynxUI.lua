@@ -3,6 +3,22 @@
 -- WindUI (MIT) + Obsidian (MIT)
 
 local __vynx_cache = {}
+
+local _orig_Font_fromEnum = Font.fromEnum
+Font = setmetatable({}, {
+    __index = function(t, k)
+        if k == "fromEnum" then
+            return function(enumItem)
+                local ok, result = pcall(_orig_Font_fromEnum, enumItem)
+                if ok then return result end
+                return Font.new("rbxasset://fonts/families/GothamSSm.json")
+            end
+        end
+        return rawget(Font, k)
+    end,
+    __newindex = function(t, k, v) rawset(Font, k, v) end,
+})
+
 local __vynx_fns   = {}
 local function __vynx_require(key)
     if __vynx_cache[key] ~= nil then return __vynx_cache[key] end
@@ -21679,7 +21695,7 @@ function Element:New(Config)
 		TextTransparency     = 0.35,
 		TextSize             = 13,
 		TextXAlignment       = Enum.TextXAlignment.Left,
-		FontFace             = Font.fromEnum(Enum.Font.GothamSsm),
+		FontFace             = Font.new("rbxasset://fonts/families/GothamSSm.json"),
 		Parent               = Frame,
 	})
 
@@ -27009,7 +27025,7 @@ local VynxUI = {
 		AccentColor      = Color3.fromHex("#7C5CFF"),
 		OutlineColor     = Color3.fromHex("#2a2a3a"),
 		FontColor        = Color3.new(1, 1, 1),
-		Font             = Font.fromEnum(Enum.Font.GothamSsm),
+		Font             = Font.new("rbxasset://fonts/families/GothamSSm.json"),
 		RedColor         = Color3.fromRGB(255, 50, 50),
 		DestructiveColor = Color3.fromRGB(220, 38, 38),
 		DarkColor        = Color3.new(0, 0, 0),
@@ -27561,7 +27577,7 @@ function VynxUI:AddTooltip(InfoStr, DisabledInfoStr, HoverInstance)
 			Text             = text,
 			TextColor3       = Color3.new(1, 1, 1),
 			TextSize         = 12,
-			FontFace         = Font.fromEnum(Enum.Font.GothamSsm),
+			FontFace         = Font.new("rbxasset://fonts/families/GothamSSm.json"),
 			ZIndex           = 9999,
 			Parent           = TooltipGui,
 		}, {
@@ -27645,7 +27661,7 @@ function VynxUI:AddDraggableLabel(Text, Position, Font, TextSize)
 		Text                 = Text or "",
 		TextColor3           = Color3.new(1, 1, 1),
 		TextSize             = TextSize or 13,
-		FontFace             = Font or Font.fromEnum(Enum.Font.GothamSsm),
+		FontFace             = Font or Font.new("rbxasset://fonts/families/GothamSSm.json"),
 		ZIndex               = 9999,
 		Active               = true,
 		Parent               = gui,
@@ -27676,7 +27692,7 @@ function VynxUI:AddDraggableButton(Text, Callback, VisibleByDefault, IsToggle)
 		Text             = Text or "",
 		TextColor3       = Color3.new(1, 1, 1),
 		TextSize         = 13,
-		FontFace         = Font.fromEnum(Enum.Font.GothamSsm),
+		FontFace         = Font.new("rbxasset://fonts/families/GothamSSm.json"),
 		ZIndex           = 9999,
 		Active           = true,
 		Visible          = VisibleByDefault ~= false,
@@ -27724,7 +27740,7 @@ function VynxUI:AddDraggableMenu(Name)
 		Text       = Name or "Menu",
 		TextColor3 = Color3.fromHex("#a1a1aa"),
 		TextSize   = 12,
-		FontFace   = Font.fromEnum(Enum.Font.GothamSsm),
+		FontFace   = Font.new("rbxasset://fonts/families/GothamSSm.json"),
 		Size       = UDim2.new(1, 0, 0, 18),
 		TextXAlignment = Enum.TextXAlignment.Left,
 		LayoutOrder= 0,
@@ -27753,7 +27769,7 @@ function VynxUI:AddDraggableMenu(Name)
 			Text             = text,
 			TextColor3       = Color3.new(1, 1, 1),
 			TextSize         = 12,
-			FontFace         = Font.fromEnum(Enum.Font.GothamSsm),
+			FontFace         = Font.new("rbxasset://fonts/families/GothamSSm.json"),
 			TextXAlignment   = Enum.TextXAlignment.Left,
 			Parent           = Container,
 		}, {
