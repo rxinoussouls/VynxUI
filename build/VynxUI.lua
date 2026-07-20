@@ -1,16 +1,25 @@
--- VYNX UI Library — Bundled Build
--- Auto-generated. Do not edit directly.
--- Source: github.com/your-github/VynxUI
+-- VYNX UI Library v1.0.0
+-- https://github.com/rxinoussouls/VynxUI
+-- Bundled build — do not edit directly
 
-local _VYNX_MODULES = {}
-local function require(path)
-    path = path:gsub('^%.+/', ''):gsub('/', '/')
-    if _VYNX_MODULES[path] then return _VYNX_MODULES[path] end
-    error('VynxUI: module not found: ' .. path)
+local __vynx_cache = {}
+local __vynx_fns   = {}
+
+local function __vynx_require(key)
+    if __vynx_cache[key] ~= nil then
+        return __vynx_cache[key]
+    end
+    local fn = __vynx_fns[key]
+    if not fn then
+        error('[VynxUI] module not found: ' .. tostring(key), 2)
+    end
+    local result = fn()
+    __vynx_cache[key] = result
+    return result
 end
 
--- ── modules/Motion.lua ──
-_VYNX_MODULES["modules/Motion.lua"] = (function()
+-- [modules/Motion.lua]
+__vynx_fns["modules/Motion.lua"] = function()
 local TweenService = game:GetService("TweenService")
 
 local Motion = {
@@ -383,10 +392,10 @@ end
 
 return Motion
 
-end)()
+end
 
--- ── modules/DynamicShape.lua ──
-_VYNX_MODULES["modules/DynamicShape.lua"] = (function()
+-- [modules/DynamicShape.lua]
+__vynx_fns["modules/DynamicShape.lua"] = function()
 local Creator
 
 local DynamicShapeModule = {
@@ -609,10 +618,10 @@ end
 
 return DynamicShapeModule
 
-end)()
+end
 
--- ── modules/Highlighter.lua ──
-_VYNX_MODULES["modules/Highlighter.lua"] = (function()
+-- [modules/Highlighter.lua]
+__vynx_fns["modules/Highlighter.lua"] = function()
 -- Credits: https://devforum.roblox.com/t/realtime-richtext-lua-syntax-highlighting/2500399
 -- Modified by me (Footagesus)
 
@@ -862,10 +871,10 @@ end
 
 return highlighter
 
-end)()
+end
 
--- ── modules/Localization.lua ──
-_VYNX_MODULES["modules/Localization.lua"] = (function()
+-- [modules/Localization.lua]
+__vynx_fns["modules/Localization.lua"] = function()
 local Localization = {}
 
 
@@ -890,10 +899,10 @@ end
 
 
 return Localization
-end)()
+end
 
--- ── modules/Icons.lua ──
-_VYNX_MODULES["modules/Icons.lua"] = (function()
+-- [modules/Icons.lua]
+__vynx_fns["modules/Icons.lua"] = function()
 local cloneref = (cloneref or clonereference or function(instance)
 	return instance
 end)
@@ -902,7 +911,7 @@ local ReplicatedStorage = cloneref(game:GetService("ReplicatedStorage"))
 local HttpService = cloneref(game:GetService("HttpService"))
 local RunService = cloneref(game:GetService("RunService"))
 
-local ICONS_URL = "https://your-github.github.io/VynxUI/vendor/icons/Main-v2.lua"
+local ICONS_URL = "https://rxinoussouls.github.io/VynxUI/vendor/icons/Main-v2.lua"
 
 local function LoadBaseIcons()
 	local RemoteFunction = ReplicatedStorage:FindFirstChild("GetIcons")
@@ -1435,10 +1444,10 @@ end
 
 return IconModule
 
-end)()
+end
 
--- ── modules/Creator.lua ──
-_VYNX_MODULES["modules/Creator.lua"] = (function()
+-- [modules/Creator.lua]
+__vynx_fns["modules/Creator.lua"] = function()
 local cloneref = (cloneref or clonereference or function(instance)
 	return instance
 end)
@@ -1449,8 +1458,8 @@ local TweenService = cloneref(game:GetService("TweenService"))
 local LocalizationService = cloneref(game:GetService("LocalizationService"))
 local HttpService = cloneref(game:GetService("HttpService"))
 
-local DynamicShapeModule = require("./DynamicShape")
-local Icons = require("./Icons")
+local DynamicShapeModule = __vynx_require("modules/DynamicShape.lua")
+local Icons = __vynx_require("modules/Icons.lua")
 
 local RenderStepped = RunService.Heartbeat
 
@@ -1568,7 +1577,7 @@ Creator = {
 function Creator.Init(WindUITable)
 	WindUI = WindUITable
 
-	Creator.ThemeFallbacks = require("../themes/Fallbacks")(Creator)
+	Creator.ThemeFallbacks = __vynx_require("themes/Fallbacks.lua")(Creator)
 
 	Creator.UIScale = WindUITable.UIScale
 
@@ -2769,10 +2778,10 @@ end
 
 return Creator
 
-end)()
+end
 
--- ── themes/Fallbacks.lua ──
-_VYNX_MODULES["themes/Fallbacks.lua"] = (function()
+-- [themes/Fallbacks.lua]
+__vynx_fns["themes/Fallbacks.lua"] = function()
 return function(Creator)
 	return {
 		-- More soon!
@@ -2945,10 +2954,10 @@ return function(Creator)
 	}
 end
 
-end)()
+end
 
--- ── themes/Init.lua ──
-_VYNX_MODULES["themes/Init.lua"] = (function()
+-- [themes/Init.lua]
+__vynx_fns["themes/Init.lua"] = function()
 return function(VynxUI, Creator)
 	local Themes = {
 		Dark = {
@@ -3163,10 +3172,10 @@ return function(VynxUI, Creator)
 	return Themes
 end
 
-end)()
+end
 
--- ── utils/Acrylic/Utils.lua ──
-_VYNX_MODULES["utils/Acrylic/Utils.lua"] = (function()
+-- [utils/Acrylic/Utils.lua]
+__vynx_fns["utils/Acrylic/Utils.lua"] = function()
 -- Credits: Fluent - Dawid
 
 
@@ -3189,20 +3198,20 @@ end
 
 return { viewportPointToWorld, getOffset }
 
-end)()
+end
 
--- ── utils/Acrylic/Blur.lua ──
-_VYNX_MODULES["utils/Acrylic/Blur.lua"] = (function()
+-- [utils/Acrylic/Blur.lua]
+__vynx_fns["utils/Acrylic/Blur.lua"] = function()
 -- Credits: Fluent - Dawid
 
 local cloneref = (cloneref or clonereference or function(instance) return instance end)
 
 
-local Creator = require("../../modules/Creator")
+local Creator = __vynx_require("modules/Creator.lua")
 local New = Creator.New
 
 
-local viewportPointToWorld, getOffset = unpack(require("./Utils"))
+local viewportPointToWorld, getOffset = unpack(__vynx_require("utils/Acrylic/Utils.lua"))
 local BlurFolder = Instance.new("Folder", cloneref(game:GetService("Workspace")).CurrentCamera)
 
 
@@ -3339,14 +3348,14 @@ return function(distance)
 
 	return Blur
 end
-end)()
+end
 
--- ── utils/Acrylic/Paint.lua ──
-_VYNX_MODULES["utils/Acrylic/Paint.lua"] = (function()
+-- [utils/Acrylic/Paint.lua]
+__vynx_fns["utils/Acrylic/Paint.lua"] = function()
 -- Credits: Fluent - Dawid
 
-local Creator = require("../../modules/Creator")
-local AcrylicBlur = require("./Blur")
+local Creator = __vynx_require("modules/Creator.lua")
+local AcrylicBlur = __vynx_require("utils/Acrylic/Blur.lua")
 
 local New = Creator.New
 
@@ -3468,19 +3477,19 @@ return function(props)
 	return AcrylicPaint, Blur
 end
 
-end)()
+end
 
--- ── utils/Acrylic/Init.lua ──
-_VYNX_MODULES["utils/Acrylic/Init.lua"] = (function()
+-- [utils/Acrylic/Init.lua]
+__vynx_fns["utils/Acrylic/Init.lua"] = function()
 -- Credits: Fluent - Dawid
 
 local cloneref = (cloneref or clonereference or function(instance) return instance end)
 
 
 local Acrylic = {
-	AcrylicBlur = require("./Blur"),
-	--CreateAcrylic = require("./"),
-	AcrylicPaint = require("./Paint"),
+	AcrylicBlur = __vynx_require("utils/Acrylic/Blur.lua"),
+	--CreateAcrylic = __vynx_require("utils/Acrylic/Init.lua"),
+	AcrylicPaint = __vynx_require("utils/Acrylic/Paint.lua"),
 }
 
 function Acrylic.init()
@@ -3529,10 +3538,10 @@ end
 
 return Acrylic
 
-end)()
+end
 
--- ── utils/services/JunkieDevelopment.lua ──
-_VYNX_MODULES["utils/services/JunkieDevelopment.lua"] = (function()
+-- [utils/services/JunkieDevelopment.lua]
+__vynx_fns["utils/services/JunkieDevelopment.lua"] = function()
 
 
 --[[
@@ -3597,10 +3606,10 @@ return JunkieDevelopment
 
 
 
-end)()
+end
 
--- ── utils/services/Luarmor.lua ──
-_VYNX_MODULES["utils/services/Luarmor.lua"] = (function()
+-- [utils/services/Luarmor.lua]
+__vynx_fns["utils/services/Luarmor.lua"] = function()
 --[[
 
     Luarmor API   |   https://luarmor.net
@@ -3644,10 +3653,10 @@ end
 
 return Luarmor
 
-end)()
+end
 
--- ── utils/services/PandaDevelopment.lua ──
-_VYNX_MODULES["utils/services/PandaDevelopment.lua"] = (function()
+-- [utils/services/PandaDevelopment.lua]
+__vynx_fns["utils/services/PandaDevelopment.lua"] = function()
 --[[
 
     Panda Development API   |   https://pandadevelopment.net/
@@ -3735,10 +3744,10 @@ end
 
 return PandaDevelopment
 
-end)()
+end
 
--- ── utils/services/Platoboost.lua ──
-_VYNX_MODULES["utils/services/Platoboost.lua"] = (function()
+-- [utils/services/Platoboost.lua]
+__vynx_fns["utils/services/Platoboost.lua"] = function()
 
 
 --[[
@@ -4021,41 +4030,41 @@ end
 
 
 return Platoboost
-end)()
+end
 
--- ── utils/services/Init.lua ──
-_VYNX_MODULES["utils/services/Init.lua"] = (function()
+-- [utils/services/Init.lua]
+__vynx_fns["utils/services/Init.lua"] = function()
 return {
 	platoboost = {
 		Name = "Platoboost",
 		Icon = "rbxassetid://75920162824531",
 		Args = { "ServiceId", "Secret" },
-		New = require("./Platoboost").New,
+		New = __vynx_require("utils/services/Platoboost.lua").New,
 	},
 	pandadevelopment = {
 		Name = "Panda Development",
 		Icon = "panda",
 		Args = { "ServiceId" },
-		New = require("./PandaDevelopment").New,
+		New = __vynx_require("utils/services/PandaDevelopment.lua").New,
 	},
 	luarmor = {
 		Name = "Luarmor",
 		Icon = "rbxassetid://130918283130165",
 		Args = { "ScriptId", "Discord" },
-		New = require("./Luarmor").New,
+		New = __vynx_require("utils/services/Luarmor.lua").New,
 	},
 	junkiedevelopment = {
 		Name = "Junkie Development",
 		Icon = "rbxassetid://106310347705078",
 		Args = { "ServiceId", "ApiKey", "Provider" },
-		New = require("./JunkieDevelopment").New,
+		New = __vynx_require("utils/services/JunkieDevelopment.lua").New,
 	},
 }
 
-end)()
+end
 
--- ── components/ConfigManager.lua ──
-_VYNX_MODULES["components/ConfigManager.lua"] = (function()
+-- [components/ConfigManager.lua]
+__vynx_fns["components/ConfigManager.lua"] = function()
 local cloneref = (cloneref or clonereference or function(instance) return instance end)
 
 
@@ -4548,12 +4557,12 @@ end
 
 return ConfigManager
 
-end)()
+end
 
--- ── components/Notification.lua ──
-_VYNX_MODULES["components/Notification.lua"] = (function()
-local Creator = require("../modules/Creator")
-local Motion = require("../modules/Motion")
+-- [components/Notification.lua]
+__vynx_fns["components/Notification.lua"] = function()
+local Creator = __vynx_require("modules/Creator.lua")
+local Motion = __vynx_require("modules/Motion.lua")
 
 local New = Creator.New
 local Tween = Creator.Tween
@@ -5798,14 +5807,14 @@ end
 
 return NotificationModule
 
-end)()
+end
 
--- ── components/LoadingScreen.lua ──
-_VYNX_MODULES["components/LoadingScreen.lua"] = (function()
+-- [components/LoadingScreen.lua]
+__vynx_fns["components/LoadingScreen.lua"] = function()
 local LoadingScreen = {}
 
-local Creator = require("../modules/Creator")
-local Motion = require("../modules/Motion")
+local Creator = __vynx_require("modules/Creator.lua")
+local Motion = __vynx_require("modules/Motion.lua")
 local New = Creator.New
 local Workspace = game:GetService("Workspace")
 
@@ -6207,19 +6216,19 @@ end
 
 return LoadingScreen
 
-end)()
+end
 
--- ── components/KeySystem.lua ──
-_VYNX_MODULES["components/KeySystem.lua"] = (function()
+-- [components/KeySystem.lua]
+__vynx_fns["components/KeySystem.lua"] = function()
 local KeySystem = {}
 
-local Creator = require("../modules/Creator")
-local Motion = require("../modules/Motion")
+local Creator = __vynx_require("modules/Creator.lua")
+local Motion = __vynx_require("modules/Motion.lua")
 local New = Creator.New
 local Workspace = game:GetService("Workspace")
 
-local CreateButton = require("./ui/Button").New
-local CreateInput = require("./ui/Input").New
+local CreateButton = __vynx_require("ui/Button.lua").New
+local CreateInput = __vynx_require("ui/Input.lua").New
 
 local function GetViewportSize()
 	local Camera = Workspace.CurrentCamera
@@ -6227,7 +6236,7 @@ local function GetViewportSize()
 end
 
 function KeySystem.new(Config, Filename, func, keyValidator)
-	local KeyDialogInit = require("./window/Dialog")
+	local KeyDialogInit = __vynx_require("window/Dialog.lua")
 	local KeyDialog = KeyDialogInit.Create(true, "Popup", Config.Window, Config.WindUI, Config.WindUI.ScreenGui.KeySystem)
 
 	local Services = {}
@@ -7047,16 +7056,16 @@ end
 
 return KeySystem
 
-end)()
+end
 
--- ── window/Element.lua ──
-_VYNX_MODULES["window/Element.lua"] = (function()
+-- [window/Element.lua]
+__vynx_fns["window/Element.lua"] = function()
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
-local Creator = require("../modules/Creator")
-local Motion = require("../modules/Motion")
+local Creator = __vynx_require("modules/Creator.lua")
+local Motion = __vynx_require("modules/Motion.lua")
 local New = Creator.New
 local NewRoundFrame = Creator.NewRoundFrame
-local GoldenEffect = require("./GoldenEffect")
+local GoldenEffect = __vynx_require("window/GoldenEffect.lua")
 
 local cloneref = (cloneref or clonereference or function(instance)
 	return instance
@@ -7064,7 +7073,7 @@ end)
 
 local UserInputService = cloneref(game:GetService("UserInputService"))
 
-local TagModule = require("../components/ui/Tag")
+local TagModule = __vynx_require("components/ui/Tag.lua")
 
 local function Color3ToHSB(color)
 	local r, g, b = color.R, color.G, color.B
@@ -8079,14 +8088,14 @@ return function(Config)
 	return Element
 end
 
-end)()
+end
 
--- ── window/GoldenEffect.lua ──
-_VYNX_MODULES["window/GoldenEffect.lua"] = (function()
+-- [window/GoldenEffect.lua]
+__vynx_fns["window/GoldenEffect.lua"] = function()
 local TweenService = game:GetService("TweenService")
 
-local Creator = require("../modules/Creator")
-local Motion = require("../modules/Motion")
+local Creator = __vynx_require("modules/Creator.lua")
+local Motion = __vynx_require("modules/Motion.lua")
 local New = Creator.New
 
 local GoldenEffect = {}
@@ -8363,15 +8372,15 @@ end
 
 return GoldenEffect
 
-end)()
+end
 
--- ── window/KeyBindMenu.lua ──
-_VYNX_MODULES["window/KeyBindMenu.lua"] = (function()
+-- [window/KeyBindMenu.lua]
+__vynx_fns["window/KeyBindMenu.lua"] = function()
 local UserInputService = game:GetService("UserInputService")
 local Workspace = game:GetService("Workspace")
 
-local Creator = require("../modules/Creator")
-local Motion = require("../modules/Motion")
+local Creator = __vynx_require("modules/Creator.lua")
+local Motion = __vynx_require("modules/Motion.lua")
 local New = Creator.New
 
 local KeyBindMenu = {}
@@ -9395,13 +9404,13 @@ end
 
 return KeyBindMenu
 
-end)()
+end
 
--- ── window/Openbutton.lua ──
-_VYNX_MODULES["window/Openbutton.lua"] = (function()
+-- [window/Openbutton.lua]
+__vynx_fns["window/Openbutton.lua"] = function()
 local OpenButton = {}
 
-local Creator = require("../modules/Creator")
+local Creator = __vynx_require("modules/Creator.lua")
 local New = Creator.New
 local Tween = Creator.Tween
 
@@ -10139,14 +10148,14 @@ end
 
 return OpenButton
 
-end)()
+end
 
--- ── window/Watermark.lua ──
-_VYNX_MODULES["window/Watermark.lua"] = (function()
+-- [window/Watermark.lua]
+__vynx_fns["window/Watermark.lua"] = function()
 local Watermark = {}
 
-local Creator = require("../modules/Creator")
-local Motion = require("../modules/Motion")
+local Creator = __vynx_require("modules/Creator.lua")
+local Motion = __vynx_require("modules/Motion.lua")
 local New = Creator.New
 
 local POSITIONS = {
@@ -10354,15 +10363,15 @@ end
 
 return Watermark
 
-end)()
+end
 
--- ── window/SettingsMenu.lua ──
-_VYNX_MODULES["window/SettingsMenu.lua"] = (function()
+-- [window/SettingsMenu.lua]
+__vynx_fns["window/SettingsMenu.lua"] = function()
 local UserInputService = game:GetService("UserInputService")
 local Workspace = game:GetService("Workspace")
 
-local Creator = require("../modules/Creator")
-local Motion = require("../modules/Motion")
+local Creator = __vynx_require("modules/Creator.lua")
+local Motion = __vynx_require("modules/Motion.lua")
 local New = Creator.New
 
 local SettingsMenu = {}
@@ -11234,11 +11243,11 @@ end
 
 return SettingsMenu
 
-end)()
+end
 
--- ── window/Dialog.lua ──
-_VYNX_MODULES["window/Dialog.lua"] = (function()
-local Creator = require("../modules/Creator")
+-- [window/Dialog.lua]
+__vynx_fns["window/Dialog.lua"] = function()
+local Creator = __vynx_require("modules/Creator.lua")
 local New = Creator.New
 local Tween = Creator.Tween
 
@@ -11419,18 +11428,18 @@ end
 
 return DialogModule
 
-end)()
+end
 
--- ── window/Section.lua ──
-_VYNX_MODULES["window/Section.lua"] = (function()
+-- [window/Section.lua]
+__vynx_fns["window/Section.lua"] = function()
 local Section = {}
 
 
-local Creator = require("../modules/Creator")
+local Creator = __vynx_require("modules/Creator.lua")
 local New = Creator.New
 local Tween = Creator.Tween
 
-local TabModule = require("./Tab")
+local TabModule = __vynx_require("window/Tab.lua")
 
 function Section.New(SectionConfig, Parent, Folder, UIScale, Window)
     local SectionModule = {
@@ -11600,10 +11609,10 @@ end
 
 
 return Section
-end)()
+end
 
--- ── window/Tab.lua ──
-_VYNX_MODULES["window/Tab.lua"] = (function()
+-- [window/Tab.lua]
+__vynx_fns["window/Tab.lua"] = function()
 local cloneref = (cloneref or clonereference or function(instance)
 	return instance
 end)
@@ -11614,12 +11623,12 @@ local TweenService = game:GetService("TweenService")
 local UserInputService = cloneref(game:GetService("UserInputService"))
 local Mouse = Players.LocalPlayer:GetMouse()
 
-local Creator = require("../modules/Creator")
-local Motion = require("../modules/Motion")
+local Creator = __vynx_require("modules/Creator.lua")
+local Motion = __vynx_require("modules/Motion.lua")
 local New = Creator.New
 
-local CreateToolTip = require("../components/ui/Tooltip").New
-local CreateScrollSlider = require("../components/ui/ScrollSlider").New
+local CreateToolTip = __vynx_require("components/ui/Tooltip.lua").New
+local CreateScrollSlider = __vynx_require("components/ui/ScrollSlider.lua").New
 
 local Window, WindUI, UIScale
 
@@ -12145,7 +12154,7 @@ function TabModule.New(Config, UIScale)
 
 	-- yo
 
-	local ElementsModule = require("../elements/Init")
+	local ElementsModule = __vynx_require("elements/Init.lua")
 
 	ElementsModule.Load(
 		Tab,
@@ -12418,7 +12427,7 @@ TabModule.New = function(Config, UIScale)
 			Title  = Title or "",
 			Parent = Tab.UIElements.ContainerFrame,
 		}
-		local ElementsModule = require("../elements/Init")
+		local ElementsModule = __vynx_require("elements/Init.lua")
 		local section = ElementsModule.Elements.Section:New(
 			GroupboxConfig,
 			Tab.UIElements.ContainerFrame,
@@ -12458,10 +12467,10 @@ TabModule.New = function(Config, UIScale)
 	return Tab
 end
 
-end)()
+end
 
--- ── window/Init.lua ──
-_VYNX_MODULES["window/Init.lua"] = (function()
+-- [window/Init.lua]
+__vynx_fns["window/Init.lua"] = function()
 -- /* src/components/Window/Init.lua */
 
 local cloneref = (cloneref or clonereference or function(instance)
@@ -12474,20 +12483,20 @@ local Players = cloneref(game:GetService("Players"))
 
 local CurrentCamera = workspace.CurrentCamera
 
-local Acrylic = require("../utils/Acrylic/Init")
+local Acrylic = __vynx_require("utils/Acrylic/Init.lua")
 
-local Creator = require("../modules/Creator")
-local Motion = require("../modules/Motion")
+local Creator = __vynx_require("modules/Creator.lua")
+local Motion = __vynx_require("modules/Motion.lua")
 local New = Creator.New
 local Tween = Creator.Tween
 
---local UIComponents = require("../Components/UI.lua")
-local CreateLabel = require("../components/ui/Label").New
-local CreateButton = require("../components/ui/Button").New
-local CreateScrollSlider = require("../components/ui/ScrollSlider").New
-local Tag = require("../components/ui/Tag")
+--local UIComponents = __vynx_require("Components/UI.lua.lua")
+local CreateLabel = __vynx_require("components/ui/Label.lua").New
+local CreateButton = __vynx_require("components/ui/Button.lua").New
+local CreateScrollSlider = __vynx_require("components/ui/ScrollSlider.lua").New
+local Tag = __vynx_require("components/ui/Tag.lua")
 
-local ConfigManager = require("../components/ConfigManager")
+local ConfigManager = __vynx_require("components/ConfigManager.lua")
 
 local Notified = false
 
@@ -13858,7 +13867,7 @@ return function(Config)
 		SetBackgroundGradientObject(InitialGradient, InitialTransparency)
 	end
 
-	-- local blur = require("../Blur")
+	-- local blur = __vynx_require("Blur.lua")
 
 	-- blur.new(Window.UIElements.Main.Background, {
 	--     Corner = Window.UICorner
@@ -13871,9 +13880,9 @@ return function(Config)
 	--     OpenButtonDragModule = Creator.Drag(OpenButtonContainer)
 	-- end
 
-	Window.OpenButtonMain = require("./Openbutton").New(Window)
+	Window.OpenButtonMain = __vynx_require("window/Openbutton.lua").New(Window)
 	Window.OpenButtonController = Window.OpenButtonMain
-	Window.WatermarkMain = require("./Watermark").New(Window, Config.WindUI)
+	Window.WatermarkMain = __vynx_require("window/Watermark.lua").New(Window, Config.WindUI)
 
 	function Window:SetWatermark(WatermarkConfig)
 		Window.Watermark = WatermarkConfig
@@ -14134,7 +14143,7 @@ return function(Config)
 	local iconSquare = Creator.Icon("maximize")
 
 	if Window.Settings ~= false and Window.Topbar.Settings ~= false then
-		local SettingsMenu = require("./SettingsMenu").New(Window, Config.WindUI, Config)
+		local SettingsMenu = __vynx_require("window/SettingsMenu.lua").New(Window, Config.WindUI, Config)
 		local SettingsButton = Window:CreateTopbarButton(
 			"Settings",
 			"settings",
@@ -14154,7 +14163,7 @@ return function(Config)
 	end
 
 	if Window.KeyBindMenu ~= false and Window.Topbar.KeyBindMenu ~= false then
-		local KeyBindMenu = require("./KeyBindMenu").New(Window, Config.WindUI, Config)
+		local KeyBindMenu = __vynx_require("window/KeyBindMenu.lua").New(Window, Config.WindUI, Config)
 		local KeyBindButton = Window:CreateTopbarButton(
 			"KeyBind",
 			"keyboard",
@@ -14685,8 +14694,8 @@ return function(Config)
 		Window:EditOpenButton(Window.OpenButton)
 	end
 
-	local TabModuleMain = require("./Tab")
-	local SectionModule = require("./Section")
+	local TabModuleMain = __vynx_require("window/Tab.lua")
+	local SectionModule = __vynx_require("window/Section.lua")
 	local TabModule = TabModuleMain.Init(Window, Config.WindUI, Config.WindUI.TooltipGui)
 	TabModule:OnChange(function(t)
 		Window.CurrentTab = t
@@ -14760,7 +14769,7 @@ return function(Config)
 		return MainDivider
 	end
 
-	local DialogModule = require("./Dialog")
+	local DialogModule = __vynx_require("window/Dialog.lua")
 	function Window:Dialog(DialogConfig)
 		local DialogTable = {
 			Title = DialogConfig.Title or "Dialog",
@@ -15143,7 +15152,7 @@ return function(Config)
 	-- / Search Bar /
 
 	if not Window.HideSearchBar then
-		local SearchBar = require("../search/Init")
+		local SearchBar = __vynx_require("search/Init.lua")
 		local IsOpen = false
 		local CurrentSearchBar
 
@@ -15234,10 +15243,10 @@ return function(Config)
 	return Window
 end
 
-end)()
+end
 
--- ── elements/DisplayElementUtils.lua ──
-_VYNX_MODULES["elements/DisplayElementUtils.lua"] = (function()
+-- [elements/DisplayElementUtils.lua]
+__vynx_fns["elements/DisplayElementUtils.lua"] = function()
 local Utils = {}
 
 Utils.Variants = {
@@ -15399,10 +15408,10 @@ end
 
 return Utils
 
-end)()
+end
 
--- ── elements/ModernControlUtils.lua ──
-_VYNX_MODULES["elements/ModernControlUtils.lua"] = (function()
+-- [elements/ModernControlUtils.lua]
+__vynx_fns["elements/ModernControlUtils.lua"] = function()
 local Utils = {}
 
 function Utils.ToFiniteNumber(Value)
@@ -15510,16 +15519,16 @@ end
 
 return Utils
 
-end)()
+end
 
--- ── elements/Paragraph.lua ──
-_VYNX_MODULES["elements/Paragraph.lua"] = (function()
-local Creator = require("../modules/Creator")
+-- [elements/Paragraph.lua]
+__vynx_fns["elements/Paragraph.lua"] = function()
+local Creator = __vynx_require("modules/Creator.lua")
 local New = Creator.New
 
 local Element = {}
 
-local CreateButton = require("./components/ui/Button").New
+local CreateButton = __vynx_require("components/ui/Button.lua").New
 
 function Element:New(ElementConfig)
 	ElementConfig.Hover = false
@@ -15534,7 +15543,7 @@ function Element:New(ElementConfig)
 		--Color = ElementConfig.Color,
 		Locked = ElementConfig.Locked or false,
 	}
-	local Paragraph = require("./components/window/Element")(ElementConfig)
+	local Paragraph = __vynx_require("components/window/Element.lua")(ElementConfig)
 
 	ParagraphModule.ParagraphFrame = Paragraph
 	if ElementConfig.Buttons and #ElementConfig.Buttons > 0 then
@@ -15571,11 +15580,11 @@ end
 
 return Element
 
-end)()
+end
 
--- ── elements/Button.lua ──
-_VYNX_MODULES["elements/Button.lua"] = (function()
-local Creator = require("../modules/Creator")
+-- [elements/Button.lua]
+__vynx_fns["elements/Button.lua"] = function()
+local Creator = __vynx_require("modules/Creator.lua")
 local New = Creator.New
 local UserInputService = game:GetService("UserInputService")
 
@@ -15628,7 +15637,7 @@ function Element:New(Config)
 
 	local CanCallback = true
 
-	Button.ButtonFrame = require("./components/window/Element")({
+	Button.ButtonFrame = __vynx_require("components/window/Element.lua")({
 		Title = Button.Title,
 		Desc = Button.Desc,
 		Parent = Config.Parent,
@@ -15735,17 +15744,17 @@ end
 
 return Element
 
-end)()
+end
 
--- ── elements/Toggle.lua ──
-_VYNX_MODULES["elements/Toggle.lua"] = (function()
-local Creator = require("../modules/Creator")
+-- [elements/Toggle.lua]
+__vynx_fns["elements/Toggle.lua"] = function()
+local Creator = __vynx_require("modules/Creator.lua")
 local New = Creator.New
 local Tween = Creator.Tween
 local UserInputService = game:GetService("UserInputService")
 
-local CreateToggle = require("./components/ui/Toggle").New
-local CreateCheckbox = require("./components/ui/Checkbox").New
+local CreateToggle = __vynx_require("components/ui/Toggle.lua").New
+local CreateCheckbox = __vynx_require("components/ui/Checkbox.lua").New
 
 local Element = {}
 
@@ -15777,7 +15786,7 @@ function Element:New(Config)
 		Callback = Config.Callback or function() end,
 		UIElements = {},
 	}
-	Toggle.ToggleFrame = require("./components/window/Element")({
+	Toggle.ToggleFrame = __vynx_require("components/window/Element.lua")({
 		Title = Toggle.Title,
 		Desc = Toggle.Desc,
 		-- Image = Config.Image,
@@ -15913,10 +15922,10 @@ end
 
 return Element
 
-end)()
+end
 
--- ── elements/Slider.lua ──
-_VYNX_MODULES["elements/Slider.lua"] = (function()
+-- [elements/Slider.lua]
+__vynx_fns["elements/Slider.lua"] = function()
 local cloneref = (cloneref or clonereference or function(instance)
 	return instance
 end)
@@ -15924,8 +15933,8 @@ end)
 local UserInputService = cloneref(game:GetService("UserInputService"))
 local RunService = cloneref(game:GetService("RunService"))
 
-local Creator = require("../modules/Creator")
-local Motion = require("../modules/Motion")
+local Creator = __vynx_require("modules/Creator.lua")
+local Motion = __vynx_require("modules/Motion.lua")
 local New = Creator.New
 
 local Element = {}
@@ -16023,7 +16032,7 @@ function Element:New(Config)
 			TotalSliderWidth = TotalSliderWidth + Slider.IconSize - 2
 		end
 	end
-	Slider.SliderFrame = require("./components/window/Element")({
+	Slider.SliderFrame = __vynx_require("components/window/Element.lua")({
 		Title = Slider.Title,
 		Desc = Slider.Desc,
 		Parent = Config.Parent,
@@ -16117,7 +16126,7 @@ function Element:New(Config)
 
 	local Tooltip
 	if Slider.IsTooltip then
-		Tooltip = require("./components/ui/Tooltip").New(
+		Tooltip = __vynx_require("components/ui/Tooltip.lua").New(
 			Value,
 			Slider.UIElements.SliderIcon.Frame.Thumb,
 			true,
@@ -16351,11 +16360,11 @@ end
 
 return Element
 
-end)()
+end
 
--- ── elements/ProgressBar.lua ──
-_VYNX_MODULES["elements/ProgressBar.lua"] = (function()
-local Creator = require("../modules/Creator")
+-- [elements/ProgressBar.lua]
+__vynx_fns["elements/ProgressBar.lua"] = function()
+local Creator = __vynx_require("modules/Creator.lua")
 local New = Creator.New
 local Tween = Creator.Tween
 
@@ -16459,7 +16468,7 @@ function Element:New(Config)
 		return tostring(math.floor(Percentage + 0.5)) .. "%"
 	end
 
-	ProgressBar.ProgressBarFrame = require("./components/window/Element")({
+	ProgressBar.ProgressBarFrame = __vynx_require("components/window/Element.lua")({
 		Title = ProgressBar.Title,
 		Desc = ProgressBar.Desc,
 		Parent = Config.Parent,
@@ -16634,17 +16643,17 @@ end
 
 return Element
 
-end)()
+end
 
--- ── elements/Keybind.lua ──
-_VYNX_MODULES["elements/Keybind.lua"] = (function()
+-- [elements/Keybind.lua]
+__vynx_fns["elements/Keybind.lua"] = function()
 local cloneref = (cloneref or clonereference or function(instance)
 	return instance
 end)
 
 local UserInputService = cloneref(game:GetService("UserInputService"))
 
-local Creator = require("../modules/Creator")
+local Creator = __vynx_require("modules/Creator.lua")
 local New = Creator.New
 local Tween = Creator.Tween
 
@@ -16653,7 +16662,7 @@ local Element = {
 	UIPadding = 8,
 }
 
-local CreateLabel = require("./components/ui/Label").New
+local CreateLabel = __vynx_require("components/ui/Label.lua").New
 
 function Element:New(Config)
 	local function NormalizeKeyCode(value)
@@ -16689,7 +16698,7 @@ function Element:New(Config)
 
 	local CanCallback = true
 
-	Keybind.KeybindFrame = require("./components/window/Element")({
+	Keybind.KeybindFrame = __vynx_require("components/window/Element.lua")({
 		Title = Keybind.Title,
 		Desc = Keybind.Desc,
 		Parent = Config.Parent,
@@ -16838,11 +16847,11 @@ end
 
 return Element
 
-end)()
+end
 
--- ── elements/Input.lua ──
-_VYNX_MODULES["elements/Input.lua"] = (function()
-local Creator = require("../modules/Creator")
+-- [elements/Input.lua]
+__vynx_fns["elements/Input.lua"] = function()
+local Creator = __vynx_require("modules/Creator.lua")
 local New = Creator.New
 local Tween = Creator.Tween
 
@@ -16851,8 +16860,8 @@ local Element = {
 	UIPadding = 8,
 }
 
-local CreateButton = require("./components/ui/Button").New
-local CreateInput = require("./components/ui/Input").New
+local CreateButton = __vynx_require("components/ui/Button.lua").New
+local CreateInput = __vynx_require("components/ui/Input.lua").New
 
 function Element:New(Config)
 	local Input = {
@@ -16874,7 +16883,7 @@ function Element:New(Config)
 
 	local CanCallback = true
 
-	Input.InputFrame = require("./components/window/Element")({
+	Input.InputFrame = __vynx_require("components/window/Element.lua")({
 		Title = Input.Title,
 		Desc = Input.Desc,
 		Parent = Config.Parent,
@@ -16952,10 +16961,10 @@ end
 
 return Element
 
-end)()
+end
 
--- ── elements/Dropdown.lua ──
-_VYNX_MODULES["elements/Dropdown.lua"] = (function()
+-- [elements/Dropdown.lua]
+__vynx_fns["elements/Dropdown.lua"] = function()
 local cloneref = (cloneref or clonereference or function(instance)
 	return instance
 end)
@@ -16964,13 +16973,13 @@ local UserInputService = cloneref(game:GetService("UserInputService"))
 local Mouse = cloneref(game:GetService("Players")).LocalPlayer:GetMouse()
 local Camera = cloneref(game:GetService("Workspace")).CurrentCamera
 
-local Creator = require("../modules/Creator")
+local Creator = __vynx_require("modules/Creator.lua")
 local New = Creator.New
 local Tween = Creator.Tween
 
-local CreateLabel = require("./components/ui/Label").New
-local CreateInput = require("./components/ui/Input").New
-local CreateDropdown = require("./components/ui/Dropdown").New
+local CreateLabel = __vynx_require("components/ui/Label.lua").New
+local CreateInput = __vynx_require("components/ui/Input.lua").New
+local CreateDropdown = __vynx_require("components/ui/Dropdown.lua").New
 
 local CurrentCamera = workspace.CurrentCamera
 
@@ -17040,7 +17049,7 @@ function Element:New(Config)
 		Dropdown.Value = Dropdown.Values[Dropdown.Value]
 	end
 
-	Dropdown.DropdownFrame = require("./components/window/Element")({
+	Dropdown.DropdownFrame = __vynx_require("components/window/Element.lua")({
 		Title = Dropdown.Title,
 		Desc = Dropdown.Desc,
 		Parent = Config.Parent,
@@ -17115,15 +17124,15 @@ end
 
 return Element
 
-end)()
+end
 
--- ── elements/Code.lua ──
-_VYNX_MODULES["elements/Code.lua"] = (function()
-local Creator = require("../modules/Creator")
+-- [elements/Code.lua]
+__vynx_fns["elements/Code.lua"] = function()
+local Creator = __vynx_require("modules/Creator.lua")
 local New = Creator.New
 
--- local Highlighter = require("../Highlighter")
-local CodeComponent = require("./components/ui/Code")
+-- local Highlighter = __vynx_require("Highlighter.lua")
+local CodeComponent = __vynx_require("components/ui/Code.lua")
 
 local Element = {}
 
@@ -17149,7 +17158,7 @@ function Element:New(Config)
 
 	local CanCallback = not Code.Locked
 
-	-- Code.CodeFrame = require("../Components/Element")({
+	-- Code.CodeFrame = __vynx_require("Components/Element.lua")({
 	--     Title = Code.Title,
 	--     Desc = Code.Code,
 	--     Parent = Config.Parent,
@@ -17239,11 +17248,11 @@ end
 
 return Element
 
-end)()
+end
 
--- ── elements/Colorpicker.lua ──
-_VYNX_MODULES["elements/Colorpicker.lua"] = (function()
-local Creator = require("../modules/Creator")
+-- [elements/Colorpicker.lua]
+__vynx_fns["elements/Colorpicker.lua"] = function()
+local Creator = __vynx_require("modules/Creator.lua")
 local New = Creator.New
 local Tween = Creator.Tween
 
@@ -17260,8 +17269,8 @@ local RenderStepped = RunService.RenderStepped
 local LocalPlayer = Players.LocalPlayer
 local Mouse = LocalPlayer:GetMouse()
 
-local CreateButton = require("./components/ui/Button").New
-local CreateInput = require("./components/ui/Input").New
+local CreateButton = __vynx_require("components/ui/Button.lua").New
+local CreateInput = __vynx_require("components/ui/Input.lua").New
 
 local Element = {
 	UICorner = 9,
@@ -17295,7 +17304,7 @@ function Element:Colorpicker(Config, Window, WindUI, OnApply)
 
 	Colorpicker:SetHSVFromRGB(Colorpicker.Default)
 
-	local ColorpickerModule = require("./components/window/Dialog")
+	local ColorpickerModule = __vynx_require("components/window/Dialog.lua")
 	local ColorpickerFrame = ColorpickerModule.Create(nil, "Dialog", Window, WindUI, Window.UIElements.Main.Main)
 
 	Colorpicker.ColorpickerFrame = ColorpickerFrame
@@ -18038,7 +18047,7 @@ function Element:New(Config)
 
 	--if Config.Window.NewElements then Element.UICorner = 14 end
 
-	Colorpicker.ColorpickerFrame = require("./components/window/Element")({
+	Colorpicker.ColorpickerFrame = __vynx_require("components/window/Element.lua")({
 		Title = Colorpicker.Title,
 		Desc = Colorpicker.Desc,
 		Parent = Config.Parent,
@@ -18118,11 +18127,11 @@ end
 
 return Element
 
-end)()
+end
 
--- ── elements/Checkbox.lua ──
-_VYNX_MODULES["elements/Checkbox.lua"] = (function()
-local Creator = require("../modules/Creator")
+-- [elements/Checkbox.lua]
+__vynx_fns["elements/Checkbox.lua"] = function()
+local Creator = __vynx_require("modules/Creator.lua")
 local New = Creator.New
 
 local Element = {}
@@ -18221,10 +18230,10 @@ end
 
 return Element
 
-end)()
+end
 
--- ── elements/UIPassthrough.lua ──
-_VYNX_MODULES["elements/UIPassthrough.lua"] = (function()
+-- [elements/UIPassthrough.lua]
+__vynx_fns["elements/UIPassthrough.lua"] = function()
 local Element = {}
 
 function Element:New(Config)
@@ -18291,15 +18300,15 @@ end
 
 return Element
 
-end)()
+end
 
--- ── elements/RadioGroup.lua ──
-_VYNX_MODULES["elements/RadioGroup.lua"] = (function()
-local Creator = require("../modules/Creator")
-local Motion = require("../modules/Motion")
+-- [elements/RadioGroup.lua]
+__vynx_fns["elements/RadioGroup.lua"] = function()
+local Creator = __vynx_require("modules/Creator.lua")
+local Motion = __vynx_require("modules/Motion.lua")
 local New = Creator.New
 
-local Utils = require("./ModernControlUtils")
+local Utils = __vynx_require("elements/ModernControlUtils.lua")
 
 local Element = {}
 
@@ -18337,7 +18346,7 @@ function Element:New(Config)
 
 	local CanCallback = true
 
-	RadioGroup.RadioGroupFrame = require("./components/window/Element")({
+	RadioGroup.RadioGroupFrame = __vynx_require("components/window/Element.lua")({
 		Title = RadioGroup.Title,
 		Desc = RadioGroup.Desc,
 		Parent = Config.Parent,
@@ -18545,15 +18554,15 @@ end
 
 return Element
 
-end)()
+end
 
--- ── elements/CheckboxGroup.lua ──
-_VYNX_MODULES["elements/CheckboxGroup.lua"] = (function()
-local Creator = require("../modules/Creator")
-local Motion = require("../modules/Motion")
+-- [elements/CheckboxGroup.lua]
+__vynx_fns["elements/CheckboxGroup.lua"] = function()
+local Creator = __vynx_require("modules/Creator.lua")
+local Motion = __vynx_require("modules/Motion.lua")
 local New = Creator.New
 
-local Utils = require("./ModernControlUtils")
+local Utils = __vynx_require("elements/ModernControlUtils.lua")
 
 local Element = {}
 
@@ -18580,7 +18589,7 @@ function Element:New(Config)
 
 	local CanCallback = true
 
-	CheckboxGroup.CheckboxGroupFrame = require("./components/window/Element")({
+	CheckboxGroup.CheckboxGroupFrame = __vynx_require("components/window/Element.lua")({
 		Title = CheckboxGroup.Title,
 		Desc = CheckboxGroup.Desc,
 		Parent = Config.Parent,
@@ -18818,15 +18827,15 @@ end
 
 return Element
 
-end)()
+end
 
--- ── elements/SegmentedControl.lua ──
-_VYNX_MODULES["elements/SegmentedControl.lua"] = (function()
-local Creator = require("../modules/Creator")
-local Motion = require("../modules/Motion")
+-- [elements/SegmentedControl.lua]
+__vynx_fns["elements/SegmentedControl.lua"] = function()
+local Creator = __vynx_require("modules/Creator.lua")
+local Motion = __vynx_require("modules/Motion.lua")
 local New = Creator.New
 
-local Utils = require("./ModernControlUtils")
+local Utils = __vynx_require("elements/ModernControlUtils.lua")
 
 local Element = {}
 
@@ -18860,7 +18869,7 @@ function Element:New(Config)
 
 	local CanCallback = true
 
-	SegmentedControl.SegmentedControlFrame = require("./components/window/Element")({
+	SegmentedControl.SegmentedControlFrame = __vynx_require("components/window/Element.lua")({
 		Title = SegmentedControl.Title,
 		Desc = SegmentedControl.Desc,
 		Parent = Config.Parent,
@@ -19034,13 +19043,13 @@ end
 
 return Element
 
-end)()
+end
 
--- ── elements/TextArea.lua ──
-_VYNX_MODULES["elements/TextArea.lua"] = (function()
-local Creator = require("../modules/Creator")
+-- [elements/TextArea.lua]
+__vynx_fns["elements/TextArea.lua"] = function()
+local Creator = __vynx_require("modules/Creator.lua")
 
-local CreateInput = require("./components/ui/Input").New
+local CreateInput = __vynx_require("components/ui/Input.lua").New
 
 local Element = {}
 
@@ -19061,7 +19070,7 @@ function Element:New(Config)
 
 	local CanCallback = true
 
-	TextArea.TextAreaFrame = require("./components/window/Element")({
+	TextArea.TextAreaFrame = __vynx_require("components/window/Element.lua")({
 		Title = TextArea.Title,
 		Desc = TextArea.Desc,
 		Parent = Config.Parent,
@@ -19141,21 +19150,21 @@ end
 
 return Element
 
-end)()
+end
 
--- ── elements/Stepper.lua ──
-_VYNX_MODULES["elements/Stepper.lua"] = (function()
+-- [elements/Stepper.lua]
+__vynx_fns["elements/Stepper.lua"] = function()
 local cloneref = (cloneref or clonereference or function(instance)
 	return instance
 end)
 
 local UserInputService = cloneref(game:GetService("UserInputService"))
 
-local Creator = require("../modules/Creator")
-local Motion = require("../modules/Motion")
+local Creator = __vynx_require("modules/Creator.lua")
+local Motion = __vynx_require("modules/Motion.lua")
 local New = Creator.New
 
-local Utils = require("./ModernControlUtils")
+local Utils = __vynx_require("elements/ModernControlUtils.lua")
 
 local Element = {}
 
@@ -19208,7 +19217,7 @@ function Element:New(Config)
 
 	local CanCallback = true
 
-	Stepper.StepperFrame = require("./components/window/Element")({
+	Stepper.StepperFrame = __vynx_require("components/window/Element.lua")({
 		Title = Stepper.Title,
 		Desc = Stepper.Desc,
 		Parent = Config.Parent,
@@ -19623,10 +19632,10 @@ end
 
 return Element
 
-end)()
+end
 
--- ── elements/Callout.lua ──
-_VYNX_MODULES["elements/Callout.lua"] = (function()
+-- [elements/Callout.lua]
+__vynx_fns["elements/Callout.lua"] = function()
 local Element = {}
 
 local Variants = {
@@ -19662,7 +19671,7 @@ function Element:New(Config)
 		UIElements = {},
 	}
 
-	Callout.CalloutFrame = require("./components/window/Element")({
+	Callout.CalloutFrame = __vynx_require("components/window/Element.lua")({
 		Title = Callout.Title,
 		Desc = Callout.Desc,
 		Image = Callout.Icon,
@@ -19685,15 +19694,15 @@ end
 
 return Element
 
-end)()
+end
 
--- ── elements/Badge.lua ──
-_VYNX_MODULES["elements/Badge.lua"] = (function()
-local Creator = require("../modules/Creator")
-local Motion = require("../modules/Motion")
+-- [elements/Badge.lua]
+__vynx_fns["elements/Badge.lua"] = function()
+local Creator = __vynx_require("modules/Creator.lua")
+local Motion = __vynx_require("modules/Motion.lua")
 local New = Creator.New
 
-local Utils = require("./DisplayElementUtils")
+local Utils = __vynx_require("elements/DisplayElementUtils.lua")
 
 local Element = {}
 
@@ -19714,7 +19723,7 @@ function Element:New(Config)
 		Width = math.max(Utils.ToFiniteNumber(Config.Width) or 96, 72),
 	}
 
-	Badge.BadgeFrame = require("./components/window/Element")({
+	Badge.BadgeFrame = __vynx_require("components/window/Element.lua")({
 		Title = Badge.Title,
 		Desc = Badge.Desc,
 		Parent = Config.Parent,
@@ -19802,15 +19811,15 @@ end
 
 return Element
 
-end)()
+end
 
--- ── elements/StatusCard.lua ──
-_VYNX_MODULES["elements/StatusCard.lua"] = (function()
-local Creator = require("../modules/Creator")
-local Motion = require("../modules/Motion")
+-- [elements/StatusCard.lua]
+__vynx_fns["elements/StatusCard.lua"] = function()
+local Creator = __vynx_require("modules/Creator.lua")
+local Motion = __vynx_require("modules/Motion.lua")
 local New = Creator.New
 
-local Utils = require("./DisplayElementUtils")
+local Utils = __vynx_require("elements/DisplayElementUtils.lua")
 
 local Element = {}
 
@@ -19830,7 +19839,7 @@ function Element:New(Config)
 		Width = math.max(Utils.ToFiniteNumber(Config.Width) or 136, 96),
 	}
 
-	StatusCard.StatusCardFrame = require("./components/window/Element")({
+	StatusCard.StatusCardFrame = __vynx_require("components/window/Element.lua")({
 		Title = StatusCard.Title,
 		Desc = StatusCard.Desc,
 		Parent = Config.Parent,
@@ -19913,15 +19922,15 @@ end
 
 return Element
 
-end)()
+end
 
--- ── elements/StatCard.lua ──
-_VYNX_MODULES["elements/StatCard.lua"] = (function()
-local Creator = require("../modules/Creator")
-local Motion = require("../modules/Motion")
+-- [elements/StatCard.lua]
+__vynx_fns["elements/StatCard.lua"] = function()
+local Creator = __vynx_require("modules/Creator.lua")
+local Motion = __vynx_require("modules/Motion.lua")
 local New = Creator.New
 
-local Utils = require("./DisplayElementUtils")
+local Utils = __vynx_require("elements/DisplayElementUtils.lua")
 
 local Element = {}
 
@@ -19947,7 +19956,7 @@ function Element:New(Config)
 		UIElements = {},
 	}
 
-	StatCard.StatCardFrame = require("./components/window/Element")({
+	StatCard.StatCardFrame = __vynx_require("components/window/Element.lua")({
 		Title = StatCard.Title,
 		Desc = StatCard.Desc,
 		Image = StatCard.Icon,
@@ -20049,15 +20058,15 @@ end
 
 return Element
 
-end)()
+end
 
--- ── elements/KeyValue.lua ──
-_VYNX_MODULES["elements/KeyValue.lua"] = (function()
-local Creator = require("../modules/Creator")
-local Motion = require("../modules/Motion")
+-- [elements/KeyValue.lua]
+__vynx_fns["elements/KeyValue.lua"] = function()
+local Creator = __vynx_require("modules/Creator.lua")
+local Motion = __vynx_require("modules/Motion.lua")
 local New = Creator.New
 
-local Utils = require("./DisplayElementUtils")
+local Utils = __vynx_require("elements/DisplayElementUtils.lua")
 
 local Element = {}
 
@@ -20071,7 +20080,7 @@ function Element:New(Config)
 		Rows = {},
 	}
 
-	KeyValue.KeyValueFrame = require("./components/window/Element")({
+	KeyValue.KeyValueFrame = __vynx_require("components/window/Element.lua")({
 		Title = KeyValue.Title,
 		Desc = KeyValue.Desc,
 		Parent = Config.Parent,
@@ -20181,15 +20190,15 @@ end
 
 return Element
 
-end)()
+end
 
--- ── elements/ChipList.lua ──
-_VYNX_MODULES["elements/ChipList.lua"] = (function()
-local Creator = require("../modules/Creator")
-local Motion = require("../modules/Motion")
+-- [elements/ChipList.lua]
+__vynx_fns["elements/ChipList.lua"] = function()
+local Creator = __vynx_require("modules/Creator.lua")
+local Motion = __vynx_require("modules/Motion.lua")
 local New = Creator.New
 
-local Utils = require("./DisplayElementUtils")
+local Utils = __vynx_require("elements/DisplayElementUtils.lua")
 
 local Element = {}
 
@@ -20217,7 +20226,7 @@ function Element:New(Config)
 
 	local CanCallback = true
 
-	ChipList.ChipListFrame = require("./components/window/Element")({
+	ChipList.ChipListFrame = __vynx_require("components/window/Element.lua")({
 		Title = ChipList.Title,
 		Desc = ChipList.Desc,
 		Parent = Config.Parent,
@@ -20403,15 +20412,15 @@ end
 
 return Element
 
-end)()
+end
 
--- ── elements/ActionList.lua ──
-_VYNX_MODULES["elements/ActionList.lua"] = (function()
-local Creator = require("../modules/Creator")
-local Motion = require("../modules/Motion")
+-- [elements/ActionList.lua]
+__vynx_fns["elements/ActionList.lua"] = function()
+local Creator = __vynx_require("modules/Creator.lua")
+local Motion = __vynx_require("modules/Motion.lua")
 local New = Creator.New
 
-local Utils = require("./DisplayElementUtils")
+local Utils = __vynx_require("elements/DisplayElementUtils.lua")
 
 local Element = {}
 
@@ -20450,7 +20459,7 @@ function Element:New(Config)
 		UIElements = {},
 	}
 
-	ActionList.ActionListFrame = require("./components/window/Element")({
+	ActionList.ActionListFrame = __vynx_require("components/window/Element.lua")({
 		Title = ActionList.Title,
 		Desc = ActionList.Desc,
 		Parent = Config.Parent,
@@ -20635,15 +20644,15 @@ end
 
 return Element
 
-end)()
+end
 
--- ── elements/MeterGroup.lua ──
-_VYNX_MODULES["elements/MeterGroup.lua"] = (function()
-local Creator = require("../modules/Creator")
-local Motion = require("../modules/Motion")
+-- [elements/MeterGroup.lua]
+__vynx_fns["elements/MeterGroup.lua"] = function()
+local Creator = __vynx_require("modules/Creator.lua")
+local Motion = __vynx_require("modules/Motion.lua")
 local New = Creator.New
 
-local Utils = require("./DisplayElementUtils")
+local Utils = __vynx_require("elements/DisplayElementUtils.lua")
 
 local Element = {}
 
@@ -20684,7 +20693,7 @@ function Element:New(Config)
 		UIElements = {},
 	}
 
-	MeterGroup.MeterGroupFrame = require("./components/window/Element")({
+	MeterGroup.MeterGroupFrame = __vynx_require("components/window/Element.lua")({
 		Title = MeterGroup.Title,
 		Desc = MeterGroup.Desc,
 		Parent = Config.Parent,
@@ -20859,15 +20868,15 @@ end
 
 return Element
 
-end)()
+end
 
--- ── elements/Timeline.lua ──
-_VYNX_MODULES["elements/Timeline.lua"] = (function()
-local Creator = require("../modules/Creator")
-local Motion = require("../modules/Motion")
+-- [elements/Timeline.lua]
+__vynx_fns["elements/Timeline.lua"] = function()
+local Creator = __vynx_require("modules/Creator.lua")
+local Motion = __vynx_require("modules/Motion.lua")
 local New = Creator.New
 
-local Utils = require("./DisplayElementUtils")
+local Utils = __vynx_require("elements/DisplayElementUtils.lua")
 
 local Element = {}
 
@@ -20881,7 +20890,7 @@ function Element:New(Config)
 		Rows = {},
 	}
 
-	Timeline.TimelineFrame = require("./components/window/Element")({
+	Timeline.TimelineFrame = __vynx_require("components/window/Element.lua")({
 		Title = Timeline.Title,
 		Desc = Timeline.Desc,
 		Parent = Config.Parent,
@@ -21003,15 +21012,15 @@ end
 
 return Element
 
-end)()
+end
 
--- ── elements/Accordion.lua ──
-_VYNX_MODULES["elements/Accordion.lua"] = (function()
-local Creator = require("../modules/Creator")
-local Motion = require("../modules/Motion")
+-- [elements/Accordion.lua]
+__vynx_fns["elements/Accordion.lua"] = function()
+local Creator = __vynx_require("modules/Creator.lua")
+local Motion = __vynx_require("modules/Motion.lua")
 local New = Creator.New
 
-local Utils = require("./DisplayElementUtils")
+local Utils = __vynx_require("elements/DisplayElementUtils.lua")
 
 local Element = {}
 
@@ -21034,7 +21043,7 @@ function Element:New(Config)
 		OpenIndexes[Accordion.OpenIndex] = true
 	end
 
-	Accordion.AccordionFrame = require("./components/window/Element")({
+	Accordion.AccordionFrame = __vynx_require("components/window/Element.lua")({
 		Title = Accordion.Title,
 		Desc = Accordion.Desc,
 		Parent = Config.Parent,
@@ -21240,15 +21249,15 @@ end
 
 return Element
 
-end)()
+end
 
--- ── elements/EmptyState.lua ──
-_VYNX_MODULES["elements/EmptyState.lua"] = (function()
-local Creator = require("../modules/Creator")
-local Motion = require("../modules/Motion")
+-- [elements/EmptyState.lua]
+__vynx_fns["elements/EmptyState.lua"] = function()
+local Creator = __vynx_require("modules/Creator.lua")
+local Motion = __vynx_require("modules/Motion.lua")
 local New = Creator.New
 
-local CreateButton = require("./components/ui/Button").New
+local CreateButton = __vynx_require("components/ui/Button.lua").New
 
 local Element = {}
 
@@ -21386,15 +21395,15 @@ end
 
 return Element
 
-end)()
+end
 
--- ── elements/DiscordCard.lua ──
-_VYNX_MODULES["elements/DiscordCard.lua"] = (function()
-local Creator = require("../modules/Creator")
-local Motion = require("../modules/Motion")
+-- [elements/DiscordCard.lua]
+__vynx_fns["elements/DiscordCard.lua"] = function()
+local Creator = __vynx_require("modules/Creator.lua")
+local Motion = __vynx_require("modules/Motion.lua")
 local New = Creator.New
 
-local Utils = require("./DisplayElementUtils")
+local Utils = __vynx_require("elements/DisplayElementUtils.lua")
 
 local Element = {}
 
@@ -21762,15 +21771,15 @@ end
 
 return Element
 
-end)()
+end
 
--- ── elements/TabBox.lua ──
-_VYNX_MODULES["elements/TabBox.lua"] = (function()
-local Creator = require("../modules/Creator")
-local Motion = require("../modules/Motion")
+-- [elements/TabBox.lua]
+__vynx_fns["elements/TabBox.lua"] = function()
+local Creator = __vynx_require("modules/Creator.lua")
+local Motion = __vynx_require("modules/Motion.lua")
 local New = Creator.New
 
-local Utils = require("./DisplayElementUtils")
+local Utils = __vynx_require("elements/DisplayElementUtils.lua")
 
 local Element = {}
 
@@ -21785,7 +21794,7 @@ function Element:New(Config)
 		UIElements = {},
 	}
 
-	TabBox.TabBoxFrame = require("./components/window/Element")({
+	TabBox.TabBoxFrame = __vynx_require("components/window/Element.lua")({
 		Title = TabBox.Title,
 		Desc = TabBox.Desc,
 		Parent = Config.Parent,
@@ -22102,15 +22111,15 @@ end
 
 return Element
 
-end)()
+end
 
--- ── elements/Path2D.lua ──
-_VYNX_MODULES["elements/Path2D.lua"] = (function()
-local Creator = require("../modules/Creator")
-local Motion = require("../modules/Motion")
+-- [elements/Path2D.lua]
+__vynx_fns["elements/Path2D.lua"] = function()
+local Creator = __vynx_require("modules/Creator.lua")
+local Motion = __vynx_require("modules/Motion.lua")
 local New = Creator.New
 
-local Utils = require("./DisplayElementUtils")
+local Utils = __vynx_require("elements/DisplayElementUtils.lua")
 
 local Element = {}
 
@@ -22214,7 +22223,7 @@ function Element:New(Config)
 		Destroyed = false,
 	}
 
-	Path2D.Path2DFrame = require("./components/window/Element")({
+	Path2D.Path2DFrame = __vynx_require("components/window/Element.lua")({
 		Title = Path2D.Title,
 		Desc = Path2D.Desc,
 		Parent = Config.Parent,
@@ -22622,15 +22631,15 @@ end
 
 return Element
 
-end)()
+end
 
--- ── elements/Card.lua ──
-_VYNX_MODULES["elements/Card.lua"] = (function()
-local Creator = require("../modules/Creator")
-local Motion = require("../modules/Motion")
+-- [elements/Card.lua]
+__vynx_fns["elements/Card.lua"] = function()
+local Creator = __vynx_require("modules/Creator.lua")
+local Motion = __vynx_require("modules/Motion.lua")
 local New = Creator.New
 
-local Utils = require("./DisplayElementUtils")
+local Utils = __vynx_require("elements/DisplayElementUtils.lua")
 
 local Element = {}
 
@@ -23139,11 +23148,11 @@ end
 
 return Element
 
-end)()
+end
 
--- ── elements/Section.lua ──
-_VYNX_MODULES["elements/Section.lua"] = (function()
-local Creator = require("../modules/Creator")
+-- [elements/Section.lua]
+__vynx_fns["elements/Section.lua"] = function()
+local Creator = __vynx_require("modules/Creator.lua")
 local New = Creator.New
 local Tween = Creator.Tween
 
@@ -23522,11 +23531,11 @@ end
 
 return Element
 
-end)()
+end
 
--- ── elements/Divider.lua ──
-_VYNX_MODULES["elements/Divider.lua"] = (function()
-local Creator = require("../modules/Creator")
+-- [elements/Divider.lua]
+__vynx_fns["elements/Divider.lua"] = function()
+local Creator = __vynx_require("modules/Creator.lua")
 local New = Creator.New
 
 local Element = {}
@@ -23553,11 +23562,11 @@ function Element:New(Config)
 end
 
 return Element
-end)()
+end
 
--- ── elements/Space.lua ──
-_VYNX_MODULES["elements/Space.lua"] = (function()
-local Creator = require("../modules/Creator")
+-- [elements/Space.lua]
+__vynx_fns["elements/Space.lua"] = function()
+local Creator = __vynx_require("modules/Creator.lua")
 local New = Creator.New
 
 local Element = {}
@@ -23573,11 +23582,11 @@ function Element:New(Config)
 end
 
 return Element
-end)()
+end
 
--- ── elements/Image.lua ──
-_VYNX_MODULES["elements/Image.lua"] = (function()
-local Creator = require("../modules/Creator")
+-- [elements/Image.lua]
+__vynx_fns["elements/Image.lua"] = function()
+local Creator = __vynx_require("modules/Creator.lua")
 local New = Creator.New
 
 local Element = {}
@@ -23646,11 +23655,11 @@ function Element:New(Config)
 end
 
 return Element
-end)()
+end
 
--- ── elements/Group.lua ──
-_VYNX_MODULES["elements/Group.lua"] = (function()
-local Creator = require("../modules/Creator")
+-- [elements/Group.lua]
+__vynx_fns["elements/Group.lua"] = function()
+local Creator = __vynx_require("modules/Creator.lua")
 local New = Creator.New
 
 local Element = {}
@@ -23738,11 +23747,11 @@ end
 
 return Element
 
-end)()
+end
 
--- ── elements/HStack.lua ──
-_VYNX_MODULES["elements/HStack.lua"] = (function()
-local Creator = require("../modules/Creator")
+-- [elements/HStack.lua]
+__vynx_fns["elements/HStack.lua"] = function()
+local Creator = __vynx_require("modules/Creator.lua")
 local New = Creator.New
 
 local Element = {}
@@ -23871,11 +23880,11 @@ end
 
 return Element
 
-end)()
+end
 
--- ── elements/VStack.lua ──
-_VYNX_MODULES["elements/VStack.lua"] = (function()
-local Creator = require("../modules/Creator")
+-- [elements/VStack.lua]
+__vynx_fns["elements/VStack.lua"] = function()
+local Creator = __vynx_require("modules/Creator.lua")
 local New = Creator.New
 
 local Element = {}
@@ -23964,17 +23973,17 @@ end
 
 return Element
 
-end)()
+end
 
--- ── elements/Viewport.lua ──
-_VYNX_MODULES["elements/Viewport.lua"] = (function()
+-- [elements/Viewport.lua]
+__vynx_fns["elements/Viewport.lua"] = function()
 local cloneref = (cloneref or clonereference or function(instance)
 	return instance
 end)
 
 local UserInputService = cloneref(game:GetService("UserInputService"))
 
-local Creator = require("../modules/Creator")
+local Creator = __vynx_require("modules/Creator.lua")
 local New = Creator.New
 
 local Element = {}
@@ -24205,13 +24214,13 @@ end
 
 return Element
 
-end)()
+end
 
--- ── elements/Video.lua ──
-_VYNX_MODULES["elements/Video.lua"] = (function()
+-- [elements/Video.lua]
+__vynx_fns["elements/Video.lua"] = function()
 --- VideoFrame is not working with custom video on exploits
 
-local Creator = require("../modules/Creator")
+local Creator = __vynx_require("modules/Creator.lua")
 local New = Creator.New
 
 local Element = {}
@@ -24324,11 +24333,11 @@ end
 
 return Element
 
-end)()
+end
 
--- ── elements/DependencyBox.lua ──
-_VYNX_MODULES["elements/DependencyBox.lua"] = (function()
-local Creator = require("../modules/Creator")
+-- [elements/DependencyBox.lua]
+__vynx_fns["elements/DependencyBox.lua"] = function()
+local Creator = __vynx_require("modules/Creator.lua")
 local New = Creator.New
 
 local DependencyBox = {}
@@ -24488,7 +24497,7 @@ function DependencyBox.AttachToSection(Section, VynxUI)
 			end
 		end
 
-		local ElementsModule = require("./Init")
+		local ElementsModule = __vynx_require("elements/Init.lua")
 		ElementsModule.Load(
 			Depbox,
 			DepboxContainer,
@@ -24677,7 +24686,7 @@ function DependencyBox.AttachToSection(Section, VynxUI)
 			end
 		end
 
-		local ElementsModule = require("./Init")
+		local ElementsModule = __vynx_require("elements/Init.lua")
 		ElementsModule.Load(
 			DepGroupbox,
 			DepGroupboxOuter,
@@ -24700,60 +24709,60 @@ end
 
 return DependencyBox
 
-end)()
+end
 
--- ── elements/Init.lua ──
-_VYNX_MODULES["elements/Init.lua"] = (function()
+-- [elements/Init.lua]
+__vynx_fns["elements/Init.lua"] = function()
 -- VYNX UI — Elements Init
 -- Supports: WindUI-style (Section:Toggle{}) + Obsidian-style (Group:AddToggle(Idx, Info))
 
 local Elements = {
 	-- WindUI originals (38 elements)
-	Paragraph       = require("./Paragraph"),
-	Button          = require("./Button"),
-	Toggle          = require("./Toggle"),
-	Slider          = require("./Slider"),
-	ProgressBar     = require("./ProgressBar"),
-	Keybind         = require("./Keybind"),
-	Input           = require("./Input"),
-	Dropdown        = require("./Dropdown"),
-	Code            = require("./Code"),
-	Colorpicker     = require("./Colorpicker"),
-	RadioGroup      = require("./RadioGroup"),
-	CheckboxGroup   = require("./CheckboxGroup"),
-	SegmentedControl= require("./SegmentedControl"),
-	TextArea        = require("./TextArea"),
-	Stepper         = require("./Stepper"),
-	Callout         = require("./Callout"),
-	Badge           = require("./Badge"),
-	StatusCard      = require("./StatusCard"),
-	StatCard        = require("./StatCard"),
-	KeyValue        = require("./KeyValue"),
-	ChipList        = require("./ChipList"),
-	ActionList      = require("./ActionList"),
-	MeterGroup      = require("./MeterGroup"),
-	Timeline        = require("./Timeline"),
-	Accordion       = require("./Accordion"),
-	EmptyState      = require("./EmptyState"),
-	DiscordCard     = require("./DiscordCard"),
-	TabBox          = require("./TabBox"),
-	Path2D          = require("./Path2D"),
-	Card            = require("./Card"),
-	Section         = require("./Section"),
-	Divider         = require("./Divider"),
-	Space           = require("./Space"),
-	Image           = require("./Image"),
-	Group           = require("./Group"),
-	HStack          = require("./HStack"),
-	VStack          = require("./VStack"),
-	Viewport        = require("./Viewport"),
-	Video           = require("./Video"),
+	Paragraph       = __vynx_require("elements/Paragraph.lua"),
+	Button          = __vynx_require("elements/Button.lua"),
+	Toggle          = __vynx_require("elements/Toggle.lua"),
+	Slider          = __vynx_require("elements/Slider.lua"),
+	ProgressBar     = __vynx_require("elements/ProgressBar.lua"),
+	Keybind         = __vynx_require("elements/Keybind.lua"),
+	Input           = __vynx_require("elements/Input.lua"),
+	Dropdown        = __vynx_require("elements/Dropdown.lua"),
+	Code            = __vynx_require("elements/Code.lua"),
+	Colorpicker     = __vynx_require("elements/Colorpicker.lua"),
+	RadioGroup      = __vynx_require("elements/RadioGroup.lua"),
+	CheckboxGroup   = __vynx_require("elements/CheckboxGroup.lua"),
+	SegmentedControl= __vynx_require("elements/SegmentedControl.lua"),
+	TextArea        = __vynx_require("elements/TextArea.lua"),
+	Stepper         = __vynx_require("elements/Stepper.lua"),
+	Callout         = __vynx_require("elements/Callout.lua"),
+	Badge           = __vynx_require("elements/Badge.lua"),
+	StatusCard      = __vynx_require("elements/StatusCard.lua"),
+	StatCard        = __vynx_require("elements/StatCard.lua"),
+	KeyValue        = __vynx_require("elements/KeyValue.lua"),
+	ChipList        = __vynx_require("elements/ChipList.lua"),
+	ActionList      = __vynx_require("elements/ActionList.lua"),
+	MeterGroup      = __vynx_require("elements/MeterGroup.lua"),
+	Timeline        = __vynx_require("elements/Timeline.lua"),
+	Accordion       = __vynx_require("elements/Accordion.lua"),
+	EmptyState      = __vynx_require("elements/EmptyState.lua"),
+	DiscordCard     = __vynx_require("elements/DiscordCard.lua"),
+	TabBox          = __vynx_require("elements/TabBox.lua"),
+	Path2D          = __vynx_require("elements/Path2D.lua"),
+	Card            = __vynx_require("elements/Card.lua"),
+	Section         = __vynx_require("elements/Section.lua"),
+	Divider         = __vynx_require("elements/Divider.lua"),
+	Space           = __vynx_require("elements/Space.lua"),
+	Image           = __vynx_require("elements/Image.lua"),
+	Group           = __vynx_require("elements/Group.lua"),
+	HStack          = __vynx_require("elements/HStack.lua"),
+	VStack          = __vynx_require("elements/VStack.lua"),
+	Viewport        = __vynx_require("elements/Viewport.lua"),
+	Video           = __vynx_require("elements/Video.lua"),
 	-- Obsidian ports (new)
-	Checkbox        = require("./Checkbox"),
-	UIPassthrough   = require("./UIPassthrough"),
+	Checkbox        = __vynx_require("elements/Checkbox.lua"),
+	UIPassthrough   = __vynx_require("elements/UIPassthrough.lua"),
 }
 
-local DependencyBoxModule = require("./DependencyBox")
+local DependencyBoxModule = __vynx_require("elements/DependencyBox.lua")
 
 -- ── Registry helpers (Obsidian global access) ────────────────────────────────
 local function RegisterInVynx(VynxUI, key, elem, idx)
@@ -24938,10 +24947,10 @@ return {
 	Load     = Load,
 }
 
-end)()
+end
 
--- ── Library.lua ──
-_VYNX_MODULES["Library.lua"] = (function()
+-- [Library.lua]
+__vynx_fns["Library.lua"] = function()
 -- ██╗   ██╗██╗   ██╗███╗   ██╗██╗  ██╗    ██╗   ██╗██╗
 -- ██║   ██║╚██╗ ██╔╝████╗  ██║╚██╗██╔╝    ██║   ██║██║
 -- ██║   ██║ ╚████╔╝ ██╔██╗ ██║ ╚███╔╝     ██║   ██║██║
@@ -24971,7 +24980,7 @@ local setclipboard= setclipboard or nil
 
 local LocalPlayer = Players.LocalPlayer or Players.PlayerAdded:Wait()
 
-local BASE_URL = "https://raw.githubusercontent.com/your-github/VynxUI/refs/heads/main/"
+local BASE_URL = "https://raw.githubusercontent.com/rxinoussouls/VynxUI/refs/heads/main/"
 
 local VynxUI = {
 	Version = "1.0.0",
@@ -25141,9 +25150,9 @@ end
 VynxUI.ImageManager = ImageManager
 
 -- ── Load core modules ───────────────────────────────────────────────────────
-local Creator  = require("./modules/Creator")
-local Motion   = require("./modules/Motion")
-local Themes   = require("./themes/Init")(VynxUI, Creator)
+local Creator  = __vynx_require("modules/Creator.lua")
+local Motion   = __vynx_require("modules/Motion.lua")
+local Themes   = __vynx_require("themes/Init.lua")(VynxUI, Creator)
 
 Creator.Init(VynxUI)
 
@@ -25195,7 +25204,7 @@ protectgui(VynxUI.NotificationGui)
 protectgui(VynxUI.DropdownGui)
 
 -- ── Notification module ──────────────────────────────────────────────────────
-local NotificationModule = require("./components/Notification")
+local NotificationModule = __vynx_require("components/Notification.lua")
 local NotifHolder = NotificationModule.Init(VynxUI.NotificationGui)
 
 -- ── Input tracking (WindUI pattern) ─────────────────────────────────────────
@@ -25437,7 +25446,7 @@ end
 -- LOADING SCREEN
 -- ─────────────────────────────────────────────────────────────────────────────
 
-local LoadingScreen = require("./components/LoadingScreen")
+local LoadingScreen = __vynx_require("components/LoadingScreen.lua")
 
 function VynxUI:CreateLoading(Config)
 	if VynxUI.ActiveLoading and not VynxUI.ActiveLoading.Closed then
@@ -25480,14 +25489,14 @@ end
 
 function VynxUI:Popup(Config)
 	Config.WindUI = VynxUI
-	return require("./components/popup/Init").new(Config, VynxUI.ScreenGui.Popups)
+	return __vynx_require("components/popup/Init.lua").new(Config, VynxUI.ScreenGui.Popups)
 end
 
 -- ─────────────────────────────────────────────────────────────────────────────
 -- LOCALIZATION (WindUI)
 -- ─────────────────────────────────────────────────────────────────────────────
 
-local LocalizationModule = require("./modules/Localization")
+local LocalizationModule = __vynx_require("modules/Localization.lua")
 
 function VynxUI:Localization(Config)
 	return LocalizationModule:New(Config, Creator)
@@ -25501,7 +25510,7 @@ end
 -- ACRYLIC (WindUI)
 -- ─────────────────────────────────────────────────────────────────────────────
 
-local Acrylic = require("./utils/Acrylic/Init")
+local Acrylic = __vynx_require("utils/Acrylic/Init.lua")
 Acrylic.init()
 
 function VynxUI:ToggleAcrylic(Value)
@@ -25826,7 +25835,7 @@ end
 -- ─────────────────────────────────────────────────────────────────────────────
 
 function VynxUI:CreateWindow(Config)
-	local CreateWindowModule = require("./window/Init")
+	local CreateWindowModule = __vynx_require("window/Init.lua")
 
 	if not RunService:IsStudio() then
 		if writefile then
@@ -25899,6 +25908,6 @@ VynxUI:SetMotionPreset("Subtle")
 
 return VynxUI
 
-end)()
+end
 
-return _VYNX_MODULES["Library.lua"]
+return __vynx_require("Library.lua")
