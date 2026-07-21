@@ -8644,7 +8644,7 @@ end
 
 local function MeasureText(aj,ak,al)
 local am=
-ag:GetTextSize(tostring(aj or""),ak,Enum.Font.GothamMedium,Vector2.new(al,1000))
+ag:GetTextSize(tostring(aj or""),ak,"GothamMedium",Vector2.new(al,1000))
 return math.ceil(am.X),math.ceil(am.Y)
 end
 
@@ -29639,7 +29639,7 @@ end
 
 
 -- ════════════════════════════════════════════════════════════════════
---  VYNX UI PATCH — Obsidian features on top of WindUI
+--  VYNX UI PATCH v1.1 — Obsidian features on top of WindUI
 --  github.com/rxinoussouls/VynxUI
 -- ════════════════════════════════════════════════════════════════════
 
@@ -29649,17 +29649,193 @@ local _Inst  = Instance
 
 local function _New(cls, props, children)
     local obj = _Inst.new(cls)
-    if props then
-        for k, v in pairs(props) do
-            pcall(function() obj[k] = v end)
-        end
-    end
-    if children then
-        for _, c in ipairs(children) do
-            if c then c.Parent = obj end
-        end
-    end
+    if props then for k, v in pairs(props) do pcall(function() obj[k] = v end) end end
+    if children then for _, c in ipairs(children) do if c then c.Parent = obj end end end
     return obj
+end
+
+-- ── Custom VYNX Themes (dark panel backgrounds) ──────────────────
+local VynxThemes = {
+    {
+        Name     = "Vynx",
+        Accent   = Color3.fromHex("#1a1228"),
+        Dialog   = Color3.fromHex("#130e1f"),
+        Outline  = Color3.fromHex("#2f2150"),
+        Text     = Color3.fromHex("#EDE8FF"),
+        Placeholder  = Color3.fromHex("#9d8ec7"),
+        Background   = Color3.fromHex("#0A0814"),
+        Button       = Color3.fromHex("#2A1F42"),
+        Icon         = Color3.fromHex("#b09de0"),
+        Toggle       = Color3.fromHex("#A374FF"),
+        Slider       = Color3.fromHex("#7C5CFF"),
+        Checkbox     = Color3.fromHex("#7C5CFF"),
+        PanelBackground             = Color3.fromHex("#1D1530"),
+        PanelBackgroundTransparency = 0,
+        SliderIcon   = Color3.fromHex("#7C5CFF"),
+        Primary      = Color3.fromHex("#7C5CFF"),
+        LabelBackground             = Color3.fromHex("#100C1E"),
+        LabelBackgroundTransparency = 0,
+        ElementBackground           = Color3.fromHex("#1D1530"),
+        ElementBackgroundTransparency = 0,
+    },
+    {
+        Name     = "VynxDark",
+        Accent   = Color3.fromHex("#111118"),
+        Dialog   = Color3.fromHex("#0d0d14"),
+        Outline  = Color3.fromHex("#252535"),
+        Text     = Color3.fromHex("#e8e8ff"),
+        Placeholder  = Color3.fromHex("#8888bb"),
+        Background   = Color3.fromHex("#08080F"),
+        Button       = Color3.fromHex("#1E1E30"),
+        Icon         = Color3.fromHex("#9999cc"),
+        Toggle       = Color3.fromHex("#7C5CFF"),
+        Slider       = Color3.fromHex("#7C5CFF"),
+        Checkbox     = Color3.fromHex("#7C5CFF"),
+        PanelBackground             = Color3.fromHex("#14141f"),
+        PanelBackgroundTransparency = 0,
+        SliderIcon   = Color3.fromHex("#7C5CFF"),
+        Primary      = Color3.fromHex("#7C5CFF"),
+        LabelBackground             = Color3.fromHex("#0a0a14"),
+        LabelBackgroundTransparency = 0,
+        ElementBackground           = Color3.fromHex("#14141f"),
+        ElementBackgroundTransparency = 0,
+    },
+    {
+        Name     = "Dark",
+        Accent   = Color3.fromHex("#18181b"),
+        Dialog   = Color3.fromHex("#1a1a1a"),
+        Outline  = Color3.fromHex("#3a3a3a"),
+        Text     = Color3.fromHex("#FFFFFF"),
+        Placeholder  = Color3.fromHex("#a1a1aa"),
+        Background   = Color3.fromHex("#101010"),
+        Button       = Color3.fromHex("#2A2A38"),
+        Icon         = Color3.fromHex("#a1a1aa"),
+        Toggle       = Color3.fromHex("#33C759"),
+        Slider       = Color3.fromHex("#7C5CFF"),
+        Checkbox     = Color3.fromHex("#7C5CFF"),
+        PanelBackground             = Color3.fromHex("#1E1E26"),
+        PanelBackgroundTransparency = 0,
+        SliderIcon   = Color3.fromHex("#908F95"),
+        Primary      = Color3.fromHex("#7C5CFF"),
+        LabelBackground             = Color3.fromHex("#141418"),
+        LabelBackgroundTransparency = 0,
+        ElementBackground           = Color3.fromHex("#1E1E26"),
+        ElementBackgroundTransparency = 0,
+    },
+    {
+        Name     = "Midnight",
+        Accent   = Color3.fromHex("#141422"),
+        Dialog   = Color3.fromHex("#0e0e1c"),
+        Outline  = Color3.fromHex("#252540"),
+        Text     = Color3.fromHex("#e0e0ff"),
+        Placeholder  = Color3.fromHex("#6666aa"),
+        Background   = Color3.fromHex("#08080F"),
+        Button       = Color3.fromHex("#1e1e38"),
+        Icon         = Color3.fromHex("#8888cc"),
+        Toggle       = Color3.fromHex("#4488FF"),
+        Slider       = Color3.fromHex("#4466DD"),
+        Checkbox     = Color3.fromHex("#4466DD"),
+        PanelBackground             = Color3.fromHex("#131328"),
+        PanelBackgroundTransparency = 0,
+        SliderIcon   = Color3.fromHex("#4466DD"),
+        Primary      = Color3.fromHex("#4466DD"),
+        LabelBackground             = Color3.fromHex("#0a0a18"),
+        LabelBackgroundTransparency = 0,
+        ElementBackground           = Color3.fromHex("#131328"),
+        ElementBackgroundTransparency = 0,
+    },
+    {
+        Name     = "Rose",
+        Accent   = Color3.fromHex("#be185d"),
+        Dialog   = Color3.fromHex("#4c0519"),
+        Outline  = Color3.fromHex("#881337"),
+        Text     = Color3.fromHex("#fdf2f8"),
+        Placeholder  = Color3.fromHex("#d67aa6"),
+        Background   = Color3.fromHex("#1f0308"),
+        Button       = Color3.fromHex("#3d0918"),
+        Icon         = Color3.fromHex("#fb7185"),
+        Toggle       = Color3.fromHex("#fb7185"),
+        Slider       = Color3.fromHex("#e11d48"),
+        Checkbox     = Color3.fromHex("#e11d48"),
+        PanelBackground             = Color3.fromHex("#2d0f18"),
+        PanelBackgroundTransparency = 0,
+        SliderIcon   = Color3.fromHex("#e11d48"),
+        Primary      = Color3.fromHex("#e11d48"),
+        LabelBackground             = Color3.fromHex("#1a0508"),
+        LabelBackgroundTransparency = 0,
+        ElementBackground           = Color3.fromHex("#2d0f18"),
+        ElementBackgroundTransparency = 0,
+    },
+    {
+        Name     = "Serenity",
+        Accent   = Color3.fromHex("#0f2027"),
+        Dialog   = Color3.fromHex("#0a1a20"),
+        Outline  = Color3.fromHex("#1e4d5a"),
+        Text     = Color3.fromHex("#e0f4f9"),
+        Placeholder  = Color3.fromHex("#5a9aaa"),
+        Background   = Color3.fromHex("#060f14"),
+        Button       = Color3.fromHex("#0d2d38"),
+        Icon         = Color3.fromHex("#7ec8d8"),
+        Toggle       = Color3.fromHex("#00b4cc"),
+        Slider       = Color3.fromHex("#00A8C0"),
+        Checkbox     = Color3.fromHex("#00A8C0"),
+        PanelBackground             = Color3.fromHex("#0d1f28"),
+        PanelBackgroundTransparency = 0,
+        SliderIcon   = Color3.fromHex("#00A8C0"),
+        Primary      = Color3.fromHex("#00A8C0"),
+        LabelBackground             = Color3.fromHex("#071018"),
+        LabelBackgroundTransparency = 0,
+        ElementBackground           = Color3.fromHex("#0d1f28"),
+        ElementBackgroundTransparency = 0,
+    },
+    {
+        Name     = "Fatality",
+        Accent   = Color3.fromHex("#1a1a1a"),
+        Dialog   = Color3.fromHex("#111111"),
+        Outline  = Color3.fromHex("#333333"),
+        Text     = Color3.fromHex("#ffffff"),
+        Placeholder  = Color3.fromHex("#888888"),
+        Background   = Color3.fromHex("#0a0a0a"),
+        Button       = Color3.fromHex("#1a0808"),
+        Icon         = Color3.fromHex("#ff3344"),
+        Toggle       = Color3.fromHex("#ff3344"),
+        Slider       = Color3.fromHex("#cc2233"),
+        Checkbox     = Color3.fromHex("#cc2233"),
+        PanelBackground             = Color3.fromHex("#181010"),
+        PanelBackgroundTransparency = 0,
+        SliderIcon   = Color3.fromHex("#cc2233"),
+        Primary      = Color3.fromHex("#cc2233"),
+        LabelBackground             = Color3.fromHex("#100808"),
+        LabelBackgroundTransparency = 0,
+        ElementBackground           = Color3.fromHex("#181010"),
+        ElementBackgroundTransparency = 0,
+    },
+    {
+        Name     = "Light",
+        Accent   = Color3.fromHex("#efefef"),
+        Dialog   = Color3.fromHex("#f4f4f5"),
+        Outline  = Color3.fromHex("#d4d4d8"),
+        Text     = Color3.fromHex("#18181b"),
+        Placeholder  = Color3.fromHex("#71717a"),
+        Background   = Color3.fromHex("#FFFFFF"),
+        Button       = Color3.fromHex("#e4e4e7"),
+        Icon         = Color3.fromHex("#52525b"),
+        Toggle       = Color3.fromHex("#33C759"),
+        Slider       = Color3.fromHex("#7C5CFF"),
+        Checkbox     = Color3.fromHex("#7C5CFF"),
+        PanelBackground             = Color3.fromHex("#f0f0f5"),
+        PanelBackgroundTransparency = 0,
+        SliderIcon   = Color3.fromHex("#71717a"),
+        Primary      = Color3.fromHex("#7C5CFF"),
+        LabelBackground             = Color3.fromHex("#e8e8f0"),
+        LabelBackgroundTransparency = 0,
+        ElementBackground           = Color3.fromHex("#f0f0f5"),
+        ElementBackgroundTransparency = 0,
+    },
+}
+
+for _, theme in VynxThemes do
+    aa:AddTheme(theme)
 end
 
 -- ── Global registries ─────────────────────────────────────────────
@@ -29677,813 +29853,613 @@ aa.Searching      = false
 aa.SearchText     = ""
 
 -- ── GiveSignal / OnUnload ─────────────────────────────────────────
-function aa:GiveSignal(conn)
-    table.insert(aa.Signals, conn)
-    return conn
+function aa:GiveSignal(conn)  table.insert(aa.Signals, conn); return conn end
+function aa:OnUnload(fn)      table.insert(aa.UnloadCallbacks, fn) end
+function aa:Toggle(v)
+    if aa.Window and aa.Window.Toggle then return aa.Window:Toggle(v) end
 end
-
-function aa:OnUnload(fn)
-    table.insert(aa.UnloadCallbacks, fn)
-end
-
 function aa:Unload()
     aa.Unloaded = true
     for _, fn in aa.UnloadCallbacks do pcall(fn) end
-    for _, s  in aa.Signals do
-        if s and s.Connected then s:Disconnect() end
-    end
+    for _, s  in aa.Signals do if s and s.Connected then s:Disconnect() end end
     aa.Signals = {}
-    if aa.ScreenGui      then aa.ScreenGui:Destroy() end
-    if aa.NotificationGui then aa.NotificationGui:Destroy() end
-    if aa.DropdownGui    then aa.DropdownGui:Destroy() end
+    if aa.ScreenGui      then pcall(function() aa.ScreenGui:Destroy() end) end
+    if aa.NotificationGui then pcall(function() aa.NotificationGui:Destroy() end) end
+    if aa.DropdownGui    then pcall(function() aa.DropdownGui:Destroy() end) end
 end
 
-function aa:Toggle(v)
-    if aa.Window and aa.Window.Toggle then
-        return aa.Window:Toggle(v)
-    end
-end
-
--- ── DPI Scale ────────────────────────────────────────────────────
-function aa:SetDPIScale(scale)
-    aa.DPIScale = math.max(0.5, math.min(scale or 1, 3))
-end
-
--- ── Notify side ──────────────────────────────────────────────────
-function aa:SetNotifySide(side)
-    aa.NotifySide = (side == "Left" or side == "Right") and side or "Right"
-end
-
--- ── Background image ─────────────────────────────────────────────
-function aa:SetBackgroundImage(img)
-    aa._bgImage = tostring(img or "")
-end
-
--- ── Color utilities ──────────────────────────────────────────────
-function aa:GetBetterColor(c, add)
-    local h, s, v = c:ToHSV()
-    return Color3.fromHSV(h, s, math.clamp(v + (add or 0) * 0.05, 0, 1))
-end
-function aa:GetLighterColor(c)
-    local h, s, v = c:ToHSV()
-    return Color3.fromHSV(h, s, math.min(v + 0.1, 1))
-end
-function aa:GetDarkerColor(c)
-    local h, s, v = c:ToHSV()
-    return Color3.fromHSV(h, s, math.max(v - 0.1, 0))
-end
-
--- ── SafeCallback ─────────────────────────────────────────────────
-function aa:SafeCallback(fn, ...)
-    if type(fn) ~= "function" then return end
-    local ok, err = pcall(fn, ...)
-    if not ok then warn("[VynxUI] Callback error:", err) end
-end
-
--- ── GetKeyString ─────────────────────────────────────────────────
+function aa:SetDPIScale(s)    aa.DPIScale  = math.max(0.5, math.min(s or 1, 3)) end
+function aa:SetNotifySide(s)  aa.NotifySide = (s=="Left" or s=="Right") and s or "Right" end
+function aa:SetBackgroundImage(img) aa._bgImage = tostring(img or "") end
+function aa:GetBetterColor(c, add) local h,s,v=c:ToHSV(); return Color3.fromHSV(h,s,math.clamp(v+(add or 0)*0.05,0,1)) end
+function aa:GetLighterColor(c) local h,s,v=c:ToHSV(); return Color3.fromHSV(h,s,math.min(v+0.1,1)) end
+function aa:GetDarkerColor(c)  local h,s,v=c:ToHSV(); return Color3.fromHSV(h,s,math.max(v-0.1,0)) end
+function aa:SafeCallback(fn,...) if type(fn)~="function" then return end; local ok,e=pcall(fn,...); if not ok then warn("[VynxUI]",e) end end
 function aa:GetKeyString(kc)
-    if typeof(kc) ~= "EnumItem" then return tostring(kc) end
-    local short = {
-        LeftControl="LCtrl", RightControl="RCtrl",
-        LeftShift="LShift",  RightShift="RShift",
-        LeftAlt="LAlt",      RightAlt="RAlt",
-        Return="Enter",      BackSpace="Back",
-    }
-    return short[kc.Name] or kc.Name
+    if typeof(kc)~="EnumItem" then return tostring(kc) end
+    local s={LeftControl="LCtrl",RightControl="RCtrl",LeftShift="LShift",RightShift="RShift",Return="Enter",BackSpace="Back"}
+    return s[kc.Name] or kc.Name
 end
-
--- ── UpdateDependencyBoxes ────────────────────────────────────────
 function aa:UpdateDependencyBoxes()
-    for _, dep in aa.DependencyBoxes do
-        if dep and dep.Update then
-            pcall(dep.Update, dep)
-        end
-    end
+    for _,d in aa.DependencyBoxes do if d and d.Update then pcall(d.Update,d) end end
+end
+function aa:UpdateSearch(t) aa.SearchText=t or ""; aa.Searching=aa.SearchText~="" end
+function aa:Validate(tbl,tmpl)
+    if type(tbl)~="table" then tbl={} end
+    for k,v in pairs(tmpl or {}) do if tbl[k]==nil then tbl[k]=type(v)=="function" and v() or v end end
+    return tbl
 end
 
--- ── DependencyBox implementation (Obsidian port) ─────────────────
-local function MakeDependencyBox(parentSection, parentContainer)
-    local DepFrame = _New("Frame", {
-        BackgroundTransparency = 1,
-        Size = UDim2.new(1, 0, 0, 0),
-        AutomaticSize = Enum.AutomaticSize.Y,
-        Visible = false,
-        ClipsDescendants = false,
-        Parent = parentContainer,
-    }, {
-        _New("UIListLayout", {
-            Padding = UDim.new(0, 6),
-            SortOrder = Enum.SortOrder.LayoutOrder,
-        }),
-    })
+-- ── Scheme alias ──────────────────────────────────────────────────
+local function SyncScheme()
+    if not aa.Theme then return end
+    aa.Scheme = {
+        BackgroundColor  = aa.Theme.Background   or Color3.fromHex("#0D0D12"),
+        MainColor        = aa.Theme.Dialog       or Color3.fromHex("#16161F"),
+        AccentColor      = aa.Theme.Primary      or Color3.fromHex("#7C5CFF"),
+        OutlineColor     = aa.Theme.Outline      or Color3.fromHex("#2a2a3a"),
+        FontColor        = aa.Theme.Text         or Color3.new(1,1,1),
+        Font             = Font.new("rbxasset://fonts/families/GothamSSm.json"),
+        RedColor         = Color3.fromRGB(255,50,50),
+        DestructiveColor = Color3.fromRGB(220,38,38),
+    }
+end
+local _origSetTheme = aa.SetTheme
+function aa:SetTheme(name)
+    local r = _origSetTheme(self, name)
+    SyncScheme()
+    return r
+end
 
+-- ── DependencyBox ─────────────────────────────────────────────────
+local function MakeDepBox(parentSection, parentContainer)
+    local DepFrame = _New("Frame",{
+        BackgroundTransparency=1, Size=UDim2.new(1,0,0,0),
+        AutomaticSize=Enum.AutomaticSize.Y, Visible=false, ClipsDescendants=false,
+        Parent=parentContainer,
+    },{_New("UIListLayout",{Padding=UDim.new(0,6),SortOrder=Enum.SortOrder.LayoutOrder})})
     local DepList = DepFrame:FindFirstChildOfClass("UIListLayout")
 
     local Dep = {
-        _type        = "DependencyBox",
-        Type         = "DependencyBox",
-        Destroyed    = false,
-        Visible      = false,
-        Dependencies = {},
-        Connections  = {},
-        Elements     = {},
-        DependencyBoxes = {},
-        _frame       = DepFrame,
-        _parent      = parentSection,
+        Type="DependencyBox", Destroyed=false, Visible=false,
+        Dependencies={}, Connections={}, Elements={}, DependencyBoxes={},
+        _frame=DepFrame, _parent=parentSection,
     }
 
     function Dep:_resize()
-        DepFrame.Size = UDim2.new(1, 0, 0, DepList.AbsoluteContentSize.Y)
+        DepFrame.Size = UDim2.new(1,0,0,DepList.AbsoluteContentSize.Y)
     end
-
     function Dep:Update()
-        for _, d in Dep.Dependencies do
-            local elem   = d[1]
-            local expect = d[2]
-            if not elem then continue end
-            local etype = elem.Type or elem.__type or ""
-            local val   = elem.Value
-            if etype == "Toggle" or etype == "Checkbox" then
-                if val ~= expect then
-                    DepFrame.Visible = false; Dep.Visible = false; return
-                end
-            elseif etype == "Dropdown" then
-                if typeof(val) == "table" then
-                    if not val[expect] then
-                        DepFrame.Visible = false; Dep.Visible = false; return
-                    end
-                else
-                    if val ~= expect then
-                        DepFrame.Visible = false; Dep.Visible = false; return
-                    end
-                end
+        for _,d in Dep.Dependencies do
+            local el,ex = d[1],d[2]
+            if not el then continue end
+            local t = el.Type or ""
+            local v = el.Value
+            if t=="Toggle" or t=="Checkbox" then
+                if v~=ex then DepFrame.Visible=false; Dep.Visible=false; return end
+            elseif t=="Dropdown" then
+                if typeof(v)=="table" then if not v[ex] then DepFrame.Visible=false; Dep.Visible=false; return end
+                else if v~=ex then DepFrame.Visible=false; Dep.Visible=false; return end end
             end
         end
-        Dep.Visible = true
-        DepFrame.Visible = true
+        Dep.Visible=true; DepFrame.Visible=true
         task.defer(function() Dep:_resize() end)
     end
-
     function Dep:SetupDependencies(deps)
-        for _, d in deps do
-            local elem = d[1]
-            if elem then
-                local fired = elem.OnChanged or elem.Changed
-                if typeof(fired) == "RBXScriptSignal" then
-                    table.insert(Dep.Connections, fired:Connect(function()
-                        Dep:Update()
-                    end))
-                elseif elem._onChanged then
-                    local conn = elem._onChanged:Connect(function()
-                        Dep:Update()
-                    end)
-                    table.insert(Dep.Connections, conn)
+        for _,d in deps do
+            local el = d[1]
+            if el then
+                local sig = el.OnChanged or (el.Changed and typeof(el.Changed)=="RBXScriptSignal" and el.Changed)
+                    or el._onChanged
+                if sig then
+                    local evt = typeof(sig)=="Instance" and sig.Event or sig
+                    if typeof(evt)=="RBXScriptSignal" then
+                        table.insert(Dep.Connections, evt:Connect(function() Dep:Update() end))
+                    end
                 end
             end
         end
-        Dep.Dependencies = deps
-        Dep:Update()
+        Dep.Dependencies=deps; Dep:Update()
     end
-
     DepList:GetPropertyChangedSignal("AbsoluteContentSize"):Connect(function()
         if Dep.Visible then Dep:_resize() end
     end)
 
-    -- ── Element aliases inside DepBox ──────────────────────────
+    -- theme helpers
+    local function panelColor()
+        return (aa.Theme and aa.Theme.PanelBackground) or Color3.fromHex("#1E1E2C")
+    end
+    local function panelTransp()
+        local t = aa.Theme and aa.Theme.PanelBackgroundTransparency
+        return t ~= nil and t or 0
+    end
+    local function outlineColor()
+        return (aa.Theme and aa.Theme.Outline) or Color3.fromHex("#2a2a3a")
+    end
+    local function accentColor()
+        return (aa.Theme and aa.Theme.Primary) or Color3.fromHex("#7C5CFF")
+    end
+    local function toggleColor()
+        return (aa.Theme and aa.Theme.Toggle) or Color3.fromHex("#33C759")
+    end
+    local function textColor()
+        return (aa.Theme and aa.Theme.Text) or Color3.new(1,1,1)
+    end
+
+    local function baseRow(h)
+        return _New("Frame",{
+            BackgroundColor3=panelColor(), BackgroundTransparency=panelTransp(),
+            Size=UDim2.new(1,0,0,h), Parent=DepFrame,
+        },{
+            _New("UICorner",{CornerRadius=UDim.new(0,8)}),
+            _New("UIStroke",{Color=outlineColor(),Thickness=1,ApplyStrokeMode=Enum.ApplyStrokeMode.Border}),
+            _New("UIPadding",{PaddingLeft=UDim.new(0,12),PaddingRight=UDim.new(0,12),PaddingTop=UDim.new(0,0),PaddingBottom=UDim.new(0,0)}),
+        })
+    end
+
+    local function mkFont() return Font.new("rbxasset://fonts/families/GothamSSm.json") end
+
     local function DepElem(elemType, Idx, Info)
         Info = Info or {}
-        local title    = Info.Text or Info.Title or (type(Idx) == "string" and Idx) or ""
-        local default  = Info.Default
-        local cb       = Info.Callback or Info.Changed or function() end
-        local flag     = (type(Idx) == "string" and Idx) or Info.Flag
+        local title  = Info.Text or Info.Title or (type(Idx)=="string" and Idx) or ""
+        local default= Info.Default
+        local cb     = Info.Callback or Info.Changed or function() end
+        local flag   = (type(Idx)=="string" and Idx) or Info.Flag
 
-        -- Simple native UI elements (no WindUI dep)
         if elemType == "Toggle" then
-            local Toggle = {
-                Type  = "Toggle",
-                Value = default ~= nil and default or false,
-                _onChanged = Instance.new("BindableEvent"),
-            }
-            local row = _New("TextButton", {
-                BackgroundTransparency = 1,
-                Size = UDim2.new(1, 0, 0, 24),
-                Text = "",
-                Parent = DepFrame,
-            })
-            local lbl = _New("TextLabel", {
-                BackgroundTransparency = 1,
-                Text = title,
-                TextColor3 = Color3.new(1,1,1),
-                TextTransparency = 0.35,
-                TextSize = 13,
-                TextXAlignment = Enum.TextXAlignment.Left,
-                Size = UDim2.new(1, -40, 1, 0),
-                FontFace = Font.new("rbxasset://fonts/families/GothamSSm.json"),
-                Parent = row,
-            })
-            local sw = _New("Frame", {
-                AnchorPoint = Vector2.new(1, 0.5),
-                Position = UDim2.new(1, -2, 0.5, 0),
-                Size = UDim2.fromOffset(32, 18),
-                BackgroundColor3 = Color3.fromHex("#2A2A38"),
-                Parent = row,
-            }, {_New("UICorner", {CornerRadius = UDim.new(1,0)})})
-            local ball = _New("Frame", {
-                Size = UDim2.fromScale(1,1),
-                SizeConstraint = Enum.SizeConstraint.RelativeYY,
-                BackgroundColor3 = Color3.new(1,1,1),
-                Parent = sw,
-            }, {_New("UICorner", {CornerRadius = UDim.new(1,0)})})
-            _New("UIPadding", {PaddingLeft=UDim.new(0,2),PaddingRight=UDim.new(0,2),PaddingTop=UDim.new(0,2),PaddingBottom=UDim.new(0,2), Parent=sw})
+            local T = {Type="Toggle", Value=default~=nil and default or false, _onChanged=_Inst.new("BindableEvent")}
+            local row = baseRow(36)
+            row.Size = UDim2.new(1,0,0,36)
 
-            local function update(v)
-                _TS:Create(ball, TweenInfo.new(0.12), {
-                    AnchorPoint = v and Vector2.new(1,0) or Vector2.new(0,0),
-                    Position    = UDim2.fromScale(v and 1 or 0, 0),
-                }):Play()
-                sw.BackgroundColor3 = v and Color3.fromHex("#7C5CFF") or Color3.fromHex("#2A2A38")
+            local lbl = _New("TextLabel",{
+                BackgroundTransparency=1, Text=title, TextColor3=textColor(),
+                TextTransparency=T.Value and 0 or 0.35, TextSize=14,
+                TextXAlignment=Enum.TextXAlignment.Left,
+                Size=UDim2.new(1,-50,1,0), Position=UDim2.fromOffset(0,0),
+                FontFace=mkFont(), Parent=row,
+            })
+            local sw = _New("Frame",{
+                AnchorPoint=Vector2.new(1,0.5), BackgroundColor3=Color3.fromHex("#2A2A38"),
+                Position=UDim2.new(1,0,0.5,0), Size=UDim2.fromOffset(34,19), Parent=row,
+            },{
+                _New("UICorner",{CornerRadius=UDim.new(1,0)}),
+                _New("UIStroke",{Color=outlineColor(),Thickness=1}),
+                _New("UIPadding",{PaddingLeft=UDim.new(0,2),PaddingRight=UDim.new(0,2),PaddingTop=UDim.new(0,2),PaddingBottom=UDim.new(0,2)}),
+            })
+            local ball = _New("Frame",{
+                BackgroundColor3=textColor(), Size=UDim2.fromScale(1,1),
+                SizeConstraint=Enum.SizeConstraint.RelativeYY, Parent=sw,
+            },{_New("UICorner",{CornerRadius=UDim.new(1,0)})})
+
+            local function updT(v)
+                local ac = toggleColor()
+                _TS:Create(sw,TweenInfo.new(0.15),{BackgroundColor3=v and ac or Color3.fromHex("#2A2A38")}):Play()
+                _TS:Create(ball,TweenInfo.new(0.15),{AnchorPoint=v and Vector2.new(1,0) or Vector2.new(0,0), Position=UDim2.fromScale(v and 1 or 0,0)}):Play()
+                _TS:Create(lbl,TweenInfo.new(0.15),{TextTransparency=v and 0 or 0.35}):Play()
             end
-            update(Toggle.Value)
+            updT(T.Value)
 
-            row.MouseButton1Click:Connect(function()
-                Toggle.Value = not Toggle.Value
-                update(Toggle.Value)
-                Toggle._onChanged:Fire(Toggle.Value)
-                aa:SafeCallback(cb, Toggle.Value)
+            _New("TextButton",{
+                BackgroundTransparency=1, Size=UDim2.fromScale(1,1), Text="", ZIndex=5, Parent=row,
+            }).MouseButton1Click:Connect(function()
+                T.Value=not T.Value; updT(T.Value)
+                T._onChanged:Fire(T.Value)
+                aa:SafeCallback(cb,T.Value)
                 aa:UpdateDependencyBoxes()
             end)
-
-            function Toggle:SetValue(v)
-                Toggle.Value = v; update(v)
-                Toggle._onChanged:Fire(v)
-                aa:SafeCallback(cb, v)
-                aa:UpdateDependencyBoxes()
-            end
-
-            table.insert(Dep.Elements, Toggle)
-            if flag then aa.Toggles[flag] = Toggle end
-            return Toggle
+            function T:SetValue(v) T.Value=v; updT(v); T._onChanged:Fire(v); aa:SafeCallback(cb,v) end
+            table.insert(Dep.Elements,T)
+            if flag then aa.Toggles[flag]=T end
+            return T
 
         elseif elemType == "Slider" then
-            local Slider = {
-                Type  = "Slider",
-                Value = default or Info.Min or 0,
-                _onChanged = Instance.new("BindableEvent"),
-            }
-            local min = Info.Min or 0; local max = Info.Max or 100
-            local suffix = Info.Suffix or ""
+            local min=Info.Min or 0; local max=Info.Max or 100; local suffix=Info.Suffix or ""
+            local S = {Type="Slider", Value=math.clamp(default or min,min,max), _onChanged=_Inst.new("BindableEvent")}
+            local row = baseRow(44); row.Size=UDim2.new(1,0,0,44)
 
-            local row = _New("Frame", {
-                BackgroundTransparency = 1,
-                Size = UDim2.new(1, 0, 0, 42),
-                Parent = DepFrame,
-            })
-            _New("TextLabel", {
-                BackgroundTransparency=1, Text=title,
-                TextColor3=Color3.new(1,1,1), TextTransparency=0.35,
+            _New("TextLabel",{
+                BackgroundTransparency=1, Text=title, TextColor3=textColor(), TextTransparency=0.35,
                 TextSize=13, TextXAlignment=Enum.TextXAlignment.Left,
-                Size=UDim2.new(1,0,0,16), Position=UDim2.fromOffset(0,0),
-                FontFace=Font.new("rbxasset://fonts/families/GothamSSm.json"),
-                Parent=row,
+                Size=UDim2.new(0.6,0,0,18), Position=UDim2.fromOffset(0,3), FontFace=mkFont(), Parent=row,
             })
-            local track = _New("Frame", {
-                BackgroundColor3=Color3.fromHex("#1E1E2C"),
-                Size=UDim2.new(1,0,0,8),
-                Position=UDim2.new(0,0,0,20),
-                Parent=row,
-            }, {_New("UICorner",{CornerRadius=UDim.new(1,0)})})
-            local fill = _New("Frame", {
-                BackgroundColor3=Color3.fromHex("#7C5CFF"),
-                Size=UDim2.fromScale((Slider.Value-min)/(max-min),1),
-                Parent=track,
-            }, {_New("UICorner",{CornerRadius=UDim.new(1,0)})})
-            local valLbl = _New("TextLabel", {
-                BackgroundTransparency=1,
-                Text=tostring(Slider.Value)..suffix,
-                TextColor3=Color3.fromHex("#7C5CFF"), TextTransparency=0,
-                TextSize=12, TextXAlignment=Enum.TextXAlignment.Right,
-                Size=UDim2.new(1,0,0,14), Position=UDim2.new(0,0,0,28),
-                FontFace=Font.new("rbxasset://fonts/families/GothamSSm.json"),
-                Parent=row,
+            local valLbl = _New("TextLabel",{
+                BackgroundTransparency=1, Text=tostring(S.Value)..suffix,
+                TextColor3=accentColor(), TextTransparency=0, TextSize=13,
+                TextXAlignment=Enum.TextXAlignment.Right, Size=UDim2.new(0.4,0,0,18),
+                Position=UDim2.new(0.6,0,0,3), FontFace=mkFont(), Parent=row,
             })
+            local trackBg = _New("Frame",{
+                BackgroundColor3=outlineColor(), Size=UDim2.new(1,0,0,6),
+                Position=UDim2.new(0,0,0,25), Parent=row,
+            },{_New("UICorner",{CornerRadius=UDim.new(1,0)})})
+            local fill = _New("Frame",{
+                BackgroundColor3=accentColor(),
+                Size=UDim2.fromScale((S.Value-min)/(max-min),1),
+                Parent=trackBg,
+            },{_New("UICorner",{CornerRadius=UDim.new(1,0)})})
+            local thumb = _New("Frame",{
+                AnchorPoint=Vector2.new(0.5,0.5),
+                Position=UDim2.fromScale((S.Value-min)/(max-min),0.5),
+                Size=UDim2.fromOffset(14,14),
+                BackgroundColor3=Color3.new(1,1,1), Parent=trackBg,
+            },{_New("UICorner",{CornerRadius=UDim.new(1,0)})})
 
-            local function updateSlider(v)
-                v = math.clamp(math.round(v), min, max)
-                Slider.Value = v
-                fill.Size = UDim2.fromScale((v-min)/(max-min), 1)
-                valLbl.Text = tostring(v)..suffix
+            local function updS(v)
+                v=math.clamp(math.round(v),min,max); S.Value=v
+                local pct=(v-min)/(max-min)
+                _TS:Create(fill,TweenInfo.new(0.08),{Size=UDim2.fromScale(pct,1)}):Play()
+                _TS:Create(thumb,TweenInfo.new(0.08),{Position=UDim2.fromScale(pct,0.5)}):Play()
+                valLbl.Text=tostring(v)..suffix
             end
+            updS(S.Value)
 
-            local dragging = false
-            track.InputBegan:Connect(function(inp)
-                if inp.UserInputType == Enum.UserInputType.MouseButton1
-                    or inp.UserInputType == Enum.UserInputType.Touch then
-                    dragging = true
+            local dragging=false
+            trackBg.InputBegan:Connect(function(inp)
+                if inp.UserInputType==Enum.UserInputType.MouseButton1 or inp.UserInputType==Enum.UserInputType.Touch then
+                    dragging=true
+                    local rel=(inp.Position.X-trackBg.AbsolutePosition.X)/trackBg.AbsoluteSize.X
+                    updS(min+rel*(max-min)); aa:SafeCallback(cb,S.Value); S._onChanged:Fire(S.Value); aa:UpdateDependencyBoxes()
                 end
             end)
             _UIS.InputChanged:Connect(function(inp)
                 if not dragging then return end
-                if inp.UserInputType ~= Enum.UserInputType.MouseMovement
-                    and inp.UserInputType ~= Enum.UserInputType.Touch then return end
-                local rel = (inp.Position.X - track.AbsolutePosition.X) / track.AbsoluteSize.X
-                local newVal = min + rel * (max - min)
-                updateSlider(newVal)
-                aa:SafeCallback(cb, Slider.Value)
-                aa:UpdateDependencyBoxes()
-                Slider._onChanged:Fire(Slider.Value)
-            end)
-            _UIS.InputEnded:Connect(function(inp)
-                if inp.UserInputType == Enum.UserInputType.MouseButton1
-                    or inp.UserInputType == Enum.UserInputType.Touch then
-                    dragging = false
+                if inp.UserInputType==Enum.UserInputType.MouseMovement or inp.UserInputType==Enum.UserInputType.Touch then
+                    local rel=(inp.Position.X-trackBg.AbsolutePosition.X)/trackBg.AbsoluteSize.X
+                    updS(min+rel*(max-min)); aa:SafeCallback(cb,S.Value); S._onChanged:Fire(S.Value); aa:UpdateDependencyBoxes()
                 end
             end)
-
-            function Slider:SetValue(v) updateSlider(v); aa:SafeCallback(cb, Slider.Value) end
-            table.insert(Dep.Elements, Slider)
-            if flag then aa.Options[flag] = Slider end
-            return Slider
+            _UIS.InputEnded:Connect(function(inp)
+                if inp.UserInputType==Enum.UserInputType.MouseButton1 or inp.UserInputType==Enum.UserInputType.Touch then
+                    dragging=false
+                end
+            end)
+            function S:SetValue(v) updS(v); aa:SafeCallback(cb,S.Value); S._onChanged:Fire(S.Value) end
+            table.insert(Dep.Elements,S); if flag then aa.Options[flag]=S end; return S
 
         elseif elemType == "Dropdown" then
-            local Dropdown = {
-                Type  = "Dropdown",
-                Value = default,
-                _onChanged = Instance.new("BindableEvent"),
-            }
-            local vals = Info.Values or {}
-            local open  = false
+            local vals=Info.Values or {}
+            local D={Type="Dropdown", Value=default, _onChanged=_Inst.new("BindableEvent")}
+            local row=baseRow(36); row.Size=UDim2.new(1,0,0,36)
 
-            local holder = _New("Frame", {
-                BackgroundTransparency=1, Size=UDim2.new(1,0,0,0),
-                AutomaticSize=Enum.AutomaticSize.Y, Parent=DepFrame,
-            })
-            _New("TextLabel", {
-                BackgroundTransparency=1, Text=title,
-                TextColor3=Color3.new(1,1,1), TextTransparency=0.35,
+            _New("TextLabel",{
+                BackgroundTransparency=1, Text=title, TextColor3=textColor(), TextTransparency=0.35,
                 TextSize=13, TextXAlignment=Enum.TextXAlignment.Left,
-                Size=UDim2.new(1,0,0,16),
-                FontFace=Font.new("rbxasset://fonts/families/GothamSSm.json"),
-                Parent=holder,
+                Size=UDim2.new(0.55,0,1,0), FontFace=mkFont(), Parent=row,
             })
-            local btn = _New("TextButton", {
-                BackgroundColor3=Color3.fromHex("#1E1E2C"),
-                Size=UDim2.new(1,0,0,26), Position=UDim2.new(0,0,0,18),
-                Text=tostring(default or "Select..."),
-                TextColor3=Color3.new(1,1,1), TextSize=13,
-                FontFace=Font.new("rbxasset://fonts/families/GothamSSm.json"),
-                Parent=holder,
-            }, {_New("UICorner",{CornerRadius=UDim.new(0,6)})})
 
-            local listFrame = _New("Frame", {
-                BackgroundColor3=Color3.fromHex("#1E1E2C"),
-                Size=UDim2.new(1,0,0,0), AutomaticSize=Enum.AutomaticSize.Y,
-                Position=UDim2.new(0,0,0,46), Visible=false,
-                ZIndex=50, Parent=holder,
-            }, {
+            local displayFrame = _New("Frame",{
+                AnchorPoint=Vector2.new(1,0.5), BackgroundColor3=outlineColor(),
+                Position=UDim2.new(1,0,0.5,0), Size=UDim2.new(0.42,0,0,26),
+                Parent=row,
+            },{
                 _New("UICorner",{CornerRadius=UDim.new(0,6)}),
-                _New("UIListLayout",{Padding=UDim.new(0,2),SortOrder=Enum.SortOrder.LayoutOrder}),
+                _New("UIPadding",{PaddingLeft=UDim.new(0,8),PaddingRight=UDim.new(0,24)}),
+            })
+            local dispLbl = _New("TextLabel",{
+                BackgroundTransparency=1, Text=tostring(default or ""),
+                TextColor3=textColor(), TextSize=12,
+                Size=UDim2.fromScale(1,1), TextXAlignment=Enum.TextXAlignment.Left,
+                FontFace=mkFont(), Parent=displayFrame,
+            })
+            -- chevron
+            _New("TextLabel",{
+                BackgroundTransparency=1, Text="▾",
+                TextColor3=textColor(), TextTransparency=0.4, TextSize=12,
+                AnchorPoint=Vector2.new(1,0.5), Position=UDim2.new(1,-2,0.5,0),
+                Size=UDim2.fromOffset(16,16), Parent=displayFrame,
             })
 
-            for _, opt in vals do
-                local optBtn = _New("TextButton", {
-                    BackgroundTransparency=1, Size=UDim2.new(1,0,0,24),
-                    Text=tostring(opt), TextColor3=Color3.new(1,1,1), TextSize=13,
-                    FontFace=Font.new("rbxasset://fonts/families/GothamSSm.json"),
-                    Parent=listFrame,
+            -- dropdown list (ZIndex overlay)
+            local listFrame = _New("Frame",{
+                BackgroundColor3=aa.Theme and aa.Theme.Dialog or Color3.fromHex("#1a1a2e"),
+                Size=UDim2.new(0,120,0,0), AutomaticSize=Enum.AutomaticSize.Y,
+                AnchorPoint=Vector2.new(1,0), Position=UDim2.new(1,0,1,4),
+                Visible=false, ZIndex=100, Parent=row,
+            },{
+                _New("UICorner",{CornerRadius=UDim.new(0,8)}),
+                _New("UIStroke",{Color=outlineColor(),Thickness=1}),
+                _New("UIListLayout",{Padding=UDim.new(0,1),SortOrder=Enum.SortOrder.LayoutOrder}),
+                _New("UIPadding",{PaddingTop=UDim.new(0,4),PaddingBottom=UDim.new(0,4),PaddingLeft=UDim.new(0,4),PaddingRight=UDim.new(0,4)}),
+            })
+
+            for i,opt in vals do
+                local ob = _New("TextButton",{
+                    BackgroundColor3=panelColor(), BackgroundTransparency=1,
+                    Size=UDim2.new(1,0,0,26), Text=tostring(opt),
+                    TextColor3=textColor(), TextSize=12,
+                    FontFace=mkFont(), ZIndex=101,
+                    TextXAlignment=Enum.TextXAlignment.Left,
+                    LayoutOrder=i, Parent=listFrame,
+                },{
+                    _New("UICorner",{CornerRadius=UDim.new(0,6)}),
+                    _New("UIPadding",{PaddingLeft=UDim.new(0,8)}),
                 })
-                optBtn.MouseButton1Click:Connect(function()
-                    Dropdown.Value = opt
-                    btn.Text = tostring(opt)
-                    listFrame.Visible = false; open = false
-                    aa:SafeCallback(cb, opt)
-                    aa:UpdateDependencyBoxes()
-                    Dropdown._onChanged:Fire(opt)
+                ob.MouseEnter:Connect(function() ob.BackgroundTransparency=0; ob.BackgroundColor3=outlineColor() end)
+                ob.MouseLeave:Connect(function() ob.BackgroundTransparency=1 end)
+                ob.MouseButton1Click:Connect(function()
+                    D.Value=opt; dispLbl.Text=tostring(opt)
+                    listFrame.Visible=false
+                    aa:SafeCallback(cb,opt); aa:UpdateDependencyBoxes(); D._onChanged:Fire(opt)
                 end)
             end
 
-            btn.MouseButton1Click:Connect(function()
-                open = not open; listFrame.Visible = open
+            local open=false
+            local hitBtn = _New("TextButton",{
+                BackgroundTransparency=1, Size=UDim2.fromScale(1,1),
+                Text="", ZIndex=5, Parent=displayFrame,
+            })
+            hitBtn.MouseButton1Click:Connect(function()
+                open=not open; listFrame.Visible=open
             end)
-
-            function Dropdown:SetValue(v)
-                Dropdown.Value = v; btn.Text = tostring(v)
-                aa:SafeCallback(cb, v); aa:UpdateDependencyBoxes()
-            end
-            table.insert(Dep.Elements, Dropdown)
-            if flag then aa.Options[flag] = Dropdown end
-            return Dropdown
-
-        elseif elemType == "Label" then
-            local lbl = _New("TextLabel", {
-                BackgroundTransparency=1,
-                Text=title, TextColor3=Color3.fromHex("#a1a1aa"),
-                TextTransparency=0, TextSize=13,
-                TextXAlignment=Enum.TextXAlignment.Left,
-                Size=UDim2.new(1,0,0,18),
-                FontFace=Font.new("rbxasset://fonts/families/GothamSSm.json"),
-                Parent=DepFrame,
-            })
-            local Label = { Type="Label", _label=lbl }
-            function Label:SetText(t) lbl.Text = t end
-            if flag then aa.Labels[flag] = Label end
-            return Label
-
-        elseif elemType == "Button" then
-            local Btn = { Type="Button" }
-            local b = _New("TextButton", {
-                BackgroundColor3=Color3.fromHex("#2A2A38"),
-                Size=UDim2.new(1,0,0,28),
-                Text=title, TextColor3=Color3.new(1,1,1), TextSize=13,
-                FontFace=Font.new("rbxasset://fonts/families/GothamSSm.json"),
-                Parent=DepFrame,
-            }, {_New("UICorner",{CornerRadius=UDim.new(0,6)})})
-            b.MouseButton1Click:Connect(function() aa:SafeCallback(cb) end)
-            if flag then aa.Buttons[flag] = Btn end
-            return Btn
-
-        elseif elemType == "Divider" then
-            _New("Frame", {
-                BackgroundColor3=Color3.fromHex("#2a2a3a"),
-                Size=UDim2.new(1,0,0,1), Parent=DepFrame,
-            })
-            return {}
+            function D:SetValue(v) D.Value=v; dispLbl.Text=tostring(v); aa:SafeCallback(cb,v); aa:UpdateDependencyBoxes() end
+            table.insert(Dep.Elements,D); if flag then aa.Options[flag]=D end; return D
 
         elseif elemType == "Input" then
-            local Input = { Type="Input", Value=default or "", _onChanged=Instance.new("BindableEvent") }
-            local holder = _New("Frame", {BackgroundTransparency=1,Size=UDim2.new(1,0,0,42),Parent=DepFrame})
-            _New("TextLabel", {BackgroundTransparency=1,Text=title,TextColor3=Color3.new(1,1,1),TextTransparency=0.35,
-                TextSize=13,TextXAlignment=Enum.TextXAlignment.Left,Size=UDim2.new(1,0,0,16),
-                FontFace=Font.new("rbxasset://fonts/families/GothamSSm.json"),Parent=holder})
-            local box = _New("TextBox", {
-                BackgroundColor3=Color3.fromHex("#1E1E2C"),Size=UDim2.new(1,0,0,24),Position=UDim2.new(0,0,0,18),
-                Text=Input.Value,PlaceholderText=Info.PlaceholderText or Info.Placeholder or "",
-                TextColor3=Color3.new(1,1,1),TextSize=13,ClearTextOnFocus=false,
-                FontFace=Font.new("rbxasset://fonts/families/GothamSSm.json"),Parent=holder,
+            local I={Type="Input", Value=default or "", _onChanged=_Inst.new("BindableEvent")}
+            local row=baseRow(36); row.Size=UDim2.new(1,0,0,36)
+            _New("TextLabel",{
+                BackgroundTransparency=1, Text=title, TextColor3=textColor(), TextTransparency=0.35,
+                TextSize=13, TextXAlignment=Enum.TextXAlignment.Left, Size=UDim2.new(0.45,0,1,0), FontFace=mkFont(), Parent=row,
+            })
+            local box = _New("TextBox",{
+                BackgroundColor3=outlineColor(), BackgroundTransparency=0.4,
+                AnchorPoint=Vector2.new(1,0.5), Position=UDim2.new(1,0,0.5,0),
+                Size=UDim2.new(0.52,0,0,24), Text=I.Value,
+                PlaceholderText=Info.PlaceholderText or Info.Placeholder or "",
+                TextColor3=textColor(), TextSize=12, ClearTextOnFocus=false, FontFace=mkFont(), Parent=row,
             },{_New("UICorner",{CornerRadius=UDim.new(0,6)}),_New("UIPadding",{PaddingLeft=UDim.new(0,8),PaddingRight=UDim.new(0,8)})})
-            box.FocusLost:Connect(function() Input.Value=box.Text; aa:SafeCallback(cb,Input.Value); Input._onChanged:Fire(Input.Value) end)
-            function Input:SetValue(v) Input.Value=v; box.Text=v end
-            if flag then aa.Options[flag] = Input end
-            table.insert(Dep.Elements, Input)
-            return Input
+            box.FocusLost:Connect(function() I.Value=box.Text; I._onChanged:Fire(I.Value); aa:SafeCallback(cb,I.Value) end)
+            function I:SetValue(v) I.Value=v; box.Text=v end
+            table.insert(Dep.Elements,I); if flag then aa.Options[flag]=I end; return I
+
+        elseif elemType == "Label" then
+            local row=baseRow(30); row.Size=UDim2.new(1,0,0,30)
+            local lbl=_New("TextLabel",{
+                BackgroundTransparency=1, Text=title, TextColor3=textColor(), TextTransparency=0.4,
+                TextSize=13, TextXAlignment=Enum.TextXAlignment.Left, Size=UDim2.fromScale(1,1), FontFace=mkFont(), Parent=row,
+            })
+            local L={Type="Label",_label=lbl}
+            function L:SetText(t) lbl.Text=t end
+            if flag then aa.Labels[flag]=L end; return L
+
+        elseif elemType == "Button" then
+            local ac=accentColor()
+            local row=_New("TextButton",{
+                BackgroundColor3=ac, Size=UDim2.new(1,0,0,34), Text=title,
+                TextColor3=Color3.new(1,1,1), TextSize=13, FontFace=mkFont(),
+                Parent=DepFrame,
+            },{_New("UICorner",{CornerRadius=UDim.new(0,8)})})
+            row.MouseEnter:Connect(function() _TS:Create(row,TweenInfo.new(0.1),{BackgroundColor3=aa:GetLighterColor(ac)}):Play() end)
+            row.MouseLeave:Connect(function() _TS:Create(row,TweenInfo.new(0.1),{BackgroundColor3=ac}):Play() end)
+            row.MouseButton1Click:Connect(function() aa:SafeCallback(cb) end)
+            local B={Type="Button"}; if flag then aa.Buttons[flag]=B end; return B
+
+        elseif elemType == "Divider" then
+            _New("Frame",{
+                BackgroundColor3=outlineColor(), Size=UDim2.new(1,0,0,1), Parent=DepFrame,
+            }); return {}
         end
         return {}
     end
 
-    -- Attach element API to Dep
-    Dep.AddToggle       = function(self, Idx, Info) return DepElem("Toggle",   Idx, Info) end
-    Dep.AddSlider       = function(self, Idx, Info) return DepElem("Slider",   Idx, Info) end
-    Dep.AddDropdown     = function(self, Idx, Info) return DepElem("Dropdown", Idx, Info) end
-    Dep.AddInput        = function(self, Idx, Info) return DepElem("Input",    Idx, Info) end
-    Dep.AddLabel        = function(self, Idx, Info) return DepElem("Label",    Idx, Info) end
-    Dep.AddButton       = function(self, Idx, Info) return DepElem("Button",   Idx, Info) end
-    Dep.AddDivider      = function(self, ...)       return DepElem("Divider",  nil, nil)  end
+    Dep.AddToggle      = function(s,I,info) return DepElem("Toggle",I,info) end
+    Dep.AddSlider      = function(s,I,info) return DepElem("Slider",I,info) end
+    Dep.AddDropdown    = function(s,I,info) return DepElem("Dropdown",I,info) end
+    Dep.AddInput       = function(s,I,info) return DepElem("Input",I,info) end
+    Dep.AddLabel       = function(s,I,info) return DepElem("Label",I,info) end
+    Dep.AddButton      = function(s,I,info) return DepElem("Button",I,info) end
+    Dep.AddDivider     = function(s,...) return DepElem("Divider",nil,nil) end
+    Dep.AddCheckbox    = Dep.AddToggle
+    Dep.AddKeyPicker   = function(s,I,info) return DepElem("Toggle",I,info) end
+    Dep.AddColorPicker = function(s,I,info) return DepElem("Label",I,info) end
 
     function Dep:Destroy()
-        Dep.Destroyed = true
-        for _, c in Dep.Connections do if c.Connected then c:Disconnect() end end
-        if DepFrame then DepFrame:Destroy() end
-        local idx = table.find(aa.DependencyBoxes, Dep)
-        if idx then table.remove(aa.DependencyBoxes, idx) end
+        Dep.Destroyed=true
+        for _,c in Dep.Connections do if c.Connected then c:Disconnect() end end
+        if DepFrame then pcall(function() DepFrame:Destroy() end) end
+        local i=table.find(aa.DependencyBoxes,Dep); if i then table.remove(aa.DependencyBoxes,i) end
     end
 
-    table.insert(aa.DependencyBoxes, Dep)
+    table.insert(aa.DependencyBoxes,Dep)
     return Dep
 end
 
--- ── Inject Obsidian methods into a Section object ────────────────
-local function InjectSectionMethods(section)
-    if not section or section._vynxInjected then return section end
-    section._vynxInjected = true
+-- ── Inject Obsidian methods into Section ─────────────────────────
+local function InjectSection(sec)
+    if not sec or sec._vynxOk then return sec end
+    sec._vynxOk = true
 
-    -- Config translator
-    local function TC(elemName, Idx, Info)
+    local function T(elemName, Idx, Info)
         Info = Info or {}
-        local flag = (type(Idx) == "string" and Idx) or Info.Flag
+        local flag = (type(Idx)=="string" and Idx) or Info.Flag
         return {
-            Title       = Info.Text or Info.Title or (type(Idx)=="string" and Idx) or "",
-            Default     = Info.Default,
-            Flag        = flag,
-            Callback    = Info.Callback or Info.Changed or function() end,
-            Tooltip     = Info.Tooltip,
-            Locked      = Info.Disabled or false,
-            Min         = Info.Min,
-            Max         = Info.Max,
-            Suffix      = Info.Suffix,
-            Decimals    = Info.Decimals,
-            Values      = Info.Values,
-            Multi       = Info.Multi,
-            Searchable  = Info.Searchable,
-            Placeholder = Info.PlaceholderText or Info.Placeholder,
-            Mode        = Info.Mode,
-            Transparency= Info.Transparency,
-            Content     = Info.Desc or Info.Content,
+            Title      = Info.Text or Info.Title or (type(Idx)=="string" and Idx) or "",
+            Default    = Info.Default, Flag=flag,
+            Callback   = Info.Callback or Info.Changed or function() end,
+            Tooltip    = Info.Tooltip, Locked=Info.Disabled or false,
+            Min=Info.Min, Max=Info.Max, Suffix=Info.Suffix, Decimals=Info.Decimals,
+            Values=Info.Values, Multi=Info.Multi, Searchable=Info.Searchable,
+            Placeholder=Info.PlaceholderText or Info.Placeholder,
+            Mode=Info.Mode, Transparency=Info.Transparency,
+            Content=Info.Desc or Info.Content,
         }, flag
     end
+    local function W(el,flag,reg) if el and flag then reg[flag]=el end; return el end
 
-    local function WrapElem(elem, flag, registry)
-        if elem and flag then
-            registry[flag] = elem
-        end
-        return elem
+    function sec:AddToggle(I,info)   local c,f=T("Toggle",I,info);   return W(self:Toggle(c),f,aa.Toggles) end
+    function sec:AddSlider(I,info)   local c,f=T("Slider",I,info);   return W(self:Slider(c),f,aa.Options) end
+    function sec:AddDropdown(I,info) local c,f=T("Dropdown",I,info); return W(self:Dropdown(c),f,aa.Options) end
+    function sec:AddInput(I,info)    local c,f=T("Input",I,info);    return W(self:Input(c),f,aa.Options) end
+    function sec:AddKeyPicker(I,info) local c,f=T("Keybind",I,info); return W(self:Keybind(c),f,aa.Options) end
+    function sec:AddColorPicker(I,info) local c,f=T("Colorpicker",I,info); return W(self:Colorpicker(c),f,aa.Options) end
+    function sec:AddCheckbox(I,info) local c,f=T("Toggle",I,info);   return W(self:Toggle(c),f,aa.Toggles) end
+    function sec:AddButton(I,info)
+        info=info or {}
+        local el=self:Button({Title=info.Text or info.Title or (type(I)=="string" and I) or "",Callback=info.Callback or function() end})
+        if type(I)=="string" then aa.Buttons[I]=el end; return el
     end
-
-    function section:AddToggle(Idx, Info)
-        local cfg, flag = TC("Toggle", Idx, Info)
-        local elem = self:Toggle(cfg)
-        return WrapElem(elem, flag, aa.Toggles)
+    function sec:AddLabel(I,info)
+        info=info or {}
+        local el=self:Paragraph({Title=info.Text or (type(I)=="string" and I) or "",Content=info.Desc or ""})
+        if type(I)=="string" then aa.Labels[I]=el end; return el
     end
-    function section:AddSlider(Idx, Info)
-        local cfg, flag = TC("Slider", Idx, Info)
-        local elem = self:Slider(cfg)
-        return WrapElem(elem, flag, aa.Options)
-    end
-    function section:AddDropdown(Idx, Info)
-        local cfg, flag = TC("Dropdown", Idx, Info)
-        local elem = self:Dropdown(cfg)
-        return WrapElem(elem, flag, aa.Options)
-    end
-    function section:AddInput(Idx, Info)
-        local cfg, flag = TC("Input", Idx, Info)
-        local elem = self:Input(cfg)
-        return WrapElem(elem, flag, aa.Options)
-    end
-    function section:AddKeyPicker(Idx, Info)
-        local cfg, flag = TC("Keybind", Idx, Info)
-        local elem = self:Keybind(cfg)
-        return WrapElem(elem, flag, aa.Options)
-    end
-    function section:AddColorPicker(Idx, Info)
-        local cfg, flag = TC("Colorpicker", Idx, Info)
-        local elem = self:Colorpicker(cfg)
-        return WrapElem(elem, flag, aa.Options)
-    end
-    function section:AddCheckbox(Idx, Info)
-        local cfg, flag = TC("Toggle", Idx, Info)
-        local elem = self:Toggle(cfg)
-        return WrapElem(elem, flag, aa.Toggles)
-    end
-    function section:AddButton(Idx, Info)
-        Info = Info or {}
-        local title = Info.Text or Info.Title or (type(Idx)=="string" and Idx) or ""
-        local elem = self:Button({
-            Title    = title,
-            Callback = Info.Callback or function() end,
-        })
-        if type(Idx)=="string" then aa.Buttons[Idx] = elem end
-        return elem
-    end
-    function section:AddLabel(Idx, Info)
-        Info = Info or {}
-        local text = Info.Text or (type(Idx)=="string" and Idx) or ""
-        local elem = self:Paragraph({ Title = text, Content = Info.Desc or "" })
-        if type(Idx)=="string" then aa.Labels[Idx] = elem end
-        return elem
-    end
-    function section:AddDivider()
-        return self:Divider({})
-    end
-    function section:AddImage(Idx, Info)
-        Info = Info or {}
-        return self:Image(Info)
-    end
-    function section:AddViewport(Idx, Info)
-        Info = Info or {}
-        return self:Viewport(Info)
-    end
-    function section:AddVideo(Idx, Info)
-        Info = Info or {}
-        return self:Video(Info)
-    end
-    function section:AddProgressBar(Idx, Info)
-        Info = Info or {}
-        return self:ProgressBar(Info)
-    end
-    function section:AddSegmentedControl(Idx, Info)
-        local cfg, flag = TC("SegmentedControl", Idx, Info)
-        local elem = self:SegmentedControl(cfg)
-        return WrapElem(elem, flag, aa.Options)
-    end
-
-    -- DependencyBox
-    function section:AddDependencyBox()
-        -- Find the container of this section to attach dep box to
+    function sec:AddDivider()         return self:Divider({}) end
+    function sec:AddImage(I,info)     return self:Image(info or {}) end
+    function sec:AddViewport(I,info)  return self:Viewport(info or {}) end
+    function sec:AddVideo(I,info)     return self:Video(info or {}) end
+    function sec:AddProgressBar(I,info) return self:ProgressBar(info or {}) end
+    function sec:AddSegmentedControl(I,info) local c,f=T("SegmentedControl",I,info); return W(self:SegmentedControl(c),f,aa.Options) end
+    function sec:AddDependencyBox()
         local container = nil
-        if section.UIElements then
-            container = section.UIElements.ElementContainer
-                or section.UIElements.Content
-                or section.UIElements.Container
-                or section.UIElements.ScrollingFrame
+        if sec.UIElements then
+            container = sec.UIElements.ElementContainer or sec.UIElements.Content
+                or sec.UIElements.Container or sec.UIElements.ScrollingFrame
         end
-        -- Fallback: attach after last child
-        if not container then
-            local parent = section._container or section._frame
-            container = parent
-        end
-        return MakeDependencyBox(section, container)
+        return MakeDepBox(sec, container or sec._frame or DepFrame)
     end
-
-    function section:AddDependencyGroupbox(Title)
-        local gbHolder = _New("Frame", {
-            BackgroundColor3 = Color3.fromHex("#1A1A28"),
-            Size = UDim2.new(1, 0, 0, 0),
-            AutomaticSize = Enum.AutomaticSize.Y,
-            Parent = section._depParent or section._frame,
-        }, {
-            _New("UICorner",  {CornerRadius = UDim.new(0, 8)}),
-            _New("UIStroke",  {Color = Color3.fromHex("#2a2a3a"), Thickness = 1}),
-            _New("UIPadding", {
-                PaddingTop=UDim.new(0,8), PaddingBottom=UDim.new(0,8),
-                PaddingLeft=UDim.new(0,8), PaddingRight=UDim.new(0,8)
-            }),
-        })
-        if Title then
-            _New("TextLabel", {
-                BackgroundTransparency=1, Text=Title,
-                TextColor3=Color3.fromHex("#a1a1aa"), TextSize=12,
-                TextXAlignment=Enum.TextXAlignment.Left,
-                Size=UDim2.new(1,0,0,18),
-                FontFace=Font.new("rbxasset://fonts/families/GothamSSm.json"),
-                Parent=gbHolder,
-            })
-        end
-        return MakeDependencyBox(section, gbHolder)
+    function sec:AddDependencyGroupbox(title)
+        return MakeDepBox(sec, sec._frame)
     end
-
-    return section
+    return sec
 end
 
--- ── Inject Obsidian groupbox methods into a Tab object ───────────
-local function InjectTabMethods(tab)
-    if not tab or tab._vynxTabInjected then return tab end
-    tab._vynxTabInjected = true
+-- ── Inject Obsidian methods into Tab ─────────────────────────────
+local function InjectTab(tab)
+    if not tab or tab._vynxTabOk then return tab end
+    tab._vynxTabOk = true
 
-    local origSection = tab.Section or tab.CreateSection or tab.Groupbox
+    local origSec = tab.Section or tab.CreateSection
     local function makeSection(name)
         local sec
-        if origSection then
-            sec = origSection(tab, { Title = name or "" })
-        else
-            -- fallback: just return tab with injected methods
-            sec = tab
+        if origSec then
+            local ok, result = pcall(origSec, tab, {Title=name or ""})
+            sec = ok and result or nil
         end
-        if sec then InjectSectionMethods(sec) end
+        if sec then InjectSection(sec) end
         return sec
     end
 
-    function tab:AddGroupbox(name)      return makeSection(name) end
-    function tab:AddLeftGroupbox(name)  return makeSection(name) end
-    function tab:AddRightGroupbox(name) return makeSection(name) end
-    function tab:AddTab(name, icon)
-        return tab:CreateTab({ Title = name or "", Icon = icon or "" })
-    end
+    tab.AddGroupbox      = function(self, name) return makeSection(name) end
+    tab.AddLeftGroupbox  = function(self, name) return makeSection(name) end
+    tab.AddRightGroupbox = function(self, name) return makeSection(name) end
+    tab.AddTab           = tab.CreateTab
 
-    -- Also wrap CreateSection if it exists
-    local origCreateSection = tab.CreateSection
-    if origCreateSection then
-        tab.CreateSection = function(self, cfg)
-            local sec = origCreateSection(self, cfg)
-            if sec then InjectSectionMethods(sec) end
+    if origSec then
+        tab.Section = function(self, cfg)
+            local sec = origSec(self, cfg)
+            if sec then InjectSection(sec) end
             return sec
         end
+        tab.CreateSection = tab.Section
     end
-
     return tab
 end
 
--- ── Wrap aa.CreateWindow to inject Tab/Section methods ───────────
-local _origCreateWindow = aa.CreateWindow
+-- ── Wrap CreateWindow ─────────────────────────────────────────────
+local _origCW = aa.CreateWindow
 function aa:CreateWindow(cfg)
-    local win = _origCreateWindow(self, cfg)
+    local win = _origCW(self, cfg)
     if not win then return win end
 
-    -- Wrap CreateTab
-    local _origCreateTab = win.CreateTab or win.Tab
-    if _origCreateTab then
-        win.CreateTab = function(self2, tabCfg)
-            local tab = _origCreateTab(self2, tabCfg)
-            if tab then InjectTabMethods(tab) end
+    local _origCT = win.CreateTab or win.Tab
+    if _origCT then
+        win.CreateTab = function(self2, c)
+            local tab = _origCT(self2, c)
+            if tab then InjectTab(tab) end
             return tab
         end
-        -- Obsidian alias
+        win.Tab = win.CreateTab
         win.AddTab = win.CreateTab
     end
-
-    -- Also expose Toggle/Unload on window
-    function win:Toggle(v)
-        if self._toggle then return self._toggle(v) end
-        if self.UIElements and self.UIElements.Main then
-            local tgt = v ~= nil and v or not self.UIElements.Main.Visible
-            self.UIElements.Main.Visible = tgt
-            aa.Toggled = tgt
-        end
-    end
-
     return win
 end
 
--- ── Draggable overlays (Obsidian port) ──────────────────────────
+-- ── Draggable overlays ────────────────────────────────────────────
 function aa:MakeDraggable(ui, dragFrame)
-    local dragging, start, startPos = false, nil, nil
+    local d,s,sp=false,nil,nil
     dragFrame.InputBegan:Connect(function(inp)
-        if inp.UserInputType ~= Enum.UserInputType.MouseButton1
-            and inp.UserInputType ~= Enum.UserInputType.Touch then return end
-        dragging = true; start = inp.Position; startPos = ui.Position
-        inp.Changed:Connect(function()
-            if inp.UserInputState == Enum.UserInputState.End then dragging = false end
-        end)
+        if inp.UserInputType~=Enum.UserInputType.MouseButton1 and inp.UserInputType~=Enum.UserInputType.Touch then return end
+        d=true; s=inp.Position; sp=ui.Position
+        inp.Changed:Connect(function() if inp.UserInputState==Enum.UserInputState.End then d=false end end)
     end)
     _UIS.InputChanged:Connect(function(inp)
-        if not dragging then return end
-        if inp.UserInputType ~= Enum.UserInputType.MouseMovement
-            and inp.UserInputType ~= Enum.UserInputType.Touch then return end
-        local d = inp.Position - start
-        ui.Position = UDim2.new(
-            startPos.X.Scale, startPos.X.Offset + d.X,
-            startPos.Y.Scale, startPos.Y.Offset + d.Y
-        )
+        if not d then return end
+        if inp.UserInputType~=Enum.UserInputType.MouseMovement and inp.UserInputType~=Enum.UserInputType.Touch then return end
+        local dt=inp.Position-s
+        ui.Position=UDim2.new(sp.X.Scale,sp.X.Offset+dt.X,sp.Y.Scale,sp.Y.Offset+dt.Y)
     end)
 end
 
+local function mkFont() return Font.new("rbxasset://fonts/families/GothamSSm.json") end
+
 function aa:AddDraggableLabel(text, position)
-    local gui = aa.ScreenGui
-    if not gui then return {} end
-    local lbl = _New("TextLabel", {
-        BackgroundColor3=Color3.fromHex("#16161F"),
-        AutomaticSize=Enum.AutomaticSize.XY,
-        Position=position or UDim2.fromOffset(8,8),
-        Text=text or "", TextColor3=Color3.new(1,1,1), TextSize=13,
-        FontFace=Font.new("rbxasset://fonts/families/GothamSSm.json"),
+    local gui=aa.ScreenGui; if not gui then return {} end
+    local lbl=_New("TextLabel",{
+        BackgroundColor3=Color3.fromHex("#16161F"), AutomaticSize=Enum.AutomaticSize.XY,
+        Position=position or UDim2.fromOffset(8,8), Text=text or "",
+        TextColor3=Color3.new(1,1,1), TextSize=13, FontFace=mkFont(),
         ZIndex=9999, Active=true, Parent=gui,
-    }, {
-        _New("UICorner",{CornerRadius=UDim.new(0,6)}),
-        _New("UIPadding",{PaddingLeft=UDim.new(0,8),PaddingRight=UDim.new(0,8),PaddingTop=UDim.new(0,4),PaddingBottom=UDim.new(0,4)}),
+    },{
+        _New("UICorner",{CornerRadius=UDim.new(0,8)}),
+        _New("UIPadding",{PaddingLeft=UDim.new(0,10),PaddingRight=UDim.new(0,10),PaddingTop=UDim.new(0,5),PaddingBottom=UDim.new(0,5)}),
         _New("UIStroke",{Color=Color3.fromHex("#2a2a3a"),Thickness=1}),
     })
-    aa:MakeDraggable(lbl, lbl)
-    local L = {Frame=lbl}
-    function L:SetText(t) lbl.Text=t end
-    function L:SetVisible(v) lbl.Visible=v end
-    function L:Destroy() lbl:Destroy() end
+    aa:MakeDraggable(lbl,lbl)
+    local L={Frame=lbl}
+    function L:SetText(t) lbl.Text=t end; function L:SetVisible(v) lbl.Visible=v end; function L:Destroy() lbl:Destroy() end
     return L
 end
 
-function aa:AddDraggableButton(text, callback, visibleByDefault)
-    local gui = aa.ScreenGui
-    if not gui then return {} end
-    local btn = _New("TextButton", {
-        BackgroundColor3=Color3.fromHex("#2A2A38"),
-        AutomaticSize=Enum.AutomaticSize.XY,
-        Position=UDim2.fromOffset(8,36),
-        Text=text or "", TextColor3=Color3.new(1,1,1), TextSize=13,
-        FontFace=Font.new("rbxasset://fonts/families/GothamSSm.json"),
-        ZIndex=9999, Active=true, Visible=visibleByDefault~=false, Parent=gui,
-    }, {
-        _New("UICorner",{CornerRadius=UDim.new(0,6)}),
-        _New("UIPadding",{PaddingLeft=UDim.new(0,10),PaddingRight=UDim.new(0,10),PaddingTop=UDim.new(0,5),PaddingBottom=UDim.new(0,5)}),
+function aa:AddDraggableButton(text, callback, visible)
+    local gui=aa.ScreenGui; if not gui then return {} end
+    local ac=(aa.Theme and aa.Theme.Primary) or Color3.fromHex("#7C5CFF")
+    local btn=_New("TextButton",{
+        BackgroundColor3=ac, AutomaticSize=Enum.AutomaticSize.XY,
+        Position=UDim2.fromOffset(8,44), Text=text or "",
+        TextColor3=Color3.new(1,1,1), TextSize=13, FontFace=mkFont(),
+        ZIndex=9999, Active=true, Visible=visible~=false, Parent=gui,
+    },{
+        _New("UICorner",{CornerRadius=UDim.new(0,8)}),
+        _New("UIPadding",{PaddingLeft=UDim.new(0,12),PaddingRight=UDim.new(0,12),PaddingTop=UDim.new(0,6),PaddingBottom=UDim.new(0,6)}),
     })
     btn.MouseButton1Click:Connect(function() if callback then callback() end end)
-    aa:MakeDraggable(btn, btn)
-    local B = {Button=btn}
-    function B:SetText(t) btn.Text=t end
-    function B:SetVisible(v) btn.Visible=v end
-    function B:Destroy() btn:Destroy() end
+    aa:MakeDraggable(btn,btn)
+    local B={Button=btn}; function B:SetText(t) btn.Text=t end; function B:SetVisible(v) btn.Visible=v end; function B:Destroy() btn:Destroy() end
     return B
 end
 
 function aa:AddDraggableMenu(name)
-    local gui = aa.ScreenGui
-    if not gui then return {AddItem=function()end,SetVisible=function()end,Destroy=function()end} end
-    local frame = _New("Frame", {
-        BackgroundColor3=Color3.fromHex("#16161F"),
-        Size=UDim2.fromOffset(160,24), AutomaticSize=Enum.AutomaticSize.Y,
-        Position=UDim2.fromOffset(8,70), ZIndex=9998, Active=true, Parent=gui,
-    }, {
-        _New("UICorner",{CornerRadius=UDim.new(0,8)}),
-        _New("UIStroke",{Color=Color3.fromHex("#2a2a3a"),Thickness=1}),
-        _New("UIPadding",{PaddingLeft=UDim.new(0,8),PaddingRight=UDim.new(0,8),PaddingTop=UDim.new(0,6),PaddingBottom=UDim.new(0,6)}),
+    local gui=aa.ScreenGui; if not gui then return {AddItem=function()end,SetVisible=function()end,Destroy=function()end} end
+    local bg=(aa.Theme and aa.Theme.Dialog) or Color3.fromHex("#1a1a2e")
+    local oc=(aa.Theme and aa.Theme.Outline) or Color3.fromHex("#2a2a3a")
+    local frame=_New("Frame",{
+        BackgroundColor3=bg, Size=UDim2.fromOffset(170,24), AutomaticSize=Enum.AutomaticSize.Y,
+        Position=UDim2.fromOffset(8,80), ZIndex=9998, Active=true, Parent=gui,
+    },{
+        _New("UICorner",{CornerRadius=UDim.new(0,10)}),
+        _New("UIStroke",{Color=oc,Thickness=1}),
+        _New("UIPadding",{PaddingLeft=UDim.new(0,8),PaddingRight=UDim.new(0,8),PaddingTop=UDim.new(0,8),PaddingBottom=UDim.new(0,8)}),
     })
-    local titleLbl = _New("TextLabel", {
-        BackgroundTransparency=1,Text=name or "Menu",
-        TextColor3=Color3.fromHex("#a1a1aa"),TextSize=11,
-        FontFace=Font.new("rbxasset://fonts/families/GothamSSm.json"),
-        Size=UDim2.new(1,0,0,16), LayoutOrder=0, TextXAlignment=Enum.TextXAlignment.Left,
-        Parent=frame,
+    local hdr=_New("TextLabel",{
+        BackgroundTransparency=1, Text=name or "Menu",
+        TextColor3=Color3.fromHex("#a1a1aa"), TextSize=11, FontFace=mkFont(),
+        Size=UDim2.new(1,0,0,16), LayoutOrder=0, TextXAlignment=Enum.TextXAlignment.Left, Parent=frame,
     })
-    local list = _New("Frame", {
+    local list=_New("Frame",{
         BackgroundTransparency=1, Size=UDim2.new(1,0,0,0),
         AutomaticSize=Enum.AutomaticSize.Y, LayoutOrder=1, Parent=frame,
-    }, {_New("UIListLayout",{Padding=UDim.new(0,3),SortOrder=Enum.SortOrder.LayoutOrder})})
-    aa:MakeDraggable(frame, titleLbl)
-    local M = {Frame=frame}
+    },{_New("UIListLayout",{Padding=UDim.new(0,3),SortOrder=Enum.SortOrder.LayoutOrder})})
+    aa:MakeDraggable(frame,hdr)
+    local M={Frame=frame}
     function M:SetVisible(v) frame.Visible=v end
-    function M:AddItem(text, cb)
-        local b = _New("TextButton", {
-            BackgroundColor3=Color3.fromHex("#1E1E2C"),
-            Size=UDim2.new(1,0,0,22),Text=tostring(text),
-            TextColor3=Color3.new(1,1,1),TextSize=12,
-            FontFace=Font.new("rbxasset://fonts/families/GothamSSm.json"),
-            TextXAlignment=Enum.TextXAlignment.Left, Parent=list,
-        },{_New("UICorner",{CornerRadius=UDim.new(0,4)}),_New("UIPadding",{PaddingLeft=UDim.new(0,6)})})
+    function M:AddItem(text,cb)
+        local b=_New("TextButton",{
+            BackgroundTransparency=1, Size=UDim2.new(1,0,0,24),
+            Text=tostring(text), TextColor3=Color3.new(1,1,1), TextSize=12,
+            FontFace=mkFont(), TextXAlignment=Enum.TextXAlignment.Left, Parent=list,
+        },{_New("UICorner",{CornerRadius=UDim.new(0,6)}),_New("UIPadding",{PaddingLeft=UDim.new(0,8)})})
+        b.MouseEnter:Connect(function() b.BackgroundTransparency=0; b.BackgroundColor3=oc end)
+        b.MouseLeave:Connect(function() b.BackgroundTransparency=1 end)
         b.MouseButton1Click:Connect(function() if cb then cb() end end)
         return b
     end
@@ -30492,79 +30468,29 @@ function aa:AddDraggableMenu(name)
 end
 
 -- ── AddTooltip ────────────────────────────────────────────────────
-function aa:AddTooltip(infoStr, disabledStr, hoverInst)
-    if not infoStr and not disabledStr then return {} end
-    local tip, conn = nil, nil
-    if hoverInst then
-        hoverInst.MouseEnter:Connect(function()
-            tip = _New("TextLabel", {
-                BackgroundColor3=Color3.fromHex("#1E1E2C"),
-                AutomaticSize=Enum.AutomaticSize.XY, Text=infoStr or "",
-                TextColor3=Color3.new(1,1,1), TextSize=12, ZIndex=99999,
-                FontFace=Font.new("rbxasset://fonts/families/GothamSSm.json"),
-                Parent=aa.ScreenGui or game:GetService("CoreGui"),
-            },{_New("UICorner",{CornerRadius=UDim.new(0,6)}),
-               _New("UIPadding",{PaddingLeft=UDim.new(0,8),PaddingRight=UDim.new(0,8),PaddingTop=UDim.new(0,4),PaddingBottom=UDim.new(0,4)})})
-            conn = _UIS.InputChanged:Connect(function(inp)
+function aa:AddTooltip(info, disabled, hover)
+    local tip,conn=nil,nil
+    if hover then
+        hover.MouseEnter:Connect(function()
+            tip=_New("TextLabel",{
+                BackgroundColor3=Color3.fromHex("#1E1E2C"),AutomaticSize=Enum.AutomaticSize.XY,
+                Text=info or "",TextColor3=Color3.new(1,1,1),TextSize=12,ZIndex=99999,
+                FontFace=mkFont(),Parent=aa.ScreenGui or game:GetService("CoreGui"),
+            },{_New("UICorner",{CornerRadius=UDim.new(0,6)}),_New("UIPadding",{PaddingLeft=UDim.new(0,8),PaddingRight=UDim.new(0,8),PaddingTop=UDim.new(0,4),PaddingBottom=UDim.new(0,4)})})
+            conn=_UIS.InputChanged:Connect(function(inp)
                 if inp.UserInputType==Enum.UserInputType.MouseMovement and tip then
-                    tip.Position = UDim2.fromOffset(inp.Position.X+14, inp.Position.Y+14)
-                end
-            end)
+                    tip.Position=UDim2.fromOffset(inp.Position.X+14,inp.Position.Y+14) end end)
         end)
-        hoverInst.MouseLeave:Connect(function()
-            if tip then tip:Destroy(); tip=nil end
-            if conn then conn:Disconnect(); conn=nil end
+        hover.MouseLeave:Connect(function()
+            if tip then tip:Destroy();tip=nil end
+            if conn then conn:Disconnect();conn=nil end
         end)
     end
     return {Destroy=function() if tip then tip:Destroy() end if conn then conn:Disconnect() end end}
 end
 
--- ── Validate helper (Obsidian compat) ────────────────────────────
-function aa:Validate(tbl, template)
-    if type(tbl) ~= "table" then tbl = {} end
-    for k, v in pairs(template or {}) do
-        if tbl[k] == nil then
-            tbl[k] = type(v)=="function" and v() or v
-        end
-    end
-    return tbl
-end
-
--- ── Scheme alias (Obsidian compat) ───────────────────────────────
-if aa.Theme then
-    aa.Scheme = {
-        BackgroundColor  = aa.Theme.Background  or Color3.fromHex("#0D0D12"),
-        MainColor        = aa.Theme.Dialog      or Color3.fromHex("#16161F"),
-        AccentColor      = aa.Theme.Primary     or Color3.fromHex("#7C5CFF"),
-        OutlineColor     = aa.Theme.Outline     or Color3.fromHex("#2a2a3a"),
-        FontColor        = aa.Theme.Text        or Color3.new(1,1,1),
-        Font             = Font.new("rbxasset://fonts/families/GothamSSm.json"),
-        RedColor         = Color3.fromRGB(255, 50, 50),
-        DestructiveColor = Color3.fromRGB(220, 38, 38),
-    }
-end
-local _origSetTheme = aa.SetTheme
-function aa:SetTheme(name)
-    local r = _origSetTheme(self, name)
-    if aa.Theme then
-        aa.Scheme = {
-            BackgroundColor  = aa.Theme.Background  or Color3.fromHex("#0D0D12"),
-            MainColor        = aa.Theme.Dialog      or Color3.fromHex("#16161F"),
-            AccentColor      = aa.Theme.Primary     or Color3.fromHex("#7C5CFF"),
-            OutlineColor     = aa.Theme.Outline     or Color3.fromHex("#2a2a3a"),
-            FontColor        = aa.Theme.Text        or Color3.new(1,1,1),
-            Font             = Font.new("rbxasset://fonts/families/GothamSSm.json"),
-            RedColor         = Color3.fromRGB(255, 50, 50),
-            DestructiveColor = Color3.fromRGB(220, 38, 38),
-        }
-    end
-    return r
-end
-
--- ── UpdateSearch (Obsidian compat) ───────────────────────────────
-function aa:UpdateSearch(text)
-    aa.SearchText = text or ""
-    aa.Searching  = aa.SearchText ~= ""
-end
+-- ── Apply VYNX Dark theme by default ─────────────────────────────
+aa:SetTheme("Dark")
+SyncScheme()
 
 return aa
