@@ -1,0 +1,30 @@
+{
+    "name": "vynxui",
+    "version": "1.2.0",
+    "main": "./build/VynxUI.lua",
+    "repository": "https://github.com/rxinoussouls/VynxUI",
+    "author": "rxinoussouls",
+    "description": "Modern Roblox UI Library — 40+ Elements, 14 Themes, Dual API",
+    "license": "MIT",
+    "scripts": {
+        "build": "bash build/build.sh build",
+        "dev": "bash build/build.sh dev",
+        "watch": "chokidar . -i 'node_modules' -i 'build/VynxUI.lua' -c 'npm run dev'",
+        "live": "python3 -m http.server 8642",
+        "live-build": "concurrently \"npm run live\" \"npm run watch\"",
+        "test:static": "node tests/ui-library.test.js",
+        "bundle": "python3 build/bundle.py"
+    },
+    "keywords": [
+        "ui-library",
+        "ui-design",
+        "roblox",
+        "script",
+        "script-hub",
+        "exploiting"
+    ],
+    "devDependencies": {
+        "chokidar-cli": "^3.0.0",
+        "concurrently": "^9.2.0"
+    }
+}

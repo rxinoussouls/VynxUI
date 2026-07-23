@@ -1,0 +1,21 @@
+{
+    "name": "VynxUI",
+    "tree": {
+        "$className": "DataModel",
+
+        "ReplicatedStorage": {
+            "VynxUI": {
+                "$path": "."
+            }
+        },
+        "StarterPlayer": {
+            "$className": "StarterPlayer",
+            "StarterPlayerScripts": {
+                "$className": "StarterPlayerScripts",
+                "Example": {
+                    "$path": "Example.lua"
+                }
+            }
+        }
+    }
+}

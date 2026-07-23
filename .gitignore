@@ -1,0 +1,24 @@
+# Node
+node_modules/
+npm-debug.log*
+
+# Build artifacts (keep build/VynxUI.lua — it's the distributable)
+build/temp.lua
+dist/temp.lua
+
+# Environment
+.env
+.env.local
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Aftman / Rojo
+.darklua-cache/
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*.swo

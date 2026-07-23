@@ -1,0 +1,34 @@
+name: Pull Request Check
+
+on:
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v5
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Setup Aftman
+        uses: ok-nick/setup-aftman@v0.3.0
+        continue-on-error: true
+
+      - name: Install Aftman tools
+        run: aftman install || true
+
+      - name: Run static tests
+        run: npm run test:static
+
+      - name: Verify build
+        run: npm run build

@@ -1,15 +1,28 @@
 #!/usr/bin/env python3
 """
 VYNX UI Bundle Script
-Concatenates all modular Lua files into a single Library.lua for distribution.
-Replaces require() calls with inline module tables.
+Concatenates all modular Lua files into a single VynxUI.lua for distribution.
+
+Usage:
+  python3 build/bundle.py                        # build to build/VynxUI.lua with header
+  python3 build/bundle.py --output path.lua      # custom output path
+  python3 build/bundle.py --no-header            # skip header (for build.sh darklua flow)
 """
-import os, re, sys
+import os, re, sys, json
+from datetime import date
 
-ROOT   = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-OUTPUT = os.path.join(ROOT, "build", "VynxUI.lua")
+ROOT    = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+DEFAULT = os.path.join(ROOT, "build", "VynxUI.lua")
 
-# Order matters — dependencies first
+# ── CLI args ──────────────────────────────────────────────────────────────────
+args       = sys.argv[1:]
+NO_HEADER  = "--no-header" in args
+OUTPUT     = DEFAULT
+if "--output" in args:
+    idx    = args.index("--output")
+    OUTPUT = args[idx + 1] if idx + 1 < len(args) else DEFAULT
+
+# ── Order matters — dependencies first ───────────────────────────────────────
 MODULE_ORDER = [
     "modules/Motion.lua",
     "modules/DynamicShape.lua",
@@ -90,26 +103,63 @@ MODULE_ORDER = [
     "Library.lua",
 ]
 
-lines = [
-    "-- VYNX UI Library — Bundled Build",
-    "-- Auto-generated. Do not edit directly.",
-    "-- Source: github.com/your-github/VynxUI",
+# ── Read package.json metadata ────────────────────────────────────────────────
+pkg_path = os.path.join(ROOT, "package.json")
+pkg = {}
+if os.path.isfile(pkg_path):
+    with open(pkg_path, encoding="utf-8") as f:
+        pkg = json.load(f)
+
+VERSION     = pkg.get("version", "0.0.0")
+DESCRIPTION = pkg.get("description", "")
+REPOSITORY  = pkg.get("repository", "")
+LICENSE     = pkg.get("license", "MIT")
+BUILD_DATE  = date.today().isoformat()
+
+# ── Generate header from template ─────────────────────────────────────────────
+def make_header():
+    tpl_path = os.path.join(ROOT, "build", "header.lua")
+    if not os.path.isfile(tpl_path):
+        return f"-- VYNX UI v{VERSION} | {BUILD_DATE}\n"
+    with open(tpl_path, encoding="utf-8") as f:
+        tpl = f.read()
+    tpl = tpl.replace("{{VERSION}}", VERSION)
+    tpl = tpl.replace("{{BUILD_DATE}}", BUILD_DATE)
+    tpl = tpl.replace("{{DESCRIPTION}}", DESCRIPTION)
+    tpl = tpl.replace("{{REPOSITORY}}", REPOSITORY)
+    tpl = tpl.replace("{{LICENSE}}", LICENSE)
+    return tpl
+
+# ── Assemble bundle ───────────────────────────────────────────────────────────
+lines = []
+
+if not NO_HEADER:
+    lines.append(make_header())
+
+lines += [
     "",
     "local _VYNX_MODULES = {}",
+    "local _req = require",
     "local function require(path)",
-    "    path = path:gsub('^%.+/', ''):gsub('/', '/')",
+    "    path = path:gsub('^%.+/', ''):gsub('\\\\', '/')",
     "    if _VYNX_MODULES[path] then return _VYNX_MODULES[path] end",
-    "    error('VynxUI: module not found: ' .. path)",
+    "    local ok, r = pcall(_req, path)",
+    "    if ok then return r end",
+    "    error('VynxUI: module not found: ' .. tostring(path))",
     "end",
     "",
 ]
 
+ok_count   = 0
+skip_count = 0
+
 for rel in MODULE_ORDER:
-    path = os.path.join(ROOT, rel)
-    if not os.path.isfile(path):
+    fpath = os.path.join(ROOT, rel)
+    if not os.path.isfile(fpath):
         print(f"  [SKIP] {rel}")
+        skip_count += 1
         continue
-    with open(path, encoding="utf-8") as f:
+    with open(fpath, encoding="utf-8") as f:
         src = f.read()
     key = rel.replace("\\", "/")
     lines.append(f"-- ── {rel} ──")
@@ -118,12 +168,15 @@ for rel in MODULE_ORDER:
     lines.append("end)()")
     lines.append("")
     print(f"  [OK]   {rel}")
+    ok_count += 1
 
-lines.append("return _VYNX_MODULES[\"Library.lua\"]")
+lines.append('return _VYNX_MODULES["Library.lua"]')
 
+# ── Write output ──────────────────────────────────────────────────────────────
 os.makedirs(os.path.dirname(OUTPUT), exist_ok=True)
 with open(OUTPUT, "w", encoding="utf-8") as f:
     f.write("\n".join(lines))
 
 size_kb = os.path.getsize(OUTPUT) / 1024
-print(f"\nBundle written → {OUTPUT}  ({size_kb:.1f} KB)")
+print(f"\n  Bundled {ok_count} modules ({skip_count} skipped)")
+print(f"  Output  → {OUTPUT}  ({size_kb:.1f} KB)")
