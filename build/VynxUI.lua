@@ -30311,7 +30311,7 @@ function aa:CreateWindow(cfg)
         local gui=aa.ScreenGui
         if gui then
             CreateDynamicIsland(gui, win, {
-                Icon  = cfg.Icon and aa:GetIcon and aa:GetIcon(cfg.Icon) or "rbxassetid://0",
+                Icon  = cfg.Icon and aa.GetIcon and aa:GetIcon(cfg.Icon) or "rbxassetid://0",
                 Title = cfg.Title or "VYNX",
             })
         end
