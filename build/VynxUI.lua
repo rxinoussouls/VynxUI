@@ -9751,7 +9751,7 @@ TextXAlignment="Left",
 AutomaticSize="Y",
 Size=UDim2.new(1,0,0,0),
 Parent=aq,
-FontFace=Font.new(ad.Font,at or ("Normal")),
+FontFace=Font.new(ad.Font),
 ThemeTag={
 TextColor3="Text",
 },
@@ -9998,8 +9998,8 @@ Padding=UDim.new(0,2),
 FillDirection="Vertical",
 }),
 })
-CreateText(ax,"Settings",16,("Normal"),0)
-CreateText(ax,"Config, theme and runtime controls",12,("Normal"),0.42)
+CreateText(ax,"Settings",16,nil,0)
+CreateText(ax,"Config, theme and runtime controls",12,nil,0.42)
 
 local ay=ad.NewRoundFrame(16,"Squircle",{
 Name="SettingsTabs",
@@ -10124,7 +10124,7 @@ CreateTabButton("theme","Theme","palette",2)
 CreateTabButton("about","Info","badge-info",3)
 
 local aC=CreatePanel(az)
-CreateText(aC,"Config Profile",13,("Normal"),0.05)
+CreateText(aC,"Config Profile",13,nil,0.05)
 
 local aD=ad.NewRoundFrame(12,"Squircle",{
 Size=UDim2.new(1,0,0,36),
@@ -10157,7 +10157,7 @@ PlaceholderColor3="Placeholder",
 },
 })
 
-local aF=CreateText(aC,"No saved configs",12,("Normal"),0.45)
+local aF=CreateText(aC,"No saved configs",12,nil,0.45)
 
 local aG=af("Frame",{
 Name="HStack",
@@ -10174,9 +10174,9 @@ VerticalAlignment="Center",
 })
 
 local aH=CreatePanel(az)
-CreateText(aH,"Runtime",13,("Normal"),0.05)
-local aI=CreateText(aH,"Theme: "..tostring(ai:GetCurrentTheme()),12,("Normal"),0.28)
-CreateText(aH,"Settings use glass morph layers and tabbed pages.",12,("Normal"),0.45)
+CreateText(aH,"Runtime",13,nil,0.05)
+local aI=CreateText(aH,"Theme: "..tostring(ai:GetCurrentTheme()),12,nil,0.28)
+CreateText(aH,"Settings use glass morph layers and tabbed pages.",12,nil,0.45)
 
 local function GetConfigName()
 local aJ=Trim(aE.Text)
@@ -10247,8 +10247,8 @@ end)
 aK.Size=UDim2.new(0.5,-4,1,0)
 
 local aL=CreatePanel(aA)
-CreateText(aL,"Theme Picker",13,("Normal"),0.05)
-CreateText(aL,"Tap a theme to apply it instantly.",12,("Normal"),0.45)
+CreateText(aL,"Theme Picker",13,nil,0.05)
+CreateText(aL,"Tap a theme to apply it instantly.",12,nil,0.45)
 
 au=af("ScrollingFrame",{
 Name="ThemeList",
@@ -10336,8 +10336,8 @@ end)
 end
 
 local aM=CreatePanel(aB)
-CreateText(aM,"WindUI Settings",13,("Normal"),0.05)
-CreateText(aM,"Use Config for save/load and Theme for quick visual switching.",12,("Normal"),0.36)
+CreateText(aM,"WindUI Settings",13,nil,0.05)
+CreateText(aM,"Use Config for save/load and Theme for quick visual switching.",12,nil,0.36)
 
 local aN=af("Frame",{
 Name="VStack",
@@ -10614,7 +10614,7 @@ TextWrapped=true,
 AutomaticSize="Y",
 Size=UDim2.new(1,0,0,0),
 Parent=at,
-FontFace=Font.new(ad.Font,aw or ("Normal")),
+FontFace=Font.new(ad.Font),
 ThemeTag={
 TextColor3="Text",
 },
@@ -10907,12 +10907,12 @@ FillDirection="Vertical",
 Padding=UDim.new(0,2),
 }),
 })
-CreateText(az,ak.Title or(am and"Keybind"or"KeyBind Menu"),am and 14 or 16,("Normal"),0)
+CreateText(az,ak.Title or(am and"Keybind"or"KeyBind Menu"),am and 14 or 16,nil,0)
 local aA=CreateText(
 az,
 ak.Desc or(am and"Mobile quick toggle controls."or"Set the window toggle shortcut."),
 am and 11 or 12,
-("Normal"),
+nil,
 0.42
 )
 if ak.HideDesc~=nil then
@@ -12198,7 +12198,7 @@ TextTransparency=aA=="Desc"and 0.3 or 0,
 TextWrapped=true,
 Size=UDim2.new(aj.Justify=="Between"and 1 or 0,0,0,0),
 AutomaticSize=aj.Justify=="Between"and"Y"or"XY",
-FontFace=Font.new(aa.Font,aA=="Desc"and ("Normal") or ("Normal")),
+FontFace=Font.new(aa.Font),
 })
 end
 
@@ -19581,7 +19581,7 @@ TextWrapped=true,
 TextXAlignment="Left",
 AutomaticSize="Y",
 Size=UDim2.new(1,0,0,0),
-FontFace=Font.new(aj.Font,an or ("Normal")),
+FontFace=Font.new(aj.Font),
 ThemeTag={
 TextColor3="Text",
 },
@@ -20832,8 +20832,8 @@ FillDirection="Vertical",
 VerticalAlignment="Top",
 HorizontalAlignment="Left",
 }),
-al.CreateText(aj,aa,ar.Title,14,("Normal"),0),
-ar.Desc and al.CreateText(aj,aa,ar.Desc,13,("Normal"),0.4)or nil,
+al.CreateText(aj,aa,ar.Title,14,nil,0),
+ar.Desc and al.CreateText(aj,aa,ar.Desc,13,nil,0.4)or nil,
 })
 
 local ax=aj("Frame",{
@@ -21021,7 +21021,7 @@ Position=UDim2.new(0,10,0,an),
 AutomaticSize="Y",
 BackgroundTransparency=1,
 },{
-al.CreateText(aj,aa,at.Desc or"",13,("Normal"),0.4),
+al.CreateText(aj,aa,at.Desc or"",13,nil,0.4),
 })
 
 local az=aa.NewRoundFrame(12,"Squircle",{
@@ -23019,8 +23019,8 @@ TextSize=an.TextSize or 19,
 DescTextSize=an.DescTextSize or 16,
 Box=an.Box or false,
 BoxBorder=an.BoxBorder or false,
-FontWeight=an.FontWeight or (pcall(function() return Enum.FontWeight.Regular end) and Enum.FontWeight.Regular or "Regular"),
-DescFontWeight=an.DescFontWeight or (pcall(function() return Enum.FontWeight.Regular end) and Enum.FontWeight.Regular or "Regular"),
+FontWeight=an.FontWeight or nil,
+DescFontWeight=an.DescFontWeight or nil,
 TextTransparency=an.TextTransparency or 0.05,
 DescTextTransparency=an.DescTextTransparency or 0.4,
 Opened=an.Opened or false,
@@ -23103,7 +23103,7 @@ TextTransparency=av=="Title"and ao.TextTransparency or ao.DescTextTransparency,
 ThemeTag={
 TextColor3="Text",
 },
-FontFace=Font.new(aa.Font),
+FontFace=Font.new(aa.Font,av=="Title"and ao.FontWeight or ao.DescFontWeight),
 
 
 Text=au,
