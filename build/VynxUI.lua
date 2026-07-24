@@ -3160,7 +3160,7 @@ Decorated=aj,
 DarkOverlay=aa.DarkOverlay==true or aa.Overlay==true or X=="Originally",
 Timestamp=aa.Timestamp~=nil and tostring(aa.Timestamp)
 or(aa.Time~=nil and tostring(aa.Time)or nil),
-AppName=tostring(aa.AppName or aa.Application or aa.App or"VynxUI"),
+AppName=tostring(aa.AppName or aa.Application or aa.App or"WindUI"),
 AppIcon=NormalizeIcon(
 aa.AppIcon or aa.ApplicationIcon or(X=="Window"and aa.Icon)or"bell"
 ),
@@ -3568,7 +3568,7 @@ a0=e("TextLabel",{
 Name="AppName",
 Text=ak.AppName,
 TextSize=13,
-FontFace=Font.new(b.Font,Enum.FontWeight.Medium),
+FontFace=Font.new(b.Font),
 TextXAlignment=Enum.TextXAlignment.Left,
 TextTruncate=Enum.TextTruncate.AtEnd,
 BackgroundTransparency=1,
@@ -3585,7 +3585,7 @@ a1=e("TextLabel",{
 Name="AppTimestamp",
 Text=ak.Timestamp or os.date"%H:%M",
 TextSize=11,
-FontFace=Font.new(b.Font,Enum.FontWeight.Medium),
+FontFace=Font.new(b.Font),
 TextXAlignment=Enum.TextXAlignment.Right,
 BackgroundTransparency=1,
 Size=UDim2.fromOffset(48,28),
@@ -3615,7 +3615,7 @@ a3=e("TextLabel",{
 Name="Timestamp",
 Text=ak.Timestamp,
 TextSize=11,
-FontFace=Font.new(b.Font,Enum.FontWeight.Medium),
+FontFace=Font.new(b.Font),
 TextXAlignment=Enum.TextXAlignment.Right,
 TextYAlignment=Enum.TextYAlignment.Top,
 TextTruncate=Enum.TextTruncate.AtEnd,
@@ -3660,7 +3660,7 @@ TextXAlignment=Enum.TextXAlignment.Left,
 TextYAlignment=Enum.TextYAlignment.Top,
 TextSize=if am then 19 elseif an then 18 elseif ao then 15 else 14,
 LineHeight=1,
-FontFace=Font.new(b.Font,Enum.FontWeight.SemiBold),
+FontFace=Font.new(b.Font),
 LayoutOrder=1,
 ZIndex=108,
 ThemeTag={
@@ -3688,7 +3688,7 @@ TextXAlignment=Enum.TextXAlignment.Left,
 TextYAlignment=Enum.TextYAlignment.Top,
 TextSize=if am then 14 elseif an then 15 else 12,
 LineHeight=1.05,
-FontFace=Font.new(b.Font,Enum.FontWeight.Regular),
+FontFace=Font.new(b.Font),
 LayoutOrder=2,
 Visible=ak.Content~=nil,
 ZIndex=108,
@@ -3878,7 +3878,7 @@ e("TextLabel",{
 Name="Value",
 Text=tostring(bh),
 TextSize=14,
-FontFace=Font.new(b.Font,Enum.FontWeight.Medium),
+FontFace=Font.new(b.Font),
 TextXAlignment=Enum.TextXAlignment.Left,
 TextTruncate=Enum.TextTruncate.AtEnd,
 BackgroundTransparency=1,
@@ -3966,7 +3966,7 @@ local bm=e("TextButton",{
 Name="Action"..bg,
 Text=tostring(bh.Title or bh.Text or"Action"),
 TextSize=12,
-FontFace=Font.new(b.Font,Enum.FontWeight.SemiBold),
+FontFace=Font.new(b.Font),
 AutoButtonColor=false,
 BackgroundColor3=if bi then ak.AccentColor else Color3.new(1,1,1),
 BackgroundTransparency=bk,
@@ -5013,7 +5013,7 @@ HorizontalAlignment="Center",
 ao,
 ad("TextLabel",{
 BackgroundTransparency=1,
-FontFace=Font.new(ab.Font,Enum.FontWeight.SemiBold),
+FontFace=Font.new(ab.Font),
 Text=af or"Button",
 ThemeTag={
 TextColor3=(ai~="Primary"and ai~="White")and"Text",
@@ -5075,7 +5075,7 @@ local aq=ai=="Textarea"
 local ar=ae("TextBox",{
 BackgroundTransparency=1,
 TextSize=17,
-FontFace=Font.new(ab.Font,Enum.FontWeight.Regular),
+FontFace=Font.new(ab.Font),
 Size=UDim2.new(1,ap and-29 or 0,1,0),
 PlaceholderText=af,
 ClearTextOnFocus=am or false,
@@ -5451,7 +5451,7 @@ local ax=ae("TextLabel",{
 AutomaticSize="XY",
 BackgroundTransparency=1,
 Text=ai.KeySystem.Title or ai.Title,
-FontFace=Font.new(ab.Font,Enum.FontWeight.SemiBold),
+FontFace=Font.new(ab.Font),
 ThemeTag={
 TextColor3="Text",
 },
@@ -5465,7 +5465,7 @@ BackgroundTransparency=1,
 Text=ai.KeySystem.Subtitle or ai.KeySystem.Description or"Secure access gate",
 TextXAlignment="Left",
 TextTransparency=0.34,
-FontFace=Font.new(ab.Font,Enum.FontWeight.Medium),
+FontFace=Font.new(ab.Font),
 ThemeTag={
 TextColor3="Text",
 },
@@ -5491,7 +5491,7 @@ Text="Waiting",
 TextSize=12,
 TextTransparency=0.08,
 AutomaticSize="XY",
-FontFace=Font.new(ab.Font,Enum.FontWeight.Bold),
+FontFace=Font.new(ab.Font),
 ThemeTag={
 TextColor3="Text",
 },
@@ -5579,7 +5579,7 @@ if ai.KeySystem.Note and ai.KeySystem.Note~=""then
 aF=ae("TextLabel",{
 Size=UDim2.new(1,0,0,0),
 AutomaticSize="Y",
-FontFace=Font.new(ab.Font,Enum.FontWeight.Medium),
+FontFace=Font.new(ab.Font),
 TextXAlignment="Left",
 Text=ai.KeySystem.Note,
 TextSize=18,
@@ -5639,7 +5639,7 @@ Text="Access check ready",
 TextSize=12,
 TextTransparency=0.34,
 TextXAlignment="Left",
-FontFace=Font.new(ab.Font,Enum.FontWeight.Medium),
+FontFace=Font.new(ab.Font),
 ThemeTag={
 TextColor3="Text",
 },
@@ -5734,7 +5734,7 @@ ThemeTag={
 TextColor3="Text",
 },
 TextSize=18,
-FontFace=Font.new(ab.Font,Enum.FontWeight.Medium),
+FontFace=Font.new(ab.Font),
 BackgroundTransparency=1,
 AutomaticSize="XY",
 AnchorPoint=Vector2.new(0.5,0.5),
@@ -5981,7 +5981,7 @@ aU,
 ae("TextLabel",{
 Text="Select Service",
 BackgroundTransparency=1,
-FontFace=Font.new(ab.Font,Enum.FontWeight.Medium),
+FontFace=Font.new(ab.Font),
 ThemeTag={TextColor3="Text"},
 TextTransparency=0.2,
 TextSize=15,
@@ -6042,7 +6042,7 @@ HorizontalAlignment="Center",
 ae("TextLabel",{
 Text=aY.Title or aZ.Name,
 BackgroundTransparency=1,
-FontFace=Font.new(ab.Font,Enum.FontWeight.Medium),
+FontFace=Font.new(ab.Font),
 ThemeTag={TextColor3="Text"},
 TextTransparency=0.05,
 TextSize=18,
@@ -6055,7 +6055,7 @@ ZIndex=100001,
 ae("TextLabel",{
 Text=aY.Desc or"",
 BackgroundTransparency=1,
-FontFace=Font.new(ab.Font,Enum.FontWeight.Regular),
+FontFace=Font.new(ab.Font),
 ThemeTag={TextColor3="Text"},
 TextTransparency=0.2,
 TextSize=16,
@@ -6409,11 +6409,11 @@ ae("TextLabel",{
 Size=UDim2.new(1,0,0,0),
 AutomaticSize="Y",
 BackgroundTransparency=1,
-Text=ah.Title or"VynxUI",
+Text=ah.Title or"WindUI",
 TextSize=18,
 TextXAlignment="Left",
 TextWrapped=true,
-FontFace=Font.new(ab.Font,Enum.FontWeight.Bold),
+FontFace=Font.new(ab.Font),
 Parent=av,
 ThemeTag={
 TextColor3="Text",
@@ -6429,7 +6429,7 @@ TextSize=13,
 TextTransparency=0.34,
 TextXAlignment="Left",
 TextWrapped=true,
-FontFace=Font.new(ab.Font,Enum.FontWeight.Medium),
+FontFace=Font.new(ab.Font),
 Parent=av,
 ThemeTag={
 TextColor3="Text",
@@ -6453,7 +6453,7 @@ TextSize=13,
 TextTransparency=0.18,
 TextXAlignment="Left",
 TextTruncate="AtEnd",
-FontFace=Font.new(ab.Font,Enum.FontWeight.SemiBold),
+FontFace=Font.new(ab.Font),
 Parent=aw,
 ThemeTag={
 TextColor3="Text",
@@ -6470,7 +6470,7 @@ Text=tostring(math.floor(am.Progress*100+0.5)).."%",
 TextSize=12,
 TextTransparency=0.36,
 TextXAlignment="Right",
-FontFace=Font.new(ab.Font,Enum.FontWeight.SemiBold),
+FontFace=Font.new(ab.Font),
 Parent=aw,
 ThemeTag={
 TextColor3="Text",
@@ -6544,7 +6544,7 @@ Text=tostring(aD),
 TextSize=11,
 TextTransparency=aC==1 and 0.08 or 0.4,
 TextTruncate="AtEnd",
-FontFace=Font.new(ab.Font,Enum.FontWeight.SemiBold),
+FontFace=Font.new(ab.Font),
 ThemeTag={
 TextColor3="Text",
 },
@@ -7137,7 +7137,7 @@ AutomaticSize="Y",
 BackgroundTransparency=1,
 Text=ah.Title,
 TextXAlignment="Left",
-FontFace=Font.new(ab.Font,Enum.FontWeight.SemiBold),
+FontFace=Font.new(ab.Font),
 ThemeTag={
 TextColor3="PopupTitle",
 },
@@ -7176,7 +7176,7 @@ if ah.Content and ah.Content~=""then
 aq=ad("TextLabel",{
 Size=UDim2.new(1,0,0,0),
 AutomaticSize="Y",
-FontFace=Font.new(ab.Font,Enum.FontWeight.Medium),
+FontFace=Font.new(ab.Font),
 TextXAlignment="Left",
 Text=ah.Content,
 TextSize=18,
@@ -7211,7 +7211,7 @@ ThemeTag={
 TextColor3="Text",
 },
 TextSize=18,
-FontFace=Font.new(ab.Font,Enum.FontWeight.Medium),
+FontFace=Font.new(ab.Font),
 BackgroundTransparency=1,
 AutomaticSize="XY",
 AnchorPoint=Vector2.new(0.5,0.5),
@@ -7679,7 +7679,7 @@ end
 local an=ad("TextLabel",{
 BackgroundTransparency=1,
 TextSize=17,
-FontFace=Font.new(ab.Font,Enum.FontWeight.Regular),
+FontFace=Font.new(ab.Font),
 Size=UDim2.new(1,am and-29 or 0,1,0),
 TextXAlignment="Left",
 ThemeTag={
@@ -7930,7 +7930,7 @@ local ak=ad("TextLabel",{
 BackgroundTransparency=1,
 AutomaticSize="XY",
 TextSize=ai.TextSize,
-FontFace=Font.new(ab.Font,Enum.FontWeight.SemiBold),
+FontFace=Font.new(ab.Font),
 Text=ai.Title,
 TextColor3=typeof(ai.Color)=="Color3"and ab.GetTextColorForHSB(ai.Color)or typeof(
 ai.Color
@@ -8644,7 +8644,7 @@ end
 
 local function MeasureText(aj,ak,al)
 local am=
-ag:GetTextSize(tostring(aj or""),ak,"GothamMedium",Vector2.new(al,1000))
+ag:GetTextSize(tostring(aj or""),ak,Enum.Font.GothamMedium,Vector2.new(al,1000))
 return math.ceil(am.X),math.ceil(am.Y)
 end
 
@@ -8889,7 +8889,7 @@ local aG=ad("TextLabel",{
 Name="Title",
 Text=al.Title,
 TextSize=15,
-FontFace=Font.new(ab.Font,Enum.FontWeight.SemiBold),
+FontFace=Font.new(ab.Font),
 TextXAlignment=Enum.TextXAlignment.Left,
 TextYAlignment=Enum.TextYAlignment.Center,
 TextTruncate=Enum.TextTruncate.AtEnd,
@@ -8906,7 +8906,7 @@ local aH=ad("TextLabel",{
 Name="Content",
 Text="",
 TextSize=12,
-FontFace=Font.new(ab.Font,Enum.FontWeight.Regular),
+FontFace=Font.new(ab.Font),
 TextXAlignment=Enum.TextXAlignment.Left,
 TextYAlignment=Enum.TextYAlignment.Top,
 TextTruncate=Enum.TextTruncate.AtEnd,
@@ -9465,11 +9465,11 @@ local ak
 
 local al=ae("TextLabel",{
 BackgroundTransparency=1,
-Text=ag.Title or"VynxUI",
+Text=ag.Title or"WindUI",
 TextSize=13,
 TextXAlignment="Left",
 AutomaticSize="XY",
-FontFace=Font.new(ab.Font,Enum.FontWeight.Bold),
+FontFace=Font.new(ab.Font),
 ThemeTag={
 TextColor3="Text",
 },
@@ -9482,7 +9482,7 @@ TextSize=11,
 TextTransparency=0.42,
 TextXAlignment="Left",
 AutomaticSize="XY",
-FontFace=Font.new(ab.Font,Enum.FontWeight.Medium),
+FontFace=Font.new(ab.Font),
 ThemeTag={
 TextColor3="Text",
 },
@@ -9751,7 +9751,7 @@ TextXAlignment="Left",
 AutomaticSize="Y",
 Size=UDim2.new(1,0,0,0),
 Parent=aq,
-FontFace=Font.new(ad.Font,at or Enum.FontWeight.Medium),
+FontFace=Font.new(ad.Font,at or ("Normal")),
 ThemeTag={
 TextColor3="Text",
 },
@@ -9815,7 +9815,7 @@ AutomaticSize="X",
 BackgroundTransparency=1,
 Text=ar,
 TextSize=13,
-FontFace=Font.new(ad.Font,Enum.FontWeight.SemiBold),
+FontFace=Font.new(ad.Font),
 TextColor3=at=="Primary"and Color3.new(1,1,1)or nil,
 ThemeTag={
 TextColor3=at~="Primary"and"Text"or nil,
@@ -9998,8 +9998,8 @@ Padding=UDim.new(0,2),
 FillDirection="Vertical",
 }),
 })
-CreateText(ax,"Settings",16,Enum.FontWeight.Bold,0)
-CreateText(ax,"Config, theme and runtime controls",12,Enum.FontWeight.Medium,0.42)
+CreateText(ax,"Settings",16,("Normal"),0)
+CreateText(ax,"Config, theme and runtime controls",12,("Normal"),0.42)
 
 local ay=ad.NewRoundFrame(16,"Squircle",{
 Name="SettingsTabs",
@@ -10045,7 +10045,7 @@ BackgroundTransparency=1,
 Text=aA,
 TextSize=12,
 TextTruncate="AtEnd",
-FontFace=Font.new(ad.Font,Enum.FontWeight.SemiBold),
+FontFace=Font.new(ad.Font),
 ThemeTag={
 TextColor3="Text",
 },
@@ -10124,7 +10124,7 @@ CreateTabButton("theme","Theme","palette",2)
 CreateTabButton("about","Info","badge-info",3)
 
 local aC=CreatePanel(az)
-CreateText(aC,"Config Profile",13,Enum.FontWeight.Bold,0.05)
+CreateText(aC,"Config Profile",13,("Normal"),0.05)
 
 local aD=ad.NewRoundFrame(12,"Squircle",{
 Size=UDim2.new(1,0,0,36),
@@ -10149,7 +10149,7 @@ Text=al,
 PlaceholderText="default",
 TextSize=13,
 TextXAlignment="Left",
-FontFace=Font.new(ad.Font,Enum.FontWeight.Medium),
+FontFace=Font.new(ad.Font),
 Parent=aD,
 ThemeTag={
 TextColor3="Text",
@@ -10157,7 +10157,7 @@ PlaceholderColor3="Placeholder",
 },
 })
 
-local aF=CreateText(aC,"No saved configs",12,Enum.FontWeight.Medium,0.45)
+local aF=CreateText(aC,"No saved configs",12,("Normal"),0.45)
 
 local aG=af("Frame",{
 Name="HStack",
@@ -10174,9 +10174,9 @@ VerticalAlignment="Center",
 })
 
 local aH=CreatePanel(az)
-CreateText(aH,"Runtime",13,Enum.FontWeight.Bold,0.05)
-local aI=CreateText(aH,"Theme: "..tostring(ai:GetCurrentTheme()),12,Enum.FontWeight.Medium,0.28)
-CreateText(aH,"Settings use glass morph layers and tabbed pages.",12,Enum.FontWeight.Medium,0.45)
+CreateText(aH,"Runtime",13,("Normal"),0.05)
+local aI=CreateText(aH,"Theme: "..tostring(ai:GetCurrentTheme()),12,("Normal"),0.28)
+CreateText(aH,"Settings use glass morph layers and tabbed pages.",12,("Normal"),0.45)
 
 local function GetConfigName()
 local aJ=Trim(aE.Text)
@@ -10247,8 +10247,8 @@ end)
 aK.Size=UDim2.new(0.5,-4,1,0)
 
 local aL=CreatePanel(aA)
-CreateText(aL,"Theme Picker",13,Enum.FontWeight.Bold,0.05)
-CreateText(aL,"Tap a theme to apply it instantly.",12,Enum.FontWeight.Medium,0.45)
+CreateText(aL,"Theme Picker",13,("Normal"),0.05)
+CreateText(aL,"Tap a theme to apply it instantly.",12,("Normal"),0.45)
 
 au=af("ScrollingFrame",{
 Name="ThemeList",
@@ -10306,7 +10306,7 @@ Text=aN.Name,
 TextSize=13,
 TextXAlignment="Left",
 TextTruncate="AtEnd",
-FontFace=Font.new(ad.Font,Enum.FontWeight.SemiBold),
+FontFace=Font.new(ad.Font),
 ThemeTag={
 TextColor3="Text",
 },
@@ -10336,8 +10336,8 @@ end)
 end
 
 local aM=CreatePanel(aB)
-CreateText(aM,"VYNX Settings",13,Enum.FontWeight.Bold,0.05)
-CreateText(aM,"Configure themes, motion, keybinds and behavior.",12,Enum.FontWeight.Medium,0.36)
+CreateText(aM,"WindUI Settings",13,("Normal"),0.05)
+CreateText(aM,"Use Config for save/load and Theme for quick visual switching.",12,("Normal"),0.36)
 
 local aN=af("Frame",{
 Name="VStack",
@@ -10377,7 +10377,7 @@ Text=aO,
 TextSize=12,
 TextXAlignment="Left",
 TextTransparency=0.38,
-FontFace=Font.new(ad.Font,Enum.FontWeight.Medium),
+FontFace=Font.new(ad.Font),
 ThemeTag={
 TextColor3="Text",
 },
@@ -10389,7 +10389,7 @@ Text=aP,
 TextSize=12,
 TextXAlignment="Right",
 TextTruncate="AtEnd",
-FontFace=Font.new(ad.Font,Enum.FontWeight.SemiBold),
+FontFace=Font.new(ad.Font),
 ThemeTag={
 TextColor3="Text",
 },
@@ -10397,7 +10397,7 @@ TextColor3="Text",
 })
 end
 
-CreateInfoRow("Folder",tostring(ah.Folder or"VynxUI"))
+CreateInfoRow("Folder",tostring(ah.Folder or"WindUI"))
 CreateInfoRow("Topbar",tostring(ah.Topbar.ButtonsType or"Default"))
 CreateInfoRow("Motion",tostring(ae:GetConfig().Preset))
 
@@ -10614,7 +10614,7 @@ TextWrapped=true,
 AutomaticSize="Y",
 Size=UDim2.new(1,0,0,0),
 Parent=at,
-FontFace=Font.new(ad.Font,aw or Enum.FontWeight.Medium),
+FontFace=Font.new(ad.Font,aw or ("Normal")),
 ThemeTag={
 TextColor3="Text",
 },
@@ -10907,12 +10907,12 @@ FillDirection="Vertical",
 Padding=UDim.new(0,2),
 }),
 })
-CreateText(az,ak.Title or(am and"Keybind"or"KeyBind Menu"),am and 14 or 16,Enum.FontWeight.Bold,0)
+CreateText(az,ak.Title or(am and"Keybind"or"KeyBind Menu"),am and 14 or 16,("Normal"),0)
 local aA=CreateText(
 az,
 ak.Desc or(am and"Mobile quick toggle controls."or"Set the window toggle shortcut."),
 am and 11 or 12,
-Enum.FontWeight.Medium,
+("Normal"),
 0.42
 )
 if ak.HideDesc~=nil then
@@ -10973,7 +10973,7 @@ Text="Current",
 TextSize=am and 11 or 12,
 TextXAlignment="Left",
 TextTransparency=0.44,
-FontFace=Font.new(ad.Font,Enum.FontWeight.Medium),
+FontFace=Font.new(ad.Font),
 Parent=aD,
 ThemeTag={
 TextColor3="Text",
@@ -10986,7 +10986,7 @@ BackgroundTransparency=1,
 Text=aE,
 TextSize=am and 16 or 18,
 TextXAlignment="Right",
-FontFace=Font.new(ad.Font,Enum.FontWeight.Bold),
+FontFace=Font.new(ad.Font),
 Parent=aD,
 ThemeTag={
 TextColor3="Text",
@@ -11032,7 +11032,7 @@ TextXAlignment="Left",
 TextTransparency=0.3,
 LayoutOrder=1,
 Parent=aG,
-FontFace=Font.new(ad.Font,Enum.FontWeight.SemiBold),
+FontFace=Font.new(ad.Font),
 ThemeTag={
 TextColor3="Text",
 },
@@ -11063,7 +11063,7 @@ BackgroundTransparency=1,
 Text="No element keybinds",
 TextSize=am and 11 or 12,
 TextTransparency=0.48,
-FontFace=Font.new(ad.Font,Enum.FontWeight.Medium),
+FontFace=Font.new(ad.Font),
 Parent=aI,
 ThemeTag={
 TextColor3="Text",
@@ -11110,7 +11110,7 @@ AutomaticSize="X",
 BackgroundTransparency=1,
 Text=aM,
 TextSize=am and 12 or 13,
-FontFace=Font.new(ad.Font,Enum.FontWeight.SemiBold),
+FontFace=Font.new(ad.Font),
 ThemeTag={
 TextColor3="Text",
 },
@@ -11323,7 +11323,7 @@ Text=aR.Title or aR.__type or"Element",
 TextSize=am and 11 or 12,
 TextXAlignment="Left",
 TextTruncate="AtEnd",
-FontFace=Font.new(ad.Font,Enum.FontWeight.SemiBold),
+FontFace=Font.new(ad.Font),
 ThemeTag={
 TextColor3="Text",
 },
@@ -11336,7 +11336,7 @@ Text=aS,
 TextSize=am and 11 or 12,
 TextXAlignment="Right",
 TextTransparency=0.14,
-FontFace=Font.new(ad.Font,Enum.FontWeight.Bold),
+FontFace=Font.new(ad.Font),
 ThemeTag={
 TextColor3="Text",
 },
@@ -11575,7 +11575,7 @@ local am=ad("TextLabel",{
 AutomaticSize="XY",
 TextWrapped=ak,
 BackgroundTransparency=1,
-FontFace=Font.new(ab.Font,Enum.FontWeight.Medium),
+FontFace=Font.new(ab.Font),
 Text=af,
 TextSize=aj=="Small"and 15 or 17,
 TextTransparency=1,
@@ -12198,7 +12198,7 @@ TextTransparency=aA=="Desc"and 0.3 or 0,
 TextWrapped=true,
 Size=UDim2.new(aj.Justify=="Between"and 1 or 0,0,0,0),
 AutomaticSize=aj.Justify=="Between"and"Y"or"XY",
-FontFace=Font.new(aa.Font,aA=="Desc"and Enum.FontWeight.Medium or Enum.FontWeight.SemiBold),
+FontFace=Font.new(aa.Font,aA=="Desc"and ("Normal") or ("Normal")),
 })
 end
 
@@ -12339,7 +12339,7 @@ aB.ImageLabel.ImageTransparency=0.4
 local aC=ad("TextLabel",{
 Text="Locked",
 TextSize=18,
-FontFace=Font.new(aa.Font,Enum.FontWeight.Medium),
+FontFace=Font.new(aa.Font),
 AutomaticSize="XY",
 BackgroundTransparency=1,
 TextColor3=Color3.new(1,1,1),
@@ -14197,7 +14197,7 @@ TextColor3="Text",
 TextTransparency=0.4,
 AutomaticSize="Y",
 TextSize=15,
-FontFace=Font.new(af.Font,Enum.FontWeight.Medium),
+FontFace=Font.new(af.Font),
 BackgroundTransparency=1,
 LayoutOrder=-1,
 Visible=am.IsTextbox,
@@ -14585,7 +14585,7 @@ ap.UIElements.Value=ad("TextLabel",{
 Name="Value",
 Size=UDim2.new(0,ap.ValueWidth,0,20),
 BackgroundTransparency=1,
-FontFace=Font.new(aa.Font,Enum.FontWeight.Medium),
+FontFace=Font.new(aa.Font),
 Text=GetValueText(ap.Value.Default,GetRatio(ap.Value.Default)),
 TextSize=14,
 TextTransparency=0.25,
@@ -15513,7 +15513,7 @@ Name="TextBox",
 BackgroundTransparency=1,
 ClearTextOnFocus=false,
 ClipsDescendants=true,
-FontFace=Font.new(al.Font,Enum.FontWeight.Regular),
+FontFace=Font.new(al.Font),
 PlaceholderText=ar.SearchPlaceholder,
 Text=aC,
 TextColor3=Color3.new(1,1,1),
@@ -15891,7 +15891,7 @@ Name="Title",
 an("TextLabel",{
 Text=aJ.Name,
 TextXAlignment="Left",
-FontFace=Font.new(al.Font,Enum.FontWeight.Medium),
+FontFace=Font.new(al.Font),
 ThemeTag={
 TextColor3="Text",
 BackgroundColor3="Text",
@@ -15907,7 +15907,7 @@ Size=UDim2.new(1,0,0,0),
 an("TextLabel",{
 Text=aJ.Desc or"",
 TextXAlignment="Left",
-FontFace=Font.new(al.Font,Enum.FontWeight.Regular),
+FontFace=Font.new(al.Font),
 ThemeTag={
 TextColor3="Text",
 BackgroundColor3="Text",
@@ -16846,7 +16846,7 @@ TextColor3=Color3.fromHex"#ffffff",
 TextTransparency=0.2,
 TextSize=18,
 AutomaticSize="Y",
-FontFace=Font.new(ag.Font,Enum.FontWeight.Medium),
+FontFace=Font.new(ag.Font),
 TextXAlignment="Left",
 BackgroundTransparency=1,
 TextTruncate="AtEnd",
@@ -17143,7 +17143,7 @@ local aF,aG,aH=aA.Hue,aA.Sat,aA.Vib
 aA.UIElements.Title=ag("TextLabel",{
 Text=aA.Title,
 TextSize=20,
-FontFace=Font.new(aa.Font,Enum.FontWeight.SemiBold),
+FontFace=Font.new(aa.Font),
 TextXAlignment="Left",
 Size=UDim2.new(0,0,0,0),
 AutomaticSize="Y",
@@ -17409,7 +17409,7 @@ ag("TextLabel",{
 BackgroundTransparency=1,
 TextTransparency=0.4,
 TextSize=17,
-FontFace=Font.new(aa.Font,Enum.FontWeight.Regular),
+FontFace=Font.new(aa.Font),
 AutomaticSize="XY",
 ThemeTag={
 TextColor3="Placeholder",
@@ -18183,7 +18183,7 @@ Text=ar.Title,
 TextSize=14,
 TextWrapped=true,
 TextXAlignment="Left",
-FontFace=Font.new(aa.Font,Enum.FontWeight.Medium),
+FontFace=Font.new(aa.Font),
 ThemeTag={
 TextColor3="RadioGroupText",
 },
@@ -18454,7 +18454,7 @@ Text=ar.Title,
 TextSize=14,
 TextWrapped=true,
 TextXAlignment="Left",
-FontFace=Font.new(aa.Font,Enum.FontWeight.Medium),
+FontFace=Font.new(aa.Font),
 ThemeTag={
 TextColor3="CheckboxGroupText",
 },
@@ -18678,7 +18678,7 @@ BackgroundTransparency=1,
 Text=ar.Title,
 TextSize=13,
 TextTruncate="AtEnd",
-FontFace=Font.new(aa.Font,Enum.FontWeight.SemiBold),
+FontFace=Font.new(aa.Font),
 ThemeTag={
 TextColor3="SegmentedControlText",
 },
@@ -19093,7 +19093,7 @@ BackgroundTransparency=1,
 Text=FormatValue(aA.Value.Default),
 TextSize=av and 15 or 14,
 TextTruncate="AtEnd",
-FontFace=Font.new(aj.Font,Enum.FontWeight.SemiBold),
+FontFace=Font.new(aj.Font),
 ThemeTag={
 TextColor3="StepperText",
 },
@@ -19581,7 +19581,7 @@ TextWrapped=true,
 TextXAlignment="Left",
 AutomaticSize="Y",
 Size=UDim2.new(1,0,0,0),
-FontFace=Font.new(aj.Font,an or Enum.FontWeight.Medium),
+FontFace=Font.new(aj.Font,an or ("Normal")),
 ThemeTag={
 TextColor3="Text",
 },
@@ -19645,7 +19645,7 @@ TextSize=13,
 TextTruncate="AtEnd",
 TextXAlignment="Center",
 Size=UDim2.new(1,as and-20 or 0,1,0),
-FontFace=Font.new(aa.Font,Enum.FontWeight.SemiBold),
+FontFace=Font.new(aa.Font),
 TextColor3=Color3.new(1,1,1),
 })
 
@@ -19758,7 +19758,7 @@ TextTruncate="AtEnd",
 AutomaticSize="Y",
 Size=UDim2.new(1,-18,0,0),
 TextXAlignment="Left",
-FontFace=Font.new(aa.Font,Enum.FontWeight.SemiBold),
+FontFace=Font.new(aa.Font),
 ThemeTag={
 TextColor3="Text",
 },
@@ -19865,7 +19865,7 @@ TextWrapped=true,
 TextXAlignment="Left",
 AutomaticSize="Y",
 Size=UDim2.new(1,0,0,0),
-FontFace=Font.new(aa.Font,Enum.FontWeight.Bold),
+FontFace=Font.new(aa.Font),
 ThemeTag={
 TextColor3="Text",
 },
@@ -19888,7 +19888,7 @@ TextXAlignment="Left",
 AutomaticSize="Y",
 Size=UDim2.new(1,-16,0,0),
 Visible=ap.SubValue~=nil,
-FontFace=Font.new(aa.Font,Enum.FontWeight.Medium),
+FontFace=Font.new(aa.Font),
 ThemeTag={
 TextColor3="Text",
 },
@@ -20011,7 +20011,7 @@ TextTruncate="AtEnd",
 TextXAlignment="Left",
 Size=UDim2.new(0.45,as and-24 or 0,0,0),
 AutomaticSize="Y",
-FontFace=Font.new(aa.Font,Enum.FontWeight.Medium),
+FontFace=Font.new(aa.Font),
 ThemeTag={
 TextColor3="Text",
 },
@@ -20027,7 +20027,7 @@ TextWrapped=true,
 TextXAlignment="Right",
 Size=UDim2.new(0.55,0,0,0),
 AutomaticSize="Y",
-FontFace=Font.new(aa.Font,Enum.FontWeight.SemiBold),
+FontFace=Font.new(aa.Font),
 ThemeTag={
 TextColor3="Text",
 },
@@ -20175,7 +20175,7 @@ TextSize=13,
 TextTruncate="AtEnd",
 TextXAlignment="Center",
 Size=UDim2.new(1,-16,1,0),
-FontFace=Font.new(aa.Font,Enum.FontWeight.SemiBold),
+FontFace=Font.new(aa.Font),
 ThemeTag={
 TextColor3="Text",
 },
@@ -20397,7 +20397,7 @@ TextSize=14,
 TextTransparency=ar.Disabled and 0.46 or 0.04,
 TextXAlignment="Left",
 TextTruncate="AtEnd",
-FontFace=Font.new(aa.Font,Enum.FontWeight.SemiBold),
+FontFace=Font.new(aa.Font),
 ThemeTag={
 TextColor3="Text",
 },
@@ -20412,7 +20412,7 @@ TextSize=12,
 TextTransparency=ar.Disabled and 0.62 or 0.38,
 TextXAlignment="Left",
 TextWrapped=true,
-FontFace=Font.new(aa.Font,Enum.FontWeight.Medium),
+FontFace=Font.new(aa.Font),
 ThemeTag={
 TextColor3="Text",
 },
@@ -20441,7 +20441,7 @@ BackgroundTransparency=1,
 Text=tostring(ar.Value),
 TextSize=12,
 TextTransparency=0.12,
-FontFace=Font.new(aa.Font,Enum.FontWeight.Bold),
+FontFace=Font.new(aa.Font),
 ThemeTag={
 TextColor3="Text",
 },
@@ -20627,7 +20627,7 @@ Text=FormatValue(ar),
 TextSize=12,
 TextTransparency=0.22,
 TextXAlignment="Right",
-FontFace=Font.new(aa.Font,Enum.FontWeight.Bold),
+FontFace=Font.new(aa.Font),
 ThemeTag={
 TextColor3="Text",
 },
@@ -20664,7 +20664,7 @@ TextSize=13,
 TextTransparency=0.1,
 TextXAlignment="Left",
 TextTruncate="AtEnd",
-FontFace=Font.new(aa.Font,Enum.FontWeight.SemiBold),
+FontFace=Font.new(aa.Font),
 ThemeTag={
 TextColor3="Text",
 },
@@ -20692,7 +20692,7 @@ TextSize=12,
 TextTransparency=0.42,
 TextXAlignment="Left",
 TextWrapped=true,
-FontFace=Font.new(aa.Font,Enum.FontWeight.Medium),
+FontFace=Font.new(aa.Font),
 ThemeTag={
 TextColor3="Text",
 },
@@ -20832,8 +20832,8 @@ FillDirection="Vertical",
 VerticalAlignment="Top",
 HorizontalAlignment="Left",
 }),
-al.CreateText(aj,aa,ar.Title,14,Enum.FontWeight.SemiBold,0),
-ar.Desc and al.CreateText(aj,aa,ar.Desc,13,Enum.FontWeight.Medium,0.4)or nil,
+al.CreateText(aj,aa,ar.Title,14,("Normal"),0),
+ar.Desc and al.CreateText(aj,aa,ar.Desc,13,("Normal"),0.4)or nil,
 })
 
 local ax=aj("Frame",{
@@ -21006,7 +21006,7 @@ Text=at.Title,
 TextSize=14,
 TextTruncate="AtEnd",
 TextXAlignment="Left",
-FontFace=Font.new(aa.Font,Enum.FontWeight.SemiBold),
+FontFace=Font.new(aa.Font),
 ThemeTag={
 TextColor3="Text",
 },
@@ -21021,7 +21021,7 @@ Position=UDim2.new(0,10,0,an),
 AutomaticSize="Y",
 BackgroundTransparency=1,
 },{
-al.CreateText(aj,aa,at.Desc or"",13,Enum.FontWeight.Medium,0.4),
+al.CreateText(aj,aa,at.Desc or"",13,("Normal"),0.4),
 })
 
 local az=aa.NewRoundFrame(12,"Squircle",{
@@ -21167,7 +21167,7 @@ TextWrapped=true,
 TextXAlignment="Center",
 AutomaticSize="Y",
 Size=UDim2.new(1,0,0,0),
-FontFace=Font.new(aa.Font,Enum.FontWeight.SemiBold),
+FontFace=Font.new(aa.Font),
 Parent=ap.UIElements.Main,
 ThemeTag={
 TextColor3="Text",
@@ -21185,7 +21185,7 @@ TextXAlignment="Center",
 AutomaticSize="Y",
 Visible=ap.Desc~=nil,
 Size=UDim2.new(1,0,0,0),
-FontFace=Font.new(aa.Font,Enum.FontWeight.Medium),
+FontFace=Font.new(aa.Font),
 Parent=ap.UIElements.Main,
 ThemeTag={
 TextColor3="Text",
@@ -21419,7 +21419,7 @@ TextSize=18,
 TextWrapped=true,
 TextXAlignment="Left",
 TextColor3=Color3.new(1,1,1),
-FontFace=Font.new(aa.Font,Enum.FontWeight.Bold),
+FontFace=Font.new(aa.Font),
 Parent=ay,
 })
 
@@ -21434,7 +21434,7 @@ TextWrapped=true,
 TextXAlignment="Left",
 TextColor3=Color3.new(1,1,1),
 TextTransparency=0.26,
-FontFace=Font.new(aa.Font,Enum.FontWeight.Medium),
+FontFace=Font.new(aa.Font),
 Parent=ay,
 })
 
@@ -21481,7 +21481,7 @@ TextSize=12,
 TextColor3=Color3.new(1,1,1),
 TextTransparency=0.08,
 AutomaticSize="XY",
-FontFace=Font.new(aa.Font,Enum.FontWeight.SemiBold),
+FontFace=Font.new(aa.Font),
 }),
 })
 end
@@ -21529,7 +21529,7 @@ Text=aB,
 TextSize=13,
 TextColor3=aD=="Primary"and Color3.fromHex"#111827"or Color3.new(1,1,1),
 TextTransparency=0,
-FontFace=Font.new(aa.Font,Enum.FontWeight.Bold),
+FontFace=Font.new(aa.Font),
 AutomaticSize="XY",
 }),
 },true)
@@ -21825,7 +21825,7 @@ Text=at.Title,
 TextSize=ao.Window.IsPC==false and 12 or 13,
 TextTruncate="AtEnd",
 Size=UDim2.new(0,math.max(ax-(au and 42 or 20),24),1,0),
-FontFace=Font.new(aa.Font,Enum.FontWeight.SemiBold),
+FontFace=Font.new(aa.Font),
 ThemeTag={
 TextColor3="Text",
 },
@@ -22272,7 +22272,7 @@ Text=tostring(ay.Text or ay.Title or az),
 TextSize=12,
 TextTransparency=0.22,
 TextXAlignment="Center",
-FontFace=Font.new(aa.Font,Enum.FontWeight.SemiBold),
+FontFace=Font.new(aa.Font),
 Parent=as.UIElements.Canvas,
 ZIndex=6,
 ThemeTag={
@@ -22647,7 +22647,7 @@ TextSize=ao.TitleSize or 17,
 TextTransparency=0.02,
 TextXAlignment="Left",
 TextWrapped=true,
-FontFace=Font.new(aa.Font,Enum.FontWeight.Bold),
+FontFace=Font.new(aa.Font),
 Parent=ay,
 ThemeTag={
 TextColor3="Text",
@@ -22665,7 +22665,7 @@ TextTransparency=0.34,
 TextXAlignment="Left",
 TextWrapped=true,
 Visible=ap.Desc~=nil,
-FontFace=Font.new(aa.Font,Enum.FontWeight.Medium),
+FontFace=Font.new(aa.Font),
 Parent=ay,
 ThemeTag={
 TextColor3="Text",
@@ -22752,7 +22752,7 @@ TextSize=az.TextSize or 14,
 TextTransparency=0.04,
 TextXAlignment="Left",
 TextTruncate="AtEnd",
-FontFace=Font.new(aa.Font,Enum.FontWeight.Bold),
+FontFace=Font.new(aa.Font),
 ThemeTag={
 TextColor3="Text",
 },
@@ -23019,8 +23019,8 @@ TextSize=an.TextSize or 19,
 DescTextSize=an.DescTextSize or 16,
 Box=an.Box or false,
 BoxBorder=an.BoxBorder or false,
-FontWeight=an.FontWeight or Enum.FontWeight.SemiBold,
-DescFontWeight=an.DescFontWeight or Enum.FontWeight.Medium,
+FontWeight=an.FontWeight or (pcall(function() return Enum.FontWeight.Regular end) and Enum.FontWeight.Regular or "Regular"),
+DescFontWeight=an.DescFontWeight or (pcall(function() return Enum.FontWeight.Regular end) and Enum.FontWeight.Regular or "Regular"),
 TextTransparency=an.TextTransparency or 0.05,
 DescTextTransparency=an.DescTextTransparency or 0.4,
 Opened=an.Opened or false,
@@ -23103,7 +23103,7 @@ TextTransparency=av=="Title"and ao.TextTransparency or ao.DescTextTransparency,
 ThemeTag={
 TextColor3="Text",
 },
-FontFace=Font.new(aa.Font,av=="Title"and ao.FontWeight or ao.DescFontWeight),
+FontFace=Font.new(aa.Font),
 
 
 Text=au,
@@ -24579,7 +24579,7 @@ TextColor3=aB.Golden and Color3.fromRGB(255,232,144)or nil,
 TextTransparency=not aB.Locked and(aB.Golden and 0.12 or 0.4)or 0.7,
 TextSize=15,
 Size=if au then UDim2.new(0,0,1,0)else UDim2.new(1,0,0,0),
-FontFace=Font.new(am.Font,Enum.FontWeight.Medium),
+FontFace=Font.new(am.Font),
 TextWrapped=true,
 RichText=true,
 AutomaticSize=if au then Enum.AutomaticSize.X else Enum.AutomaticSize.Y,
@@ -24798,7 +24798,7 @@ TextColor3="Text",
 TextSize=20,
 TextTransparency=0.1,
 Size=UDim2.new(0,0,1,0),
-FontFace=Font.new(am.Font,Enum.FontWeight.SemiBold),
+FontFace=Font.new(am.Font),
 
 RichText=true,
 LayoutOrder=2,
@@ -25050,7 +25050,7 @@ TextColor3="Text",
 TextSize=18,
 TextTransparency=0.5,
 BackgroundTransparency=1,
-FontFace=Font.new(am.Font,Enum.FontWeight.Medium),
+FontFace=Font.new(am.Font),
 })
 or nil,
 aB.CustomEmptyPage.Desc
@@ -25063,7 +25063,7 @@ TextColor3="Text",
 TextSize=15,
 TextTransparency=0.65,
 BackgroundTransparency=1,
-FontFace=Font.new(am.Font,Enum.FontWeight.Regular),
+FontFace=Font.new(am.Font),
 })
 or nil,
 })
@@ -25302,7 +25302,7 @@ or(-as.IconSize-10),
 ThemeTag={
 TextColor3="Text",
 },
-FontFace=Font.new(ag.Font,Enum.FontWeight.SemiBold),
+FontFace=Font.new(ag.Font),
 TextSize=14,
 BackgroundTransparency=1,
 TextTransparency=.7,
@@ -25447,7 +25447,7 @@ ClipsDescendants=true,
 ClearTextOnFocus=false,
 BackgroundTransparency=1,
 TextXAlignment="Left",
-FontFace=Font.new(aj.Font,Enum.FontWeight.Regular),
+FontFace=Font.new(aj.Font),
 TextSize=18,
 })
 
@@ -25676,7 +25676,7 @@ TextColor3="Text",
 TextSize=17,
 BackgroundTransparency=1,
 TextXAlignment="Left",
-FontFace=Font.new(aj.Font,Enum.FontWeight.Medium),
+FontFace=Font.new(aj.Font),
 Size=UDim2.new(1,0,0,0),
 TextTruncate="AtEnd",
 AutomaticSize="Y",
@@ -25692,7 +25692,7 @@ TextSize=15,
 TextTransparency=0.3,
 BackgroundTransparency=1,
 TextXAlignment="Left",
-FontFace=Font.new(aj.Font,Enum.FontWeight.Medium),
+FontFace=Font.new(aj.Font),
 Size=UDim2.new(1,0,0,0),
 TextTruncate="AtEnd",
 AutomaticSize="Y",
@@ -25929,7 +25929,7 @@ TextColor3="Text",
 },
 TextTransparency=0.2,
 BackgroundTransparency=1,
-FontFace=Font.new(aj.Font,Enum.FontWeight.Medium),
+FontFace=Font.new(aj.Font),
 Parent=at,
 Name="NotFound",
 })
@@ -26495,7 +26495,7 @@ TextSize=17,
 ThemeTag={
 TextColor3="Text",
 },
-FontFace=Font.new(ao.Font,Enum.FontWeight.SemiBold),
+FontFace=Font.new(ao.Font),
 AutomaticSize="Y",
 BackgroundTransparency=1,
 Size=UDim2.new(1,-27,0,0),
@@ -26510,7 +26510,7 @@ TextTransparency=0.6,
 ThemeTag={
 TextColor3="Text",
 },
-FontFace=Font.new(ao.Font,Enum.FontWeight.Medium),
+FontFace=Font.new(ao.Font),
 AutomaticSize="Y",
 BackgroundTransparency=1,
 Size=UDim2.new(1,-27,0,0),
@@ -26836,7 +26836,7 @@ Name="Frame",
 function createAuthor(aV)
 return aq("TextLabel",{
 Text=aV,
-FontFace=Font.new(ao.Font,Enum.FontWeight.Medium),
+FontFace=Font.new(ao.Font),
 BackgroundTransparency=1,
 TextTransparency=0.35,
 AutomaticSize="XY",
@@ -26860,7 +26860,7 @@ end
 
 local aX=aq("TextLabel",{
 Text=aF.Title,
-FontFace=Font.new(ao.Font,Enum.FontWeight.SemiBold),
+FontFace=Font.new(ao.Font),
 BackgroundTransparency=1,
 AutomaticSize="XY",
 Name="Title",
@@ -28520,7 +28520,7 @@ Parent=a9.UIElements.Main,
 a9.UIElements.Title=aq("TextLabel",{
 Text=a8.Title,
 TextSize=20,
-FontFace=Font.new(ao.Font,Enum.FontWeight.SemiBold),
+FontFace=Font.new(ao.Font),
 TextXAlignment="Left",
 TextWrapped=true,
 RichText=true,
@@ -28539,7 +28539,7 @@ TextSize=18,
 TextTransparency=0.4,
 TextWrapped=true,
 RichText=true,
-FontFace=Font.new(ao.Font,Enum.FontWeight.Medium),
+FontFace=Font.new(ao.Font),
 TextXAlignment="Left",
 Size=UDim2.new(1,0,0,0),
 AutomaticSize="Y",
@@ -29026,7 +29026,7 @@ Scale=aa.UIScale,
 aa.UIScaleObj=az
 
 aa.ScreenGui=av("ScreenGui",{
-Name="VynxUI",
+Name="WindUI",
 Parent=ay,
 IgnoreGuiInset=true,
 ScreenInsets="None",
@@ -29322,8 +29322,8 @@ function aa.CreateWindow(aB,aC)
 local aD=a.load'aH'
 
 if not an:IsStudio()and writefile then
-if not isfolder"VynxUI"then
-makefolder"VynxUI"
+if not isfolder"WindUI"then
+makefolder"WindUI"
 end
 if aC.Folder then
 makefolder(aC.Folder)
@@ -29360,7 +29360,7 @@ aJ[aK]=aL
 end
 end
 
-aJ.Title=aJ.Title or aC.Title or"VynxUI"
+aJ.Title=aJ.Title or aC.Title or"WindUI"
 aJ.Desc=aJ.Desc or"Loading interface"
 aJ.Icon=aJ.Icon or aC.Icon or"sparkles"
 aJ.Folder=aJ.Folder or aC.Folder
@@ -29639,13 +29639,15 @@ end
 
 
 -- ══════════════════════════════════════════════════════════════════════
---  VYNX UI PATCH v1.2
+--  VYNX UI PATCH v1.3
+--  WindUI + Obsidian + NeverLose merged
 --  github.com/rxinoussouls/VynxUI
 -- ══════════════════════════════════════════════════════════════════════
 
 local _UIS  = cloneref(game:GetService("UserInputService"))
 local _TS   = cloneref(game:GetService("TweenService"))
-local _RS   = cloneref(game:GetService("RunService"))
+local _PL   = cloneref(game:GetService("Players"))
+local _LP   = _PL.LocalPlayer
 local _Inst = Instance
 
 local function _New(cls, props, children)
@@ -29654,149 +29656,56 @@ local function _New(cls, props, children)
     if children then for _,c in ipairs(children) do if c then c.Parent=obj end end end
     return obj
 end
-local function mkFont(w) return Font.new("rbxasset://fonts/families/GothamSSm.json", w) end
-local function mkTween(d) return TweenInfo.new(d or 0.25, Enum.EasingStyle.Quart, Enum.EasingDirection.Out) end
+local function mkFont()
+    return Font.new("rbxasset://fonts/families/GothamSSm.json")
+end
+local function mkBold()
+    return Font.new("rbxasset://fonts/families/GothamSSm.json")
+end
+local function mkTween(d)
+    return TweenInfo.new(d or 0.22, Enum.EasingStyle.Quart, Enum.EasingDirection.Out)
+end
 
--- ── 10+ Custom Themes ─────────────────────────────────────────────
+-- ── 14 Themes ─────────────────────────────────────────────────────
+local function T(name, bg, main, accent, outline, text, toggle, panel)
+    return {Name=name,Background=bg,Dialog=main,Accent=main,
+        Outline=outline,Text=text,Placeholder=Color3.fromHex("#888899"),
+        Button=outline,Icon=text,Toggle=toggle,Slider=accent,Checkbox=accent,
+        Primary=accent,LabelBackground=bg,LabelBackgroundTransparency=0,
+        PanelBackground=panel,PanelBackgroundTransparency=0,
+        ElementBackground=panel,ElementBackgroundTransparency=0,
+        SliderIcon=accent}
+end
 local VynxThemes = {
-    -- 1
-    {Name="Vynx",Accent=Color3.fromHex("#1a1228"),Dialog=Color3.fromHex("#130e1f"),
-     Outline=Color3.fromHex("#3a2d60"),Text=Color3.fromHex("#EDE8FF"),Placeholder=Color3.fromHex("#9d8ec7"),
-     Background=Color3.fromHex("#0A0814"),Button=Color3.fromHex("#2A1F42"),Icon=Color3.fromHex("#b09de0"),
-     Toggle=Color3.fromHex("#A374FF"),Slider=Color3.fromHex("#7C5CFF"),Checkbox=Color3.fromHex("#7C5CFF"),
-     PanelBackground=Color3.fromHex("#1D1530"),PanelBackgroundTransparency=0,
-     SliderIcon=Color3.fromHex("#7C5CFF"),Primary=Color3.fromHex("#7C5CFF"),
-     LabelBackground=Color3.fromHex("#100C1E"),LabelBackgroundTransparency=0,
-     ElementBackground=Color3.fromHex("#1D1530"),ElementBackgroundTransparency=0},
-    -- 2
-    {Name="Dark",Accent=Color3.fromHex("#18181b"),Dialog=Color3.fromHex("#111116"),
-     Outline=Color3.fromHex("#2e2e3e"),Text=Color3.fromHex("#FFFFFF"),Placeholder=Color3.fromHex("#a1a1aa"),
-     Background=Color3.fromHex("#0c0c12"),Button=Color3.fromHex("#222230"),Icon=Color3.fromHex("#a1a1aa"),
-     Toggle=Color3.fromHex("#7C5CFF"),Slider=Color3.fromHex("#7C5CFF"),Checkbox=Color3.fromHex("#7C5CFF"),
-     PanelBackground=Color3.fromHex("#16161e"),PanelBackgroundTransparency=0,
-     SliderIcon=Color3.fromHex("#7C5CFF"),Primary=Color3.fromHex("#7C5CFF"),
-     LabelBackground=Color3.fromHex("#0e0e14"),LabelBackgroundTransparency=0,
-     ElementBackground=Color3.fromHex("#16161e"),ElementBackgroundTransparency=0},
-    -- 3
-    {Name="Midnight",Accent=Color3.fromHex("#141422"),Dialog=Color3.fromHex("#0e0e1c"),
-     Outline=Color3.fromHex("#2a2a50"),Text=Color3.fromHex("#e0e0ff"),Placeholder=Color3.fromHex("#6666aa"),
-     Background=Color3.fromHex("#06060F"),Button=Color3.fromHex("#1e1e38"),Icon=Color3.fromHex("#8888cc"),
-     Toggle=Color3.fromHex("#4488FF"),Slider=Color3.fromHex("#4466DD"),Checkbox=Color3.fromHex("#4466DD"),
-     PanelBackground=Color3.fromHex("#101025"),PanelBackgroundTransparency=0,
-     SliderIcon=Color3.fromHex("#4466DD"),Primary=Color3.fromHex("#4466DD"),
-     LabelBackground=Color3.fromHex("#080815"),LabelBackgroundTransparency=0,
-     ElementBackground=Color3.fromHex("#101025"),ElementBackgroundTransparency=0},
-    -- 4
-    {Name="Rose",Accent=Color3.fromHex("#be185d"),Dialog=Color3.fromHex("#3d0f1e"),
-     Outline=Color3.fromHex("#7a1a35"),Text=Color3.fromHex("#fdf2f8"),Placeholder=Color3.fromHex("#d67aa6"),
-     Background=Color3.fromHex("#1a020a"),Button=Color3.fromHex("#3d0918"),Icon=Color3.fromHex("#fb7185"),
-     Toggle=Color3.fromHex("#fb7185"),Slider=Color3.fromHex("#e11d48"),Checkbox=Color3.fromHex("#e11d48"),
-     PanelBackground=Color3.fromHex("#280d15"),PanelBackgroundTransparency=0,
-     SliderIcon=Color3.fromHex("#e11d48"),Primary=Color3.fromHex("#e11d48"),
-     LabelBackground=Color3.fromHex("#1a040c"),LabelBackgroundTransparency=0,
-     ElementBackground=Color3.fromHex("#280d15"),ElementBackgroundTransparency=0},
-    -- 5
-    {Name="Serenity",Accent=Color3.fromHex("#0f2027"),Dialog=Color3.fromHex("#091820"),
-     Outline=Color3.fromHex("#1a4a58"),Text=Color3.fromHex("#e0f4f9"),Placeholder=Color3.fromHex("#5a9aaa"),
-     Background=Color3.fromHex("#030d12"),Button=Color3.fromHex("#0d2d38"),Icon=Color3.fromHex("#7ec8d8"),
-     Toggle=Color3.fromHex("#00c4df"),Slider=Color3.fromHex("#00A8C0"),Checkbox=Color3.fromHex("#00A8C0"),
-     PanelBackground=Color3.fromHex("#0a1e28"),PanelBackgroundTransparency=0,
-     SliderIcon=Color3.fromHex("#00A8C0"),Primary=Color3.fromHex("#00A8C0"),
-     LabelBackground=Color3.fromHex("#050f18"),LabelBackgroundTransparency=0,
-     ElementBackground=Color3.fromHex("#0a1e28"),ElementBackgroundTransparency=0},
-    -- 6
-    {Name="Fatality",Accent=Color3.fromHex("#181818"),Dialog=Color3.fromHex("#101010"),
-     Outline=Color3.fromHex("#3a1010"),Text=Color3.fromHex("#ffffff"),Placeholder=Color3.fromHex("#888888"),
-     Background=Color3.fromHex("#080808"),Button=Color3.fromHex("#1a0808"),Icon=Color3.fromHex("#ff3344"),
-     Toggle=Color3.fromHex("#ff3344"),Slider=Color3.fromHex("#cc2233"),Checkbox=Color3.fromHex("#cc2233"),
-     PanelBackground=Color3.fromHex("#140808"),PanelBackgroundTransparency=0,
-     SliderIcon=Color3.fromHex("#cc2233"),Primary=Color3.fromHex("#cc2233"),
-     LabelBackground=Color3.fromHex("#0a0404"),LabelBackgroundTransparency=0,
-     ElementBackground=Color3.fromHex("#140808"),ElementBackgroundTransparency=0},
-    -- 7 Nord
-    {Name="Nord",Accent=Color3.fromHex("#2e3440"),Dialog=Color3.fromHex("#3b4252"),
-     Outline=Color3.fromHex("#4c566a"),Text=Color3.fromHex("#eceff4"),Placeholder=Color3.fromHex("#d8dee9"),
-     Background=Color3.fromHex("#1e2230"),Button=Color3.fromHex("#3b4252"),Icon=Color3.fromHex("#88c0d0"),
-     Toggle=Color3.fromHex("#88c0d0"),Slider=Color3.fromHex("#5e81ac"),Checkbox=Color3.fromHex("#5e81ac"),
-     PanelBackground=Color3.fromHex("#282e3e"),PanelBackgroundTransparency=0,
-     SliderIcon=Color3.fromHex("#5e81ac"),Primary=Color3.fromHex("#5e81ac"),
-     LabelBackground=Color3.fromHex("#1e2230"),LabelBackgroundTransparency=0,
-     ElementBackground=Color3.fromHex("#282e3e"),ElementBackgroundTransparency=0},
-    -- 8 Dracula
-    {Name="Dracula",Accent=Color3.fromHex("#282a36"),Dialog=Color3.fromHex("#1e2029"),
-     Outline=Color3.fromHex("#44475a"),Text=Color3.fromHex("#f8f8f2"),Placeholder=Color3.fromHex("#6272a4"),
-     Background=Color3.fromHex("#191a21"),Button=Color3.fromHex("#44475a"),Icon=Color3.fromHex("#bd93f9"),
-     Toggle=Color3.fromHex("#50fa7b"),Slider=Color3.fromHex("#bd93f9"),Checkbox=Color3.fromHex("#bd93f9"),
-     PanelBackground=Color3.fromHex("#21222c"),PanelBackgroundTransparency=0,
-     SliderIcon=Color3.fromHex("#bd93f9"),Primary=Color3.fromHex("#bd93f9"),
-     LabelBackground=Color3.fromHex("#191a21"),LabelBackgroundTransparency=0,
-     ElementBackground=Color3.fromHex("#21222c"),ElementBackgroundTransparency=0},
-    -- 9 Catppuccin Mocha
-    {Name="Catppuccin",Accent=Color3.fromHex("#1e1e2e"),Dialog=Color3.fromHex("#181825"),
-     Outline=Color3.fromHex("#313244"),Text=Color3.fromHex("#cdd6f4"),Placeholder=Color3.fromHex("#6c7086"),
-     Background=Color3.fromHex("#11111b"),Button=Color3.fromHex("#313244"),Icon=Color3.fromHex("#cba6f7"),
-     Toggle=Color3.fromHex("#a6e3a1"),Slider=Color3.fromHex("#cba6f7"),Checkbox=Color3.fromHex("#cba6f7"),
-     PanelBackground=Color3.fromHex("#1e1e2e"),PanelBackgroundTransparency=0,
-     SliderIcon=Color3.fromHex("#cba6f7"),Primary=Color3.fromHex("#cba6f7"),
-     LabelBackground=Color3.fromHex("#181825"),LabelBackgroundTransparency=0,
-     ElementBackground=Color3.fromHex("#1e1e2e"),ElementBackgroundTransparency=0},
-    -- 10 Tokyo Night
-    {Name="TokyoNight",Accent=Color3.fromHex("#1a1b26"),Dialog=Color3.fromHex("#16161e"),
-     Outline=Color3.fromHex("#2a2b3d"),Text=Color3.fromHex("#c0caf5"),Placeholder=Color3.fromHex("#565f89"),
-     Background=Color3.fromHex("#13131c"),Button=Color3.fromHex("#292e42"),Icon=Color3.fromHex("#7aa2f7"),
-     Toggle=Color3.fromHex("#9ece6a"),Slider=Color3.fromHex("#7aa2f7"),Checkbox=Color3.fromHex("#7aa2f7"),
-     PanelBackground=Color3.fromHex("#1f2035"),PanelBackgroundTransparency=0,
-     SliderIcon=Color3.fromHex("#7aa2f7"),Primary=Color3.fromHex("#7aa2f7"),
-     LabelBackground=Color3.fromHex("#181820"),LabelBackgroundTransparency=0,
-     ElementBackground=Color3.fromHex("#1f2035"),ElementBackgroundTransparency=0},
-    -- 11 Gruvbox
-    {Name="Gruvbox",Accent=Color3.fromHex("#1d2021"),Dialog=Color3.fromHex("#282828"),
-     Outline=Color3.fromHex("#3c3836"),Text=Color3.fromHex("#ebdbb2"),Placeholder=Color3.fromHex("#928374"),
-     Background=Color3.fromHex("#161616"),Button=Color3.fromHex("#3c3836"),Icon=Color3.fromHex("#d79921"),
-     Toggle=Color3.fromHex("#b8bb26"),Slider=Color3.fromHex("#d79921"),Checkbox=Color3.fromHex("#d79921"),
-     PanelBackground=Color3.fromHex("#242424"),PanelBackgroundTransparency=0,
-     SliderIcon=Color3.fromHex("#d79921"),Primary=Color3.fromHex("#d79921"),
-     LabelBackground=Color3.fromHex("#1d2021"),LabelBackgroundTransparency=0,
-     ElementBackground=Color3.fromHex("#242424"),ElementBackgroundTransparency=0},
-    -- 12 Cyberpunk
-    {Name="Cyberpunk",Accent=Color3.fromHex("#0d0d1a"),Dialog=Color3.fromHex("#090912"),
-     Outline=Color3.fromHex("#ff0066"),Text=Color3.fromHex("#ffffff"),Placeholder=Color3.fromHex("#cc00ff"),
-     Background=Color3.fromHex("#050510"),Button=Color3.fromHex("#1a0033"),Icon=Color3.fromHex("#00ffff"),
-     Toggle=Color3.fromHex("#ff0066"),Slider=Color3.fromHex("#00ffff"),Checkbox=Color3.fromHex("#00ffff"),
-     PanelBackground=Color3.fromHex("#0d0d1f"),PanelBackgroundTransparency=0,
-     SliderIcon=Color3.fromHex("#00ffff"),Primary=Color3.fromHex("#00ffff"),
-     LabelBackground=Color3.fromHex("#08080f"),LabelBackgroundTransparency=0,
-     ElementBackground=Color3.fromHex("#0d0d1f"),ElementBackgroundTransparency=0},
-    -- 13 Aurora
-    {Name="Aurora",Accent=Color3.fromHex("#0d1a0d"),Dialog=Color3.fromHex("#0a1410"),
-     Outline=Color3.fromHex("#1a3d2e"),Text=Color3.fromHex("#e0ffe8"),Placeholder=Color3.fromHex("#4daa6d"),
-     Background=Color3.fromHex("#060e08"),Button=Color3.fromHex("#163322"),Icon=Color3.fromHex("#4dff91"),
-     Toggle=Color3.fromHex("#4dff91"),Slider=Color3.fromHex("#00cc66"),Checkbox=Color3.fromHex("#00cc66"),
-     PanelBackground=Color3.fromHex("#0e1e14"),PanelBackgroundTransparency=0,
-     SliderIcon=Color3.fromHex("#00cc66"),Primary=Color3.fromHex("#00cc66"),
-     LabelBackground=Color3.fromHex("#08120c"),LabelBackgroundTransparency=0,
-     ElementBackground=Color3.fromHex("#0e1e14"),ElementBackgroundTransparency=0},
-    -- 14 Light
-    {Name="Light",Accent=Color3.fromHex("#efefef"),Dialog=Color3.fromHex("#f4f4f5"),
-     Outline=Color3.fromHex("#d4d4d8"),Text=Color3.fromHex("#18181b"),Placeholder=Color3.fromHex("#71717a"),
-     Background=Color3.fromHex("#fafafa"),Button=Color3.fromHex("#e4e4e7"),Icon=Color3.fromHex("#52525b"),
-     Toggle=Color3.fromHex("#7C5CFF"),Slider=Color3.fromHex("#7C5CFF"),Checkbox=Color3.fromHex("#7C5CFF"),
-     PanelBackground=Color3.fromHex("#ececf4"),PanelBackgroundTransparency=0,
-     SliderIcon=Color3.fromHex("#71717a"),Primary=Color3.fromHex("#7C5CFF"),
-     LabelBackground=Color3.fromHex("#e8e8f0"),LabelBackgroundTransparency=0,
-     ElementBackground=Color3.fromHex("#ececf4"),ElementBackgroundTransparency=0},
+    T("Vynx",      "#0A0814","#130e1f","#7C5CFF","#2f2150","#EDE8FF","#A374FF","#1D1530"),
+    T("Dark",      "#0c0c12","#111116","#7C5CFF","#2e2e3e","#FFFFFF","#7C5CFF","#16161e"),
+    T("Midnight",  "#06060F","#0e0e1c","#4466DD","#252540","#e0e0ff","#4488FF","#101025"),
+    T("Rose",      "#1a020a","#3d0f1e","#e11d48","#7a1a35","#fdf2f8","#fb7185","#280d15"),
+    T("Serenity",  "#030d12","#091820","#00A8C0","#1a4a58","#e0f4f9","#00c4df","#0a1e28"),
+    T("Fatality",  "#080808","#101010","#cc2233","#3a1010","#ffffff","#ff3344","#140808"),
+    T("Nord",      "#1e2230","#3b4252","#5e81ac","#4c566a","#eceff4","#88c0d0","#282e3e"),
+    T("Dracula",   "#191a21","#282a36","#bd93f9","#44475a","#f8f8f2","#50fa7b","#21222c"),
+    T("Catppuccin","#11111b","#1e1e2e","#cba6f7","#313244","#cdd6f4","#a6e3a1","#1e1e2e"),
+    T("TokyoNight","#13131c","#1a1b26","#7aa2f7","#2a2b3d","#c0caf5","#9ece6a","#1f2035"),
+    T("Gruvbox",   "#161616","#282828","#d79921","#3c3836","#ebdbb2","#b8bb26","#242424"),
+    T("Cyberpunk", "#050510","#0d0d1a","#00ffff","#1a0033","#ffffff","#ff0066","#0d0d1f"),
+    T("Aurora",    "#060e08","#0a1410","#00cc66","#1a3d2e","#e0ffe8","#4dff91","#0e1e14"),
+    T("Light",     "#fafafa","#f4f4f5","#7C5CFF","#d4d4d8","#18181b","#7C5CFF","#ececf4"),
 }
-for _, t in VynxThemes do aa:AddTheme(t) end
+for _,t in VynxThemes do aa:AddTheme(t) end
 
 -- ── Global state ──────────────────────────────────────────────────
 aa.Toggles={};aa.Options={};aa.Labels={};aa.Buttons={}
 aa.DependencyBoxes={};aa.Signals={};aa.UnloadCallbacks={}
 aa.NotifySide="Right";aa.Unloaded=false;aa.DPIScale=1
+aa.DynamicIsland=nil
 
 -- ── Helpers ───────────────────────────────────────────────────────
 function aa:GiveSignal(c) table.insert(aa.Signals,c);return c end
 function aa:OnUnload(f)   table.insert(aa.UnloadCallbacks,f) end
-function aa:Toggle(v)     if aa.Window and aa.Window.Toggle then return aa.Window:Toggle(v) end end
+function aa:Toggle(v)
+    if aa.Window and aa.Window.Toggle then return aa.Window:Toggle(v) end
+end
 function aa:Unload()
     aa.Unloaded=true
     for _,f in aa.UnloadCallbacks do pcall(f) end
@@ -29805,55 +29714,64 @@ function aa:Unload()
         if aa[g] then pcall(function() aa[g]:Destroy() end) end
     end
 end
-function aa:SetDPIScale(s) aa.DPIScale=math.max(0.5,math.min(s or 1,3)) end
-function aa:SetNotifySide(s) aa.NotifySide=(s=="Left" or s=="Right") and s or "Right" end
+function aa:SetDPIScale(s)    aa.DPIScale=math.max(0.5,math.min(s or 1,3)) end
+function aa:SetNotifySide(s)  aa.NotifySide=(s=="Left" or s=="Right") and s or "Right" end
 function aa:SetBackgroundImage(i) aa._bgImage=tostring(i or "") end
 function aa:GetBetterColor(c,a) local h,s,v=c:ToHSV();return Color3.fromHSV(h,s,math.clamp(v+(a or 0)*0.05,0,1)) end
 function aa:GetLighterColor(c) local h,s,v=c:ToHSV();return Color3.fromHSV(h,s,math.min(v+0.08,1)) end
 function aa:GetDarkerColor(c)  local h,s,v=c:ToHSV();return Color3.fromHSV(h,s,math.max(v-0.08,0)) end
 function aa:SafeCallback(f,...) if type(f)~="function" then return end;local ok,e=pcall(f,...);if not ok then warn("[VynxUI]",e) end end
-function aa:GetKeyString(k) if typeof(k)~="EnumItem" then return tostring(k) end
+function aa:GetKeyString(k)
+    if typeof(k)~="EnumItem" then return tostring(k) end
     local s={LeftControl="LCtrl",RightControl="RCtrl",LeftShift="LShift",RightShift="RShift",Return="Enter",BackSpace="Back"}
-    return s[k.Name] or k.Name end
+    return s[k.Name] or k.Name
+end
 function aa:UpdateDependencyBoxes() for _,d in aa.DependencyBoxes do if d and d.Update then pcall(d.Update,d) end end end
 function aa:UpdateSearch(t) aa.SearchText=t or "";aa.Searching=aa.SearchText~="" end
-function aa:Validate(t,tmpl) if type(t)~="table" then t={} end
-    for k,v in pairs(tmpl or {}) do if t[k]==nil then t[k]=type(v)=="function" and v() or v end end; return t end
+function aa:Validate(t,tmpl)
+    if type(t)~="table" then t={} end
+    for k,v in pairs(tmpl or {}) do if t[k]==nil then t[k]=type(v)=="function" and v() or v end end; return t
+end
 
 -- ── Scheme sync ───────────────────────────────────────────────────
 local function SyncScheme()
     if not aa.Theme then return end
     aa.Scheme={
-        BackgroundColor =aa.Theme.Background or Color3.fromHex("#0D0D12"),
-        MainColor       =aa.Theme.Dialog     or Color3.fromHex("#16161F"),
+        BackgroundColor =aa.Theme.Background or Color3.fromHex("#0c0c12"),
+        MainColor       =aa.Theme.Dialog     or Color3.fromHex("#111116"),
         AccentColor     =aa.Theme.Primary    or Color3.fromHex("#7C5CFF"),
-        OutlineColor    =aa.Theme.Outline    or Color3.fromHex("#2a2a3a"),
+        OutlineColor    =aa.Theme.Outline    or Color3.fromHex("#2e2e3e"),
         FontColor       =aa.Theme.Text       or Color3.new(1,1,1),
-        Font            =Font.new("rbxasset://fonts/families/GothamSSm.json"),
+        Font            =mkFont(),
         RedColor        =Color3.fromRGB(255,50,50),
         DestructiveColor=Color3.fromRGB(220,38,38),
     }
 end
 local _oST=aa.SetTheme
-function aa:SetTheme(n) local r=_oST(self,n);SyncScheme();return r end
+function aa:SetTheme(n)
+    local r=_oST(self,n)
+    SyncScheme()
+    if aa.DynamicIsland and aa.DynamicIsland._updateColors then
+        aa.DynamicIsland._updateColors()
+    end
+    task.defer(function() task.wait(0.15);aa:_fixBg() end)
+    return r
+end
 
--- ── Background fix: walk & recolor light frames ───────────────────
-local function FixWhiteBackgrounds()
-    local gui = aa.ScreenGui
-    if not gui or not aa.Theme then return end
-    local panel = aa.Theme.PanelBackground or Color3.fromHex("#16161e")
-    local elem  = aa.Theme.ElementBackground or Color3.fromHex("#16161e")
-    for _, inst in gui:GetDescendants() do
+-- ── Fix white backgrounds ─────────────────────────────────────────
+function aa:_fixBg()
+    local gui=aa.ScreenGui; if not gui or not aa.Theme then return end
+    local panel=aa.Theme.PanelBackground or Color3.fromHex("#16161e")
+    for _,inst in gui:GetDescendants() do
         if inst:IsA("Frame") or inst:IsA("ScrollingFrame") then
-            local ok, bg = pcall(function() return inst.BackgroundColor3 end)
-            local ok2,tr = pcall(function() return inst.BackgroundTransparency end)
-            if ok and ok2 and tr < 0.5 then
-                local r,g,b = bg.R,bg.G,bg.B
-                -- detect white/near-white (R,G,B all > 0.75)
-                if r>0.75 and g>0.75 and b>0.75 then
+            local ok,bg=pcall(function() return inst.BackgroundColor3 end)
+            local ok2,tr=pcall(function() return inst.BackgroundTransparency end)
+            if ok and ok2 and tr<0.5 then
+                local r,g,b=bg.R,bg.G,bg.B
+                if r>0.78 and g>0.78 and b>0.78 then
                     pcall(function()
-                        inst.BackgroundColor3 = panel
-                        inst.BackgroundTransparency = 0
+                        inst.BackgroundColor3=panel
+                        inst.BackgroundTransparency=0
                     end)
                 end
             end
@@ -29862,7 +29780,7 @@ local function FixWhiteBackgrounds()
 end
 
 -- ── DependencyBox ─────────────────────────────────────────────────
-local function MakeDepBox(sec, container)
+local function MakeDepBox(sec,container)
     local DepFrame=_New("Frame",{BackgroundTransparency=1,Size=UDim2.new(1,0,0,0),
         AutomaticSize=Enum.AutomaticSize.Y,Visible=false,ClipsDescendants=false,
         Parent=container},{_New("UIListLayout",{Padding=UDim.new(0,5),SortOrder=Enum.SortOrder.LayoutOrder})})
@@ -29870,12 +29788,19 @@ local function MakeDepBox(sec, container)
     local Dep={Type="DependencyBox",Destroyed=false,Visible=false,
         Dependencies={},Connections={},Elements={},_frame=DepFrame}
 
+    local function pc()  return (aa.Theme and aa.Theme.PanelBackground) or Color3.fromHex("#16161e") end
+    local function oc()  return (aa.Theme and aa.Theme.Outline)         or Color3.fromHex("#2e2e3e") end
+    local function ac()  return (aa.Theme and aa.Theme.Primary)         or Color3.fromHex("#7C5CFF") end
+    local function tc()  return (aa.Theme and aa.Theme.Text)            or Color3.new(1,1,1) end
+    local function tgc() return (aa.Theme and aa.Theme.Toggle)          or Color3.fromHex("#7C5CFF") end
+
     function Dep:_resize() DepFrame.Size=UDim2.new(1,0,0,DL.AbsoluteContentSize.Y) end
     function Dep:Update()
         for _,d in Dep.Dependencies do
             local el,ex=d[1],d[2]; if not el then continue end
             local t,v=el.Type or "",el.Value
-            if t=="Toggle" or t=="Checkbox" then if v~=ex then DepFrame.Visible=false;Dep.Visible=false;return end
+            if t=="Toggle" or t=="Checkbox" then
+                if v~=ex then DepFrame.Visible=false;Dep.Visible=false;return end
             elseif t=="Dropdown" then
                 if typeof(v)=="table" then if not v[ex] then DepFrame.Visible=false;Dep.Visible=false;return end
                 else if v~=ex then DepFrame.Visible=false;Dep.Visible=false;return end end
@@ -29885,22 +29810,20 @@ local function MakeDepBox(sec, container)
         task.defer(function() Dep:_resize() end)
     end
     function Dep:SetupDependencies(deps)
-        for _,d in deps do local el=d[1]; if el then
-            local sig=el.OnChanged or el._onChanged
-            if sig then
-                local ev=typeof(sig)=="Instance" and sig.Event or sig
-                if typeof(ev)=="RBXScriptSignal" then
-                    table.insert(Dep.Connections,ev:Connect(function() Dep:Update() end)) end
-            end end end
+        for _,d in deps do
+            local el=d[1]; if el then
+                local sig=el.OnChanged or el._onChanged
+                if sig then
+                    local ev=typeof(sig)=="Instance" and sig.Event or sig
+                    if typeof(ev)=="RBXScriptSignal" then
+                        table.insert(Dep.Connections,ev:Connect(function() Dep:Update() end))
+                    end
+                end
+            end
+        end
         Dep.Dependencies=deps;Dep:Update()
     end
     DL:GetPropertyChangedSignal("AbsoluteContentSize"):Connect(function() if Dep.Visible then Dep:_resize() end end)
-
-    local function tc()  return (aa.Theme and aa.Theme.Text)    or Color3.new(1,1,1) end
-    local function oc()  return (aa.Theme and aa.Theme.Outline)  or Color3.fromHex("#2e2e3e") end
-    local function ac()  return (aa.Theme and aa.Theme.Primary)  or Color3.fromHex("#7C5CFF") end
-    local function pc()  return (aa.Theme and aa.Theme.PanelBackground) or Color3.fromHex("#16161e") end
-    local function tgc() return (aa.Theme and aa.Theme.Toggle)   or Color3.fromHex("#7C5CFF") end
 
     local function mkRow(h)
         return _New("Frame",{BackgroundColor3=pc(),BackgroundTransparency=0,
@@ -29913,43 +29836,33 @@ local function MakeDepBox(sec, container)
 
     local function DepEl(eType,Idx,Info)
         Info=Info or {}
-        local title=Info.Text or Info.Title or (type(Idx)=="string" and Idx) or ""
+        local title=Info.Text or Info.Title or Info.Name or (type(Idx)=="string" and Idx) or ""
         local default=Info.Default; local cb=Info.Callback or Info.Changed or function()end
         local flag=(type(Idx)=="string" and Idx) or Info.Flag
 
         if eType=="Toggle" then
             local T={Type="Toggle",Value=default~=nil and default or false,_onChanged=_Inst.new("BindableEvent")}
-            local row=mkRow(38)
-            _New("TextLabel",{BackgroundTransparency=1,Text=title,TextColor3=tc(),
+            local row=mkRow(36)
+            local lbl=_New("TextLabel",{BackgroundTransparency=1,Text=title,TextColor3=tc(),
                 TextTransparency=0.3,TextSize=13,TextXAlignment=Enum.TextXAlignment.Left,
-                Size=UDim2.new(1,-52,1,0),FontFace=mkFont(),Parent=row})
-
-            local track=_New("Frame",{AnchorPoint=Vector2.new(1,0.5),
-                BackgroundColor3=Color3.fromHex("#2a2a38"),
+                Size=UDim2.new(1,-48,1,0),FontFace=mkFont(),Parent=row})
+            local track=_New("Frame",{AnchorPoint=Vector2.new(1,0.5),BackgroundColor3=Color3.fromHex("#2a2a38"),
                 Position=UDim2.new(1,0,0.5,0),Size=UDim2.fromOffset(36,20),Parent=row},{
                 _New("UICorner",{CornerRadius=UDim.new(1,0)}),
-                _New("UIPadding",{PaddingLeft=UDim.new(0,2),PaddingRight=UDim.new(0,2),
-                    PaddingTop=UDim.new(0,2),PaddingBottom=UDim.new(0,2)}),
+                _New("UIPadding",{PaddingLeft=UDim.new(0,2),PaddingRight=UDim.new(0,2),PaddingTop=UDim.new(0,2),PaddingBottom=UDim.new(0,2)}),
             })
             local knob=_New("Frame",{BackgroundColor3=Color3.new(1,1,1),
-                Size=UDim2.new(0,16,0,16),SizeConstraint=Enum.SizeConstraint.RelativeYY,Parent=track},{
+                Size=UDim2.new(0,1,1,0),SizeConstraint=Enum.SizeConstraint.RelativeYY,Parent=track},{
                 _New("UICorner",{CornerRadius=UDim.new(1,0)}),
-                _New("UIGradient",{Color=ColorSequence.new{
-                    ColorSequenceKeypoint.new(0,Color3.new(1,1,1)),
-                    ColorSequenceKeypoint.new(1,Color3.fromHex("#dddddd"))},Rotation=90}),
             })
-
             local function updT(v)
-                local col=v and tgc() or Color3.fromHex("#2a2a38")
-                _TS:Create(track,mkTween(0.18),{BackgroundColor3=col}):Play()
-                _TS:Create(knob,mkTween(0.2),{
-                    AnchorPoint=v and Vector2.new(1,0) or Vector2.new(0,0),
-                    Position=UDim2.fromScale(v and 1 or 0,0),
-                }):Play()
+                _TS:Create(track,mkTween(0.18),{BackgroundColor3=v and tgc() or Color3.fromHex("#2a2a38")}):Play()
+                _TS:Create(knob,mkTween(0.2),{AnchorPoint=v and Vector2.new(1,0) or Vector2.new(0,0),Position=UDim2.fromScale(v and 1 or 0,0)}):Play()
+                _TS:Create(lbl,mkTween(0.15),{TextTransparency=v and 0 or 0.3}):Play()
             end
             updT(T.Value)
-            _New("TextButton",{BackgroundTransparency=1,Size=UDim2.fromScale(1,1),
-                Text="",ZIndex=5,Parent=row}).MouseButton1Click:Connect(function()
+            _New("TextButton",{BackgroundTransparency=1,Size=UDim2.fromScale(1,1),Text="",ZIndex=5,Parent=row})
+                .MouseButton1Click:Connect(function()
                 T.Value=not T.Value;updT(T.Value);T._onChanged:Fire(T.Value)
                 aa:SafeCallback(cb,T.Value);aa:UpdateDependencyBoxes()
             end)
@@ -29957,47 +29870,47 @@ local function MakeDepBox(sec, container)
             table.insert(Dep.Elements,T);if flag then aa.Toggles[flag]=T end;return T
 
         elseif eType=="Slider" then
-            local min=Info.Min or 0;local max=Info.Max or 100;local sfx=Info.Suffix or ""
+            local min=Info.Min or 0;local max=Info.Max or 100;local sfx=Info.Suffix or Info.Float and "" or ""
             local S={Type="Slider",Value=math.clamp(default or min,min,max),_onChanged=_Inst.new("BindableEvent")}
-            local row=mkRow(46)
+            local row=mkRow(44)
             _New("TextLabel",{BackgroundTransparency=1,Text=title,TextColor3=tc(),TextTransparency=0.3,
                 TextSize=13,TextXAlignment=Enum.TextXAlignment.Left,Size=UDim2.new(0.6,0,0,18),
-                Position=UDim2.fromOffset(0,4),FontFace=mkFont(),Parent=row})
-            local vLbl=_New("TextLabel",{BackgroundTransparency=1,TextColor3=ac(),TextTransparency=0,
-                TextSize=13,TextXAlignment=Enum.TextXAlignment.Right,Size=UDim2.new(0.38,0,0,18),
-                Position=UDim2.new(0.62,0,0,4),FontFace=mkFont(),Parent=row,
-                Text=tostring(S.Value)..sfx})
+                Position=UDim2.fromOffset(0,3),FontFace=mkFont(),Parent=row})
+            local vLbl=_New("TextLabel",{BackgroundTransparency=1,TextColor3=ac(),TextSize=12,
+                TextXAlignment=Enum.TextXAlignment.Right,Size=UDim2.new(0.38,0,0,18),
+                Position=UDim2.new(0.62,0,0,3),FontFace=mkFont(),Parent=row,
+                Text=tostring(Info.Float and string.format("%.2f",S.Value) or S.Value)..sfx})
             local tBg=_New("Frame",{BackgroundColor3=oc(),Size=UDim2.new(1,0,0,5),
-                Position=UDim2.new(0,0,0,28),Parent=row},{_New("UICorner",{CornerRadius=UDim.new(1,0)})})
-            local fill=_New("Frame",{BackgroundColor3=ac(),Size=UDim2.fromScale((S.Value-min)/(max-min),1),
+                Position=UDim2.new(0,0,0,26),Parent=row},{_New("UICorner",{CornerRadius=UDim.new(1,0)})})
+            local fill=_New("Frame",{BackgroundColor3=ac(),
+                Size=UDim2.fromScale(max>min and (S.Value-min)/(max-min) or 0,1),
                 Parent=tBg},{_New("UICorner",{CornerRadius=UDim.new(1,0)})})
             local thumb=_New("Frame",{AnchorPoint=Vector2.new(0.5,0.5),BackgroundColor3=Color3.new(1,1,1),
-                Position=UDim2.fromScale((S.Value-min)/(max-min),0.5),Size=UDim2.fromOffset(14,14),
-                ZIndex=2,Parent=tBg},{
+                Position=UDim2.fromScale(max>min and (S.Value-min)/(max-min) or 0,0.5),
+                Size=UDim2.fromOffset(12,12),ZIndex=2,Parent=tBg},{
                 _New("UICorner",{CornerRadius=UDim.new(1,0)}),
                 _New("UIStroke",{Color=ac(),Thickness=2}),
             })
             local function updS(v)
-                v=math.clamp(math.round(v*(Info.Decimals and 10^Info.Decimals or 1))/(Info.Decimals and 10^Info.Decimals or 1),min,max)
-                S.Value=v;local pct=(v-min)/(max-min)
+                local dec=Info.Decimals or (Info.Float and 2 or 0)
+                v=math.clamp(tonumber(string.format("%."..dec.."f",v)) or v,min,max)
+                S.Value=v;local pct=max>min and (v-min)/(max-min) or 0
                 _TS:Create(fill,mkTween(0.08),{Size=UDim2.fromScale(pct,1)}):Play()
                 _TS:Create(thumb,mkTween(0.08),{Position=UDim2.fromScale(pct,0.5)}):Play()
-                vLbl.Text=tostring(v)..sfx
+                vLbl.Text=(dec>0 and string.format("%."..dec.."f",v) or tostring(v))..sfx
             end
             updS(S.Value)
             local dr=false
             tBg.InputBegan:Connect(function(inp)
-                if inp.UserInputType==Enum.UserInputType.MouseButton1 or inp.UserInputType==Enum.UserInputType.Touch then
-                    dr=true;local r=(inp.Position.X-tBg.AbsolutePosition.X)/tBg.AbsoluteSize.X
-                    updS(min+r*(max-min));S._onChanged:Fire(S.Value);aa:SafeCallback(cb,S.Value);aa:UpdateDependencyBoxes()
-                end
+                if inp.UserInputType~=Enum.UserInputType.MouseButton1 and inp.UserInputType~=Enum.UserInputType.Touch then return end
+                dr=true;local r=(inp.Position.X-tBg.AbsolutePosition.X)/tBg.AbsoluteSize.X
+                updS(min+r*(max-min));S._onChanged:Fire(S.Value);aa:SafeCallback(cb,S.Value);aa:UpdateDependencyBoxes()
             end)
             _UIS.InputChanged:Connect(function(inp)
                 if not dr then return end
-                if inp.UserInputType==Enum.UserInputType.MouseMovement or inp.UserInputType==Enum.UserInputType.Touch then
-                    local r=(inp.Position.X-tBg.AbsolutePosition.X)/tBg.AbsoluteSize.X
-                    updS(min+r*(max-min));S._onChanged:Fire(S.Value);aa:SafeCallback(cb,S.Value);aa:UpdateDependencyBoxes()
-                end
+                if inp.UserInputType~=Enum.UserInputType.MouseMovement and inp.UserInputType~=Enum.UserInputType.Touch then return end
+                local r=(inp.Position.X-tBg.AbsolutePosition.X)/tBg.AbsoluteSize.X
+                updS(min+r*(max-min));S._onChanged:Fire(S.Value);aa:SafeCallback(cb,S.Value);aa:UpdateDependencyBoxes()
             end)
             _UIS.InputEnded:Connect(function(inp)
                 if inp.UserInputType==Enum.UserInputType.MouseButton1 or inp.UserInputType==Enum.UserInputType.Touch then dr=false end
@@ -30008,21 +29921,21 @@ local function MakeDepBox(sec, container)
         elseif eType=="Dropdown" then
             local vals=Info.Values or {}
             local D={Type="Dropdown",Value=default,_onChanged=_Inst.new("BindableEvent")}
-            local row=mkRow(38)
+            local row=mkRow(36)
             _New("TextLabel",{BackgroundTransparency=1,Text=title,TextColor3=tc(),TextTransparency=0.3,
                 TextSize=13,TextXAlignment=Enum.TextXAlignment.Left,Size=UDim2.new(0.5,0,1,0),FontFace=mkFont(),Parent=row})
             local dispFrame=_New("Frame",{AnchorPoint=Vector2.new(1,0.5),BackgroundColor3=oc(),
-                Position=UDim2.new(1,0,0.5,0),Size=UDim2.new(0.46,0,0,26),Parent=row},{
+                Position=UDim2.new(1,0,0.5,0),Size=UDim2.new(0.46,0,0,24),Parent=row},{
                 _New("UICorner",{CornerRadius=UDim.new(0,6)}),
-                _New("UIPadding",{PaddingLeft=UDim.new(0,8),PaddingRight=UDim.new(0,24)}),
+                _New("UIPadding",{PaddingLeft=UDim.new(0,8),PaddingRight=UDim.new(0,22)}),
             })
             local dispLbl=_New("TextLabel",{BackgroundTransparency=1,TextColor3=tc(),TextSize=12,
                 Size=UDim2.fromScale(1,1),TextXAlignment=Enum.TextXAlignment.Left,
-                FontFace=mkFont(),Parent=dispFrame,Text=tostring(default or "")})
-            local chevron=_New("TextLabel",{BackgroundTransparency=1,Text="▾",TextColor3=tc(),
-                TextTransparency=0.5,TextSize=12,AnchorPoint=Vector2.new(1,0.5),
-                Position=UDim2.new(1,-2,0.5,0),Size=UDim2.fromOffset(16,16),Parent=dispFrame})
-            local listFrame=_New("Frame",{BackgroundColor3=pc(),Size=UDim2.new(0,130,0,0),
+                FontFace=mkFont(),Parent=dispFrame,Text=tostring(default or "Select...")})
+            local chev=_New("TextLabel",{BackgroundTransparency=1,Text="▾",TextColor3=tc(),
+                TextTransparency=0.5,TextSize=11,AnchorPoint=Vector2.new(1,0.5),
+                Position=UDim2.new(1,-2,0.5,0),Size=UDim2.fromOffset(14,14),Parent=dispFrame})
+            local listFrame=_New("Frame",{BackgroundColor3=pc(),Size=UDim2.new(0,140,0,0),
                 AutomaticSize=Enum.AutomaticSize.Y,AnchorPoint=Vector2.new(1,0),
                 Position=UDim2.new(1,0,1,4),Visible=false,ZIndex=200,Parent=row},{
                 _New("UICorner",{CornerRadius=UDim.new(0,8)}),
@@ -30031,7 +29944,7 @@ local function MakeDepBox(sec, container)
                 _New("UIPadding",{PaddingTop=UDim.new(0,4),PaddingBottom=UDim.new(0,4),PaddingLeft=UDim.new(0,4),PaddingRight=UDim.new(0,4)}),
             })
             for i,opt in vals do
-                local ob=_New("TextButton",{BackgroundTransparency=1,Size=UDim2.new(1,0,0,26),
+                local ob=_New("TextButton",{BackgroundTransparency=1,Size=UDim2.new(1,0,0,24),
                     Text=tostring(opt),TextColor3=tc(),TextSize=12,FontFace=mkFont(),
                     TextXAlignment=Enum.TextXAlignment.Left,ZIndex=201,LayoutOrder=i,Parent=listFrame},{
                     _New("UICorner",{CornerRadius=UDim.new(0,5)}),
@@ -30041,27 +29954,28 @@ local function MakeDepBox(sec, container)
                 ob.MouseLeave:Connect(function() ob.BackgroundTransparency=1;ob.TextColor3=tc() end)
                 ob.MouseButton1Click:Connect(function()
                     D.Value=opt;dispLbl.Text=tostring(opt);listFrame.Visible=false
+                    _TS:Create(chev,mkTween(0.12),{Rotation=0}):Play()
                     aa:SafeCallback(cb,opt);aa:UpdateDependencyBoxes();D._onChanged:Fire(opt)
-                    _TS:Create(chevron,mkTween(0.15),{Rotation=0}):Play()
                 end)
             end
             local open=false
             _New("TextButton",{BackgroundTransparency=1,Size=UDim2.fromScale(1,1),Text="",ZIndex=5,Parent=dispFrame})
                 .MouseButton1Click:Connect(function()
                 open=not open;listFrame.Visible=open
-                _TS:Create(chevron,mkTween(0.15),{Rotation=open and 180 or 0}):Play()
+                _TS:Create(chev,mkTween(0.15),{Rotation=open and 180 or 0}):Play()
             end)
             function D:SetValue(v) D.Value=v;dispLbl.Text=tostring(v);aa:SafeCallback(cb,v);aa:UpdateDependencyBoxes() end
+            function D:SetValues(vs) vals=vs; for _,c in listFrame:GetChildren() do if c:IsA("TextButton") then c:Destroy() end end end
             table.insert(Dep.Elements,D);if flag then aa.Options[flag]=D end;return D
 
         elseif eType=="Input" then
             local I={Type="Input",Value=default or "",_onChanged=_Inst.new("BindableEvent")}
-            local row=mkRow(38)
+            local row=mkRow(36)
             _New("TextLabel",{BackgroundTransparency=1,Text=title,TextColor3=tc(),TextTransparency=0.3,
                 TextSize=13,TextXAlignment=Enum.TextXAlignment.Left,Size=UDim2.new(0.42,0,1,0),FontFace=mkFont(),Parent=row})
             local box=_New("TextBox",{BackgroundColor3=oc(),BackgroundTransparency=0,
-                AnchorPoint=Vector2.new(1,0.5),Position=UDim2.new(1,0,0.5,0),Size=UDim2.new(0.55,0,0,24),
-                Text=I.Value,PlaceholderText=Info.PlaceholderText or Info.Placeholder or "",
+                AnchorPoint=Vector2.new(1,0.5),Position=UDim2.new(1,0,0.5,0),Size=UDim2.new(0.55,0,0,22),
+                Text=I.Value,PlaceholderText=Info.PlaceholderText or Info.Placeholder or Info.Default or "",
                 TextColor3=tc(),PlaceholderColor3=Color3.fromHex("#666688"),TextSize=12,
                 ClearTextOnFocus=false,FontFace=mkFont(),Parent=row},{
                 _New("UICorner",{CornerRadius=UDim.new(0,6)}),
@@ -30074,7 +29988,7 @@ local function MakeDepBox(sec, container)
             table.insert(Dep.Elements,I);if flag then aa.Options[flag]=I end;return I
 
         elseif eType=="Label" then
-            local row=mkRow(30)
+            local row=mkRow(28)
             local lbl=_New("TextLabel",{BackgroundTransparency=1,Text=title,TextColor3=tc(),TextTransparency=0.4,
                 TextSize=12,TextXAlignment=Enum.TextXAlignment.Left,Size=UDim2.fromScale(1,1),FontFace=mkFont(),Parent=row})
             local L={Type="Label",_label=lbl}; function L:SetText(t) lbl.Text=t end
@@ -30082,33 +29996,37 @@ local function MakeDepBox(sec, container)
 
         elseif eType=="Button" then
             local c=ac()
-            local b=_New("TextButton",{BackgroundColor3=c,Size=UDim2.new(1,0,0,34),
-                Text=title,TextColor3=Color3.new(1,1,1),TextSize=13,FontFace=mkFont(Enum.FontWeight.SemiBold),
-                Parent=DepFrame},{_New("UICorner",{CornerRadius=UDim.new(0,10)})})
+            local b=_New("TextButton",{BackgroundColor3=c,Size=UDim2.new(1,0,0,32),
+                Text=title,TextColor3=Color3.new(1,1,1),TextSize=13,FontFace=mkFont(),Parent=DepFrame},{
+                _New("UICorner",{CornerRadius=UDim.new(0,10)}),
+            })
             b.MouseEnter:Connect(function() _TS:Create(b,mkTween(0.1),{BackgroundColor3=aa:GetLighterColor(c)}):Play() end)
             b.MouseLeave:Connect(function() _TS:Create(b,mkTween(0.1),{BackgroundColor3=c}):Play() end)
-            b.MouseButton1Down:Connect(function() _TS:Create(b,mkTween(0.06),{BackgroundTransparency=0.2}):Play() end)
+            b.MouseButton1Down:Connect(function() _TS:Create(b,mkTween(0.06),{BackgroundTransparency=0.15}):Play() end)
             b.MouseButton1Up:Connect(function() _TS:Create(b,mkTween(0.06),{BackgroundTransparency=0}):Play() end)
             b.MouseButton1Click:Connect(function() aa:SafeCallback(cb) end)
             local B={Type="Button"};if flag then aa.Buttons[flag]=B end;return B
 
         elseif eType=="Divider" then
-            _New("Frame",{BackgroundColor3=oc(),Size=UDim2.new(1,-24,0,1),
-                Position=UDim2.fromOffset(12,0),Parent=DepFrame}); return {}
+            _New("Frame",{BackgroundColor3=oc(),Size=UDim2.new(1,-24,0,1),Position=UDim2.fromOffset(12,0),Parent=DepFrame}); return {}
         end
         return {}
     end
 
-    Dep.AddToggle      =function(s,I,i) return DepEl("Toggle",I,i) end
-    Dep.AddSlider      =function(s,I,i) return DepEl("Slider",I,i) end
-    Dep.AddDropdown    =function(s,I,i) return DepEl("Dropdown",I,i) end
-    Dep.AddInput       =function(s,I,i) return DepEl("Input",I,i) end
-    Dep.AddLabel       =function(s,I,i) return DepEl("Label",I,i) end
-    Dep.AddButton      =function(s,I,i) return DepEl("Button",I,i) end
+    -- Attach element API (supports both Obsidian AND NeverLose style)
+    Dep.AddToggle      =function(s,I,i) return DepEl("Toggle",I,i or {}) end
+    Dep.AddSlider      =function(s,I,i) return DepEl("Slider",I,i or {}) end
+    Dep.AddDropdown    =function(s,I,i) return DepEl("Dropdown",I,i or {}) end
+    Dep.AddInput       =function(s,I,i) return DepEl("Input",I,i or {}) end
+    Dep.AddTextInput   =function(s,I,i) return DepEl("Input",I,i or {}) end  -- NeverLose alias
+    Dep.AddLabel       =function(s,I,i) return DepEl("Label",I,type(i)=="table" and i or {Text=i}) end
+    Dep.AddButton      =function(s,I,i) return DepEl("Button",I,i or {}) end
     Dep.AddDivider     =function(s,...) return DepEl("Divider",nil,nil) end
     Dep.AddCheckbox    =Dep.AddToggle
-    Dep.AddKeyPicker   =function(s,I,i) return DepEl("Toggle",I,i) end
-    Dep.AddColorPicker =function(s,I,i) return DepEl("Label",I,i) end
+    Dep.AddKeyPicker   =function(s,I,i) return DepEl("Toggle",I,i or {}) end
+    Dep.AddColorPicker =function(s,I,i) return DepEl("Label",I,i or {}) end
+    Dep.AddKeybind     =Dep.AddKeyPicker  -- NeverLose alias
+    Dep.AddOption      =function(s,...) return {} end  -- NeverLose (placeholder)
 
     function Dep:Destroy()
         Dep.Destroyed=true
@@ -30119,160 +30037,188 @@ local function MakeDepBox(sec, container)
     table.insert(aa.DependencyBoxes,Dep); return Dep
 end
 
--- ── Inject Section Obsidian API ───────────────────────────────────
+-- ── Inject Section API (Obsidian + NeverLose style) ───────────────
 local function InjectSection(sec)
     if not sec or sec._vynxOk then return sec end
     sec._vynxOk=true
-    local function C(elem,Idx,Info)
-        Info=Info or {};local f=(type(Idx)=="string" and Idx) or Info.Flag
-        return {Title=Info.Text or Info.Title or (type(Idx)=="string" and Idx) or "",Default=Info.Default,Flag=f,
-            Callback=Info.Callback or Info.Changed or function()end,Tooltip=Info.Tooltip,Locked=Info.Disabled or false,
-            Min=Info.Min,Max=Info.Max,Suffix=Info.Suffix,Decimals=Info.Decimals,Values=Info.Values,Multi=Info.Multi,
-            Searchable=Info.Searchable,Placeholder=Info.PlaceholderText or Info.Placeholder,
-            Mode=Info.Mode,Transparency=Info.Transparency,Content=Info.Desc or Info.Content},f
+    local function C(Idx,Info)
+        Info=Info or {}
+        local flag=(type(Idx)=="string" and Idx) or Info.Flag
+        return {Title=Info.Text or Info.Title or Info.Name or (type(Idx)=="string" and Idx) or "",
+            Default=Info.Default,Flag=flag,
+            Callback=Info.Callback or Info.Changed or function()end,
+            Tooltip=Info.Tooltip,Locked=Info.Disabled or false,
+            Min=Info.Min,Max=Info.Max,Suffix=Info.Suffix,Decimals=Info.Decimals,
+            Values=Info.Values,Multi=Info.Multi,Searchable=Info.Searchable,
+            Placeholder=Info.PlaceholderText or Info.Placeholder,
+            Mode=Info.Mode,Transparency=Info.Transparency,
+            Content=Info.Desc or Info.Content},flag
     end
     local function W(el,f,reg) if el and f then reg[f]=el end;return el end
 
-    function sec:AddToggle(I,i)   local c,f=C("Toggle",I,i);   return W(self:Toggle(c),f,aa.Toggles) end
-    function sec:AddSlider(I,i)   local c,f=C("Slider",I,i);   return W(self:Slider(c),f,aa.Options) end
-    function sec:AddDropdown(I,i) local c,f=C("Dropdown",I,i); return W(self:Dropdown(c),f,aa.Options) end
-    function sec:AddInput(I,i)    local c,f=C("Input",I,i);    return W(self:Input(c),f,aa.Options) end
-    function sec:AddKeyPicker(I,i) local c,f=C("Keybind",I,i); return W(self:Keybind(c),f,aa.Options) end
-    function sec:AddColorPicker(I,i) local c,f=C("Colorpicker",I,i);return W(self:Colorpicker(c),f,aa.Options) end
-    function sec:AddCheckbox(I,i) local c,f=C("Toggle",I,i);   return W(self:Toggle(c),f,aa.Toggles) end
-    function sec:AddButton(I,i) i=i or {};local el=self:Button({Title=i.Text or i.Title or (type(I)=="string" and I) or "",Callback=i.Callback or function()end})
-        if type(I)=="string" then aa.Buttons[I]=el end;return el end
-    function sec:AddLabel(I,i) i=i or {};local el=self:Paragraph({Title=i.Text or (type(I)=="string" and I) or "",Content=i.Desc or ""})
-        if type(I)=="string" then aa.Labels[I]=el end;return el end
+    -- Obsidian + NeverLose AddToggle
+    function sec:AddToggle(I,i)     local c,f=C(I,i); return W(self:Toggle(c),f,aa.Toggles) end
+    function sec:AddSlider(I,i)     local c,f=C(I,i); return W(self:Slider(c),f,aa.Options) end
+    function sec:AddDropdown(I,i)   local c,f=C(I,i); return W(self:Dropdown(c),f,aa.Options) end
+    function sec:AddInput(I,i)      local c,f=C(I,i); return W(self:Input(c),f,aa.Options) end
+    function sec:AddTextInput(I,i)  local c,f=C(I,i); return W(self:Input(c),f,aa.Options) end
+    function sec:AddKeyPicker(I,i)  local c,f=C(I,i); return W(self:Keybind(c),f,aa.Options) end
+    function sec:AddKeybind(I,i)    local c,f=C(I,i); return W(self:Keybind(c),f,aa.Options) end
+    function sec:AddColorPicker(I,i) local c,f=C(I,i); return W(self:Colorpicker(c),f,aa.Options) end
+    function sec:AddCheckbox(I,i)   local c,f=C(I,i); return W(self:Toggle(c),f,aa.Toggles) end
+    function sec:AddButton(I,i)
+        i=i or {};local nm=i.Text or i.Title or i.Name or (type(I)=="string" and I) or ""
+        local el=self:Button({Title=nm,Callback=i.Callback or function()end})
+        if type(I)=="string" then aa.Buttons[I]=el end;return el
+    end
+    function sec:AddLabel(I,i)
+        i=i or {};local txt=i.Text or (type(i)=="string" and i) or (type(I)=="string" and I) or ""
+        local el=self:Paragraph({Title=txt,Content=i.Desc or i.Content or ""})
+        if type(I)=="string" then aa.Labels[I]=el end;return el
+    end
     function sec:AddDivider() return self:Divider({}) end
     function sec:AddImage(I,i)    return self:Image(i or {}) end
     function sec:AddViewport(I,i) return self:Viewport(i or {}) end
     function sec:AddVideo(I,i)    return self:Video(i or {}) end
     function sec:AddProgressBar(I,i) return self:ProgressBar(i or {}) end
-    function sec:AddSegmentedControl(I,i) local c,f=C("SegmentedControl",I,i);return W(self:SegmentedControl(c),f,aa.Options) end
+    function sec:AddSegmentedControl(I,i) local c,f=C(I,i); return W(self:SegmentedControl(c),f,aa.Options) end
+    function sec:AddOption(GearIcon) return {} end -- NeverLose placeholder
+    function sec:AddUserFrame(Name,Profile,Expires) return {} end -- NeverLose placeholder
     function sec:AddDependencyBox()
-        local ct=nil; if sec.UIElements then ct=sec.UIElements.ElementContainer or sec.UIElements.Content or sec.UIElements.Container or sec.UIElements.ScrollingFrame end
-        return MakeDepBox(sec,ct or DepFrame)
+        local ct=nil
+        if sec.UIElements then
+            ct=sec.UIElements.ElementContainer or sec.UIElements.Content
+                or sec.UIElements.Container or sec.UIElements.ScrollingFrame
+        end
+        return MakeDepBox(sec, ct or sec._frame)
     end
-    function sec:AddDependencyGroupbox(t) return MakeDepBox(sec,DepFrame) end
+    function sec:AddDependencyGroupbox(t) return MakeDepBox(sec, sec._frame) end
     return sec
 end
 
--- ── Inject Tab Obsidian API ───────────────────────────────────────
+-- ── Inject Tab API ────────────────────────────────────────────────
 local function InjectTab(tab)
     if not tab or tab._vynxTabOk then return tab end
     tab._vynxTabOk=true
     local oS=tab.Section or tab.CreateSection
     local function mkSec(n)
-        local s; if oS then local ok,r=pcall(oS,tab,{Title=n or ""});s=ok and r or nil end
-        if s then InjectSection(s) end; return s
+        if not oS then return InjectSection({_frame=nil,UIElements={}}) end
+        local ok,r=pcall(oS,tab,{Title=n or ""});local s=ok and r or nil
+        if s then InjectSection(s) end;return s
     end
-    tab.AddGroupbox=function(s,n) return mkSec(n) end
-    tab.AddLeftGroupbox=function(s,n) return mkSec(n) end
-    tab.AddRightGroupbox=function(s,n) return mkSec(n) end
-    tab.AddTab=tab.CreateTab
-    if oS then tab.Section=function(s,c) local r=oS(s,c);if r then InjectSection(r) end;return r end;tab.CreateSection=tab.Section end
+    tab.AddGroupbox      =function(s,n) return mkSec(n) end
+    tab.AddLeftGroupbox  =function(s,n) return mkSec(n) end
+    tab.AddRightGroupbox =function(s,n) return mkSec(n) end
+    tab.AddSection       =function(s,cfg) return mkSec(type(cfg)=="table" and (cfg.Name or cfg.Title) or cfg) end
+    tab.AddTab           =tab.CreateTab
+    if oS then
+        tab.Section=function(s,c) local r=oS(s,c);if r then InjectSection(r) end;return r end
+        tab.CreateSection=tab.Section
+    end
     return tab
 end
 
--- ── Dynamic Island Open Button ────────────────────────────────────
-local function CreateDynamicIsland(gui, window, cfg)
+-- ── Dynamic Island ────────────────────────────────────────────────
+local function CreateIsland(gui, cfg)
     cfg=cfg or {}
-    local icon   = cfg.Icon or "rbxassetid://0"
-    local title  = cfg.Title or "VYNX"
     local accent = (aa.Theme and aa.Theme.Primary) or Color3.fromHex("#7C5CFF")
+    local title  = cfg.Title or "VYNX"
 
-    -- Island pill container
+    -- Hide WindUI's original open button if exists
+    task.defer(function()
+        if gui then
+            for _,v in gui:GetDescendants() do
+                if v.Name == "OpenButton" or v.Name == "Openbutton" then
+                    pcall(function() v.Visible=false end)
+                end
+            end
+        end
+    end)
+
     local island = _New("Frame",{
-        Name="DynamicIsland",
+        Name="VynxIsland",
         AnchorPoint=Vector2.new(0.5,0),
-        Position=UDim2.new(0.5,0,0,-2),
-        Size=UDim2.fromOffset(120,34),
-        BackgroundColor3=Color3.fromHex("#000000"),
+        Position=UDim2.new(0.5,0,0,0),
+        Size=UDim2.fromOffset(108,32),
+        BackgroundColor3=Color3.fromHex("#050508"),
+        BackgroundTransparency=0,
         ZIndex=9999, Active=true, Parent=gui,
     },{
         _New("UICorner",{CornerRadius=UDim.new(1,0)}),
-        _New("UIStroke",{Color=Color3.fromHex("#222222"),Thickness=1,ApplyStrokeMode=Enum.ApplyStrokeMode.Border}),
+        _New("UIStroke",{Color=Color3.fromHex("#1a1a2e"),Thickness=1}),
     })
 
-    -- Icon dot (left)
-    local iconImg=_New("ImageLabel",{
-        AnchorPoint=Vector2.new(0,0.5), Position=UDim2.fromOffset(8,17),
-        Size=UDim2.fromOffset(18,18), BackgroundTransparency=1,
-        Image=icon, ImageColor3=Color3.new(1,1,1), ZIndex=10000, Parent=island,
-    },{_New("UICorner",{CornerRadius=UDim.new(1,0) or UDim.new(1,0)})})
-
-    -- Title label (hidden by default, shows on expand)
-    local titleLbl=_New("TextLabel",{
-        AnchorPoint=Vector2.new(0,0.5), Position=UDim2.fromOffset(32,17),
-        Size=UDim2.new(1,-50,0,18), BackgroundTransparency=1,
-        Text=title, TextColor3=Color3.new(1,1,1), TextSize=12,
-        TextXAlignment=Enum.TextXAlignment.Left,
-        FontFace=mkFont(Enum.FontWeight.SemiBold),
-        TextTransparency=1, ZIndex=10000, Parent=island,
-    })
-
-    -- Accent dot (right activity indicator)
-    local dot=_New("Frame",{
-        AnchorPoint=Vector2.new(1,0.5), Position=UDim2.new(1,-8,0.5,0),
-        Size=UDim2.fromOffset(6,6), BackgroundColor3=accent, ZIndex=10000, Parent=island,
+    -- Camera dot (left)
+    _New("Frame",{
+        AnchorPoint=Vector2.new(0,0.5),Position=UDim2.fromOffset(10,16),
+        Size=UDim2.fromOffset(5,5),BackgroundColor3=Color3.fromHex("#1a1a2e"),
+        ZIndex=10000,Parent=island,
     },{_New("UICorner",{CornerRadius=UDim.new(1,0)})})
 
-    -- Hit button
-    local hitBtn=_New("TextButton",{
-        Size=UDim2.fromScale(1,1), BackgroundTransparency=1,
-        Text="", ZIndex=10001, Parent=island,
+    -- Title (hidden by default)
+    local titleLbl=_New("TextLabel",{
+        AnchorPoint=Vector2.new(0,0.5),Position=UDim2.fromOffset(22,16),
+        Size=UDim2.new(1,-44,0,16),BackgroundTransparency=1,
+        Text=title,TextColor3=Color3.new(1,1,1),TextSize=11,
+        FontFace=mkFont(),TextXAlignment=Enum.TextXAlignment.Left,
+        TextTransparency=1,ZIndex=10000,Parent=island,
     })
 
-    local expanded=false
-    local baseW=120; local expandW=180
+    -- Activity dot (right)
+    local dot=_New("Frame",{
+        AnchorPoint=Vector2.new(1,0.5),Position=UDim2.new(1,-8,0.5,0),
+        Size=UDim2.fromOffset(5,5),BackgroundColor3=accent,
+        ZIndex=10000,Parent=island,
+    },{_New("UICorner",{CornerRadius=UDim.new(1,0)})})
 
-    local function setExpand(v)
-        expanded=v
-        _TS:Create(island,mkTween(0.3),{
-            Size=UDim2.fromOffset(v and expandW or baseW,34),
-        }):Play()
-        _TS:Create(titleLbl,mkTween(0.2),{TextTransparency=v and 0 or 1}):Play()
-        _TS:Create(dot,mkTween(0.2),{
-            BackgroundColor3=v and Color3.fromHex("#33C759") or accent,
-        }):Play()
+    local hitBtn=_New("TextButton",{Size=UDim2.fromScale(1,1),BackgroundTransparency=1,Text="",ZIndex=10001,Parent=island})
+
+    local baseW=108; local expW=170; local expanded=false; local hoverTimer=nil
+
+    local function animIsland(expand)
+        expanded=expand
+        _TS:Create(island,mkTween(0.28),{Size=UDim2.fromOffset(expand and expW or baseW, 32)}):Play()
+        _TS:Create(titleLbl,mkTween(0.18),{TextTransparency=expand and 0 or 1}):Play()
+        _TS:Create(dot,mkTween(0.15),{BackgroundColor3=expand and Color3.fromHex("#33C759") or accent}):Play()
     end
 
-    -- hover expand
-    island.MouseEnter:Connect(function() if not expanded then setExpand(true) end end)
-    island.MouseLeave:Connect(function() task.wait(0.8); if expanded then setExpand(false) end end)
-
-    -- click to toggle window
+    island.MouseEnter:Connect(function()
+        if hoverTimer then hoverTimer:Disconnect() end
+        animIsland(true)
+    end)
+    island.MouseLeave:Connect(function()
+        hoverTimer=task.delay(0.7, function() animIsland(false) end)
+    end)
     hitBtn.MouseButton1Click:Connect(function()
-        if window and window.Toggle then window:Toggle()
-        elseif aa.Window and aa.Window.Toggle then aa.Window:Toggle() end
-        -- brief pulse
-        _TS:Create(island,mkTween(0.08),{Size=UDim2.fromOffset((expanded and expandW or baseW)-6,30)}):Play()
-        task.wait(0.1)
-        _TS:Create(island,mkTween(0.15),{Size=UDim2.fromOffset(expanded and expandW or baseW,34)}):Play()
+        if aa.Window and aa.Window.Toggle then aa.Window:Toggle() end
+        local sz=expanded and expW or baseW
+        _TS:Create(island,mkTween(0.06),{Size=UDim2.fromOffset(sz-5,28)}):Play()
+        task.wait(0.08)
+        _TS:Create(island,mkTween(0.12),{Size=UDim2.fromOffset(sz,32)}):Play()
     end)
 
-    -- notification expand (called externally)
-    local islandAPI={}
-    function islandAPI:Pulse(msg, color)
-        local c=color or accent
-        _TS:Create(island,mkTween(0.3),{Size=UDim2.fromOffset(expandW,34)}):Play()
-        _TS:Create(titleLbl,mkTween(0.2),{TextTransparency=0}):Play()
+    local API={}
+    function API:Pulse(msg,color)
         titleLbl.Text=msg or title
-        _TS:Create(dot,mkTween(0.2),{BackgroundColor3=c}):Play()
-        task.delay(3,function()
+        _TS:Create(island,mkTween(0.28),{Size=UDim2.fromOffset(expW,32)}):Play()
+        _TS:Create(titleLbl,mkTween(0.18),{TextTransparency=0}):Play()
+        _TS:Create(dot,mkTween(0.15),{BackgroundColor3=color or accent}):Play()
+        task.delay(2.5,function()
             titleLbl.Text=title
-            _TS:Create(island,mkTween(0.3),{Size=UDim2.fromOffset(baseW,34)}):Play()
-            _TS:Create(titleLbl,mkTween(0.2),{TextTransparency=1}):Play()
-            _TS:Create(dot,mkTween(0.2),{BackgroundColor3=accent}):Play()
+            _TS:Create(island,mkTween(0.28),{Size=UDim2.fromOffset(baseW,32)}):Play()
+            _TS:Create(titleLbl,mkTween(0.18),{TextTransparency=1}):Play()
+            _TS:Create(dot,mkTween(0.15),{BackgroundColor3=accent}):Play()
         end)
     end
-    function islandAPI:SetIcon(img) iconImg.Image=img end
-    function islandAPI:SetTitle(t) title=t;titleLbl.Text=t end
-    function islandAPI:Destroy() island:Destroy() end
-
-    aa.DynamicIsland=islandAPI
-    return islandAPI
+    function API:SetTitle(t) title=t;titleLbl.Text=t end
+    function API:SetIcon(img) end
+    function API:Destroy() island:Destroy() end
+    function API:_updateColors()
+        accent=(aa.Theme and aa.Theme.Primary) or accent
+        dot.BackgroundColor3=accent
+    end
+    aa.DynamicIsland=API
+    return API
 end
 
 -- ── Wrap CreateWindow ─────────────────────────────────────────────
@@ -30285,55 +30231,63 @@ function aa:CreateWindow(cfg)
     local _oCT=win.CreateTab or win.Tab
     if _oCT then
         win.CreateTab=function(s,c) local t=_oCT(s,c);if t then InjectTab(t) end;return t end
-        win.Tab=win.CreateTab; win.AddTab=win.CreateTab
+        win.Tab=win.CreateTab;win.AddTab=win.CreateTab
     end
 
-    -- Fix white backgrounds after window builds (deferred)
-    task.defer(function()
-        task.wait(0.2)
-        FixWhiteBackgrounds()
-    end)
-
-    -- Also fix on theme change
-    local _oST2=aa.SetTheme
-    aa.SetTheme=function(s,n)
-        local r=_oST2(s,n)
-        task.defer(function() task.wait(0.15); FixWhiteBackgrounds() end)
-        -- Pulse dynamic island on theme change
+    -- NeverLose Window methods
+    function win:SetAccount(cfg2)
+        cfg2=cfg2 or {}
         if aa.DynamicIsland then
-            aa.DynamicIsland:Pulse("Theme: "..tostring(n), aa.Theme and aa.Theme.Primary or nil)
+            local name=cfg2.Username or (cfg2.Profile and cfg2.Profile~="" and cfg2.Username) or "User"
+            aa.DynamicIsland:SetTitle(name)
         end
-        return r
     end
+    function win:AddTabLabel(Name)
+        -- Creates a non-clickable label in the sidebar
+        return {Label=Name}
+    end
+    function win:ToggleInterface() win:Toggle() end
+    function win:SetSize(sz) end -- handled by WindUI internally
 
-    -- Create Dynamic Island (using window icon from cfg)
+    -- Fix backgrounds + create island
     task.defer(function()
+        task.wait(0.25)
+        aa:_fixBg()
         local gui=aa.ScreenGui
-        if gui then
-            CreateDynamicIsland(gui, win, {
-                Icon  = cfg.Icon and aa.GetIcon and aa:GetIcon(cfg.Icon) or "rbxassetid://0",
-                Title = cfg.Title or "VYNX",
-            })
+        if gui and not aa.DynamicIsland then
+            CreateIsland(gui,{Title=cfg.Title or "VYNX"})
         end
     end)
 
     return win
 end
 
--- ── Override Notify → also pulse Dynamic Island ───────────────────
-local _oNotify=aa.Notify
-if _oNotify then
-    aa.Notify=function(s,cfg)
-        local r=_oNotify(s,cfg)
-        if aa.DynamicIsland then
-            local style=cfg and cfg.Style or "Info"
-            local colors={Success=Color3.fromHex("#33C759"),Error=Color3.fromHex("#ff3344"),
-                Warning=Color3.fromHex("#ff9f0a"),Info=Color3.fromHex("#7C5CFF")}
-            aa.DynamicIsland:Pulse(cfg and cfg.Title or "Notification", colors[style])
+-- ── Override Notify → pulse island ───────────────────────────────
+local _oNot=aa.Notify
+if _oNot then
+    aa.Notify=function(s,cfg2)
+        local r=_oNot(s,cfg2)
+        if aa.DynamicIsland and cfg2 then
+            local cols={Success=Color3.fromHex("#33C759"),Error=Color3.fromHex("#ff3344"),
+                Warning=Color3.fromHex("#ff9f0a"),Info=Color3.fromHex("#7C5CFF"),
+                Notice=Color3.fromHex("#888899")}
+            aa.DynamicIsland:Pulse(cfg2.Title or "Notice",cols[cfg2.Style] or cols.Info)
         end
         return r
     end
 end
+
+-- ── NeverLose compat: CreateWindow alias ─────────────────────────
+aa.NeverLose={
+    CreateWindow=function(self,cfg) return aa:CreateWindow({
+        Title   =cfg.Name or cfg.Title or "Hub",
+        Author  =cfg.Content or "",
+        Icon    =cfg.Logo or "",
+        Size    =cfg.Size or UDim2.fromOffset(600,440),
+        ToggleKey=cfg.Keybind and Enum.KeyCode[cfg.Keybind] or Enum.KeyCode.Insert,
+    }) end,
+    AddSignal=function(self,sig) return aa:GiveSignal(sig) end,
+}
 
 -- ── Draggable overlays ────────────────────────────────────────────
 function aa:MakeDraggable(ui,df)
@@ -30346,21 +30300,26 @@ function aa:MakeDraggable(ui,df)
     _UIS.InputChanged:Connect(function(inp)
         if not d then return end
         if inp.UserInputType~=Enum.UserInputType.MouseMovement and inp.UserInputType~=Enum.UserInputType.Touch then return end
-        local dt=inp.Position-s; ui.Position=UDim2.new(sp.X.Scale,sp.X.Offset+dt.X,sp.Y.Scale,sp.Y.Offset+dt.Y)
+        local dt=inp.Position-s;ui.Position=UDim2.new(sp.X.Scale,sp.X.Offset+dt.X,sp.Y.Scale,sp.Y.Offset+dt.Y)
     end)
 end
 
 function aa:AddDraggableLabel(text,pos)
     local gui=aa.ScreenGui;if not gui then return {} end
-    local lbl=_New("TextLabel",{BackgroundColor3=Color3.fromHex("#000000"),BackgroundTransparency=0.1,
+    local lbl=_New("TextLabel",{BackgroundColor3=Color3.fromHex("#050508"),BackgroundTransparency=0,
         AutomaticSize=Enum.AutomaticSize.XY,Position=pos or UDim2.fromOffset(8,50),
-        Text=text or "",TextColor3=Color3.new(1,1,1),TextSize=12,FontFace=mkFont(),ZIndex=9999,Active=true,Parent=gui},{
+        Text=text or "",TextColor3=Color3.new(1,1,1),TextSize=12,FontFace=mkFont(),
+        ZIndex=9999,Active=true,Parent=gui},{
         _New("UICorner",{CornerRadius=UDim.new(0,20)}),
-        _New("UIPadding",{PaddingLeft=UDim.new(0,10),PaddingRight=UDim.new(0,10),PaddingTop=UDim.new(0,6),PaddingBottom=UDim.new(0,6)}),
-        _New("UIStroke",{Color=Color3.fromHex("#333333"),Thickness=1}),
+        _New("UIPadding",{PaddingLeft=UDim.new(0,12),PaddingRight=UDim.new(0,12),PaddingTop=UDim.new(0,6),PaddingBottom=UDim.new(0,6)}),
+        _New("UIStroke",{Color=Color3.fromHex("#1a1a2e"),Thickness=1}),
     })
     aa:MakeDraggable(lbl,lbl)
-    local L={Frame=lbl};function L:SetText(t) lbl.Text=t end;function L:SetVisible(v) lbl.Visible=v end;function L:Destroy() lbl:Destroy() end;return L
+    local L={Frame=lbl}
+    function L:SetText(t) lbl.Text=t end
+    function L:SetVisible(v) lbl.Visible=v end
+    function L:Destroy() lbl:Destroy() end
+    return L
 end
 
 function aa:AddDraggableButton(text,cb,vis)
@@ -30368,13 +30327,13 @@ function aa:AddDraggableButton(text,cb,vis)
     local ac=(aa.Theme and aa.Theme.Primary) or Color3.fromHex("#7C5CFF")
     local b=_New("TextButton",{BackgroundColor3=ac,AutomaticSize=Enum.AutomaticSize.XY,
         Position=UDim2.fromOffset(8,90),Text=text or "",TextColor3=Color3.new(1,1,1),TextSize=12,
-        FontFace=mkFont(Enum.FontWeight.SemiBold),ZIndex=9999,Active=true,Visible=vis~=false,Parent=gui},{
+        FontFace=mkFont(),ZIndex=9999,Active=true,Visible=vis~=false,Parent=gui},{
         _New("UICorner",{CornerRadius=UDim.new(1,0)}),
         _New("UIPadding",{PaddingLeft=UDim.new(0,14),PaddingRight=UDim.new(0,14),PaddingTop=UDim.new(0,6),PaddingBottom=UDim.new(0,6)}),
     })
     b.MouseButton1Click:Connect(function() if cb then cb() end end)
     aa:MakeDraggable(b,b)
-    local B={Button=b};function B:SetText(t) b.Text=t end;function B:SetVisible(v) b.Visible=v end;function B:Destroy() b:Destroy() end;return B
+    local B={Button=b}; function B:SetText(t) b.Text=t end; function B:SetVisible(v) b.Visible=v end; function B:Destroy() b:Destroy() end; return B
 end
 
 function aa:AddDraggableMenu(name)
@@ -30387,35 +30346,71 @@ function aa:AddDraggableMenu(name)
         _New("UIPadding",{PaddingLeft=UDim.new(0,8),PaddingRight=UDim.new(0,8),PaddingTop=UDim.new(0,8),PaddingBottom=UDim.new(0,8)}),
     })
     local hdr=_New("TextLabel",{BackgroundTransparency=1,Text=name or "Menu",TextColor3=Color3.fromHex("#888899"),
-        TextSize=10,FontFace=mkFont(Enum.FontWeight.SemiBold),Size=UDim2.new(1,0,0,14),LayoutOrder=0,
-        TextXAlignment=Enum.TextXAlignment.Left,Parent=frame})
+        TextSize=10,FontFace=mkFont(),Size=UDim2.new(1,0,0,14),LayoutOrder=0,TextXAlignment=Enum.TextXAlignment.Left,Parent=frame})
     local list=_New("Frame",{BackgroundTransparency=1,Size=UDim2.new(1,0,0,0),AutomaticSize=Enum.AutomaticSize.Y,
         LayoutOrder=1,Parent=frame},{_New("UIListLayout",{Padding=UDim.new(0,3),SortOrder=Enum.SortOrder.LayoutOrder})})
     aa:MakeDraggable(frame,hdr)
     local M={Frame=frame}
     function M:SetVisible(v) frame.Visible=v end
     function M:AddItem(text,cb)
-        local b=_New("TextButton",{BackgroundTransparency=1,Size=UDim2.new(1,0,0,26),Text=tostring(text),
-            TextColor3=Color3.new(1,1,1),TextSize=12,FontFace=mkFont(),TextXAlignment=Enum.TextXAlignment.Left,Parent=list},{
+        local ac2=(aa.Theme and aa.Theme.Primary) or Color3.fromHex("#7C5CFF")
+        local b=_New("TextButton",{BackgroundTransparency=1,Size=UDim2.new(1,0,0,26),
+            Text=tostring(text),TextColor3=Color3.new(1,1,1),TextSize=12,FontFace=mkFont(),
+            TextXAlignment=Enum.TextXAlignment.Left,Parent=list},{
             _New("UICorner",{CornerRadius=UDim.new(0,6)}),_New("UIPadding",{PaddingLeft=UDim.new(0,8)})})
-        b.MouseEnter:Connect(function() b.BackgroundTransparency=0;b.BackgroundColor3=(aa.Theme and aa.Theme.Primary) or Color3.fromHex("#7C5CFF");b.TextColor3=Color3.new(1,1,1) end)
-        b.MouseLeave:Connect(function() b.BackgroundTransparency=1;b.TextColor3=Color3.new(1,1,1) end)
-        b.MouseButton1Click:Connect(function() if cb then cb() end end); return b
+        b.MouseEnter:Connect(function() b.BackgroundTransparency=0;b.BackgroundColor3=ac2;b.TextColor3=Color3.new(1,1,1) end)
+        b.MouseLeave:Connect(function() b.BackgroundTransparency=1 end)
+        b.MouseButton1Click:Connect(function() if cb then cb() end end);return b
     end
-    function M:Destroy() frame:Destroy() end; return M
+    function M:Destroy() frame:Destroy() end;return M
 end
 
+-- ── Watermark (NeverLose port) ────────────────────────────────────
+function aa:CreateWatermark()
+    local gui=aa.ScreenGui; if not gui then return {} end
+    local wm=_New("Frame",{BackgroundColor3=Color3.fromHex("#050508"),BackgroundTransparency=0,
+        Position=UDim2.fromOffset(8,50),AutomaticSize=Enum.AutomaticSize.XY,ZIndex=9990,Active=true,Parent=gui},{
+        _New("UICorner",{CornerRadius=UDim.new(0,8)}),
+        _New("UIStroke",{Color=Color3.fromHex("#1a1a2e"),Thickness=1}),
+        _New("UIListLayout",{FillDirection=Enum.FillDirection.Horizontal,Padding=UDim.new(0,8),
+            SortOrder=Enum.SortOrder.LayoutOrder,VerticalAlignment=Enum.VerticalAlignment.Center}),
+        _New("UIPadding",{PaddingLeft=UDim.new(0,10),PaddingRight=UDim.new(0,10),PaddingTop=UDim.new(0,6),PaddingBottom=UDim.new(0,6)}),
+    })
+    aa:MakeDraggable(wm,wm)
+    local renders={}; local visible=true; local WM={}
+    function WM:SetRender(v) visible=v;wm.Visible=v;for _,r in renders do if r then r(v) end end end
+    function WM:AddBlock(icon,name)
+        local block=_New("Frame",{BackgroundTransparency=1,AutomaticSize=Enum.AutomaticSize.XY,Parent=wm},{
+            _New("UIListLayout",{FillDirection=Enum.FillDirection.Horizontal,Padding=UDim.new(0,4),VerticalAlignment=Enum.VerticalAlignment.Center}),
+        })
+        if icon and icon~="" then
+            _New("TextLabel",{BackgroundTransparency=1,Text=icon,TextColor3=(aa.Theme and aa.Theme.Primary) or Color3.fromHex("#7C5CFF"),TextSize=13,FontFace=mkFont(),AutomaticSize=Enum.AutomaticSize.XY,Parent=block})
+        end
+        local lbl=_New("TextLabel",{BackgroundTransparency=1,Text=name or "",TextColor3=Color3.new(1,1,1),TextSize=12,FontFace=mkFont(),AutomaticSize=Enum.AutomaticSize.XY,Parent=block})
+        local sep=_New("Frame",{BackgroundColor3=Color3.fromHex("#2e2e3e"),Size=UDim2.fromOffset(1,14),BackgroundTransparency=0,Parent=wm})
+        local IB={}
+        function IB:SetVisible(v) block.Visible=v;sep.Visible=v end
+        function IB:SetText(t) lbl.Text=t end
+        table.insert(renders, function(v) block.Visible=v and block.Visible end)
+        return IB
+    end
+    function WM:Destroy() wm:Destroy() end
+    return WM
+end
+
+-- ── AddTooltip ────────────────────────────────────────────────────
 function aa:AddTooltip(info,_,hover)
     local tip,conn=nil,nil
     if hover then
         hover.MouseEnter:Connect(function()
-            tip=_New("TextLabel",{BackgroundColor3=Color3.fromHex("#000000"),BackgroundTransparency=0.1,
+            tip=_New("TextLabel",{BackgroundColor3=Color3.fromHex("#050508"),BackgroundTransparency=0,
                 AutomaticSize=Enum.AutomaticSize.XY,Text=info or "",TextColor3=Color3.new(1,1,1),TextSize=11,
                 ZIndex=99999,FontFace=mkFont(),Parent=aa.ScreenGui or game:GetService("CoreGui")},{
                 _New("UICorner",{CornerRadius=UDim.new(0,6)}),
                 _New("UIPadding",{PaddingLeft=UDim.new(0,8),PaddingRight=UDim.new(0,8),PaddingTop=UDim.new(0,4),PaddingBottom=UDim.new(0,4)})})
-            conn=_UIS.InputChanged:Connect(function(inp) if inp.UserInputType==Enum.UserInputType.MouseMovement and tip then
-                tip.Position=UDim2.fromOffset(inp.Position.X+14,inp.Position.Y+14) end end)
+            conn=_UIS.InputChanged:Connect(function(inp)
+                if inp.UserInputType==Enum.UserInputType.MouseMovement and tip then
+                    tip.Position=UDim2.fromOffset(inp.Position.X+14,inp.Position.Y+14) end end)
         end)
         hover.MouseLeave:Connect(function() if tip then tip:Destroy();tip=nil end;if conn then conn:Disconnect();conn=nil end end)
     end
