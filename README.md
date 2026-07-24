@@ -4,14 +4,15 @@
 
 # ◈ VYNX UI
 
-**Modern Roblox UI Library · 40+ Elements · 14 Themes · Dual API**
+**Roblox UI Library — WindUI + Obsidian + NeverLose**
 
 <br>
 
-[![Version](https://img.shields.io/badge/v1.2.0-7C5CFF?style=flat-square&label=version)](https://github.com/rxinoussouls/VynxUI)
+[![Version](https://img.shields.io/badge/v1.3.0-7C5CFF?style=flat-square&label=version)](https://github.com/rxinoussouls/VynxUI/releases)
 [![License](https://img.shields.io/badge/MIT-22c55e?style=flat-square&label=license)](LICENSE)
-[![WindUI](https://img.shields.io/badge/WindUI-4f46e5?style=flat-square&logo=roblox)](https://github.com/article-hub-studio/WindUI-Skibidi)
-[![Obsidian](https://img.shields.io/badge/Obsidian-6366f1?style=flat-square)](https://github.com/deividcomsono/Obsidian)
+[![WindUI](https://img.shields.io/badge/WindUI-4f46e5?style=flat-square)](https://github.com/article-hub-studio/WindUI-Skibidi)
+[![Obsidian](https://img.shields.io/badge/Obsidian-6d28d9?style=flat-square)](https://github.com/deividcomsono/Obsidian)
+[![NeverLose](https://img.shields.io/badge/NeverLose-dc2626?style=flat-square)](https://github.com/4lpaca-pin/NeverLose)
 
 <br>
 
@@ -27,15 +28,17 @@ local VynxUI = loadstring(game:HttpGet(
 
 ## Features
 
-- **40+ Elements** — Toggle, Slider, Dropdown, Colorpicker, Keybind, Code, Timeline, Accordion...
-- **Dual API** — WindUI style and Obsidian style work side by side
-- **14 Themes** — Dark · Vynx · Midnight · Rose · Serenity · Fatality · Nord · Dracula · Catppuccin · TokyoNight · Gruvbox · Cyberpunk · Aurora · Light
-- **Dynamic Island** — iOS-style pill button that expands on notifications/hover
-- **DependencyBox** — Show/hide element groups based on toggle/dropdown values
-- **Global Registry** — `VynxUI.Toggles["id"]` · `VynxUI.Options["id"]`
-- **Motion Presets** — Subtle · Liquid · Snappy · Static
-- **Key Systems** — Junkie · Platoboost · Luarmor · PandaDev
-- **Icons** — Lucide · Craft · Geist · Solar · SF Symbols
+| Feature | Description |
+|---|---|
+| **40+ Elements** | Toggle, Slider, Dropdown, Colorpicker, Keybind, Code, Accordion, Timeline... |
+| **Dual API** | WindUI style (`Section:Toggle{}`) and Obsidian style (`Group:AddToggle(id,{})`) |
+| **14 Themes** | Dark · Vynx · Midnight · Rose · Serenity · Fatality · Nord · Dracula · Catppuccin · TokyoNight · Gruvbox · Cyberpunk · Aurora · Light |
+| **Dynamic Island** | iOS-style pill button — expands on hover, pulses on notifications |
+| **DependencyBox** | Show/hide element groups based on toggle/dropdown state |
+| **NeverLose API** | `AddToggle`, `AddSlider`, `AddSection`, `AddOption`, `Watermark:AddBlock` |
+| **Global Registry** | `VynxUI.Toggles["id"]` · `VynxUI.Options["id"]` |
+| **Motion Presets** | Subtle · Liquid · Snappy · Static |
+| **Key Systems** | Junkie · Platoboost · Luarmor · PandaDev |
 
 ---
 
@@ -67,13 +70,18 @@ local Window = VynxUI:CreateWindow({
 local Tab = Window:CreateTab({ Title = "Main", Icon = "home" })
 local S   = Tab:Section({ Title = "Controls" })
 
-S:Toggle({ Title="Auto Farm", Default=false, Flag="af", Callback=function(v) end })
-S:Slider({ Title="Speed", Min=1, Max=100, Default=50, Suffix="x", Flag="spd" })
-S:Dropdown({ Title="Mode", Values={"A","B","C"}, Default="A", Flag="mode" })
-S:Input({ Title="Name", Placeholder="...", Flag="name" })
-S:Keybind({ Title="Hotkey", Default=Enum.KeyCode.F, Flag="hk" })
-S:Colorpicker({ Title="Color", Default=Color3.fromHex("#7C5CFF"), Flag="col" })
-S:Button({ Title="Click", Callback=function() end })
+local toggle = S:Toggle({
+    Title    = "Auto Farm",
+    Default  = false,
+    Flag     = "autoFarm",
+    Callback = function(v) print(v) end,
+})
+S:Slider({ Title = "Speed", Min = 1, Max = 100, Default = 50, Suffix = "x", Flag = "speed" })
+S:Dropdown({ Title = "Mode", Values = {"A","B","C"}, Default = "A", Flag = "mode" })
+S:Input({ Title = "Name", Placeholder = "...", Flag = "name" })
+S:Keybind({ Title = "Hotkey", Default = Enum.KeyCode.F, Flag = "hk" })
+S:Colorpicker({ Title = "Color", Default = Color3.fromHex("#7C5CFF"), Flag = "col" })
+S:Button({ Title = "Click", Callback = function() end })
 ```
 
 ---
@@ -84,19 +92,52 @@ S:Button({ Title="Click", Callback=function() end })
 local Tab  = Window:CreateTab({ Title = "Combat" })
 local Left = Tab:AddLeftGroupbox("Settings")
 
-Left:AddToggle("autoAtk", { Text="Auto Attack", Default=false, Callback=function(v) end })
-Left:AddSlider("atkSpd",  { Text="Speed", Min=1, Max=10, Default=5, Suffix="x" })
-Left:AddDropdown("target",{ Text="Target", Values={"Near","Far"}, Default="Near" })
-Left:AddInput("name",     { Text="Name", PlaceholderText="..." })
-Left:AddKeyPicker("hk",   { Text="Hotkey", Default=Enum.KeyCode.F })
-Left:AddColorPicker("col",{ Text="Color", Default=Color3.fromHex("#7C5CFF") })
-Left:AddButton("btn",     { Text="Click", Callback=function() end })
+Left:AddToggle("autoAtk", { Text = "Auto Attack", Default = false, Callback = function(v) end })
+Left:AddSlider("atkSpd",  { Text = "Speed", Min = 1, Max = 10, Default = 5 })
+Left:AddDropdown("mode",  { Text = "Mode", Values = {"A","B"}, Default = "A" })
+Left:AddInput("name",     { Text = "Name", PlaceholderText = "..." })
+Left:AddKeyPicker("hk",   { Text = "Hotkey", Default = Enum.KeyCode.F })
+Left:AddColorPicker("col",{ Text = "Color", Default = Color3.fromHex("#7C5CFF") })
+Left:AddButton("btn",     { Text = "Click", Callback = function() end })
 Left:AddDivider()
-Left:AddLabel("lbl",      { Text="Status: OK" })
+Left:AddLabel("lbl",      { Text = "Status: Ready" })
 
 -- Global access
-VynxUI.Toggles["autoAtk"].Value
-VynxUI.Options["atkSpd"]:SetValue(10)
+VynxUI.Toggles["autoAtk"].Value        -- bool
+VynxUI.Options["atkSpd"]:SetValue(10)  -- update
+```
+
+---
+
+## NeverLose Style
+
+```lua
+local Win = VynxUI:CreateWindow({
+    Title     = "My Hub",
+    Author    = "YourName",
+    Size      = UDim2.fromOffset(640, 480),
+    ToggleKey = Enum.KeyCode.Insert,
+})
+
+-- NeverLose API (on top of VynxUI)
+Win:SetAccount({
+    Username = "Player",
+    Profile  = "rbxassetid://0",
+    Expires  = "Never",
+})
+
+local Tab = Win:CreateTab({ Title = "Aimbot", Icon = "crosshairs" })
+local Sec = Tab:AddSection({ Name = "Settings", Position = "left" })
+
+Sec:AddToggle("aimbot",  { Text = "Enable Aimbot",   Default = false })
+Sec:AddSlider("fov",     { Text = "FOV",  Min = 1, Max = 360, Default = 90 })
+Sec:AddDropdown("bone",  { Text = "Bone", Values = {"Head","Neck","Chest"}, Default = "Head" })
+Sec:AddKeybind("aimKey", { Text = "Aim Key", Default = Enum.KeyCode.C })
+
+-- Watermark
+local WM = VynxUI:CreateWatermark()
+local fps = WM:AddBlock("◈", "VYNX Hub")
+WM:SetRender(true)
 ```
 
 ---
@@ -105,15 +146,30 @@ VynxUI.Options["atkSpd"]:SetValue(10)
 
 ```lua
 local Group = Tab:AddGroupbox("Advanced")
-Group:AddToggle("enable", { Text="Enable", Default=false })
+Group:AddToggle("enable", { Text = "Enable", Default = false })
 
 local Dep = Group:AddDependencyBox()
-Dep:AddToggle("sub",   { Text="Sub Option", Default=false })
-Dep:AddSlider("speed", { Text="Speed", Min=1, Max=50, Default=10 })
-
+Dep:AddToggle("sub",   { Text = "Sub Option", Default = false })
+Dep:AddSlider("speed", { Text = "Speed", Min = 1, Max = 50, Default = 10 })
 Dep:SetupDependencies({
     { VynxUI.Toggles["enable"], true }
 })
+-- Shows only when "enable" = true
+```
+
+---
+
+## Dynamic Island
+
+An iOS-style pill button appears at the top center of the screen:
+- **Hover** → expands to show window title
+- **Click** → toggles the window open/close
+- **Notify** → pulses with notification color
+
+```lua
+-- After CreateWindow, available as:
+VynxUI.DynamicIsland:Pulse("Loading...", Color3.fromHex("#33C759"))
+VynxUI.DynamicIsland:SetTitle("VYNX Hub v1.0")
 ```
 
 ---
@@ -121,36 +177,27 @@ Dep:SetupDependencies({
 ## Themes (14)
 
 ```lua
-VynxUI:SetTheme("Dark")        -- Default dark
-VynxUI:SetTheme("Vynx")        -- Purple gradient
-VynxUI:SetTheme("Midnight")    -- Deep blue
-VynxUI:SetTheme("Rose")        -- Red/pink
-VynxUI:SetTheme("Serenity")    -- Teal
-VynxUI:SetTheme("Fatality")    -- Black/red
-VynxUI:SetTheme("Nord")        -- Nordic blue-gray
-VynxUI:SetTheme("Dracula")     -- Dracula classic
-VynxUI:SetTheme("Catppuccin")  -- Catppuccin Mocha
-VynxUI:SetTheme("TokyoNight")  -- Tokyo Night
-VynxUI:SetTheme("Gruvbox")     -- Gruvbox dark
-VynxUI:SetTheme("Cyberpunk")   -- Neon cyberpunk
-VynxUI:SetTheme("Aurora")      -- Green aurora
-VynxUI:SetTheme("Light")       -- Light mode
+VynxUI:SetTheme("Dark")        VynxUI:SetTheme("Vynx")
+VynxUI:SetTheme("Midnight")    VynxUI:SetTheme("Rose")
+VynxUI:SetTheme("Serenity")    VynxUI:SetTheme("Fatality")
+VynxUI:SetTheme("Nord")        VynxUI:SetTheme("Dracula")
+VynxUI:SetTheme("Catppuccin")  VynxUI:SetTheme("TokyoNight")
+VynxUI:SetTheme("Gruvbox")     VynxUI:SetTheme("Cyberpunk")
+VynxUI:SetTheme("Aurora")      VynxUI:SetTheme("Light")
 ```
 
----
-
-## Dynamic Island
-
-VYNX UI includes an iOS-inspired Dynamic Island button that:
-- Expands on hover to show window title
-- Pulses with color on notifications
-- Tap to toggle the window open/closed
-
+Custom theme:
 ```lua
--- Available after CreateWindow
-VynxUI.DynamicIsland:Pulse("Loading...", Color3.fromHex("#33C759"))
-VynxUI.DynamicIsland:SetIcon("rbxassetid://...")
-VynxUI.DynamicIsland:SetTitle("VYNX Hub")
+VynxUI:AddTheme({
+    Name       = "MyTheme",
+    Background = Color3.fromHex("#0a0a0a"),
+    Primary    = Color3.fromHex("#ff6b00"),
+    Text       = Color3.new(1,1,1),
+    PanelBackground = Color3.fromHex("#1a1a1a"),
+    PanelBackgroundTransparency = 0,
+    -- ... (all theme keys)
+})
+VynxUI:SetTheme("MyTheme")
 ```
 
 ---
@@ -161,23 +208,11 @@ VynxUI.DynamicIsland:SetTitle("VYNX Hub")
 VynxUI:Notify({
     Title    = "VYNX",
     Content  = "Done!",
-    Style    = "Success",   -- Info | Success | Warning | Error | Notice
+    Style    = "Success",  -- Info | Success | Warning | Error | Notice
     Duration = 5,
     Icon     = "circle-check",
     Side     = "Right",
 })
-```
-
----
-
-## Draggable Overlays
-
-```lua
-local label = VynxUI:AddDraggableLabel("VYNX Hub • v1.0")
-local btn   = VynxUI:AddDraggableButton("Toggle UI", function() VynxUI:Toggle() end)
-local menu  = VynxUI:AddDraggableMenu("Keybinds")
-menu:AddItem("Auto Farm → F", function() end)
-menu:SetVisible(true)
 ```
 
 ---
@@ -194,7 +229,19 @@ VynxUI:CreateWindow({
         Provider  = "xlinkx",
     },
 })
--- Also: platoboost | luarmor | pandadevelopment
+```
+
+---
+
+## Lifecycle
+
+```lua
+VynxUI:GiveSignal(connection)     -- auto-disconnect on unload
+VynxUI:OnUnload(function() end)   -- callback on unload
+VynxUI:SetTheme("Nord")           -- change theme anytime
+VynxUI:SetMotionPreset("Snappy")  -- change animation preset
+VynxUI:Toggle()                   -- show/hide UI
+VynxUI:Unload()                   -- destroy everything
 ```
 
 ---
@@ -212,38 +259,19 @@ TM:SetLibrary(VynxUI); TM:SetFolder("VynxUI"); TM:BuildThemeSection(Tab)
 local SM = loadstring(game:HttpGet(
     "https://raw.githubusercontent.com/rxinoussouls/VynxUI/main/addons/SaveManager.lua"
 ))()
-SM:SetLibrary(VynxUI); SM:SetFolder("VynxUI/"..game.PlaceId); SM:BuildConfigSection(Tab)
+SM:SetLibrary(VynxUI); SM:SetFolder("VynxUI/"..game.PlaceId)
+SM:BuildConfigSection(Tab)
 ```
-
----
-
-## Lifecycle
-
-```lua
-VynxUI:GiveSignal(someConnection)      -- auto-disconnect on unload
-VynxUI:OnUnload(function() end)        -- callback before unload
-VynxUI:SetTheme("Nord")                -- change theme at runtime
-VynxUI:SetMotionPreset("Snappy")       -- change animation preset
-VynxUI:Toggle()                        -- show/hide UI
-VynxUI:Unload()                        -- destroy everything
-```
-
----
-
-## Icons
-
-Uses [Icons by Footagesus](https://github.com/Footagesus/Icons) — supports:
-[Lucide](https://github.com/lucide-icons/lucide) · [Craft](https://www.figma.com/community/file/1415718327120418204) · [Geist](https://vercel.com/geist/icons) · [Solar](https://icones.js.org/collection/solar) · [SF Symbols](https://sf-symbols-one.vercel.app/)
 
 ---
 
 ## Credits
 
-**[WindUI](https://github.com/article-hub-studio/WindUI-Skibidi)** by Footagesus / article-hub-studio
-— Core UI library, all 40+ elements, motion system, icon integration, acrylic blur, key systems
-
-**[Obsidian](https://github.com/deividcomsono/Obsidian)** by deividcomsono
-— DependencyBox, global element registry (Toggles/Options), Obsidian-style API, SaveManager, ThemeManager
+| Library | Author | Contribution |
+|---|---|---|
+| [WindUI](https://github.com/article-hub-studio/WindUI-Skibidi) | Footagesus | Core UI, 40+ elements, motion, icons, acrylic, key systems |
+| [Obsidian](https://github.com/deividcomsono/Obsidian) | deividcomsono | DependencyBox, global registry, Obsidian API, addons |
+| [NeverLose](https://github.com/4lpaca-pin/NeverLose) | 4lpaca-pin | NeverLose API, Watermark, SetAccount, AddSection style |
 
 ---
 
