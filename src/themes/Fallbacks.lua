@@ -76,6 +76,12 @@ return function(Creator)
 		BadgeText = "White",
 		BadgeIcon = "White",
 
+		-- ported from Cascade (Controls.ImageSurface.Gradient) -- flattened
+		-- to a single background + a top->bottom UIGradient overlay, since
+		-- VynxUI themes are flat Color3s rather than Cascade's alpha-layer
+		-- theme objects.
+		ImageSurfaceBackground = "ElementBackground",
+
 		KeyValueIcon = "Icon",
 		ChipListBackground = "ElementBackground",
 		TimelineLine = "Text",
