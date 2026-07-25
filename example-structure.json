@@ -2576,12 +2576,12 @@
                             "__type": "Button"
                         },
                         {
-                            "Desc": "github.com/article-hub-studio/VynxUI-Skibidi",
+                            "Desc": "github.com/rxinoussouls/VynxUI",
                             "Destroy": "function",
                             "Locked": false,
                             "ParagraphFrame": {
                                 "Color": "Grey",
-                                "Desc": "github.com/article-hub-studio/VynxUI-Skibidi",
+                                "Desc": "github.com/rxinoussouls/VynxUI",
                                 "Destroy": "function",
                                 "Hover": false,
                                 "IconThemed": false,

@@ -1,9 +1,9 @@
 {
-    "name": "vynxui-skibidi-docs",
+    "name": "vynxui-docs",
     "version": "0.0.0",
     "private": true,
-    "author": "article-hub-studio",
-    "homepage": "https://article-hub-studio.github.io/VynxUI-Skibidi/",
+    "author": "rxinoussouls",
+    "homepage": "https://rxinoussouls.github.io/VynxUI/",
     "scripts": {
         "build": "next build",
         "dev": "next dev",

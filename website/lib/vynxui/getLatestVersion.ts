@@ -1,7 +1,7 @@
 // lib/getLatestVersion.ts
 export async function getLatestVersion(): Promise<string> {
     const res = await fetch(
-        "https://api.github.com/repos/article-hub-studio/VynxUI-Skibidi/releases/latest",
+        "https://api.github.com/repos/rxinoussouls/VynxUI/releases/latest",
         { headers: { Accept: "application/vnd.github.v3+json" } },
     );
 

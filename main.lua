@@ -151,7 +151,7 @@ local Window = VynxUI:CreateWindow({
     -- KeySystem = { -- 
     --     -- Key = { "1234", "5678" },  
     --     Note = "Example Key System. With platoboost, etc.",
-    --     -- URL = "https://github.com/article-hub-studio/VynxUI-Skibidi",
+    --     -- URL = "https://github.com/rxinoussouls/VynxUI",
     --     -- Thumbnail = {
     --     --     Image = "rbxassetid://",
     --     --     Title = "Thumbnail",
@@ -704,7 +704,7 @@ end
 local footerSection = Window:Section({ Title = "VynxUI " .. VynxUI.Version })
 Tabs.Config:Paragraph({
     Title = "Github Repository",
-    Desc = "github.com/article-hub-studio/VynxUI-Skibidi",
+    Desc = "github.com/rxinoussouls/VynxUI",
     Image = "github",
     ImageSize = 20,
     Color = "Grey",
@@ -714,7 +714,7 @@ Tabs.Config:Paragraph({
             Icon = "copy",
             Variant = "Tertiary",
             Callback = function()
-                setclipboard("https://github.com/article-hub-studio/VynxUI-Skibidi")
+                setclipboard("https://github.com/rxinoussouls/VynxUI")
                 VynxUI:Notify({
                     Title = "Copied!",
                     Content = "GitHub link copied to clipboard",

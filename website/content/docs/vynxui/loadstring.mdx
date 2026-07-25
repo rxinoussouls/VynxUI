@@ -14,27 +14,27 @@ import TypeTable from '@/components/TypeTable';
 ## Load methods
 ### Pages loader <Popover><PopoverTrigger><Badge className="pl-1.25"><Info />Recommended</Badge></PopoverTrigger><PopoverContent className="bg-white rounded-xl px-2.5 py-1.5 border-0 text-black text-xs font-medium">Validates and loads only the canonical build published by this repository on GitHub Pages.</PopoverContent></Popover>
 ```luau
-local VynxUI = loadstring(game:HttpGet("https://article-hub-studio.github.io/VynxUI-Skibidi/loader.lua"))()
+local VynxUI = loadstring(game:HttpGet("https://rxinoussouls.github.io/VynxUI/loader.lua"))()
 ```
 
 ### Direct Pages build
 ```luau
-local VynxUI = loadstring(game:HttpGet("https://article-hub-studio.github.io/VynxUI-Skibidi/main.lua"))()
+local VynxUI = loadstring(game:HttpGet("https://rxinoussouls.github.io/VynxUI/main.lua"))()
 ```
 
 ### Selected release
 <DynamicCodeBlock lang="luau" code={`local _version = "${await getLatestVersion()}"
-local VynxUI = loadstring(game:HttpGet("https://github.com/article-hub-studio/VynxUI-Skibidi/releases/download/" .. _version .. "/main.lua"))() `} />
+local VynxUI = loadstring(game:HttpGet("https://github.com/rxinoussouls/VynxUI/releases/download/" .. _version .. "/main.lua"))() `} />
 
 ### Latest version
 ```luau
-local VynxUI = loadstring(game:HttpGet("https://github.com/article-hub-studio/VynxUI-Skibidi/releases/latest/download/main.lua"))()
+local VynxUI = loadstring(game:HttpGet("https://github.com/rxinoussouls/VynxUI/releases/latest/download/main.lua"))()
 ```
 
 ### CDN fallback <Popover><PopoverTrigger><Badge className="pl-1.25" variant="destructive"><CircleAlert />Unstable</Badge></PopoverTrigger><PopoverContent className="bg-destructive/70 backdrop-blur-xl rounded-xl px-2.5 py-1.5 border-0 text-white text-xs font-medium">This third-party route is not used by the canonical loader. Prefer the Pages loader whenever possible.</PopoverContent></Popover>
 
 ```luau
-local VynxUI = loadstring(game:HttpGet("https://cdn.jsdelivr.net/gh/article-hub-studio/VynxUI-Skibidi@main/dist/main.lua"))()
+local VynxUI = loadstring(game:HttpGet("https://cdn.jsdelivr.net/gh/rxinoussouls/VynxUI@main/dist/main.lua"))()
 ```
 
 ## Setup (optional)

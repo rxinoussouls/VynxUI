@@ -1,5 +1,5 @@
 local VynxUI =
-	loadstring(game:HttpGet("https://article-hub-studio.github.io/VynxUI-Skibidi/loader.lua?v=1.6.65-ui-runtime-9"))()
+	loadstring(game:HttpGet("https://rxinoussouls.github.io/VynxUI/loader.lua?v=1.6.65-ui-runtime-9"))()
 
 local HasIconSourceAPI = (tonumber(VynxUI.IconAdapterVersion) or 0) >= 3
 	and type(VynxUI.RegisterIconPack) == "function"

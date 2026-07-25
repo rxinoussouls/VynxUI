@@ -43,7 +43,7 @@ export default function VynxUIPage() {
                             variant="secondary"
                             onClick={() => {
                                 window.location.href =
-                                    "https://github.com/article-hub-studio/VynxUI-Skibidi";
+                                    "https://github.com/rxinoussouls/VynxUI";
                             }}
                         >
                             Github

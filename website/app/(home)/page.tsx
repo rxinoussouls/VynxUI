@@ -247,7 +247,7 @@ export default function HomePage() {
                                 <BookOpen className="size-4" />
                             </Link>
                             <Link
-                                href="https://github.com/article-hub-studio/VynxUI-Skibidi"
+                                href="https://github.com/rxinoussouls/VynxUI"
                                 className="inline-flex h-12 items-center justify-center gap-2 rounded-full border border-white/14 bg-black/20 px-5 text-sm font-semibold text-white/84 transition duration-200 hover:bg-white/10"
                             >
                                 GitHub
@@ -309,11 +309,11 @@ export default function HomePage() {
                         Maintainer
                     </p>
                     <h2 className="mt-3 text-2xl font-semibold tracking-tight">
-                        article-hub-studio
+                        rxinoussouls
                     </h2>
                     <p className="mt-3 text-sm leading-6 text-white/58">
                         This website and modded fork are maintained for the
-                        VynxUI-Skibidi repo.
+                        VynxUI repo.
                     </p>
                 </div>
                 <div className="rounded-3xl border border-white/10 bg-white/[0.055] p-6">
@@ -337,7 +337,7 @@ export default function HomePage() {
                         Loadstring ready
                     </h2>
                     <p className="mt-3 text-sm leading-6 text-white/58">
-                        Docs point to the current article-hub-studio repo and
+                        Docs point to the current rxinoussouls repo and
                         release assets.
                     </p>
                 </div>
@@ -606,12 +606,12 @@ export default function HomePage() {
             <footer className="border-t border-white/10 px-4 py-8 text-sm text-white/52 sm:px-6 lg:px-8">
                 <div className="mx-auto flex w-full max-w-7xl flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                     <p>
-                        (c) {new Date().getFullYear()} article-hub-studio.
+                        (c) {new Date().getFullYear()} rxinoussouls.
                         VynxUI Modded docs.
                     </p>
                     <p>
                         Original VynxUI credit retained. Fork repo:
-                        article-hub-studio/VynxUI-Skibidi.
+                        rxinoussouls/VynxUI.
                     </p>
                 </div>
             </footer>

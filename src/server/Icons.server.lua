@@ -9,7 +9,7 @@ local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
 print("[Icons] Loading icons from GitHub...")
 
-local IconsURL = "https://article-hub-studio.github.io/VynxUI-Skibidi/vendor/icons/Main-v2.lua"
+local IconsURL = "https://rxinoussouls.github.io/VynxUI/vendor/icons/Main-v2.lua"
 local Icons = nil
 
 local success, result = pcall(function()

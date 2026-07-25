@@ -22,7 +22,7 @@ do
 			VynxUI = require(ReplicatedStorage:WaitForChild("VynxUI"):WaitForChild("Init"))
 		else
 			VynxUI = loadstring(
-				game:HttpGet("https://article-hub-studio.github.io/VynxUI-Skibidi/loader.lua")
+				game:HttpGet("https://rxinoussouls.github.io/VynxUI/loader.lua")
 			)()
 		end
 	end

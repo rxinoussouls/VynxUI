@@ -9,7 +9,7 @@
     To view the source code, see the `src/` folder on the official GitHub repository.
 
     Author: Footagesus (Footages, .ftgs, oftgs)
-    Github: https://github.com/article-hub-studio/VynxUI-Skibidi
+    Github: https://github.com/rxinoussouls/VynxUI
     Discord: https://discord.gg/ftgs-development-hub-1300692552005189632
     License: MIT
 ]]
@@ -658,7 +658,7 @@ local i=a.load'a'local j=
 
 d.Heartbeat
 
-local l="https://article-hub-studio.github.io/VynxUI-Skibidi/vendor/icons/Main-v2.lua"
+local l="https://rxinoussouls.github.io/VynxUI/vendor/icons/Main-v2.lua"
 
 local m
 if d:IsStudio()or not writefile then
@@ -3037,7 +3037,7 @@ return[[
     "name": "vynxui",
     "version": "1.6.65",
     "main": "./dist/main.lua",
-    "repository": "https://github.com/article-hub-studio/VynxUI-Skibidi",
+    "repository": "https://github.com/rxinoussouls/VynxUI",
     "discord": "https://discord.gg/ftgs-development-hub-1300692552005189632",
     "author": "Footagesus",
     "description": "Roblox UI Library for scripts",

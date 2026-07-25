@@ -18,7 +18,7 @@ async function readThemesSource() {
     }
 
     const url =
-        "https://article-hub-studio.github.io/VynxUI-Skibidi/src/themes/Init.lua";
+        "https://rxinoussouls.github.io/VynxUI/src/themes/Init.lua";
 
     const controller = new AbortController();
     const timeout = setTimeout(() => controller.abort(), 5000);

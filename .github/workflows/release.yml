@@ -104,7 +104,7 @@ jobs:
                         \"author\": {
                           \"name\": \"${{ github.repository }}\",
                           \"url\": \"https://github.com/${{ github.repository }}\",
-                          \"icon_url\": \"https://raw.githubusercontent.com/Footagesus/VynxUI/main/docs/logo.png\"
+                          \"icon_url\": \"https://raw.githubusercontent.com/rxinoussouls/VynxUI/main/docs/logo.png\"
                         }
                       }]
                     }"

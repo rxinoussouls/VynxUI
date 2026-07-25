@@ -149,7 +149,7 @@ const checks = {
 		/pcall\(Chunk\)/.test(loader),
 	canonicalRuntimeLoader:
 		/SOURCE_URL/.test(loader) &&
-		/article-hub-studio\.github\.io\/VynxUI-Skibidi\/dist\/main\.lua/.test(loader) &&
+		/rxinoussouls\.github\.io\/VynxUI\/dist\/main\.lua/.test(loader) &&
 		!/MIRRORS/.test(loader) &&
 		!/cdn\.jsdelivr\.net/.test(loader),
 	publishedRuntimeSynced: runtime.equals(publicRuntime) && runtime.equals(publicDistRuntime),

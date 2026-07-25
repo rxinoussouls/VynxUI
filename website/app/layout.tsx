@@ -13,7 +13,7 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-    metadataBase: new URL("https://article-hub-studio.github.io/VynxUI-Skibidi"),
+    metadataBase: new URL("https://rxinoussouls.github.io/VynxUI"),
     title: {
         template: "%s",
         default: "VynxUI Modded Docs",
@@ -22,11 +22,11 @@ export const metadata: Metadata = {
         "Documentation for VynxUI Modded, a Roblox Luau UI library fork with mobile-focused liquid glass elements.",
     authors: [
         {
-            name: "article-hub-studio",
-            url: "https://github.com/article-hub-studio",
+            name: "rxinoussouls",
+            url: "https://github.com/rxinoussouls",
         },
     ],
-    creator: "article-hub-studio",
+    creator: "rxinoussouls",
 };
 
 export default function Layout({ children }: { children: ReactNode }) {

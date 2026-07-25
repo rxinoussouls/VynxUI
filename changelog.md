@@ -8,5 +8,5 @@
 - fixed [Colorpicker](https://footagesus.github.io/treehub-web/docs/vynxui/colorpicker) issue
 - fixed `Viewport` bug when u can pinch it outside
 - fixed [Window](https://footagesus.github.io/treehub-web/docs/vynxui/window) Drag with multiple fingers (#79)
-- added `ProgressBar` element (#95 by [BitRevenant](https://github.com/BitRevenant)) [Github PR](https://github.com/Footagesus/VynxUI/pull/95)
-- fixed `Dropdown.Locked` (#94 by [BitRevenant](https://github.com/BitRevenant)) [Github PR](https://github.com/Footagesus/VynxUI/pull/94)
+- added `ProgressBar` element (#95 by [BitRevenant](https://github.com/BitRevenant)) [Github PR](https://github.com/rxinoussouls/VynxUI/pull/95)
+- fixed `Dropdown.Locked` (#94 by [BitRevenant](https://github.com/BitRevenant)) [Github PR](https://github.com/rxinoussouls/VynxUI/pull/94)

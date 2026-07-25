@@ -56,8 +56,8 @@ function toBase64(value: string) {
 
 export default function CustomThemeStudio() {
     const [theme, setTheme] = useState<ThemeDraft>(defaultTheme);
-    const [owner, setOwner] = useState("article-hub-studio");
-    const [repo, setRepo] = useState("VynxUI-Skibidi");
+    const [owner, setOwner] = useState("rxinoussouls");
+    const [repo, setRepo] = useState("VynxUI");
     const [branch, setBranch] = useState("main");
     const [path, setPath] = useState("themes/custom/custom-liquid.json");
     const [token, setToken] = useState("");

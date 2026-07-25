@@ -4,7 +4,7 @@ local ReplicatedStorage = cloneref(game:GetService("ReplicatedStorage"))
 local HttpService = cloneref(game:GetService("HttpService"))
 local RunService = cloneref(game:GetService("RunService"))
 
-local ICONS_URL = "https://article-hub-studio.github.io/VynxUI-Skibidi/vendor/icons/Main-v2.lua"
+local ICONS_URL = "https://rxinoussouls.github.io/VynxUI/vendor/icons/Main-v2.lua"
 
 local function LoadBaseIcons()
 	local RemoteFunction = ReplicatedStorage:FindFirstChild("GetIcons")

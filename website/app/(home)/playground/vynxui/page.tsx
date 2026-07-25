@@ -75,7 +75,7 @@ function PlaygroundContent() {
                                     VynxUI Modded Web
                                 </TopbarLeftTextsTitle>
                                 <TopbarLeftTextsAuthor>
-                                    by article-hub-studio
+                                    by rxinoussouls
                                 </TopbarLeftTextsAuthor>
                             </TopbarLeftTexts>
                         </TopbarLeft>

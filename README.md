@@ -31,9 +31,9 @@
 ### Links
 
 - [Discord Server](https://discord.gg/ftgs-development-hub-1300692552005189632)
-- [Documentation](https://article-hub-studio.github.io/VynxUI-Skibidi/docs/vynxui/)
-- [Installation](https://article-hub-studio.github.io/VynxUI-Skibidi/docs/vynxui/loadstring/)
+- [Documentation](https://rxinoussouls.github.io/VynxUI/docs/vynxui/)
+- [Installation](https://rxinoussouls.github.io/VynxUI/docs/vynxui/loadstring/)
 - [Example](/main_example.lua) (wip)
     ```luau
-    loadstring(game:HttpGet('https://article-hub-studio.github.io/VynxUI-Skibidi/main_example.lua'))()
+    loadstring(game:HttpGet('https://rxinoussouls.github.io/VynxUI/main_example.lua'))()
     ```

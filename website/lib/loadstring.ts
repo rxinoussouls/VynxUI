@@ -1,1 +1,1 @@
-export default "loadstring(game:HttpGet('https://article-hub-studio.github.io/VynxUI-Skibidi/loader.lua'))()";
+export default "loadstring(game:HttpGet('https://rxinoussouls.github.io/VynxUI/loader.lua'))()";

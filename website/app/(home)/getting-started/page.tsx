@@ -18,7 +18,7 @@ export default function GettingStartedPage() {
                 </h1>
 
                 <p className="max-w-xl text-center text-sm leading-6 text-white/58">
-                    Use the current article-hub-studio repo build. The API still
+                    Use the current rxinoussouls repo build. The API still
                     exposes the `VynxUI` variable in examples, so existing
                     scripts stay familiar.
                 </p>

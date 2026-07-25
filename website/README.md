@@ -1,6 +1,6 @@
 # VynxUI Modded Docs
 
-VynxUI Modded documentation website for the article-hub-studio/VynxUI-Skibidi fork.
+VynxUI Modded documentation website for the rxinoussouls/VynxUI fork.
 
 Original VynxUI credit is retained in the website content.
 
