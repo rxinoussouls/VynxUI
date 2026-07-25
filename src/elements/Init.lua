@@ -41,6 +41,8 @@ return {
 		VStack = require("./VStack"),
 		Viewport = require("./Viewport"),
 		Video = require("./Video"),
+		Symbol = require("./Symbol"), -- ported from Cascade
+		TitleStack = require("./TitleStack"), -- ported from Cascade
 	},
 	Load = function(tbl, Container, Elements, Window, VynxUI, OnElementCreateFunction, ElementsModule, UIScale, Tab)
 		for name, module in next, Elements do
