@@ -1,0 +1,80 @@
+---
+title: Stepper
+description: Numeric control with buttons and drag support.
+---
+
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import TypeTable from '@/components/TypeTable';
+
+## Stepper Element
+
+Stepper is a numeric control with minus/plus buttons and optional dragging on the value track.
+
+<Tabs defaultValue="basic">
+    <TabsList>
+        <TabsTrigger value="basic">Basic</TabsTrigger>
+        <TabsTrigger value="full">Full</TabsTrigger>
+    </TabsList>
+    <TabsContent value="basic">
+```luau
+local Amount = Tab:Stepper({
+    Title = "Amount",
+    Min = 0,
+    Max = 10,
+    Default = 4,
+    Increment = 1,
+})
+```
+    </TabsContent>
+    <TabsContent value="full">
+```luau
+local Volume = Tab:Stepper({
+    Title = "Volume",
+    Desc = "Drag or tap buttons",
+    Value = {
+        Min = 0,
+        Max = 100,
+        Default = 45,
+        Increment = 5,
+    },
+    Width = 190,
+    Buttons = true,
+    Draggable = true,
+    Format = function(value)
+        return value .. "%"
+    end,
+    Callback = function(value)
+        print("volume", value)
+    end,
+})
+```
+    </TabsContent>
+</Tabs>
+
+## Parameters
+
+<TypeTable
+    data={[
+        { name: "Min / Value.Min", type: "number?", description: "Minimum value.", default: "0" },
+        { name: "Max / Value.Max", type: "number?", description: "Maximum value.", default: "100" },
+        { name: "Default / Value.Default", type: "number?", description: "Starting value.", default: "Min" },
+        { name: "Increment / Value.Increment", type: "number?", description: "Snap step.", default: "1" },
+        { name: "Buttons / ShowButtons", type: "boolean?", description: "Show minus and plus buttons.", default: "true" },
+        { name: "Draggable", type: "boolean?", description: "Allow dragging the track.", default: "true" },
+        { name: "Format", type: "function?", description: "Format the display value.", default: "nil" },
+        { name: "Callback", type: "function?", description: "Called with value.", default: "function() end" },
+    ]}
+/>
+
+## Functions
+
+<TypeTable
+    type={{
+        ':Get': { type: 'function', description: 'Return current value.', args: {} },
+        ':Set': { type: 'function', description: 'Set value.', args: { Value: { type: 'number' }, IsCallback: { type: 'boolean?' } } },
+        ':SetRange': { type: 'function', description: 'Set min and max.', args: { Min: { type: 'number' }, Max: { type: 'number' } } },
+        ':SetMin': { type: 'function', description: 'Set minimum value.', args: { Min: { type: 'number' } } },
+        ':SetMax': { type: 'function', description: 'Set maximum value.', args: { Max: { type: 'number' } } },
+    }}
+/>
+

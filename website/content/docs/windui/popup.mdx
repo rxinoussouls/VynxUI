@@ -1,0 +1,109 @@
+---
+title: Popup
+description: Create standalone popup windows
+---
+
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { DynamicCodeBlock } from 'fumadocs-ui/components/dynamic-codeblock'
+import TypeTable from '@/components/TypeTable';
+
+
+## Popup Component
+
+Popups are standalone windows that display information with action buttons. They're useful for announcements, confirmations, and important messages.
+
+<Tabs defaultValue="small">
+    <TabsList>
+        <TabsTrigger value="small">Basic</TabsTrigger>
+        <TabsTrigger value="full">Full</TabsTrigger>
+    </TabsList>
+    <TabsContent value="small">
+```luau
+local Popup = WindUI:Popup({
+    Title = "Welcome",
+    Content = "Welcome to our application!",
+    Buttons = {
+        {
+            Title = "Get Started",
+            Callback = function()
+                print("Getting started...")
+            end
+        }
+    }
+})
+```
+    </TabsContent>
+    <TabsContent value="full">
+```luau
+local Popup = WindUI:Popup({
+    Title = "Important Message",
+    Icon = "alert", -- lucide icon or "rbxassetid://". optional
+    Content = "This is important information",
+    Buttons = {
+        {
+            Title = "Continue",
+            Icon = "arrow-right", -- optional
+            Variant = "Primary", -- "Primary", "Secondary", "Tertiary". optional
+            Callback = function()
+                print("Proceeding...")
+            end
+        },
+        {
+            Title = "Cancel",
+            Icon = "x", -- optional
+            Variant = "Secondary", -- optional
+            Callback = function()
+                print("Cancelled")
+            end
+        }
+    }
+})
+```
+    </TabsContent>
+</Tabs>
+
+## Popup Parameters
+
+<TypeTable
+    data={[
+        { name: "Title", type: "string", description: "Popup window title", default: "Popup" },
+        { name: "Icon", type: "string?", description: "Icon identifier (lucide icon or rbxassetid://)", default: "nil" },
+        { name: "Content", type: "string", description: "Popup message content", default: "nil" },
+        { name: "Buttons", type: "table", description: "Array of button configurations", default: "{}" },
+    ]}
+/>
+
+## Button Configuration
+
+Each button in the Buttons array can have:
+
+<TypeTable
+    data={[
+        { name: "Title", type: "string", description: "Button text", default: "Button" },
+        { name: "Icon", type: "string?", description: "Button icon identifier", default: "nil" },
+        { name: "Variant", type: "string?", description: "Button style: 'Primary', 'Secondary', 'Tertiary'", default: "Primary" },
+        { name: "Callback", type: "function?", description: "Function called on button click", default: "nil" },
+    ]}
+/>
+
+## Popup Methods
+
+### Close Popup
+
+Close and hide the popup.
+
+```luau
+Popup:Close()
+```
+
+## Differences: Popup vs Dialog
+
+- **Popup**: Standalone windows with title and full styling, for announcements
+- **Dialog**: Modal prompts that block window interaction, for confirmations
+- **Notification**: Temporary messages that auto-dismiss, for feedback
+
+## Related Documentation
+
+- [Dialog](./dialog) - Modal confirmation dialogs
+- [Notification](./notification) - Temporary notification messages
+- [Window](./window) - Main window container

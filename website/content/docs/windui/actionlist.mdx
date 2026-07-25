@@ -1,0 +1,71 @@
+---
+title: ActionList
+description: Render compact action rows.
+---
+
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import TypeTable from '@/components/TypeTable';
+
+## ActionList Element
+
+ActionList renders a vertical list of clickable rows with icons, descriptions and optional value pills.
+
+<Tabs defaultValue="basic">
+    <TabsList>
+        <TabsTrigger value="basic">Basic</TabsTrigger>
+        <TabsTrigger value="full">Full</TabsTrigger>
+    </TabsList>
+    <TabsContent value="basic">
+```luau
+Tab:ActionList({
+    Title = "Quick Actions",
+    Actions = {
+        "Refresh",
+        "Copy Link",
+        "Reset",
+    },
+    Callback = function(action, index)
+        print(index, action.Title)
+    end,
+})
+```
+    </TabsContent>
+    <TabsContent value="full">
+```luau
+local Actions = Tab:ActionList({
+    Title = "Build Actions",
+    Desc = "Small rows for common commands.",
+    Actions = {
+        { Title = "Refresh", Desc = "Reload data", Icon = "refresh-cw", Value = "R" },
+        { Title = "Export", Desc = "Save current config", Icon = "download", Color = "#38bdf8" },
+        { Title = "Locked", Icon = "lock", Disabled = true },
+    },
+    Callback = function(action, index)
+        print("action", index, action.Title)
+    end,
+})
+```
+    </TabsContent>
+</Tabs>
+
+## Parameters
+
+<TypeTable
+    data={[
+        { name: "Title", type: "string?", description: "Element title.", default: "Actions" },
+        { name: "Desc", type: "string?", description: "Element description.", default: "nil" },
+        { name: "Actions / Items / Values", type: "table", description: "Rows to render.", default: "{}" },
+        { name: "Callback", type: "function?", description: "Fallback callback for rows without their own callback.", default: "nil" },
+        { name: "Hover", type: "boolean?", description: "Enable parent hover style.", default: "false" },
+    ]}
+/>
+
+## Functions
+
+<TypeTable
+    type={{
+        ':SetActions': { type: 'function', description: 'Replace all actions.', args: { Actions: { type: 'table' } } },
+        ':AddAction': { type: 'function', description: 'Append one action row.', args: { Action: { type: 'table | string' } } },
+    }}
+/>
+

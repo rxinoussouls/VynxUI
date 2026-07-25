@@ -1,0 +1,72 @@
+---
+title: SegmentedControl
+description: Select one value from compact segments.
+---
+
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import TypeTable from '@/components/TypeTable';
+
+## SegmentedControl Element
+
+SegmentedControl is best for switching between 2 to 5 short modes.
+
+<Tabs defaultValue="basic">
+    <TabsList>
+        <TabsTrigger value="basic">Basic</TabsTrigger>
+        <TabsTrigger value="full">Full</TabsTrigger>
+    </TabsList>
+    <TabsContent value="basic">
+```luau
+local Mode = Tab:SegmentedControl({
+    Title = "Mode",
+    Options = { "Auto", "Manual", "Off" },
+    Default = "Auto",
+    Callback = function(value)
+        print("mode", value)
+    end,
+})
+```
+    </TabsContent>
+    <TabsContent value="full">
+```luau
+local Mode = Tab:SegmentedControl({
+    Title = "Renderer",
+    Desc = "Switch render mode",
+    Width = 240,
+    Options = {
+        { Title = "Auto", Value = "auto" },
+        { Title = "Manual", Value = "manual" },
+        { Title = "Off", Value = "off", Disabled = true },
+    },
+    Value = "manual",
+})
+```
+    </TabsContent>
+</Tabs>
+
+## Parameters
+
+<TypeTable
+    data={[
+        { name: "Title", type: "string?", description: "Element title.", default: "Segmented Control" },
+        { name: "Desc", type: "string?", description: "Element description.", default: "nil" },
+        { name: "Options / Values", type: "table", description: "Options list.", default: "{}" },
+        { name: "Value / Default", type: "any?", description: "Selected value.", default: "first option" },
+        { name: "Width / ControlWidth", type: "number?", description: "Control width.", default: "220" },
+        { name: "Locked", type: "boolean?", description: "Disable interaction.", default: "false" },
+        { name: "Callback", type: "function?", description: "Called with value and option.", default: "function() end" },
+    ]}
+/>
+
+## Functions
+
+<TypeTable
+    type={{
+        ':Get': { type: 'function', description: 'Return selected value.', args: {} },
+        ':Select': { type: 'function', description: 'Select a value.', args: { Value: { type: 'any' }, IsCallback: { type: 'boolean?' } } },
+        ':SetOptions': { type: 'function', description: 'Replace option list.', args: { Options: { type: 'table' } } },
+        ':Lock': { type: 'function', description: 'Disable interaction.', args: {} },
+        ':Unlock': { type: 'function', description: 'Enable interaction.', args: {} },
+    }}
+/>
+

@@ -1,0 +1,66 @@
+---
+title: KeyValue
+description: Display aligned key-value rows.
+---
+
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import TypeTable from '@/components/TypeTable';
+
+## KeyValue Element
+
+KeyValue displays a compact list of labels and values.
+
+<Tabs defaultValue="basic">
+    <TabsList>
+        <TabsTrigger value="basic">Basic</TabsTrigger>
+        <TabsTrigger value="full">Full</TabsTrigger>
+    </TabsList>
+    <TabsContent value="basic">
+```luau
+local Details = Tab:KeyValue({
+    Title = "Runtime",
+    Items = {
+        { Title = "Executor", Value = "Delta" },
+        { Title = "Theme", Value = "Dark" },
+    },
+})
+```
+    </TabsContent>
+    <TabsContent value="full">
+```luau
+local Details = Tab:KeyValue({
+    Title = "Build",
+    Desc = "Current runtime info",
+    Items = {
+        { Key = "Version", Value = "1.6.65", Icon = "tag" },
+        { Key = "Branch", Value = "main", Icon = "git-branch" },
+        { Key = "Mode", Value = "loadstring" },
+    },
+})
+
+Details:SetItems({
+    { Key = "Version", Value = "1.6.66" },
+})
+```
+    </TabsContent>
+</Tabs>
+
+## Parameters
+
+<TypeTable
+    data={[
+        { name: "Items / Rows / Values", type: "table", description: "Rows to render.", default: "{}" },
+        { name: "Item.Key / Item.Title", type: "string", description: "Left label.", default: "nil" },
+        { name: "Item.Value", type: "any", description: "Right value.", default: "nil" },
+        { name: "Item.Icon", type: "string?", description: "Optional row icon.", default: "nil" },
+    ]}
+/>
+
+## Functions
+
+<TypeTable
+    type={{
+        ':SetItems': { type: 'function', description: 'Replace rows.', args: { Items: { type: 'table' } } },
+    }}
+/>
+

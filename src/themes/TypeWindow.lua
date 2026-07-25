@@ -1,0 +1,28 @@
+return {
+	modern = {
+		NewElements = true,
+		LiquidGlass = true,
+		LinkElementCorners = true,
+		ElementGap = 1,
+		ElementTransparency = 0.18,
+		BackgroundOverlayTransparency = 0.5,
+		BackgroundColor = Color3.fromHex("#101821"),
+		Radius = 20,
+		SideBarWidth = 210,
+		Topbar = { Height = 48, ButtonsType = "Mac" },
+		CornerLink = { InnerRadius = 0, BridgeHidden = true },
+		HideSearchBar = false,
+	},
+	default = {
+		NewElements = false,
+		LiquidGlass = false,
+		LinkElementCorners = false,
+		ElementGap = 8,
+		ElementTransparency = nil,
+		BackgroundOverlayTransparency = 0.62,
+		BackgroundColor = nil,
+		Radius = 16,
+		SideBarWidth = 200,
+		Topbar = { Height = 52, ButtonsType = "Default" },
+	},
+}

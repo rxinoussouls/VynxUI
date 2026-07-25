@@ -1,0 +1,72 @@
+---
+title: RadioGroup
+description: Select one option from a vertical group.
+---
+
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import TypeTable from '@/components/TypeTable';
+
+## RadioGroup Element
+
+RadioGroup is a vertical single-select control with touch friendly rows.
+
+<Tabs defaultValue="basic">
+    <TabsList>
+        <TabsTrigger value="basic">Basic</TabsTrigger>
+        <TabsTrigger value="full">Full</TabsTrigger>
+    </TabsList>
+    <TabsContent value="basic">
+```luau
+local Quality = Tab:RadioGroup({
+    Title = "Quality",
+    Options = { "Low", "Medium", "High" },
+    Default = "Medium",
+})
+```
+    </TabsContent>
+    <TabsContent value="full">
+```luau
+local Quality = Tab:RadioGroup({
+    Title = "Quality",
+    Desc = "Choose one preset",
+    Width = 220,
+    AllowNone = false,
+    Options = {
+        { Title = "Low", Value = "low" },
+        { Title = "Medium", Value = "medium" },
+        { Title = "Ultra", Value = "ultra", Disabled = true },
+    },
+    Value = "medium",
+    Callback = function(value, option)
+        print(value, option.Title)
+    end,
+})
+```
+    </TabsContent>
+</Tabs>
+
+## Parameters
+
+<TypeTable
+    data={[
+        { name: "Options / Values", type: "table", description: "Options list.", default: "{}" },
+        { name: "Value / Default", type: "any?", description: "Selected value.", default: "first option unless AllowNone" },
+        { name: "AllowNone", type: "boolean?", description: "Allow nil selection.", default: "false" },
+        { name: "Width / ControlWidth", type: "number?", description: "Control width.", default: "220" },
+        { name: "Locked", type: "boolean?", description: "Disable interaction.", default: "false" },
+        { name: "Callback", type: "function?", description: "Called with value and option.", default: "function() end" },
+    ]}
+/>
+
+## Functions
+
+<TypeTable
+    type={{
+        ':Get': { type: 'function', description: 'Return selected value.', args: {} },
+        ':Select': { type: 'function', description: 'Select a value.', args: { Value: { type: 'any' }, IsCallback: { type: 'boolean?' } } },
+        ':SetOptions': { type: 'function', description: 'Replace options.', args: { Options: { type: 'table' } } },
+        ':Lock': { type: 'function', description: 'Disable interaction.', args: {} },
+        ':Unlock': { type: 'function', description: 'Enable interaction.', args: {} },
+    }}
+/>
+

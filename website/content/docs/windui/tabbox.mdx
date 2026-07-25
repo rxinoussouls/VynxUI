@@ -1,0 +1,83 @@
+---
+title: TabBox
+description: Create nested tabs inside a section or tab.
+---
+
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import TypeTable from '@/components/TypeTable';
+
+## TabBox Element
+
+TabBox creates small nested pages inside the current tab or section. Each page supports normal WindUI elements.
+
+<Tabs defaultValue="basic">
+    <TabsList>
+        <TabsTrigger value="basic">Basic</TabsTrigger>
+        <TabsTrigger value="full">With Elements</TabsTrigger>
+    </TabsList>
+    <TabsContent value="basic">
+```luau
+local Box = Tab:TabBox({
+    Title = "Modes",
+    Desc = "Nested pages",
+})
+
+local Main = Box:Tab({ Title = "Main", Icon = "home", Value = "main" })
+local Logs = Box:Tab({ Title = "Logs", Icon = "history", Value = "logs" })
+
+Main:Paragraph({ Title = "Ready", Desc = "Main page selected." })
+Logs:Paragraph({ Title = "Events", Desc = "No logs yet." })
+```
+    </TabsContent>
+    <TabsContent value="full">
+```luau
+local Box = Section:TabBox({
+    Title = "Build Panel",
+    TabHeight = 38,
+    MinTabWidth = 76,
+    MaxTabWidth = 160,
+    Value = "controls",
+})
+
+Box:Tab({
+    Title = "Overview",
+    Icon = "sparkles",
+    Value = "overview",
+    Elements = function(Page)
+        Page:StatusCard({ Title = "Renderer", Status = "Success", Value = "Ready" })
+    end,
+})
+
+local Controls = Box:Tab({ Title = "Controls", Icon = "sliders-horizontal", Value = "controls" })
+Controls:Stepper({ Title = "Amount", Min = 0, Max = 10, Default = 4 })
+```
+    </TabsContent>
+</Tabs>
+
+## Parameters
+
+<TypeTable
+    data={[
+        { name: "Title", type: "string?", description: "Box title.", default: "Tabs" },
+        { name: "Desc", type: "string?", description: "Text below the title.", default: "nil" },
+        { name: "Tabs", type: "table?", description: "Optional list of tab configs created immediately.", default: "{}" },
+        { name: "Value", type: "any?", description: "Initial tab value to select.", default: "nil" },
+        { name: "TabHeight", type: "number?", description: "Height of the tab strip.", default: "36" },
+        { name: "TabButtonHeight", type: "number?", description: "Height of each tab button.", default: "30" },
+        { name: "MinTabWidth", type: "number?", description: "Minimum tab button width.", default: "68" },
+        { name: "MaxTabWidth", type: "number?", description: "Maximum tab button width.", default: "154" },
+    ]}
+/>
+
+## Functions
+
+<TypeTable
+    type={{
+        ':Tab': { type: 'function', description: 'Create a nested page. Alias: :CreateTab.', args: { TabConfig: { type: 'table' } } },
+        ':Select': { type: 'function', description: 'Select a page by index.', args: { Index: { type: 'number' } } },
+        ':Set': { type: 'function', description: 'Select a page by Value.', args: { Value: { type: 'any' } } },
+        ':Get': { type: 'function', description: 'Return the selected page value.', args: {} },
+        ':GetSelected': { type: 'function', description: 'Return the selected page object.', args: {} },
+    }}
+/>
+

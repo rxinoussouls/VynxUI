@@ -1,0 +1,315 @@
+---
+title: Dropdown
+description: Create dropdown select menus in WindUI Modded
+---
+
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { DynamicCodeBlock } from 'fumadocs-ui/components/dynamic-codeblock'
+import TypeTable from '@/components/TypeTable';
+import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
+import { TriangleAlert } from 'lucide-react';
+
+## Dropdown Element
+
+Dropdowns allow users to select from a list of predefined Values. The modded dropdown is compact by default, supports searchable lists, clamps itself inside mobile viewports and can open as a centered modal menu.
+
+<Tabs defaultValue="small">
+    <TabsList>
+        <TabsTrigger value="small">Basic</TabsTrigger>
+        <TabsTrigger value="full">Full</TabsTrigger>
+        <TabsTrigger value="advanced">Advanced</TabsTrigger>
+        <TabsTrigger value="position">Position</TabsTrigger>
+    </TabsList>
+
+    <TabsContent value="small">
+```luau
+local Dropdown = Tab:Dropdown({
+    Title = "Select Value",
+    Search = true,
+    Values = {
+        "Option 1",
+        "Option 2",
+        "Option 3"
+    },
+    Callback = function(selected)
+        print("Selected:", selected)
+    end
+})
+```
+    </TabsContent>
+
+    <TabsContent value="full">
+```luau
+local Dropdown = Tab:Dropdown({
+    Title = "Select Option",
+    Desc = "Dropdown description",
+    Values = {
+        "Option 1",
+        "Option 2",
+        "Option 3",
+        "Option 4"
+    },
+    Value = "Option 1",
+    Multi = false,
+    Search = true,
+    SearchPlaceholder = "Find option...",
+    Compact = true,
+    Locked = false,
+    Flag = "my_dropdown",
+    Callback = function(selected)
+        print("Selected:", selected)
+    end
+})
+```
+    </TabsContent>
+
+    <TabsContent value="advanced">
+```luau
+local AdvancedDropdown = Tab:Dropdown({
+    Title = "Advanced Values",
+    Values = {
+        {
+            Title = "New file",
+            Desc = "Create a new file",
+            Icon = "file-plus",
+            Callback = function()
+                print("Clicked 'New file'")
+            end
+        },
+        {
+            Title = "Copy link",
+            Desc = "Copy the file link",
+            Icon = "copy",
+            Callback = function()
+                print("Clicked 'Copy link'")
+            end
+        },
+        {
+            Title = "Edit file",
+            Desc = "Allows you to edit the file",
+            Icon = "file-pen",
+            Callback = function()
+                print("Clicked 'Edit file'")
+            end
+        },
+        {
+            Type = "Divider",
+        },
+        {
+            Title = "Delete file",
+            Desc = "Permanently delete the file",
+            Icon = "trash",
+            Callback = function()
+                print("Clicked 'Delete file'")
+            end
+        },
+    }
+})
+```
+    </TabsContent>
+
+    <TabsContent value="position">
+```luau
+Tab:Dropdown({
+    Title = "Full Width Dropdown",
+    Desc = "Menu follows the full row width",
+    Values = { "Alpha", "Beta", "Gamma" },
+    FullWidth = true,
+    MenuWidth = 220,
+    MenuMaxWidth = 420,
+    Direction = "Down", -- Auto, Down, Up, Left, Right
+    Side = "Right", -- Left, Center, Right
+    MobileDirection = "Down",
+    MobileSide = "Center",
+})
+
+Tab:Dropdown({
+    Title = "Side Menu",
+    Values = { "Left", "Right" },
+    Direction = "Right",
+    Side = "Left",
+})
+
+Tab:Dropdown({
+    Title = "Centered Menu",
+    Desc = "Opens in the middle of the WindUI window",
+    Values = { "Workspace", "Interface", "Notifications" },
+    Centered = true,       -- Modal = true and Placement = "Center" are aliases
+    CenterTarget = "Window", -- Window, Screen or Viewport
+    CenterOffset = Vector2.new(0, 0),
+    Backdrop = true,
+    BackdropTransparency = 0.84,
+    MenuWidth = 236,
+    MenuMaxHeight = 240,
+})
+```
+    </TabsContent>
+</Tabs>
+
+## Dropdown Parameters
+
+<TypeTable
+    data={[
+        { name: "Title", type: "string", description: "Dropdown title text", default: "Dropdown" },
+        { name: "Desc", type: "string?", description: "Description shown under the title", default: "nil" },
+        { name: "Values", type: "table", description: "List of dropdown values or advanced value objects", default: "{}" },
+        { name: "Value", type: "string?", description: "Default selected value", default: "nil" },
+        { name: "AllowNone", type: "boolean?", description: "Allow empty selection", default: "false" },
+        { name: "Search / EnableSearch", type: "boolean?", description: "Force the compact search bar on", default: "auto for 7+ values" },
+        { name: "SearchBarEnabled", type: "boolean?", description: "Legacy search toggle. false disables auto-search", default: "auto" },
+        { name: "SearchPlaceholder", type: "string?", description: "Placeholder text for the search input", default: "Search..." },
+        { name: "SearchThreshold", type: "number?", description: "Value count that enables auto-search", default: "7" },
+        { name: "Multi", type: "boolean?", description: "Allow multiple values to be selected", default: "false" },
+        { name: "Compact", type: "boolean?", description: "Use smaller trigger, item and search sizing", default: "true" },
+        { name: "Glass", type: "boolean?", description: "Opt in to the light liquid glass menu surface", default: "false" },
+        { name: "GlassTransparency", type: "number?", description: "Opened menu glass image transparency when Glass is true", default: "0" },
+        { name: "ItemHeight", type: "number?", description: "Custom row height for compact menus", default: "32" },
+        { name: "FullWidth / Full", type: "boolean?", description: "Use at least the trigger width for the menu", default: "false" },
+        { name: "MenuWidth", type: "number?", description: "Dropdown menu width. Center mode defaults to a compact 236", default: "164" },
+		{ name: "MenuMaxHeight", type: "number?", description: "Maximum menu height. Center mode defaults to 240", default: "340" },
+        { name: "MenuMaxWidth", type: "number?", description: "Maximum menu width", default: "420" },
+        { name: "Direction / OpenDirection", type: "string?", description: "Auto, Down, Up, Left, Right or Center", default: "Auto" },
+        { name: "Side / Align", type: "string?", description: "Left, Center or Right alignment for Up/Down menus", default: "Right" },
+        { name: "Centered / Modal", type: "boolean?", description: "Open the menu as a centered modal instead of beside its trigger", default: "false" },
+        { name: "Placement / MenuPlacement", type: "string?", description: "Set to Center or Middle to enable center mode", default: "nil" },
+        { name: "CenterTarget / CenterIn", type: "string?", description: "Window keeps the popup inside the library; Screen or Viewport opts into an external overlay", default: "Window" },
+        { name: "CenterOffset", type: "Vector2?", description: "Pixel offset from the selected center target", default: "Vector2.new(0, 0)" },
+        { name: "Backdrop", type: "boolean?", description: "Show a dismissible dim backdrop in center mode", default: "true" },
+        { name: "BackdropTransparency", type: "number?", description: "Center-mode backdrop transparency", default: "0.72" },
+        { name: "MobileDirection", type: "string?", description: "Direction override for mobile viewports", default: "Direction" },
+        { name: "MobileSide", type: "string?", description: "Alignment override for mobile viewports", default: "Center" },
+        { name: "Locked", type: "boolean?", description: "Disable dropdown interaction", default: "false" },
+        { name: "Flag", type: "string?", description: "Flag used for config saving", default: "nil" },
+        { name: "Callback", type: "function?", description: "Called when selection changes", default: "nil" },
+    ]}
+/>
+
+## Dropdown Functions
+
+<TypeTable 
+    type={{
+        ':SetTitle': {
+            type: 'function',
+            description: 'Change dropdown title dynamically.',
+            args: {
+                Title: {
+                    type: 'string',
+                    description: 'New dropdown title.',
+                }
+            }
+        },
+        ':SetDesc': {
+            type: 'function',
+            description: 'Update dropdown description.',
+            args: {
+                Description: {
+                    type: 'string',
+                    description: 'New dropdown description.',
+                }
+            }
+        },
+        ':Select': {
+            type: 'function',
+            description: 'Select one or multiple values programmatically.',
+            args: {
+                Value: {
+                    type: 'string | table',
+                    description: 'Single value or table of values for multi-select.',
+                }
+            }
+        },
+        ':Lock': {
+            type: 'function',
+            description: 'Disable dropdown interaction.',
+            args: {}
+        },
+        ':Unlock': {
+            type: 'function',
+            description: 'Re-enable dropdown interaction.',
+            args: {}
+        },
+        ':Highlight': {
+            type: 'function',
+            description: 'Visually highlight the dropdown.',
+            args: {}
+        },
+        ':Destroy': {
+            type: 'function',
+            description: 'Remove the dropdown from the tab.',
+            args: {}
+        },
+    }}
+/>
+
+## Dropdown Variants
+
+### Simple Dropdown
+
+```luau
+Tab:Dropdown({
+    Title = "Choose Theme",
+    Search = true,
+    Values = {
+        "Light",
+        "Dark",
+        "Auto"
+    },
+    Value = "Dark",
+    Callback = function(selected)
+        print("Theme:", selected)
+    end
+})
+```
+
+### Multi-Select Dropdown
+
+```luau
+Tab:Dropdown({
+    Title = "Select Features",
+    Desc = "Choose multiple features to enable",
+    Values = {
+        "Feature A",
+        "Feature B",
+        "Feature C",
+        "Feature D"
+    },
+    Search = true,
+    Multi = true,
+    AllowNone = true,
+    Callback = function(selected)
+        print("Selected features:", selected)
+    end
+})
+```
+
+### Centered Modal Dropdown
+
+With `CenterTarget = "Window"`, both the compact menu and its backdrop are parented to the WindUI window, so they move, scale, and close with the library. Use `CenterTarget = "Screen"` only when a full-screen popup is intentional.
+
+```luau
+Tab:Dropdown({
+    Title = "Choose workspace",
+    Values = { "Home", "Editor", "Assets", "Settings" },
+    Search = true,
+    Centered = true,
+    CenterTarget = "Window",
+    Backdrop = true,
+    MenuWidth = 236,
+    MenuMaxHeight = 240,
+})
+```
+
+<Alert className="bg-yellow-300/30 dark:bg-yellow-950/80 text-yellow-700 dark:text-yellow-200/90 border-0">
+    <TriangleAlert />
+    <AlertTitle>IMPORTANT</AlertTitle>
+    <AlertDescription className="[&_p]:m-0">
+        <p>Dropdown does not support duplicate values. Each entry in the Values list must be unique.</p>
+    </AlertDescription>
+</Alert>
+
+
+## Related Documentation
+
+- [Tab](./tab)
+- [Input](./input)
+- [Paragraph](./paragraph)

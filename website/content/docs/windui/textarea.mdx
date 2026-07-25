@@ -1,0 +1,70 @@
+---
+title: TextArea
+description: Create multi-line text input.
+---
+
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import TypeTable from '@/components/TypeTable';
+
+## TextArea Element
+
+TextArea is a multi-line input for notes, scripts or longer text values.
+
+<Tabs defaultValue="basic">
+    <TabsList>
+        <TabsTrigger value="basic">Basic</TabsTrigger>
+        <TabsTrigger value="full">Full</TabsTrigger>
+    </TabsList>
+    <TabsContent value="basic">
+```luau
+local Notes = Tab:TextArea({
+    Title = "Notes",
+    Placeholder = "Write something...",
+})
+```
+    </TabsContent>
+    <TabsContent value="full">
+```luau
+local Notes = Tab:TextArea({
+    Title = "Notes",
+    Desc = "Multi-line value",
+    InputIcon = "text",
+    Placeholder = "Paste config here...",
+    Value = "Initial text",
+    Height = 160,
+    ClearTextOnFocus = false,
+    Callback = function(value)
+        print(value)
+    end,
+})
+```
+    </TabsContent>
+</Tabs>
+
+## Parameters
+
+<TypeTable
+    data={[
+        { name: "Title", type: "string?", description: "Element title.", default: "Text Area" },
+        { name: "Desc", type: "string?", description: "Element description.", default: "nil" },
+        { name: "InputIcon", type: "string | boolean?", description: "Input icon or false.", default: "false" },
+        { name: "Placeholder", type: "string?", description: "Placeholder text.", default: "Enter Text..." },
+        { name: "Value", type: "string?", description: "Initial value.", default: "\"\"" },
+        { name: "Height", type: "number?", description: "Input height.", default: "148" },
+        { name: "ClearTextOnFocus", type: "boolean?", description: "Clear text when focused.", default: "false" },
+        { name: "Callback", type: "function?", description: "Called with value.", default: "function() end" },
+    ]}
+/>
+
+## Functions
+
+<TypeTable
+    type={{
+        ':Get': { type: 'function', description: 'Return current text.', args: {} },
+        ':Set': { type: 'function', description: 'Set text.', args: { Value: { type: 'string' }, IsCallback: { type: 'boolean?' } } },
+        ':SetPlaceholder': { type: 'function', description: 'Update placeholder text.', args: { Value: { type: 'string' } } },
+        ':Lock': { type: 'function', description: 'Disable interaction.', args: {} },
+        ':Unlock': { type: 'function', description: 'Enable interaction.', args: {} },
+    }}
+/>
+

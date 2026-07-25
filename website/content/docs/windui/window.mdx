@@ -1,0 +1,1010 @@
+---
+title: Window
+description: Configure and create windows in WindUI Modded
+---
+
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { DynamicCodeBlock } from 'fumadocs-ui/components/dynamic-codeblock'
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { TriangleAlert } from "lucide-react";
+import TypeTable from '@/components/TypeTable';
+
+![Window](/windui/banners/Window.png)
+
+## Window Configuration
+
+<Tabs defaultValue="small">
+    <TabsList>
+        <TabsTrigger value="small">Small</TabsTrigger>
+        <TabsTrigger value="full">Full</TabsTrigger>
+    </TabsList>
+    <TabsContent value="small">
+```luau
+local Window = WindUI:CreateWindow({
+    Title = "My Super Hub", -- window title
+    Icon = "door-open", -- lucide icon or "rbxassetid://" or URL. optional
+    Author = "by article-hub-studio", -- window subtitle. optional
+})
+```
+    </TabsContent>
+    <TabsContent value="full">
+```luau
+local Window = WindUI:CreateWindow({
+    Title = "My Super Hub", -- window title
+    Icon = "door-open", -- lucide icon or "rbxassetid://" or URL. optional
+    Author = "by article-hub-studio", -- window subtitle. optional
+    Default = true, -- opt-in modern liquid preset
+    Folder = "MySuperHub", -- folder to save keys and images
+    
+    Size = UDim2.fromOffset(580, 460), -- window size
+    MinSize = Vector2.new(560, 350), -- minimal window size
+    MaxSize = Vector2.new(850, 560), -- maximum window size
+    Transparent = true, -- window transparency
+    Theme = "Dark", -- library theme
+    Resizable = true, -- the ability to rezize window
+    SideBarWidth = 200, -- sidebar (tabs) width
+    TabHolderType = "sidebar", -- "sidebar" or "top"
+    SidebarCompact = false, -- icon-only sidebar at compact width
+    CompactSideBarWidth = 68,
+    TopTabHeight = 48,
+    HideSearchBar = true, -- hide search bar
+    ScrollBarEnabled = false, -- scrollbars that are located to the right of the scroll frame
+
+    BackgroundImageTransparency = 0.42, -- background image transparency
+    Background = {
+        Image = "rbxassetid://1234",
+        Transparency = 0.42,
+        ScaleType = Enum.ScaleType.Crop,
+    },
+    
+    User = { -- user information located at the bottom left
+        Enabled = true, -- can be toggled with Window.User:Enable() or Window.User:Disable()
+        Anonymous = true, -- can be toggled with Window.User:SetAnonymous(true) --(true or false)
+        Callback = function() -- callback on click. optional. it can be removed
+            print("clicked to the 'user icon'")
+        end,
+    },
+    
+    KeySystem = { -- key system from this library
+        --  ↓ DEPRECATED
+        -- Key = { "1234", "5678" },
+
+        -- ✓ use this instead:
+        KeyValidator = function(enteredKey)
+            if enteredKey == "1234" then
+                return true -- this means the key is correct
+            end
+            return false -- this is if the key is not correct 
+        end,
+
+        Note = "Example Key System.",
+        
+        Thumbnail = { -- the image which is located on the left. optional. it can be removed
+            Image = "rbxassetid://1234",
+            Title = "Thumbnail example", -- optional. it can be removed
+        },
+        URL = "YOUR LINK TO GET KEY (Discord, Linkvertise, Pastebin, etc.)", -- link to get the key
+        
+        SaveKey = true, -- automatically save and load the key.
+    },
+})
+```
+
+    </TabsContent>
+</Tabs>
+
+## Window Parameters
+
+<TypeTable 
+    type={{
+        'Title': {
+            type: 'string',
+            description: 'The title of the window displayed at the top.',
+            required: true,
+        },
+        'Icon': {
+            type: 'string',
+            description: 'Icon for the window. Can be a lucide icon name, rbxassetid://, or URL. Optional.',
+        },
+        'Author': {
+            type: 'string',
+            description: 'Subtitle displayed below the window title. Optional.',
+        },
+        'Folder': {
+            type: 'string',
+            description: 'Folder name to save window keys and cached images.',
+        },
+        'Size': {
+            type: 'UDim2',
+            description: (
+                <>
+                    <h4>Default window size</h4>
+                    <DynamicCodeBlock
+                        lang="luau"
+                        code={`Size = UDim2.fromOffset(580, 460)`}
+                    />
+                </>
+            ),
+        },
+        'MinSize': {
+            type: 'Vector2',
+            description: 'Minimum window size. Prevents resizing below this value. Default: Vector2.new(560, 350).',
+        },
+        'MaxSize': {
+            type: 'Vector2',
+            description: 'Maximum window size. Prevents resizing above this value. Default: Vector2.new(850, 560).',
+        },
+        'Position': {
+            type: 'UDim2',
+            description: 'Window starting position. Default is centered: UDim2.new(0.5, 0, 0.5, 0).',
+        },
+        'Transparent': {
+            type: 'boolean',
+            description: 'Enable or disable window transparency. Default is false.',
+        },
+        'Theme': {
+            type: 'string',
+            description: 'Library theme name (e.g., "Dark", "Light"). Default is "Dark".',
+        },
+        'Default': {
+            type: 'boolean',
+            description: 'Opt-in modern preset. Enables NewElements, LiquidGlass, linked corners, Mac topbar, visible search and tighter mobile-friendly spacing unless you override those fields.',
+        },
+		'LinkElementCorners': {
+			type: 'boolean | table',
+			description: 'Link adjacent element corners. A table also enables the feature and acts as the advanced CornerLink options.',
+		},
+		'CornerLink': {
+			type: 'table',
+			description: 'Advanced linked-corner policy: InnerRadius, BreakTypes, BridgeHidden, BridgeSparse, Orientation, Reverse, GroupBy, or Resolver.',
+		},
+        'Resizable': {
+            type: 'boolean',
+            description: 'Allow users to resize the window by dragging. Default is true.',
+        },
+		'SideBarWidth': {
+			type: 'number',
+			description: 'Width of the sidebar containing tabs. Default is 200.',
+		},
+		'TabHolderType': {
+			type: '"sidebar" | "top"',
+			description: 'Place tabs in the vertical sidebar or in a horizontally scrolling row below the topbar.',
+		},
+		'SidebarCompact': {
+			type: 'boolean',
+			description: 'Use an icon-only sidebar with title tooltips. Applies only when TabHolderType is sidebar.',
+		},
+		'CompactSideBarWidth': {
+			type: 'number',
+			description: 'Width of the icon-only compact sidebar. Default is 68.',
+		},
+		'TopTabHeight': {
+			type: 'number',
+			description: 'Height of the horizontal top tab holder. Default is 48.',
+		},
+        'HideSearchBar': {
+            type: 'boolean',
+            description: 'Hide the search bar in the window. Default is true (hidden).',
+        },
+        'ScrollBarEnabled': {
+            type: 'boolean',
+            description: 'Enable scrollbars on the right side of content frames. Default is false.',
+        },
+        'BackgroundImageTransparency': {
+            type: 'number',
+            description: 'Transparency of the background image (0-1). Default is 0.',
+        },
+        'Background': {
+            type: 'string|table',
+            description: (
+                <>
+                    <h4>Background image or gradient</h4>
+                    <p>Can be:</p>
+                    <ul>
+                        <li><strong>rbxassetid://</strong> - Roblox asset ID</li>
+                        <li><strong>URL</strong> - HTTPS image URL</li>
+                        <li><strong>.webm URL</strong> or <strong>video:</strong> - Video background (uses getcustomasset when available)</li>
+                        <li><strong>customasset:</strong>, <strong>getcustomasset:</strong> or <strong>file:</strong> - local cached media path</li>
+                        <li><strong>Table</strong> - Gradient configuration from <code>WindUI:Gradient()</code></li>
+                    </ul>
+                </>
+            ),
+        },
+        'ShadowTransparency': {
+            type: 'number',
+            description: 'Transparency of the window shadow. Default is 0.7.',
+        },
+        'Radius': {
+            type: 'number',
+            description: 'Window corner radius. Default is 16.',
+        },
+        'ElementsRadius': {
+            type: 'number',
+            description: 'Border radius for UI elements inside the window.',
+        },
+        'TopBarButtonIconSize': {
+            type: 'number',
+            description: 'Size of topbar button icons. Default is 16.',
+        },
+        'ToggleKey': {
+            type: 'Enum.KeyCode',
+            description: 'Keyboard key to toggle window visibility (e.g., Enum.KeyCode.K).',
+        },
+        'Acrylic': {
+            type: 'boolean',
+            description: 'Enable acrylic/blur background effect. Default is false.',
+        },
+        'NewElements': {
+            type: 'boolean',
+            description: 'Use newer element styling. Default is false.',
+        },
+        'IgnoreAlerts': {
+            type: 'boolean',
+            description: 'Skip confirmation dialog when closing window. Default is false.',
+        },
+        'HidePanelBackground': {
+            type: 'boolean',
+            description: 'Hide the background panel in the main content area. Default is false.',
+        },
+        'AutoScale': {
+            type: 'boolean',
+            description: 'Automatically scale window to fit viewport. Default is true.',
+        },
+        'Topbar': {
+            type: 'table',
+            description: (
+                <>
+                    <h4>Topbar configuration</h4>
+                    <DynamicCodeBlock
+                        lang="luau"
+                        code={`Topbar = {
+    Height = 52,           -- Height of the topbar
+    ButtonsType = "Default" -- "Default" or "Mac" style
+}`}
+                    />
+					<p>In Mac mode, the built-in Settings and KeyBind buttons use purple and pink accent circles. Default mode keeps the standard themed buttons.</p>
+                </>
+            ),
+        },
+        'Footer': {
+            type: 'table',
+            description: 'Footer configuration (currently unused). Optional.',
+        },
+        'OpenButton': {
+            type: 'table',
+            description: (
+                <>
+                    <h4>Configuration for the open/minimize button on mobile</h4>
+                    <p>Customize the button that appears when the window is closed on mobile devices.</p>
+                    <DynamicCodeBlock 
+                        lang="luau" 
+code={`OpenButton = {
+    Title = "Open Example UI",
+    Icon = "monitor",
+    Content = "Ready",
+    State = "Compact", -- Idle, Collapsed, Compact, Expanded
+    CornerRadius = UDim.new(1, 0),
+    ExpandedHeight = 68,
+    ExpandedWidth = 240,
+    MaxWidth = 380,
+    AutoCollapse = 3,
+    AutoHide = 4,       -- shrink into an iPhone-style idle pill
+    WakeOnShow = true,  -- wake to Compact whenever the window closes
+    IdleWidth = 78,
+    IdleHeight = 28,
+    Shadow = true,      -- native UIShadow
+    ShadowBlur = 18,
+    ShadowTransparency = 0.5,
+    MorphWindow = true, -- shrink and travel into the island on close
+    MorphDuration = 0.46,
+    StrokeThickness = 1,
+    Color = ColorSequence.new( -- only gradient 
+        Color3.fromHex("FF0F7B"), 
+        Color3.fromHex("F89B29")
+    ),
+    OnlyMobile = false,
+    Enabled = true,
+    Draggable = true,
+}`}
+                    />
+                </>
+            ),
+        },
+        'User': {
+            type: 'table',
+            description: (
+                <>
+                    <h4>User information section in bottom left</h4>
+                    <DynamicCodeBlock
+                        lang="luau"
+                        code={`User = {
+    Enabled = true,
+    Anonymous = false,
+    Callback = function()
+        print("User clicked")
+    end,
+}`}
+                    />
+                </>
+            ),
+        },
+        'KeySystem': {
+            type: 'table',
+            description: (
+                <>
+                    <h4>Key system configuration</h4>
+                    <DynamicCodeBlock
+                        lang="luau"
+                        code={`KeySystem = {
+    Note = "Example Key System. With luarmor.",
+    SaveKey = true,
+    API = {
+        {
+            Type = "luarmor",
+            ScriptId = 1234,
+            Discord = "https://discord.gg/example",
+        },
+    },
+}`}
+                    />
+                </>
+            ),
+        },
+    }}
+/>
+
+## Dynamic Island Open Button
+
+`EditOpenButton` returns a controller. Its width, height, icon, title, and content animate between four states without recreating the UI. After `AutoHide` seconds, the button contracts into the small `Idle` pill while remaining tappable. When `MorphWindow` is enabled, closing the window keeps its layout intact while the whole surface scales down and travels into the Dynamic Island; opening reverses the same animation.
+
+```luau
+local Island = Window:EditOpenButton({
+    Title = "WindUI",
+    Icon = "geist:sparkles",
+    State = "Compact",
+    AutoHide = 4,
+    IdleWidth = 78,
+    IdleHeight = 28,
+    Shadow = true,
+    ShadowBlur = 18,
+    MorphWindow = true,
+    MorphDuration = 0.46,
+    OnlyMobile = false,
+})
+
+Island:Expand({
+    Title = "Download complete",
+    Content = "All files are ready",
+    Icon = "solar:check-circle-bold",
+}, 3) -- returns to Compact after 3 seconds
+
+Island:Collapse()       -- icon-only circle
+Island:Compact()        -- icon + title pill
+Island:Idle()           -- small black pill; Hide() is an alias
+Island:Wake()           -- return to Compact and restart AutoHide
+Island:ToggleExpanded()
+Island:Push({ Title = "Saved", Content = "Config updated" }, 2)
+print(Island:GetState())
+```
+
+The same operations are available directly on the window:
+
+```luau
+Window:ExpandOpenButton({ Title = "Working", Content = "Please wait" })
+Window:CompactOpenButton()
+Window:CollapseOpenButton()
+Window:HideOpenButton()
+Window:WakeOpenButton()
+Window:SetOpenButtonState("Expanded", { Content = "Custom state" })
+```
+
+## Advanced Linked Corners
+
+Linked corners use Roblox's native per-corner `UICorner` radii, so every element surface—not only the outer container—receives the correct top-left, top-right, bottom-left and bottom-right shape. Sequences can split by group or explicit breaks, and HStack automatically switches linking direction when it stacks vertically.
+
+```luau
+local Window = WindUI:CreateWindow({
+    Title = "Linked UI",
+    NewElements = true,
+    LinkElementCorners = true,
+    CornerLink = {
+        InnerRadius = 0,
+        Gap = 1,
+        BridgeHidden = true,
+        BridgeSparse = false,
+        BreakTypes = { "Divider", "Space", "Section" },
+    },
+})
+
+Tab:Button({ Title = "First", CornerGroup = "account" })
+Tab:Button({ Title = "Middle", CornerGroup = "account" })
+Tab:Button({ Title = "Last", CornerGroup = "account", CornerBreakAfter = true })
+Tab:Button({ Title = "Separate", LinkCorners = false })
+```
+
+Tabs and containers such as `Group`, `HStack`, and `VStack` may define their own `CornerLink` table. `InnerRadius = 0` uses native per-corner radii to keep every shared seam completely flat. `Gap = 0` joins surfaces edge-to-edge and `Gap = 1` leaves a crisp separator. Individual elements support `CornerGroup`, `CornerBreak`, `CornerBreakBefore`, `CornerBreakAfter`, and `LinkCorners = false`.
+
+## Background API
+
+`SetBackgroundImage` still works, but new code should use `SetBackground`.
+It accepts colors, gradients, images, custom assets and `.webm` videos.
+
+```luau
+Window:SetBackground("#101821")
+
+Window:SetBackground(WindUI:Gradient({
+    ["0"] = { Color = "#071018", Transparency = 0.05 },
+    ["100"] = { Color = "#12352F", Transparency = 0.45 },
+}, {
+    Rotation = 118,
+}), 0.48)
+
+Window:SetBackground({
+    Image = "https://example.com/panel.png",
+    Transparency = 0.35,
+    ScaleType = Enum.ScaleType.Crop,
+})
+
+Window:SetBackground({
+    Video = "https://example.com/background.webm",
+    Volume = 0,
+    Looped = true,
+})
+
+Window:SetBackground("customasset:WindUI/MyHub/assets/background.png")
+```
+
+## Loading API
+
+Use the standalone loading API when the loading screen should live outside `CreateWindow`.
+`LoadingScreen` in the window config still works for older scripts.
+
+```luau
+local Loader = WindUI:LoadingCreate({
+    Title = "WindUI",
+    Desc = "Preparing interface",
+    Icon = "sparkles",
+    Steps = { "Theme", "Motion", "Elements" },
+    Duration = 5,
+    AutoStatus = true,
+    CompleteStatus = "Ready",
+    CloseDelay = 0.18,
+})
+
+-- Duration starts automatic progress and closes after exactly five seconds.
+-- Manual control remains available:
+Loader:SetProgress(0.35):SetStatus("Loading theme")
+Loader:Step(2, "Building UI")
+Loader:Play(5)
+```
+
+## Window Methods
+
+<TypeTable 
+    type={{
+        ':Tab': {
+            type: 'function',
+            description: (
+                <>
+                    <h4>Creates a new tab in the window sidebar.</h4>
+                    <div>More <a href="/docs/windui/tabs" className="underline">here</a></div>
+                    <p>Example:</p>
+                    <DynamicCodeBlock
+                        lang="luau"
+                        code={`local TabGeneral = Window:Tab({
+    Title = "General",
+    Icon = "settings",
+})
+
+local TabAdvanced = Window:Tab({
+    Title = "Advanced",
+    Icon = "sliders",
+})`}
+                    />
+                </>
+            ),
+            args: {
+                TabConfig: {
+                    type: 'table',
+                    description: (
+                        <>
+                            <h4>Configuration for creating a tab:</h4>
+                            <DynamicCodeBlock
+                                lang="luau"
+                                code={`{
+    Title = "Tab Name",
+    Icon = "icon-name", -- lucide icon
+    IconColor = Color3.fromHex("#FFFFFF"), -- optional
+    Border = false, -- optional
+}`}
+                            />
+                        </>
+                    ),
+                }
+            }
+        },
+        ':Section': {
+            type: 'function',
+            description: (
+                <>
+                    <h4>Creates a new section for organizing elements within a tab.</h4>
+                    <p>Example:</p>
+                    <DynamicCodeBlock
+                        lang="luau"
+                        code={`local Section1 = Window:Section({
+    Title = "Main Section",
+    Icon = "layout",
+})
+
+local Section2 = Window:Section({
+    Title = "Settings",
+    Icon = "sliders",
+})`}
+                    />
+                </>
+            ),
+            args: {
+                SectionConfig: {
+                    type: 'table',
+                    description: (
+                        <>
+                            <h4>Configuration for creating a section:</h4>
+                            <DynamicCodeBlock
+                                lang="luau"
+                                code={`{
+    Title = "Section Name",
+    Icon = "icon-name", -- optional
+    Opened = true, -- optional, if expandable
+}`}
+                            />
+                        </>
+                    ),
+                }
+            }
+        },
+        ':SetTitle': {
+            type: 'function',
+            description: 'Updates the window title.',
+            args: {
+                Title: {
+                    type: 'string',
+                    description: 'New window title.',
+                }
+            }
+        },
+        ':SetAuthor': {
+            type: 'function',
+            description: 'Updates the window author/subtitle.',
+            args: {
+                Author: {
+                    type: 'string',
+                    description: 'New author text.',
+                }
+            }
+        },
+        ':SetIcon': {
+            type: 'function',
+            description: 'Updates the window icon.',
+            args: {
+                Icon: {
+                    type: 'string',
+                    description: 'Icon name, rbxassetid://, or URL.',
+                }
+            }
+        },
+        ':SetIconSize': {
+            type: 'function',
+            description: 'Changes the size of the window icon.',
+            args: {
+                Size: {
+                    type: 'number|UDim2',
+                    description: 'New icon size.',
+                }
+            }
+        },
+        ':SetSize': {
+            type: 'function',
+            description: 'Updates the window size.',
+            args: {
+                Size: {
+                    type: 'UDim2',
+                    description: 'New window size.',
+                }
+            }
+        },
+        ':SetToggleKey': {
+            type: 'function',
+            description: 'Sets the keyboard key to toggle window visibility.',
+            args: {
+                KeyCode: {
+                    type: 'Enum.KeyCode',
+                    description: 'The key to toggle the window (e.g., Enum.KeyCode.K).',
+                }
+            }
+        },
+        ':SetTheme': {
+            type: 'function',
+            description: 'Changes the theme of the window.',
+            args: {
+                Theme: {
+                    type: 'string',
+                    description: 'Theme name (e.g., "Dark", "Light").',
+                }
+            }
+        },
+        ':SetBackgroundImage': {
+            type: 'function',
+            description: 'Updates the window background image.',
+            args: {
+                ImageId: {
+                    type: 'string',
+                    description: 'Asset ID or URL of the background image.',
+                }
+            }
+        },
+        ':SetBackgroundImageTransparency': {
+            type: 'function',
+            description: 'Changes the background image transparency.',
+            args: {
+                Transparency: {
+                    type: 'number',
+                    description: 'Transparency value (0-1).',
+                }
+            }
+        },
+        ':SetBackgroundTransparency': {
+            type: 'function',
+            description: 'Toggles window transparency.',
+            args: {
+                Value: {
+                    type: 'number',
+                    description: 'Transparency value (0-1).',
+                }
+            }
+        },
+        ':SetUIScale': {
+            type: 'function',
+            description: 'Changes the UI scale of the entire window.',
+            args: {
+                Scale: {
+                    type: 'number',
+                    description: 'Scale factor (1.0 is default).',
+                }
+            }
+        },
+        ':GetUIScale': {
+            type: 'function',
+            description: 'Returns the current UI scale of the window.',
+            returns: 'number'
+        },
+        ':SetPanelBackground': {
+            type: 'function',
+            description: 'Shows or hides the main panel background.',
+            args: {
+                Visible: {
+                    type: 'boolean',
+                    description: 'Whether to show the panel background.',
+                }
+            }
+        },
+        ':IsResizable': {
+            type: 'function',
+            description: 'Sets whether the window can be resized.',
+            args: {
+                Resizable: {
+                    type: 'boolean',
+                    description: 'Whether the window is resizable.',
+                }
+            }
+        },
+        ':ToggleTransparency': {
+            type: 'function',
+            description: 'Toggles the transparency effect of the window.',
+            args: {
+                Enabled: {
+                    type: 'boolean',
+                    description: 'Whether transparency is enabled.',
+                }
+            }
+        },
+        ':SetToTheCenter': {
+            type: 'function',
+            description: 'Moves the window to the center of the screen.',
+        },
+        ':Toggle': {
+            type: 'function',
+            description: 'Toggles the window visibility (open/close).',
+        },
+        ':Open': {
+            type: 'function',
+            description: 'Opens the window with animation.',
+        },
+        ':Close': {
+            type: 'function',
+            description: 'Closes the window with animation.',
+        },
+        ':Destroy': {
+            type: 'function',
+            description: 'Destroys the window and removes it from the interface.',
+        },
+        ':ToggleFullscreen': {
+            type: 'function',
+            description: 'Toggles fullscreen mode for the window.',
+        },
+        ':SelectTab': {
+            type: 'function',
+            description: 'Selects a specific tab in the window.',
+            args: {
+                Tab: {
+                    type: 'table',
+                    description: 'The tab object to select.',
+                }
+            }
+        },
+        ':LockAll': {
+            type: 'function',
+            description: 'Locks all elements in the window.',
+        },
+        ':UnlockAll': {
+            type: 'function',
+            description: 'Unlocks all elements in the window.',
+        },
+        ':GetLocked': {
+            type: 'function',
+            description: 'Returns a table of all locked elements.',
+            returns: 'table'
+        },
+        ':GetUnlocked': {
+            type: 'function',
+            description: 'Returns a table of all unlocked elements.',
+            returns: 'table'
+        },
+        ':OnOpen': {
+            type: 'function',
+            description: (
+                <>
+                    <h4>Sets a callback function to be called when the window opens.</h4>
+                    <p>Example:</p>
+                    <DynamicCodeBlock
+                        lang="luau"
+                        code={`Window:OnOpen(function()
+    print("Window opened!")
+    WindUI:Notify({
+        Title = "Window Opened",
+        Content = "Welcome back!",
+        Icon = "check",
+    })
+end)`}
+                    />
+                </>
+            ),
+            args: {
+                Callback: {
+                    type: 'function',
+                    description: 'Function to call when window opens.',
+                }
+            }
+        },
+        ':OnClose': {
+            type: 'function',
+            description: (
+                <>
+                    <h4>Sets a callback function to be called when the window closes.</h4>
+                    <p>Example:</p>
+                    <DynamicCodeBlock
+                        lang="luau"
+                        code={`Window:OnClose(function()
+    print("Window closed!")
+end)`}
+                    />
+                </>
+            ),
+            args: {
+                Callback: {
+                    type: 'function',
+                    description: 'Function to call when window closes.',
+                }
+            }
+        },
+        ':OnDestroy': {
+            type: 'function',
+            description: 'Sets a callback function to be called when the window is destroyed.',
+            args: {
+                Callback: {
+                    type: 'function',
+                    description: 'Function to call when window is destroyed.',
+                }
+            }
+        },
+        ':Tag': {
+            type: 'function',
+            description: (
+                <>
+                    <h4>Creates a tag/badge in the window topbar.</h4>
+                    <p>Example:</p>
+                    <DynamicCodeBlock
+                        lang="luau"
+                        code={`Window:Tag({
+    Title = "v1.0.5",
+    Color = Color3.fromHex("#315dff"),
+})
+
+Window:Tag({
+    Title = "Beta",
+    Color = Color3.fromHex("#FF6B6B"),
+})`}
+                    />
+                </>
+            ),
+            args: {
+                TagConfig: {
+                    type: 'table',
+                    description: (
+                        <>
+                            <h4>Tag configuration:</h4>
+                            <DynamicCodeBlock
+                                lang="luau"
+                                code={`{
+    Title = "Tag Text",
+    Color = Color3.fromHex("#FFFFFF"), -- optional
+    Radius = 6, -- optional
+}`}
+                            />
+                        </>
+                    ),
+                }
+            }
+        },
+        ':EditOpenButton': {
+            type: 'function',
+            description: 'Customizes the open/minimize button on mobile.',
+            args: {
+                Config: {
+                    type: 'table',
+                    description: 'Button configuration.',
+                }
+            }
+        },
+        ':Dialog': {
+            type: 'function',
+            description: (
+                <>
+                    <h4>Creates a modal dialog/popup window.</h4>
+                    <p>Example:</p>
+                    <DynamicCodeBlock
+                        lang="luau"
+                        code={`Window:Dialog({
+    Title = "Confirm Action",
+    Content = "Are you sure?",
+    Buttons = {
+        {
+            Title = "Yes",
+            Callback = function() print("Confirmed") end,
+            Variant = "Primary",
+        },
+        {
+            Title = "No",
+            Callback = function() print("Cancelled") end,
+            Variant = "Secondary",
+        }
+                    }
+})`}
+                    />
+                </>
+            ),
+            args: {
+                DialogConfig: {
+                    type: 'table',
+                    description: (
+                        <>
+                            <h4>Dialog configuration:</h4>
+                            <DynamicCodeBlock
+                                lang="luau"
+                                code={`{
+    Title = "Dialog Title",
+    Content = "Dialog content text",
+    Buttons = { -- Array of button configurations
+                        {
+            Title = "Button Text",
+            Callback = function() end,
+            Variant = "Primary", -- Primary, Secondary, or Tertiary
+        }
+                    }
+}`}
+                            />
+                        </>
+                    ),
+                }
+            }
+        },
+        ':Divider': {
+            type: 'function',
+            description: (
+                <>
+                    <h4>Creates a visual divider/separator in the sidebar.</h4>
+                    <p>Example:</p>
+                    <DynamicCodeBlock
+                        lang="luau"
+                        code={`local Section1 = Window:Section({ Title = "Section 1" })
+Section1:Button({ Title = "Button 1" })
+
+Window:Divider()
+
+local Section2 = Window:Section({ Title = "Section 2" })
+Section2:Button({ Title = "Button 2" })`}
+                    />
+                </>
+            ),
+        },
+        ':DisableTopbarButtons': {
+            type: 'function',
+            description: 'Disables specific topbar buttons.',
+            args: {
+                Buttons: {
+                    type: 'table',
+                    description: 'Table of button names to disable.',
+                }
+            }
+        },
+        ':CreateTopbarButton': {
+            type: 'function',
+            description: (
+                <>
+                    <h4>Creates a custom button in the window topbar.</h4>
+                    <p>Example:</p>
+                    <DynamicCodeBlock
+                        lang="luau"
+                        code={`Window:CreateTopbarButton("Settings", "settings", function()
+    print("Settings clicked")
+end)
+
+Window:CreateTopbarButton("Info", "info", function()
+    WindUI:Notify({
+        Title = "Information",
+        Content = "This is a notification",
+        Icon = "bell",
+        Duration = 3
+    })
+end)`}
+                    />
+                </>
+            ),
+            args: {
+                Config: {
+                    type: 'table',
+                    description: (
+                        <>
+                            <h4>Button configuration:</h4>
+                            <DynamicCodeBlock
+                                lang="luau"
+                                code={`{
+    Name = "Button Name",
+    Icon = "icon-name", -- lucide icon name
+    Callback = function() 
+        -- Button click handler
+    end,
+    LayoutOrder = 100, -- optional, controls button order
+    IconThemed = false, -- optional
+    Color = Color3.fromHex("#FFFFFF") -- optional
+}`}
+                            />
+                        </>
+                    ),
+                }
+            }
+        },
+    }}
+/>
+
+
+<br/>
+
+<Alert className="bg-yellow-300/30 dark:bg-yellow-950/80 text-yellow-700 dark:text-yellow-200/90 border-0 rounded-[20px]">
+
+    <TriangleAlert />
+    <AlertTitle>WARNING</AlertTitle>
+    <AlertDescription className="[&_p]:m-0">
+        `Background` thing works only for RAW URL LINK or rbxassetid://IMAGE ID !!!!!!
+        `Background` thing will not work for a DECAL ID !!!!!!
+    </AlertDescription>
+</Alert>

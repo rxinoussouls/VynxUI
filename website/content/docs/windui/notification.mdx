@@ -1,0 +1,275 @@
+---
+title: Notification
+description: Display system notifications to users
+---
+
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { DynamicCodeBlock } from 'fumadocs-ui/components/dynamic-codeblock'
+import TypeTable from '@/components/TypeTable';
+
+![Notifications](/windui/banners/Notifications.png)
+
+## Notification System
+
+Notifications are temporary messages displayed to inform users about events or status changes. They automatically disappear after a set duration.
+
+The notification stack is responsive from mobile to desktop, keeps the newest item at the top, and limits the visible stack to four items by default. The default `Compact` appearance uses a small toast surface, optional icon, and a short two-pixel timer. Long text stays clear of metadata, the close target, actions, and progress. Timed notifications pause while hovered.
+
+WindUI uses Roblox's native [`UIShadow`](https://create.roblox.com/docs/reference/engine/classes/UIShadow) and individual `UICorner` radii when available. The dark surface overlay and old frame-shadow fallback are both disabled by default; unsupported clients simply render without a shadow unless `FallbackShadow = true` is requested.
+
+## Notification Types
+
+`Type` selects the renderer while `Style` selects its status color. `Normal` is the modern capsule/card renderer, `Window` is a Windows-inspired app card with an optional selector and actions, and `Originally` restores the compact classic WindUI presentation.
+
+```luau
+WindUI:Notify({
+    Type = "Window",
+    AppName = "WindUI",
+    AppIcon = "lucide:app-window",
+    Title = "Feature Launch Party",
+    Content = "Studio S / Ballroom\n4:00 PM",
+    Selection = {
+        Value = "Going",
+        Values = { "Going", "Maybe", "Not going" },
+    },
+    Buttons = {
+        { Title = "RSVP", Close = false },
+        { Title = "Dismiss" },
+    },
+    Duration = false,
+})
+
+WindUI:Notify({
+    Type = "Originally",
+    Title = "Classic WindUI",
+    Content = "The original compact notification surface.",
+})
+```
+
+<Tabs defaultValue="small">
+    <TabsList>
+        <TabsTrigger value="small">Basic</TabsTrigger>
+        <TabsTrigger value="full">Full</TabsTrigger>
+    </TabsList>
+    <TabsContent value="small">
+```luau
+WindUI:Notify({
+    Title = "Success",
+    Content = "Operation completed successfully",
+    Style = "Success",
+    Duration = 3
+})
+```
+    </TabsContent>
+    <TabsContent value="full">
+```luau
+WindUI:Notify({
+    Title = "Success",
+    Content = "Operation completed successfully",
+    Style = "Success", -- Info, Notice, Success, Warning, Error, Neutral
+    Icon = "solar:check-circle-bold", -- any registered source, asset, URL, or descriptor
+    Duration = 3, -- time in seconds. optional
+})
+```
+    </TabsContent>
+</Tabs>
+
+## Capsule and Card Appearances
+
+`Compact` is the default and matches a small system-notification capsule. `Card` increases the icon area and supports avatar plus timestamp metadata. `Glass` enables the Liquid Glass surface and keeps the accented treatment for scripts that want it.
+
+```luau
+WindUI:Notify({
+    Title = "Notification example",
+    Content = "A compact capsule",
+    Appearance = "Compact",
+    Icon = "geist:bell",
+})
+
+WindUI:Notify({
+    Title = "Anonim",
+    Content = "A larger notification with metadata.",
+    Appearance = "Card",
+    Avatar = "rbxassetid://123456789",
+    Timestamp = "May 23, 2025",
+    Duration = false,
+})
+```
+
+Set `Decorated = true` to add the style color wash and a quiet accent rail while keeping the compact layout.
+
+## Liquid Glass
+
+Use `Appearance = "Glass"` or add `LiquidGlass = true` to any compact/card notification. The glass texture, translucent surface, border, and native shadow are separate layers, so the card stays readable without a solid black overlay.
+
+```luau
+WindUI:Notify({
+    Title = "Saved successfully",
+    Content = "Liquid Glass is active.",
+    Appearance = "Compact",
+    LiquidGlass = true,
+    DarkOverlay = false,
+    GlassTransparency = 0.78,
+    Style = "Success",
+})
+```
+
+## Native Shadow and Individual Corners
+
+Use `Corners` to set each radius independently. `Shadow = false` disables the native shadow. Set `FallbackShadow = true` only when a non-native compatibility shadow is required.
+
+```luau
+WindUI:Notify({
+    Title = "Saved",
+    Content = "Your changes are ready.",
+    Style = "Success",
+    Decorated = true,
+    Corners = {
+        TopLeft = 18,
+        TopRight = 18,
+        BottomRight = 18,
+        BottomLeft = 10,
+    },
+    ShadowBlur = 16,
+    ShadowTransparency = 0.58,
+})
+```
+
+## Action Buttons
+
+Notifications support up to two compact actions in one mobile-friendly row.
+
+```luau
+WindUI:Notify({
+    Title = "Connection lost",
+    Content = "Reconnect now or dismiss this message.",
+    Style = "Warning",
+    Duration = false,
+    Buttons = {
+        {
+            Title = "Reconnect",
+            Callback = function(Notification)
+                reconnect()
+            end,
+        },
+        {
+            Title = "Dismiss",
+        },
+    },
+})
+```
+
+Buttons close the notification after their callback by default. Set `Close = false` or `CloseOnClick = false` to keep it open.
+
+## Update and Timer Controls
+
+The returned notification can be updated in place or paused manually without creating another card.
+
+```luau
+local Notice = WindUI:Notify({
+    Title = "Downloading",
+    Content = "Preparing files...",
+    Duration = false,
+})
+
+Notice:Update({
+    Title = "Download complete",
+    Content = "All files are ready.",
+    Duration = 3,
+})
+
+Notice:Pause()
+Notice:Resume()
+print(Notice:GetRemainingDuration())
+```
+
+`Update` currently supports `Title`, `Content`, and `Duration`. Set `Content = false` to hide the content row.
+
+## Lifecycle Callbacks
+
+```luau
+WindUI:Notify({
+    Title = "Saved",
+    Style = "Success",
+    OnOpen = function(Notification)
+        print("Opened", Notification.Index)
+    end,
+    OnClose = function(Notification, Reason)
+        print("Closed because", Reason)
+    end,
+})
+```
+
+Close reasons include `Timeout`, `Dismissed`, `Action`, `Overflow`, and `Manual`.
+
+## Styles
+
+Use `Style` or `Variant` to pick the status preset. Aliases like `warn`, `successful`, and `green` are normalized automatically. For backward compatibility, `Type = "Success"` still works when the value is not one of the three renderer names.
+
+```luau
+WindUI:Notify({
+    Title = "Heads up",
+    Content = "This is a notice-style notification.",
+    Style = "Notice",
+})
+
+WindUI:Notify({
+    Title = "Saved",
+    Content = "Config saved successfully.",
+    Style = "Success",
+})
+
+WindUI:Notify({
+    Title = "Warning",
+    Content = "Missing permission.",
+    Style = "Warning",
+    Duration = false, -- keep it open until closed
+})
+```
+
+## Notification Parameters
+
+<TypeTable
+    data={[
+		{ name: "Title", type: "string", description: "Notification title", default: "Notification" },
+		{ name: "Content", type: "string", description: "Notification message text", default: "nil" },
+		{ name: "Type / NotificationType", type: '"Normal" | "Window" | "Originally"', description: "Select the modern, Windows-inspired, or classic WindUI renderer.", default: "Normal" },
+		{ name: "Appearance / Layout", type: '"Compact" | "Card" | "Glass"', description: "Capsule, metadata card, or accented glass presentation.", default: "Compact" },
+		{ name: "LiquidGlass / Glass", type: "boolean?", description: "Apply the translucent Liquid Glass texture to any appearance.", default: "true for Glass appearance" },
+		{ name: "GlassTransparency", type: "number?", description: "Liquid Glass texture transparency from 0 to 1.", default: "0.78" },
+		{ name: "Style / Variant", type: '"Info" | "Notice" | "Success" | "Warning" | "Error" | "Neutral"', description: "Status color preset. Common aliases like warn, successful and green are supported.", default: "Info" },
+		{ name: "AppName / App", type: "string?", description: "Application label shown by Window notifications.", default: "WindUI" },
+		{ name: "AppIcon", type: "icon?", description: "Application icon shown by Window notifications.", default: "Icon or bell" },
+		{ name: "Selection", type: "{ Value: any?, Values: { any }?, Callback: function? }?", description: "Optional in-card selector for Window notifications; each press advances to the next value.", default: "nil" },
+		{ name: "Icon", type: "string | number | table | Instance?", description: "Icon from any registered source, Roblox asset, URL, descriptor, or image instance.", default: "style icon" },
+        { name: "Icon = false", type: "boolean?", description: "Disable the style icon bubble.", default: "nil" },
+		{ name: "Avatar", type: "string | number | table | Instance?", description: "Avatar rendered as a directly clipped ImageLabel; selects Card appearance when Appearance is omitted.", default: "nil" },
+		{ name: "DarkOverlay / Overlay", type: "boolean?", description: "Opt into the older dark notification surface. The modern translucent surface leaves it disabled.", default: "false" },
+		{ name: "Timestamp / Time", type: "string?", description: "Right-aligned metadata for Card notifications.", default: "nil" },
+		{ name: "Decorated", type: "boolean?", description: "Enable the accent wash and top line on Compact or Card.", default: "false" },
+		{ name: "Radius", type: "number?", description: "Default radius used by all four corners.", default: "18 (Compact), 20 (Card)" },
+		{ name: "Corners / CornerRadii", type: "{ TopLeft: number | UDim?, TopRight: number | UDim?, BottomRight: number | UDim?, BottomLeft: number | UDim? }?", description: "Override each native UICorner radius independently.", default: "Radius" },
+		{ name: "Shadow", type: "boolean?", description: "Enable native UIShadow.", default: "true" },
+		{ name: "FallbackShadow", type: "boolean?", description: "Opt in to the legacy frame shadow if UIShadow is unavailable.", default: "false" },
+		{ name: "ShadowBlur", type: "number | UDim?", description: "Native shadow blur radius.", default: "16" },
+		{ name: "ShadowOffset", type: "UDim2?", description: "Native shadow offset.", default: "UDim2.fromOffset(0, 5)" },
+		{ name: "ShadowSpread", type: "UDim2?", description: "Native shadow spread.", default: "UDim2.fromOffset(2, 2)" },
+		{ name: "ShadowTransparency", type: "number?", description: "Native shadow transparency from 0 to 1.", default: "0.68" },
+        { name: "AccentColor", type: "Color3 | '#RRGGBB'?", description: "Override the style accent color.", default: "style color" },
+        { name: "ProgressColor", type: "Color3 | '#RRGGBB'?", description: "Override the duration wipe color.", default: "AccentColor" },
+        { name: "ProgressTransparency", type: "number?", description: "Bottom progress fill transparency from 0 to 1.", default: "0.08" },
+        { name: "Buttons", type: "{ { Title: string, Callback: function?, Close: boolean? } }?", description: "Up to two notification actions. Buttons close the card unless Close or CloseOnClick is false.", default: "{}" },
+        { name: "MaxVisible", type: "number?", description: "Maximum notifications kept in the visible stack.", default: "4" },
+        { name: "CanClose", type: "boolean?", description: "Show the close button.", default: "true" },
+        { name: "Duration", type: "number | false?", description: "Display duration in seconds. Use false or 0 to keep it open.", default: "5" },
+        { name: "PauseOnHover", type: "boolean?", description: "Pause the timer and progress bar while the pointer is over the card.", default: "true" },
+        { name: "OnOpen", type: "(Notification) -> ()?", description: "Called after the card starts its open transition.", default: "nil" },
+        { name: "OnClose", type: "(Notification, Reason: string) -> ()?", description: "Called once when the card begins closing.", default: "nil" },
+    ]}
+/>
+
+## Related Documentation
+
+- [Dialog](./dialog) - Modal confirmation dialogs
+- [Popup](./popup) - Popup windows
+- [Window](./window) - Main window container

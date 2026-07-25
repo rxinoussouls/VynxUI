@@ -1,0 +1,65 @@
+---
+title: Badge
+description: Display a compact status pill.
+---
+
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import TypeTable from '@/components/TypeTable';
+
+## Badge Element
+
+Badge renders a colored pill on the right side of an element row.
+
+<Tabs defaultValue="basic">
+    <TabsList>
+        <TabsTrigger value="basic">Basic</TabsTrigger>
+        <TabsTrigger value="full">Full</TabsTrigger>
+    </TabsList>
+    <TabsContent value="basic">
+```luau
+local Badge = Tab:Badge({
+    Title = "Access",
+    Value = "Premium",
+    Variant = "Warning",
+})
+```
+    </TabsContent>
+    <TabsContent value="full">
+```luau
+local Badge = Tab:Badge({
+    Title = "Build",
+    Desc = "Current release channel",
+    Value = "Stable",
+    Variant = "Success",
+    Icon = "badge-check",
+    Width = 110,
+    Callback = function(value)
+        print(value)
+    end,
+})
+```
+    </TabsContent>
+</Tabs>
+
+## Parameters
+
+<TypeTable
+    data={[
+        { name: "Value / Badge", type: "string?", description: "Pill text.", default: "Variant" },
+        { name: "Variant", type: "string?", description: "Info, Success, Warning, Error or Neutral.", default: "Info" },
+        { name: "Color", type: "Color3 | hex?", description: "Override variant color.", default: "variant color" },
+        { name: "Icon", type: "string?", description: "Pill icon.", default: "variant icon" },
+        { name: "Width", type: "number?", description: "Pill width.", default: "96" },
+        { name: "Callback", type: "function?", description: "Called when the row is clicked.", default: "nil" },
+    ]}
+/>
+
+## Functions
+
+<TypeTable
+    type={{
+        ':SetValue': { type: 'function', description: 'Update badge text.', args: { Value: { type: 'string' } } },
+        ':SetVariant': { type: 'function', description: 'Update variant color.', args: { Variant: { type: 'string' } } },
+    }}
+/>
+

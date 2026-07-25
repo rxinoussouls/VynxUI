@@ -1,0 +1,52 @@
+---
+title: Callout
+description: Display highlighted information blocks.
+---
+
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import TypeTable from '@/components/TypeTable';
+
+## Callout Element
+
+Callout is a simple information block using variants and icons.
+
+<Tabs defaultValue="basic">
+    <TabsList>
+        <TabsTrigger value="basic">Basic</TabsTrigger>
+        <TabsTrigger value="full">Full</TabsTrigger>
+    </TabsList>
+    <TabsContent value="basic">
+```luau
+Tab:Callout({
+    Title = "Heads up",
+    Desc = "This action uses saved config.",
+})
+```
+    </TabsContent>
+    <TabsContent value="full">
+```luau
+Tab:Callout({
+    Title = "Build Ready",
+    Desc = "Everything compiled successfully.",
+    Variant = "Success",
+    Icon = "circle-check",
+    Color = Color3.fromHex("#16a34a"),
+    Size = UDim2.new(1, 0, 0, 72),
+})
+```
+    </TabsContent>
+</Tabs>
+
+## Parameters
+
+<TypeTable
+    data={[
+        { name: "Title", type: "string?", description: "Callout title.", default: "variant name" },
+        { name: "Desc / Content", type: "string?", description: "Callout body.", default: "nil" },
+        { name: "Variant", type: "string?", description: "Info, Success, Warning or Error.", default: "Info" },
+        { name: "Icon", type: "string?", description: "Override variant icon.", default: "variant icon" },
+        { name: "Color", type: "Color3?", description: "Override variant color.", default: "variant color" },
+        { name: "Size", type: "UDim2?", description: "Optional element size.", default: "nil" },
+    ]}
+/>
+

@@ -1,0 +1,33 @@
+---
+title: Video
+description: Render Roblox or cached webm video media in WindUI Modded
+---
+
+import TypeTable from '@/components/TypeTable';
+
+`Video` renders a `VideoFrame` in the current tab or container.
+HTTP `.webm` sources are cached into the window asset folder when the executor supports `writefile` and `getcustomasset`.
+
+```luau
+Tab:Video({
+    Video = "video.webm",
+    AspectRatio = "16:9",
+    Radius = 18,
+})
+```
+
+```luau
+Tab:Video({
+    Video = "https://example.com/preview.webm",
+    AspectRatio = "16:9",
+})
+```
+
+<TypeTable 
+    data={[
+        { name: "Video", type: "string", description: "Roblox video asset, local custom asset path or HTTPS .webm URL." },
+        { name: "AspectRatio", type: "string|number", description: "Aspect ratio. Example: '16:9' or 1.777." },
+        { name: "Radius", type: "number", description: "Video corner radius." },
+    ]}
+/>
+

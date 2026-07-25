@@ -1,0 +1,66 @@
+---
+title: Viewport
+description: Render 3D objects inside WindUI Modded.
+---
+
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import TypeTable from '@/components/TypeTable';
+
+## Viewport Element
+
+Viewport embeds a `ViewportFrame` and can optionally allow drag and pinch interaction.
+
+<Tabs defaultValue="basic">
+    <TabsList>
+        <TabsTrigger value="basic">Basic</TabsTrigger>
+        <TabsTrigger value="full">Full</TabsTrigger>
+    </TabsList>
+    <TabsContent value="basic">
+```luau
+local Part = Instance.new("Part")
+Part.Size = Vector3.new(2, 2, 2)
+
+Tab:Viewport({
+    Object = Part,
+})
+```
+    </TabsContent>
+    <TabsContent value="full">
+```luau
+local Model = workspace:WaitForChild("PreviewModel"):Clone()
+
+local Preview = Tab:Viewport({
+    Object = Model,
+    Height = 220,
+    Interactive = true,
+    Focused = true,
+})
+
+Preview:Focus()
+```
+    </TabsContent>
+</Tabs>
+
+## Parameters
+
+<TypeTable
+    data={[
+        { name: "Object", type: "Instance", description: "BasePart or Model to render.", default: "required" },
+        { name: "Camera", type: "Camera?", description: "Custom camera.", default: "new Camera" },
+        { name: "Interactive", type: "boolean?", description: "Allow rotate and zoom input.", default: "false" },
+        { name: "Height", type: "number?", description: "Viewport height.", default: "200" },
+        { name: "Focused", type: "boolean?", description: "Auto focus camera on object.", default: "true" },
+    ]}
+/>
+
+## Functions
+
+<TypeTable
+    type={{
+        ':SetObject': { type: 'function', description: 'Replace rendered object.', args: { Object: { type: 'Instance' }, IsClone: { type: 'boolean?' } } },
+        ':SetHeight': { type: 'function', description: 'Change viewport height.', args: { Height: { type: 'number' } } },
+        ':Focus': { type: 'function', description: 'Refocus camera on object bounds.', args: {} },
+        ':SetCamera': { type: 'function', description: 'Use a custom camera.', args: { Camera: { type: 'Camera' } } },
+        ':SetInteractive': { type: 'function', description: 'Enable or disable interaction.', args: { Interactive: { type: 'boolean' } } },
+    }}
+/>

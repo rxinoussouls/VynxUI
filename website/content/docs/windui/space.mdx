@@ -1,0 +1,58 @@
+---
+title: Space
+description: Add spacing between elements
+---
+
+import { DynamicCodeBlock } from 'fumadocs-ui/components/dynamic-codeblock'
+import TypeTable from '@/components/TypeTable';
+
+## "Space" Element
+
+Spaces add vertical or horizontal gaps between elements for better visual organization.
+
+```luau
+Tab:Space({ Columns = 1 })
+```
+
+## Space Parameters
+
+<TypeTable
+    data={[
+        { name: "Columns", type: "number?", description: "Size of space", default: "1" },
+    ]}
+/>
+
+## Usage Examples
+
+### Add Vertical Spacing
+
+```luau
+Tab:Button({ Title = "Button 1" })
+
+Tab:Space()
+
+Tab:Button({ Title = "Button 2" })
+```
+
+### Multi-Column Space
+
+```luau
+Tab:Space({ Columns = 3 })
+```
+
+### Organize Groups
+
+```luau
+Tab:Button({ Title = "Save" })
+Tab:Button({ Title = "Cancel" })
+
+Tab:Space({ Columns = 2 })
+
+Tab:Button({ Title = "Delete" })
+```
+
+## Related Documentation
+
+- [Tab](./tab) - Tab container
+- [Divider](./divider) - Visual divider between elements
+- [Group](./group) - Horizontal element layout

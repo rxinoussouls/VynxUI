@@ -1,0 +1,76 @@
+---
+title: DiscordCard
+description: Display a custom Discord invite card.
+---
+
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import TypeTable from '@/components/TypeTable';
+
+## DiscordCard Element
+
+DiscordCard is a styled invite block with copy and join actions. It normalizes invite codes into Discord URLs.
+
+<Tabs defaultValue="basic">
+    <TabsList>
+        <TabsTrigger value="basic">Basic</TabsTrigger>
+        <TabsTrigger value="full">Full</TabsTrigger>
+    </TabsList>
+    <TabsContent value="basic">
+```luau
+local Card = Tab:DiscordCard({
+    Title = "WindUI Community",
+    Invite = "ftgs-development-hub-1300692552005189632",
+})
+```
+    </TabsContent>
+    <TabsContent value="full">
+```luau
+local Card = Tab:DiscordCard({
+    Title = "WindUI Community",
+    Desc = "Copy the invite or run a custom join callback.",
+    Invite = "https://discord.gg/ftgs-development-hub-1300692552005189632",
+    Icon = "message-circle",
+    Members = "10k+",
+    Online = "Live",
+    CopyTitle = "Copy Link",
+    JoinTitle = "Join",
+    Height = 156,
+    Callback = function(url, card)
+        setclipboard(url)
+    end,
+})
+```
+    </TabsContent>
+</Tabs>
+
+## Parameters
+
+<TypeTable
+    data={[
+        { name: "Title", type: "string?", description: "Card title or server name.", default: "Discord Server" },
+        { name: "Desc", type: "string?", description: "Card description.", default: "Join the community and get updates." },
+        { name: "Invite / Url / Code", type: "string?", description: "Invite code or full URL.", default: "https://discord.gg/" },
+        { name: "Icon", type: "string?", description: "Icon shown in the header.", default: "message-circle" },
+        { name: "Members", type: "string | number?", description: "Optional member count pill.", default: "nil" },
+        { name: "Online", type: "string | number?", description: "Optional online count pill.", default: "nil" },
+        { name: "CopyTitle", type: "string?", description: "Copy button label.", default: "Copy Link" },
+        { name: "JoinTitle", type: "string?", description: "Join button label.", default: "Join" },
+        { name: "Height", type: "number?", description: "Minimum card height.", default: "152" },
+        { name: "Callback", type: "function?", description: "Called by Join/Open with url and card.", default: "nil" },
+    ]}
+/>
+
+## Functions
+
+<TypeTable
+    type={{
+        ':SetInvite': { type: 'function', description: 'Change the invite and return the normalized URL.', args: { Invite: { type: 'string' } } },
+        ':GetUrl': { type: 'function', description: 'Return the current invite URL.', args: {} },
+        ':Copy': { type: 'function', description: 'Copy the URL when clipboard APIs are available.', args: {} },
+        ':Open': { type: 'function', description: 'Run Callback then copy/fallback notify.', args: {} },
+        ':SetTitle': { type: 'function', description: 'Update title text.', args: { Title: { type: 'string' } } },
+        ':SetDesc': { type: 'function', description: 'Update description text.', args: { Desc: { type: 'string' } } },
+        ':Highlight': { type: 'function', description: 'Pulse the card background.', args: {} },
+    }}
+/>
+

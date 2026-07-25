@@ -1,0 +1,67 @@
+---
+title: StatCard
+description: Display a large stat value.
+---
+
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import TypeTable from '@/components/TypeTable';
+
+## StatCard Element
+
+StatCard is a metric block with a large value, subvalue and trend dot.
+
+<Tabs defaultValue="basic">
+    <TabsList>
+        <TabsTrigger value="basic">Basic</TabsTrigger>
+        <TabsTrigger value="full">Full</TabsTrigger>
+    </TabsList>
+    <TabsContent value="basic">
+```luau
+local FPS = Tab:StatCard({
+    Title = "FPS",
+    Value = "144",
+    SubValue = "+12% from last run",
+})
+```
+    </TabsContent>
+    <TabsContent value="full">
+```luau
+local Stat = Tab:StatCard({
+    Title = "Users",
+    Desc = "Active sessions",
+    Icon = "users",
+    Value = "1,204",
+    SubValue = "+18 today",
+    Trend = "Up",
+    TrendColor = "#16a34a",
+    ValueTextSize = 28,
+})
+
+Stat:SetValue("1,320", "+116 today")
+Stat:SetTrend("Up")
+```
+    </TabsContent>
+</Tabs>
+
+## Parameters
+
+<TypeTable
+    data={[
+        { name: "Value / Default", type: "string | number?", description: "Large stat text.", default: "0" },
+        { name: "SubValue / TrendText", type: "string?", description: "Footer text.", default: "nil" },
+        { name: "Trend", type: "string?", description: "Up, Down, Negative or Neutral.", default: "Up" },
+        { name: "TrendColor", type: "Color3 | hex?", description: "Override trend dot color.", default: "trend color" },
+        { name: "Icon", type: "string?", description: "Header icon.", default: "nil" },
+        { name: "ValueTextSize", type: "number?", description: "Large value text size.", default: "24" },
+    ]}
+/>
+
+## Functions
+
+<TypeTable
+    type={{
+        ':SetValue': { type: 'function', description: 'Update value and optional subvalue.', args: { Value: { type: 'any' }, SubValue: { type: 'any?' } } },
+        ':SetTrend': { type: 'function', description: 'Update trend and optional color.', args: { Trend: { type: 'string' }, Color: { type: 'Color3 | hex?' } } },
+    }}
+/>
+

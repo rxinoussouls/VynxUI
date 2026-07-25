@@ -1,0 +1,164 @@
+---
+title: ProgressBar
+description: Create determinate and indeterminate progress bars
+---
+
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import TypeTable from '@/components/TypeTable';
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+
+## ProgressBar Element
+
+Creates a progress bar for showing completion, loading state, or a numeric value.
+
+<Tabs defaultValue="basic">
+    <TabsList>
+        <TabsTrigger value="basic">Basic</TabsTrigger>
+        <TabsTrigger value="indeterminate">Indeterminate</TabsTrigger>
+    </TabsList>
+    <TabsContent value="basic">
+```luau
+local Progress = Tab:ProgressBar({
+    Title = "Download",
+    Desc = "Downloading files...",
+    Value = {
+        Min = 0,
+        Max = 100,
+        Default = 25,
+    },
+})
+```
+    </TabsContent>
+    <TabsContent value="indeterminate">
+```luau
+local Progress = Tab:ProgressBar({
+    Title = "Syncing",
+    Desc = "Please wait...",
+    Indeterminate = true,
+    IndeterminateText = "Syncing...",
+    Speed = 1.2,
+})
+```
+    </TabsContent>
+</Tabs>
+
+## ProgressBar Parameters
+
+<TypeTable
+    data={[
+        { name: "Title", type: "string", description: "Label shown above the progress bar", default: "\"Progress\"" },
+        { name: "Desc", type: "string?", description: "Optional description shown below the title", default: "nil" },
+        { name: "Value.Min", type: "number", description: "Minimum value of the progress range", default: "0" },
+        { name: "Value.Max", type: "number", description: "Maximum value of the progress range", default: "100" },
+        { name: "Value.Default", type: "number", description: "Initial value displayed by the bar", default: "Min" },
+        { name: "ShowValue", type: "boolean?", description: "Whether the current value text is shown", default: "not Indeterminate" },
+        { name: "DisplayMode", type: "string?", description: "Display mode: \"Percent\", \"Value\", or \"Fraction\"", default: "\"Percent\"" },
+        { name: "Format", type: "function?", description: "Custom formatter for the displayed text", default: "nil" },
+        { name: "Animate", type: "boolean?", description: "Enables animated updates", default: "true" },
+        { name: "AnimationDuration", type: "number?", description: "Duration of the fill animation in seconds", default: "0.15" },
+        { name: "Indeterminate", type: "boolean?", description: "Use an indeterminate loading animation", default: "false" },
+        { name: "IndeterminateText", type: "string?", description: "Text shown while the bar is indeterminate", default: "\"\"" },
+        { name: "Speed", type: "number?", description: "Animation speed for indeterminate mode", default: "1" },
+        { name: "ControlGap", type: "number?", description: "Gap between the bar and value text", default: "16" },
+        { name: "Width", type: "number?", description: "Total width of the progress bar container", default: "160" },
+        { name: "ValueWidth", type: "number?", description: "Width reserved for the displayed value text", default: "44" },
+    ]}
+/>
+
+## ProgressBar Methods
+
+<TypeTable
+    type={{
+        ':Set': {
+            type: 'function',
+            description: 'Update the bar to a new numeric value.',
+            args: {
+                Value: {
+                    type: 'number',
+                    description: 'New value to display.',
+                }
+            }
+        },
+        ':Get': {
+            type: 'function',
+            description: 'Return the current value.',
+            args: {}
+        },
+        ':GetPercentage': {
+            type: 'function',
+            description: 'Return the current progress as a percentage.',
+            args: {}
+        },
+        ':SetRange': {
+            type: 'function',
+            description: 'Change the minimum and maximum range.',
+            args: {
+                Min: {
+                    type: 'number',
+                    description: 'New minimum value.',
+                },
+                Max: {
+                    type: 'number',
+                    description: 'New maximum value.',
+                }
+            }
+        },
+        ':SetMin': {
+            type: 'function',
+            description: 'Change the minimum bound of the range.',
+            args: {
+                Min: {
+                    type: 'number',
+                    description: 'New minimum value.',
+                }
+            }
+        },
+        ':SetMax': {
+            type: 'function',
+            description: 'Change the maximum bound of the range.',
+            args: {
+                Max: {
+                    type: 'number',
+                    description: 'New maximum value.',
+                }
+            }
+        },
+    }}
+/>
+
+## Examples
+
+### Custom value display
+
+```luau
+local Progress = Tab:ProgressBar({
+	Title = "Storage",
+	Desc = "Used space",
+	Value = { Min = 0, Max = 100, Default = 72 },
+	DisplayMode = "Value",
+	Width = 220,
+})
+```
+
+### Custom formatter
+
+```luau
+local Progress = Tab:ProgressBar({
+	Title = "Bandwidth",
+	Desc = "Live traffic",
+	Value = { Min = 0, Max = 100, Default = 42 },
+	ValueWidth = 84,
+	Format = function(value, percentage, min, max)
+		return string.format("%d%% of %d", math.floor(percentage + 0.5), max)
+	end,
+})
+```
+
+
+<span>Added by</span> <a><div className="flex flex-row items-center gap-2"><img src="https://github.com/BitRevenant.png?size=64" className="rounded-full size-4 !my-0" /> BitRevenant</div></a> <span>from</span> [PR #95](https://github.com/article-hub-studio/WindUI-Skibidi/pull/95)
+
+
+## Related Documentation
+
+- [Tab](./tab) - Tab container
+- [Slider](./slider) - Input control for numeric values

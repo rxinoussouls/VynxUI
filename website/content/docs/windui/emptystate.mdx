@@ -1,0 +1,71 @@
+---
+title: EmptyState
+description: Show an empty state with optional buttons.
+---
+
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import TypeTable from '@/components/TypeTable';
+
+## EmptyState Element
+
+EmptyState is a centered placeholder for empty lists, errors or no-results screens.
+
+<Tabs defaultValue="basic">
+    <TabsList>
+        <TabsTrigger value="basic">Basic</TabsTrigger>
+        <TabsTrigger value="full">Full</TabsTrigger>
+    </TabsList>
+    <TabsContent value="basic">
+```luau
+Tab:EmptyState({
+    Title = "No results",
+    Desc = "Try another filter.",
+})
+```
+    </TabsContent>
+    <TabsContent value="full">
+```luau
+local Empty = Tab:EmptyState({
+    Title = "No configs",
+    Desc = "Save a config to see it here.",
+    Icon = "folder-open",
+    IconSize = 36,
+    Height = 160,
+    Buttons = {
+        {
+            Title = "Create Config",
+            Icon = "plus",
+            Callback = function()
+                print("create")
+            end,
+        },
+    },
+})
+```
+    </TabsContent>
+</Tabs>
+
+## Parameters
+
+<TypeTable
+    data={[
+        { name: "Title", type: "string?", description: "Main empty state text.", default: "Nothing here" },
+        { name: "Desc / Content", type: "string?", description: "Supporting text.", default: "nil" },
+        { name: "Icon", type: "string?", description: "Center icon.", default: "inbox" },
+        { name: "IconSize", type: "number?", description: "Icon size.", default: "34" },
+        { name: "Height", type: "number?", description: "Minimum block height.", default: "138" },
+        { name: "Buttons", type: "table?", description: "Optional action buttons.", default: "{}" },
+    ]}
+/>
+
+## Functions
+
+<TypeTable
+    type={{
+        ':SetTitle': { type: 'function', description: 'Update title text.', args: { Title: { type: 'string' } } },
+        ':SetDesc': { type: 'function', description: 'Update description text.', args: { Desc: { type: 'string' } } },
+        ':Highlight': { type: 'function', description: 'Pulse the block background.', args: {} },
+        ':Destroy': { type: 'function', description: 'Remove the element.', args: {} },
+    }}
+/>
+

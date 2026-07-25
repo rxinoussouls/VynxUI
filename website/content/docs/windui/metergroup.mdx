@@ -1,0 +1,77 @@
+---
+title: MeterGroup
+description: Display multiple metric progress rows.
+---
+
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import TypeTable from '@/components/TypeTable';
+
+## MeterGroup Element
+
+MeterGroup shows multiple labeled progress meters in one element.
+
+<Tabs defaultValue="basic">
+    <TabsList>
+        <TabsTrigger value="basic">Basic</TabsTrigger>
+        <TabsTrigger value="full">Full</TabsTrigger>
+    </TabsList>
+    <TabsContent value="basic">
+```luau
+local Meters = Tab:MeterGroup({
+    Title = "Performance",
+    Meters = {
+        { Title = "CPU", Value = 42, Max = 100 },
+        { Title = "Memory", Value = 1.4, Max = 2 },
+    },
+})
+```
+    </TabsContent>
+    <TabsContent value="full">
+```luau
+local Meters = Tab:MeterGroup({
+    Title = "Renderer",
+    Desc = "Live status values",
+    Meters = {
+        {
+            Title = "Load",
+            Desc = "Current render pressure",
+            Value = 72,
+            Max = 100,
+            Color = "#0ea5e9",
+        },
+        {
+            Title = "Cache",
+            Value = 18,
+            Max = 24,
+            Format = function(value, max)
+                return value .. "/" .. max
+            end,
+        },
+    },
+})
+
+Meters:SetValue(1, 88)
+```
+    </TabsContent>
+</Tabs>
+
+## Parameters
+
+<TypeTable
+    data={[
+        { name: "Title", type: "string?", description: "Element title.", default: "Meters" },
+        { name: "Desc", type: "string?", description: "Element description.", default: "nil" },
+        { name: "Meters / Items / Values", type: "table", description: "Meter rows.", default: "{}" },
+        { name: "Hover", type: "boolean?", description: "Enable parent hover style.", default: "false" },
+    ]}
+/>
+
+## Functions
+
+<TypeTable
+    type={{
+        ':SetValue': { type: 'function', description: 'Update one meter by index.', args: { Index: { type: 'number' }, Value: { type: 'number' } } },
+        ':SetMeters': { type: 'function', description: 'Replace all meter rows.', args: { Meters: { type: 'table' } } },
+    }}
+/>
+

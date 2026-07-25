@@ -1,0 +1,93 @@
+---
+title: Path2D
+description: Draw and animate 2D paths.
+---
+
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import TypeTable from '@/components/TypeTable';
+
+## Path2D Element
+
+Path2D renders a normalized 0-1 coordinate path with animated segments, dots, labels and a moving marker.
+
+<Tabs defaultValue="basic">
+    <TabsList>
+        <TabsTrigger value="basic">Basic</TabsTrigger>
+        <TabsTrigger value="full">Full</TabsTrigger>
+    </TabsList>
+    <TabsContent value="basic">
+```luau
+local Route = Tab:Path2D({
+    Title = "Control Path",
+    Points = {
+        Vector2.new(0.08, 0.72),
+        Vector2.new(0.32, 0.48),
+        Vector2.new(0.68, 0.28),
+        Vector2.new(0.92, 0.44),
+    },
+})
+```
+    </TabsContent>
+    <TabsContent value="full">
+```luau
+local Route = Tab:Path2D({
+    Title = "Delivery Route",
+    Desc = "Animated route drawing with a moving marker.",
+    Height = 170,
+    PathPadding = 22,
+    Thickness = 5,
+    DotSize = 9,
+    MarkerSize = 16,
+    Glow = true,
+    Duration = 1.4,
+    StepDelay = 0.04,
+    Loop = true,
+    AutoPlay = true,
+    Labels = {
+        { Point = 1, Text = "Start" },
+        { Point = 3, Text = "Sync" },
+        { Point = 4, Text = "Done" },
+    },
+    Points = {
+        { 0.08, 0.72 },
+        { 0.32, 0.48 },
+        { 0.56, 0.62 },
+        { 0.86, 0.34 },
+    },
+})
+```
+    </TabsContent>
+</Tabs>
+
+## Parameters
+
+<TypeTable
+    data={[
+        { name: "Title", type: "string?", description: "Element title.", default: "Path 2D" },
+        { name: "Points / Path", type: "table?", description: "Vector2 values or {x, y} tables from 0 to 1.", default: "default path" },
+        { name: "Labels", type: "table?", description: "Labels attached to point indexes.", default: "{}" },
+        { name: "Height", type: "number?", description: "Canvas height.", default: "156" },
+        { name: "PathPadding", type: "number?", description: "Inner canvas padding that keeps rotated lines, dots and labels away from clipped edges.", default: "20" },
+        { name: "Thickness", type: "number?", description: "Line thickness.", default: "4" },
+        { name: "DotSize", type: "number?", description: "Point dot size.", default: "9" },
+        { name: "MarkerSize", type: "number?", description: "Moving marker size.", default: "16" },
+        { name: "Glow", type: "boolean?", description: "Enable the soft active-line glow.", default: "true" },
+        { name: "BackgroundTransparency", type: "number?", description: "Canvas background transparency.", default: "0.92" },
+        { name: "Duration", type: "number?", description: "Total draw duration.", default: "1.2" },
+        { name: "StepDelay", type: "number?", description: "Delay between segments.", default: "0.055" },
+        { name: "Loop", type: "boolean?", description: "Replay after finishing.", default: "false" },
+        { name: "AutoPlay", type: "boolean?", description: "Start animation automatically.", default: "true" },
+    ]}
+/>
+
+## Functions
+
+<TypeTable
+    type={{
+        ':Play': { type: 'function', description: 'Replay the path animation.', args: {} },
+        ':Stop': { type: 'function', description: 'Cancel active path tweens.', args: {} },
+        ':SetProgress': { type: 'function', description: 'Set the rendered path progress from 0 to 1 without replaying.', args: { Progress: { type: 'number' } } },
+        ':SetPoints': { type: 'function', description: 'Replace points and render again.', args: { Points: { type: 'table' } } },
+        ':Destroy': { type: 'function', description: 'Remove the element.', args: {} },
+    }}
+/>

@@ -1,0 +1,68 @@
+---
+title: Timeline
+description: Show ordered events.
+---
+
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import TypeTable from '@/components/TypeTable';
+
+## Timeline Element
+
+Timeline renders ordered status events with rails and reveal animations.
+
+<Tabs defaultValue="basic">
+    <TabsList>
+        <TabsTrigger value="basic">Basic</TabsTrigger>
+        <TabsTrigger value="full">Full</TabsTrigger>
+    </TabsList>
+    <TabsContent value="basic">
+```luau
+Tab:Timeline({
+    Title = "Events",
+    Items = {
+        { Title = "Window opened", Value = "Success" },
+        { Title = "Config loaded", Value = "Info" },
+        { Title = "Ready", Value = "Success" },
+    },
+})
+```
+    </TabsContent>
+    <TabsContent value="full">
+```luau
+local Events = Tab:Timeline({
+    Title = "Deploy Flow",
+    Desc = "Recent pipeline steps",
+    Items = {
+        { Title = "Build queued", Desc = "Waiting for worker", Value = "Info" },
+        { Title = "Compiled", Desc = "Static pages generated", Value = "Success" },
+        { Title = "Manual review", Desc = "Optional check", Color = "#f59e0b" },
+    },
+})
+
+Events:SetItems({
+    { Title = "Updated", Value = "Success" },
+})
+```
+    </TabsContent>
+</Tabs>
+
+## Parameters
+
+<TypeTable
+    data={[
+        { name: "Title", type: "string?", description: "Element title.", default: "Timeline" },
+        { name: "Desc", type: "string?", description: "Element description.", default: "nil" },
+        { name: "Items / Events", type: "table", description: "Timeline rows.", default: "{}" },
+        { name: "Item.Value", type: "string?", description: "Variant name: Info, Success, Warning, Error, Neutral.", default: "Info" },
+        { name: "Item.Color", type: "Color3 | hex?", description: "Custom dot color.", default: "variant color" },
+    ]}
+/>
+
+## Functions
+
+<TypeTable
+    type={{
+        ':SetItems': { type: 'function', description: 'Replace timeline rows.', args: { Items: { type: 'table' } } },
+    }}
+/>
+

@@ -1,0 +1,69 @@
+---
+title: Accordion
+description: Create collapsible rows.
+---
+
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import TypeTable from '@/components/TypeTable';
+
+## Accordion Element
+
+Accordion creates collapsible rows. Use `Multiple = true` to allow more than one open row.
+
+<Tabs defaultValue="basic">
+    <TabsList>
+        <TabsTrigger value="basic">Basic</TabsTrigger>
+        <TabsTrigger value="full">Full</TabsTrigger>
+    </TabsList>
+    <TabsContent value="basic">
+```luau
+local Notes = Tab:Accordion({
+    Title = "Notes",
+    Items = {
+        { Title = "Switch", Desc = "Page switch animations are enabled." },
+        { Title = "Press", Desc = "Rows use press feedback." },
+    },
+})
+```
+    </TabsContent>
+    <TabsContent value="full">
+```luau
+local FAQ = Tab:Accordion({
+    Title = "FAQ",
+    Desc = "Collapsible help",
+    Multiple = true,
+    DefaultOpen = 1,
+    Items = {
+        { Title = "Mobile", Desc = "Touch friendly controls.", Icon = "smartphone" },
+        { Title = "Config", Desc = "Use flags for saving.", Icon = "save" },
+    },
+})
+
+FAQ:Open(2)
+```
+    </TabsContent>
+</Tabs>
+
+## Parameters
+
+<TypeTable
+    data={[
+        { name: "Title", type: "string?", description: "Element title.", default: "Accordion" },
+        { name: "Desc", type: "string?", description: "Element description.", default: "nil" },
+        { name: "Items / Sections", type: "table", description: "Rows to render.", default: "{}" },
+        { name: "DefaultOpen / OpenIndex", type: "number?", description: "Initial open row index.", default: "nil" },
+        { name: "Multiple", type: "boolean?", description: "Allow multiple rows open at the same time.", default: "false" },
+    ]}
+/>
+
+## Functions
+
+<TypeTable
+    type={{
+        ':Open': { type: 'function', description: 'Open a row by index.', args: { Index: { type: 'number' } } },
+        ':Close': { type: 'function', description: 'Close a row by index.', args: { Index: { type: 'number' } } },
+        ':Toggle': { type: 'function', description: 'Toggle a row by index.', args: { Index: { type: 'number' } } },
+        ':SetItems': { type: 'function', description: 'Replace rows.', args: { Items: { type: 'table' } } },
+    }}
+/>
+

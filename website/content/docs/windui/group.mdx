@@ -1,0 +1,60 @@
+---
+title: Group (deprecated)
+description: Layout elements horizontally in groups
+---
+
+import { DynamicCodeBlock } from 'fumadocs-ui/components/dynamic-codeblock'
+
+<div className='dark:bg-red-800/30 bg-red-200/60 px-4 py-[0.1px] rounded-xl'>
+This element is deprecated and will be removed in a future update. <br/>
+`Group` element is now replaced by [HStack & VStack](./hstackvstack) for more flexible horizontal and vertical grouping.
+</div>
+## Group Element
+
+Groups arrange elements horizontally for compact layouts and side-by-side arrangements.
+
+```luau
+local Group = Tab:Group({})
+
+Group:Button({ Title = "Button 1" })
+Group:Button({ Title = "Button 2" })
+Group:Button({ Title = "Button 3" })
+```
+
+## Usage Examples
+
+### Button Group
+
+```luau
+local ActionGroup = Tab:Group({})
+
+ActionGroup:Button({ Title = "Save", Icon = "save", Justify = "Center" })
+ActionGroup:Button({ Title = "Edit", Icon = "edit", Justify = "Center" })
+ActionGroup:Button({ Title = "Delete", Icon = "trash", Justify = "Center" })
+```
+
+### Toggle Group
+
+```luau
+local SettingsGroup = Tab:Group({})
+
+SettingsGroup:Toggle({ Title = "Option A" })
+SettingsGroup:Toggle({ Title = "Option B" })
+SettingsGroup:Toggle({ Title = "Option C" })
+```
+
+### Mixed Elements
+
+```luau
+local ControlGroup = Tab:Group({})
+
+ControlGroup:Input({ Title = "Search" })
+ControlGroup:Button({ Title = "Go" })
+```
+
+## Related Documentation
+
+- [Tab](./tab) - Tab container
+- [Button](./button) - Button element
+- [Space](./space) - Add spacing in groups
+- [Section](./sections) - Vertical grouping of elements

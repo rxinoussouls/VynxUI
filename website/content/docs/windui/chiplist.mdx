@@ -1,0 +1,71 @@
+---
+title: ChipList
+description: Select compact chip rows.
+---
+
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import TypeTable from '@/components/TypeTable';
+
+## ChipList Element
+
+ChipList displays compact pill rows. It supports multi-select or single-select mode.
+
+<Tabs defaultValue="basic">
+    <TabsList>
+        <TabsTrigger value="basic">Basic</TabsTrigger>
+        <TabsTrigger value="full">Full</TabsTrigger>
+    </TabsList>
+    <TabsContent value="basic">
+```luau
+local Tags = Tab:ChipList({
+    Title = "Tags",
+    Options = { "Mobile", "Fast", "Glass" },
+    Value = { "Mobile" },
+})
+```
+    </TabsContent>
+    <TabsContent value="full">
+```luau
+local Tags = Tab:ChipList({
+    Title = "Theme Tags",
+    Desc = "Compact tag selector",
+    Width = 190,
+    Multi = true,
+    Options = {
+        { Title = "Mobile", Value = "mobile" },
+        { Title = "Motion", Value = "motion" },
+        { Title = "Legacy", Value = "legacy", Disabled = true },
+    },
+    Value = { "mobile", "motion" },
+    Callback = function(values)
+        print(values)
+    end,
+})
+```
+    </TabsContent>
+</Tabs>
+
+## Parameters
+
+<TypeTable
+    data={[
+        { name: "Options / Values", type: "table", description: "Chip options.", default: "{}" },
+        { name: "Value", type: "any | table?", description: "Selected value or values.", default: "{}" },
+        { name: "Multi", type: "boolean?", description: "Allow multiple selected chips.", default: "true" },
+        { name: "Width / ControlWidth", type: "number?", description: "Control width.", default: "190" },
+        { name: "Locked", type: "boolean?", description: "Disable interaction.", default: "false" },
+        { name: "Callback", type: "function?", description: "Called with selected value(s).", default: "function() end" },
+    ]}
+/>
+
+## Functions
+
+<TypeTable
+    type={{
+        ':Get': { type: 'function', description: 'Return selected value or values.', args: {} },
+        ':Set': { type: 'function', description: 'Set selected value(s).', args: { Values: { type: 'any | table' }, IsCallback: { type: 'boolean?' } } },
+        ':Toggle': { type: 'function', description: 'Toggle or select a chip.', args: { Value: { type: 'any' }, IsCallback: { type: 'boolean?' } } },
+        ':SetOptions': { type: 'function', description: 'Replace options.', args: { Options: { type: 'table' } } },
+    }}
+/>
+

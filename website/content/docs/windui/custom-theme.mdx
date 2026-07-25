@@ -1,0 +1,48 @@
+---
+title: Custom Theme Studio
+description: Create, export and upload WindUI Modded themes with GitHub as storage
+---
+
+import CustomThemeStudio from "@/components/CustomThemeStudio"
+
+<CustomThemeStudio />
+
+## GitHub as a Theme Database
+
+The website is exported as static GitHub Pages, so it cannot safely store a server-side secret.
+The studio uses the GitHub Contents API directly from your browser:
+
+- the token is only kept in page state
+- the theme is uploaded as JSON into the repo/path you choose
+- existing files are updated through their GitHub `sha`
+
+Use a fine-grained GitHub token with **Contents: Read and write** permission for the target repository.
+
+## Load a Custom Theme in Luau
+
+```luau
+local WindUI = loadstring(game:HttpGet("https://article-hub-studio.github.io/WindUI-Skibidi/loader.lua"))()
+
+WindUI:AddTheme({
+    Name = "Custom Liquid",
+    Accent = "#0EA5E9",
+    Dialog = "#101821",
+    Text = "#FFFFFF",
+    Placeholder = "#8DA2B8",
+    Background = "#070B12",
+    Button = "#0EA5E9",
+    Icon = "#7DD3FC",
+    Primary = "#38BDF8",
+})
+
+WindUI:SetTheme("Custom Liquid")
+```
+
+## Upload Target Example
+
+```txt
+Owner: article-hub-studio
+Repo: WindUI-Skibidi
+Branch: main
+Path: themes/custom/custom-liquid.json
+```

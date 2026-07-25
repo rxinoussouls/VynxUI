@@ -1,0 +1,205 @@
+---
+title: Section
+description: Organize elements into collapsible sections in WindUI Modded
+---
+
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { DynamicCodeBlock } from 'fumadocs-ui/components/dynamic-codeblock'
+import TypeTable from '@/components/TypeTable';
+
+![Section](/windui/banners/Section.png)
+
+
+## Section Element
+
+Sections organize related elements into collapsible groups. They're useful for grouping related settings or features.
+
+<Tabs defaultValue="small">
+    <TabsList>
+        <TabsTrigger value="small">Basic</TabsTrigger>
+        <TabsTrigger value="full">Full</TabsTrigger>
+    </TabsList>
+    <TabsContent value="small">
+```luau
+local Section = Tab:Section({
+    Title = "General Settings"
+})
+
+Section:Button({ Title = "Button in Section" })
+Section:Toggle({ Title = "Toggle in Section" })
+```
+    </TabsContent>
+    <TabsContent value="full">
+```luau
+local Section = Tab:Section({
+    Title = "General Settings",
+    Desc = "Section description", -- optional
+    Icon = "settings", -- lucide icon or "rbxassetid://". optional
+    IconColor = Color3.fromRGB(100, 100, 255), -- custom icon color. optional
+    TextSize = 19, -- title text size. optional
+    TextXAlignment = "Left", -- "Left", "Center", "Right". optional
+    Box = false, -- show box around section. optional
+    BoxBorder = false, -- show border on box. optional
+    Opened = true, -- section expanded by default. optional
+    FontWeight = Enum.FontWeight.SemiBold, -- title font weight. optional
+    DescFontWeight = Enum.FontWeight.Medium, -- description font weight. optional
+    TextTransparency = 0.05, -- title transparency. optional
+    DescTextTransparency = 0.4, -- description transparency. optional
+})
+```
+    </TabsContent>
+</Tabs>
+
+## Section Parameters
+
+<TypeTable
+    data={[
+        { name: "Title", type: "string", description: "Section title text", default: "Section" },
+        { name: "Desc", type: "string?", description: "Section description shown below title", default: "nil" },
+        { name: "Icon", type: "string?", description: "Icon identifier (lucide icon or rbxassetid://)", default: "nil" },
+        { name: "IconColor", type: "Color3?", description: "Custom icon color", default: "nil" },
+        { name: "TextSize", type: "number?", description: "Title text size", default: "19" },
+        { name: "TextXAlignment", type: "string?", description: "Title alignment: 'Left', 'Center', or 'Right'", default: "Left" },
+        { name: "Box", type: "boolean?", description: "Show visual box around section", default: "false" },
+        { name: "BoxBorder", type: "boolean?", description: "Show border on section box", default: "false" },
+        { name: "Opened", type: "boolean?", description: "Expand section by default", default: "true" },
+        { name: "FontWeight", type: "Enum.FontWeight?", description: "Title font weight", default: "SemiBold" },
+        { name: "DescFontWeight", type: "Enum.FontWeight?", description: "Description font weight", default: "Medium" },
+        { name: "TextTransparency", type: "number?", description: "Title transparency (0-1)", default: "0.05" },
+        { name: "DescTextTransparency", type: "number?", description: "Description transparency (0-1)", default: "0.4" },
+    ]}
+/>
+
+## Section Function
+
+<TypeTable 
+    type={{
+        ':SetTitle': {
+            type: 'function',
+            description: 'Change section title dynamically.',
+            args: {
+                Title: {
+                    type: 'string',
+                    description: 'New section title.',
+                }
+            }
+        },
+        ':SetDesc': {
+            type: 'function',
+            description: 'Update section description.',
+            args: {
+                Description: {
+                    type: 'string',
+                    description: 'New section description.',
+                }
+            }
+        },
+        ':Open': {
+            type: 'function',
+            description: 'Expand the section to show all elements.',
+            args: {}
+        },
+        ':Close': {
+            type: 'function',
+            description: 'Collapse the section to hide all elements.',
+            args: {}
+        },
+        ':Destroy': {
+            type: 'function',
+            description: 'Remove the entire section from the tab.',
+            args: {}
+        },
+    }}
+/>
+## Section Variants
+
+### Simple Section
+
+```luau
+local BasicSection = Tab:Section({
+    Title = "Basic Options"
+})
+
+BasicSection:Button({ Title = "Option 1" })
+BasicSection:Button({ Title = "Option 2" })
+BasicSection:Button({ Title = "Option 3" })
+```
+
+### Section with Icon
+
+```luau
+local DisplaySection = Tab:Section({
+    Title = "Display",
+    Icon = "monitor",
+    Opened = true
+})
+
+DisplaySection:Toggle({ Title = "Dark Mode" })
+DisplaySection:Slider({ 
+    Title = "Brightness",
+    Value = { Min = 0, Max = 100, Default = 80 }
+})
+```
+
+### Section with Description
+
+```luau
+local AdvancedSection = Tab:Section({
+    Title = "Advanced Settings",
+    Desc = "Configure expert-level options",
+    Icon = "zap",
+    Opened = false
+})
+
+AdvancedSection:Toggle({ Title = "Enable Debug Mode" })
+AdvancedSection:Input({ Title = "API Key" })
+```
+
+### Boxed Section
+
+```luau
+local BoxedSection = Tab:Section({
+    Title = "Important Settings",
+    Box = true,
+    BoxBorder = true,
+    Icon = "alert-circle",
+    Opened = true
+})
+
+BoxedSection:Toggle({ Title = "Require Confirmation" })
+BoxedSection:Button({ Title = "Apply Changes" })
+```
+
+### Closed Section
+
+```luau
+local CollapsedSection = Tab:Section({
+    Title = "Advanced Options",
+    Icon = "settings",
+    Opened = false,
+    TextSize = 16
+})
+
+CollapsedSection:Button({ Title = "Advanced Setting 1" })
+CollapsedSection:Button({ Title = "Advanced Setting 2" })
+```
+
+### Centered Section
+
+```luau
+local CenteredSection = Tab:Section({
+    Title = "Features",
+    TextXAlignment = "Center",
+    TextSize = 20
+})
+
+CenteredSection:Button({ Title = "Feature A" })
+CenteredSection:Button({ Title = "Feature B" })
+```
+
+
+## Related Documentation
+
+- [Tab](./tab) - Tab container
+- [Elements](./button) - Available elements to add to sections
+- [Window](./window) - Create sections in window

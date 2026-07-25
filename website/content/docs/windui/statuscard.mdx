@@ -1,0 +1,65 @@
+---
+title: StatusCard
+description: Show a compact status value.
+---
+
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import TypeTable from '@/components/TypeTable';
+
+## StatusCard Element
+
+StatusCard displays a label with a colored status dot.
+
+<Tabs defaultValue="basic">
+    <TabsList>
+        <TabsTrigger value="basic">Basic</TabsTrigger>
+        <TabsTrigger value="full">Full</TabsTrigger>
+    </TabsList>
+    <TabsContent value="basic">
+```luau
+local Status = Tab:StatusCard({
+    Title = "Renderer",
+    Status = "Success",
+    Value = "Ready",
+})
+```
+    </TabsContent>
+    <TabsContent value="full">
+```luau
+local Status = Tab:StatusCard({
+    Title = "Server",
+    Desc = "Realtime connection",
+    Status = "Info",
+    Value = "Connecting",
+    Width = 150,
+    Callback = function(status, value)
+        print(status, value)
+    end,
+})
+
+Status:SetStatus("Success", "Online")
+```
+    </TabsContent>
+</Tabs>
+
+## Parameters
+
+<TypeTable
+    data={[
+        { name: "Status / Variant", type: "string?", description: "Info, Success, Warning, Error or Neutral.", default: "Info" },
+        { name: "Value", type: "string?", description: "Visible status text.", default: "Status" },
+        { name: "Color", type: "Color3 | hex?", description: "Override dot color.", default: "variant color" },
+        { name: "Width", type: "number?", description: "Right-side status width.", default: "136" },
+        { name: "Callback", type: "function?", description: "Called when the row is clicked.", default: "nil" },
+    ]}
+/>
+
+## Functions
+
+<TypeTable
+    type={{
+        ':SetValue': { type: 'function', description: 'Update visible value.', args: { Value: { type: 'string' } } },
+        ':SetStatus': { type: 'function', description: 'Update status variant and optional value.', args: { Status: { type: 'string' }, Value: { type: 'string?' } } },
+    }}
+/>
+

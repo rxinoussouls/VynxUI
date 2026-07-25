@@ -1,0 +1,194 @@
+---
+title: Button
+description: Create interactive buttons in WindUI Modded
+---
+
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { DynamicCodeBlock } from 'fumadocs-ui/components/dynamic-codeblock'
+import TypeTable from '@/components/TypeTable';
+
+
+## Button Element
+
+Buttons are interactive elements that trigger callbacks when clicked. They can display icons, descriptions, and support locked states.
+
+<Tabs defaultValue="small">
+    <TabsList>
+        <TabsTrigger value="small">Basic</TabsTrigger>
+        <TabsTrigger value="full">Full</TabsTrigger>
+    </TabsList>
+    <TabsContent value="small">
+```luau
+local Button = Tab:Button({
+    Title = "Click Me",
+    Callback = function()
+        print("Button clicked")
+    end
+})
+```
+    </TabsContent>
+    <TabsContent value="full">
+```luau
+local Button = Tab:Button({
+    Title = "Click Me",
+    Desc = "Button description", -- optional
+    Icon = "mouse-pointer-click", -- lucide icon or "rbxassetid://". optional
+    IconAlign = "Right", -- "Left" or "Right". optional
+    IconColor = Color3,fromHex("#30ff6a"), -- custom icon color. optional
+    Color = Color3.fromRGB(100, 100, 255), -- custom color. optional
+    Locked = false, -- disable button. optional
+    LockedTitle = "Locked", -- text shown when locked. optional
+    Justify = "Between", -- "Between" or "Center". optional
+    Flag = "my_button", -- for config saving. optional
+    Callback = function()
+        print("Clicked!")
+    end
+})
+```
+    </TabsContent>
+</Tabs>
+
+## Button Parameters
+
+<TypeTable
+    data={[
+        { name: "Title", type: "string", description: "Button text", default: "Button" },
+        { name: "Desc", type: "string?", description: "Button description shown below title", default: "nil" },
+        { name: "Icon", type: "string?", description: "Icon identifier (lucide icon or rbxassetid://)", default: "nil" },
+        { name: "IconAlign", type: "string?", description: "Icon position: 'Left' or 'Right'", default: "Right" },
+        { name: "IconColor", type: "Color3?", description: "Custom button icon color", default: "nil" },
+        { name: "Color", type: "Color3?", description: "Custom button color", default: "nil" },
+        { name: "Locked", type: "boolean?", description: "Disable button interaction", default: "false" },
+        { name: "LockedTitle", type: "string?", description: "Text shown when button is locked", default: "nil" },
+        { name: "Justify", type: "string?", description: "Layout alignment: 'Between' or 'Center'", default: "Between" },
+        { name: "Flag", type: "string?", description: "Configuration flag for saving state", default: "nil" },
+        { name: "Callback", type: "function?", description: "Function called on button click", default: "nil" },
+    ]}
+/>
+
+## Button Functions
+
+<TypeTable 
+    type={{
+        ':SetTitle': {
+            type: 'function',
+            description: 'Change button text dynamically.',
+            args: {
+                Title: {
+                    type: 'string',
+                    description: 'New button title.',
+                }
+            }
+        },
+        ':SetDesc': {
+            type: 'function',
+            description: 'Update button description.',
+            args: {
+                Description: {
+                    type: 'string',
+                    description: 'New button description.',
+                }
+            }
+        },
+        ':Lock': {
+            type: 'function',
+            description: 'Disable button interaction and show locked state.',
+            args: {}
+        },
+        ':Unlock': {
+            type: 'function',
+            description: 'Re-enable button interaction.',
+            args: {}
+        },
+        ':Highlight': {
+            type: 'function',
+            description: 'Visually highlight the button to draw attention.',
+            args: {}
+        },
+        ':Destroy': {
+            type: 'function',
+            description: 'Remove the button from the tab.',
+            args: {}
+        },
+    }}
+/>
+
+## Button Variants
+
+### Simple Button
+
+```luau
+Tab:Button({
+    Title = "Simple Action",
+    Callback = function()
+        print("Action triggered")
+    end
+})
+```
+
+### Button with Icon
+
+```luau
+Tab:Button({
+    Title = "Save Settings",
+    Icon = "save",
+    IconAlign = "Left",
+    Callback = function()
+        print("Settings saved")
+    end
+})
+```
+
+### Button with Description
+
+```luau
+Tab:Button({
+    Title = "Advanced Option",
+    Desc = "Click here to access advanced features",
+    Callback = function()
+        print("Opening advanced menu...")
+    end
+})
+```
+
+### Colored Button
+
+```luau
+Tab:Button({
+    Title = "Delete Item",
+    Color = Color3.fromRGB(255, 100, 100), -- red
+    Callback = function()
+        print("Item deleted")
+    end
+})
+```
+
+### Locked Button
+
+```luau
+local LimitedButton = Tab:Button({
+    Title = "Premium Feature",
+    Locked = true,
+    LockedTitle = "Requires Premium",
+    Callback = function()
+        print("Premium feature activated")
+    end
+})
+```
+
+### Button with Centered Layout
+
+```luau
+Tab:Button({
+    Title = "Center Button",
+    Justify = "Center",
+    Callback = function()
+        print("Centered button clicked")
+    end
+})
+```
+
+## Related Documentation
+
+- [Tab](./tab) - Tab container
+- [Icons](./icons) - Available icon references

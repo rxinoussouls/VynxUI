@@ -1,0 +1,69 @@
+---
+title: CheckboxGroup
+description: Select multiple options from a vertical group.
+---
+
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import TypeTable from '@/components/TypeTable';
+
+## CheckboxGroup Element
+
+CheckboxGroup is a multi-select group for option sets.
+
+<Tabs defaultValue="basic">
+    <TabsList>
+        <TabsTrigger value="basic">Basic</TabsTrigger>
+        <TabsTrigger value="full">Full</TabsTrigger>
+    </TabsList>
+    <TabsContent value="basic">
+```luau
+local Filters = Tab:CheckboxGroup({
+    Title = "Filters",
+    Options = { "Mobile", "PC", "Glass" },
+    Value = { "Mobile" },
+})
+```
+    </TabsContent>
+    <TabsContent value="full">
+```luau
+local Filters = Tab:CheckboxGroup({
+    Title = "Filters",
+    Desc = "Select every matching tag",
+    Width = 220,
+    Options = {
+        { Title = "Mobile", Value = "mobile" },
+        { Title = "PC", Value = "pc" },
+        { Title = "Legacy", Value = "legacy", Disabled = true },
+    },
+    SelectedValues = { "mobile" },
+    Callback = function(values)
+        print(table.concat(values, ", "))
+    end,
+})
+```
+    </TabsContent>
+</Tabs>
+
+## Parameters
+
+<TypeTable
+    data={[
+        { name: "Options / Values", type: "table", description: "Options list.", default: "{}" },
+        { name: "Value / SelectedValues", type: "table", description: "Selected values.", default: "{}" },
+        { name: "Width / ControlWidth", type: "number?", description: "Control width.", default: "220" },
+        { name: "Locked", type: "boolean?", description: "Disable interaction.", default: "false" },
+        { name: "Callback", type: "function?", description: "Called with selected values.", default: "function() end" },
+    ]}
+/>
+
+## Functions
+
+<TypeTable
+    type={{
+        ':Get': { type: 'function', description: 'Return selected values.', args: {} },
+        ':Set': { type: 'function', description: 'Replace selected values.', args: { Values: { type: 'table' }, IsCallback: { type: 'boolean?' } } },
+        ':Toggle': { type: 'function', description: 'Toggle one value.', args: { Value: { type: 'any' }, IsCallback: { type: 'boolean?' } } },
+        ':SetOptions': { type: 'function', description: 'Replace options.', args: { Options: { type: 'table' } } },
+    }}
+/>
+

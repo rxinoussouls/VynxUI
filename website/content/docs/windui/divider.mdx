@@ -1,0 +1,56 @@
+---
+title: Divider
+description: Add visual dividers between elements
+---
+
+import { DynamicCodeBlock } from 'fumadocs-ui/components/dynamic-codeblock'
+
+## Divider Element
+
+Dividers are visual separators used to organize and group elements visually.
+
+```luau
+Your_Tab:Divider()
+```
+
+## Usage Examples
+
+### Separate Sections
+
+```luau
+Tab:Button({ Title = "Option 1" })
+Tab:Button({ Title = "Option 2" })
+
+Tab:Divider() -- visual separator
+
+Tab:Button({ Title = "Option 3" })
+Tab:Button({ Title = "Option 4" })
+```
+
+### Organize Content
+
+```luau
+Tab:Paragraph({
+    Title = "Basic Features",
+    Desc = "Core functionality"
+})
+
+Tab:Button({ Title = "Feature 1" })
+Tab:Button({ Title = "Feature 2" })
+
+Tab:Divider()
+
+Tab:Paragraph({
+    Title = "Advanced Features",
+    Desc = "Expert options"
+})
+
+Tab:Button({ Title = "Feature 3" })
+Tab:Button({ Title = "Feature 4" })
+```
+
+## Related Documentation
+
+- [Tab](./tab) - Tab container
+- [Space](./space) - Add spacing between elements
+- [Section](./sections) - Group elements in collapsible sections

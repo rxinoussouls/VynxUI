@@ -1,0 +1,38 @@
+---
+title: HStack & VStack
+description: Layout containers for horizontal and vertical organization of elements
+---
+
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { DynamicCodeBlock } from 'fumadocs-ui/components/dynamic-codeblock'
+import TypeTable from '@/components/TypeTable';
+import Link from "next/link";
+
+![HStack & VStack](/windui/banners/HStackVStack.png)
+
+## HStack & VStack Element
+
+HStack and VStack are layout containers that allow you to organize elements horizontally or vertically, respectively.
+
+### HStack
+```luau
+local Tab:HStack()
+```
+
+### VStack
+```luau
+local Tab:VStack()
+```
+
+
+## HStack & VStack Parameters
+
+<TypeTable
+    data={[
+        { name: "AutoSpace", type: "boolean?", description: ( 
+        <div> 
+            Automatically space child elements (creates <Link href="/docs/windui/space" className="dark:text-blue-400 text-blue-500 underline">:Space()</Link> element) 
+        </div>
+        ), default: "nil" },
+    ]}
+/>
