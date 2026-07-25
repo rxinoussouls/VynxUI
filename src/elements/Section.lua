@@ -14,8 +14,12 @@ function Element:New(Config)
 		TextXAlignment = Config.TextXAlignment or "Left",
 		TextSize = Config.TextSize or 19,
 		DescTextSize = Config.DescTextSize or 16,
-		Box = Config.Box or false,
-		BoxBorder = Config.BoxBorder or false,
+		-- Cascade's Form (the component this Box styling is restyled
+		-- after) has no borderless variant -- every Form is a boxed
+		-- card. Default to that look; callers that want the old bare
+		-- list behavior can still pass Box = false explicitly.
+		Box = Config.Box == nil or Config.Box,
+		BoxBorder = Config.BoxBorder == nil or Config.BoxBorder,
 		FontWeight = Config.FontWeight or Enum.FontWeight.SemiBold,
 		DescFontWeight = Config.DescFontWeight or Enum.FontWeight.Medium,
 		TextTransparency = Config.TextTransparency or 0.05,
