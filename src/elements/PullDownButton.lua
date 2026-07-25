@@ -1,19 +1,13 @@
 -- PullDownButton.lua
 -- Ported from Cascade (cascadeui/Cascade, src/components/PullDownButton.luau).
--- Cascade's version renders a floating overlay menu via its own
--- `modules/dropdownMenu` (anchor modes, checkmarks, viewport clamping).
--- VynxUI's equivalent floating-menu machinery lives in
--- `components/ui/Dropdown.lua`, but it's tightly coupled to the full
--- Dropdown element (search box, multi-select state, its own Config
--- shape) and not safe to call standalone without risking breaking that
--- element too. SIMPLIFIED HERE INSTEAD: options list expands inline
--- below the button (pushes following elements down) rather than
--- floating on top. Same trigger idea as Cascade (label + chevron pill),
--- simpler menu behavior. Revisit with a real floating menu later if
--- inline expansion isn't good enough.
+-- First pass (see commit history) expanded the option list inline below
+-- the button. Now upgraded to a real floating menu via the new
+-- src/modules/FloatingMenu.lua helper (see its header for why Cascade's
+-- own dropdownMenu.luau wasn't vendored directly).
 local Creator = require("../modules/Creator")
 local New = Creator.New
 local Utils = require("./DisplayElementUtils")
+local FloatingMenu = require("../modules/FloatingMenu")
 
 local Element = {}
 
@@ -24,7 +18,6 @@ function Element:New(Config)
 		__type = "PullDownButton",
 		Title = Config.Title or "Select",
 		Options = Options,
-		Expanded = false,
 		UIElements = {},
 	}
 
@@ -63,59 +56,32 @@ function Element:New(Config)
 		PaddingBottom = UDim.new(0, 4),
 	})
 
-	local MenuList = New("Frame", {
-		Name = "MenuList",
-		BackgroundTransparency = 1,
-		AutomaticSize = "Y",
-		Size = UDim2.new(1, 0, 0, 0),
-		Visible = false,
-	})
-	New("UIListLayout", { Parent = MenuList, SortOrder = "LayoutOrder", Padding = UDim.new(0, 2) })
+	PullDown.ElementFrame = TriggerButton
+	TriggerButton.Parent = Config.Parent
 
-	for _, Option in ipairs(Options) do
-		local OptionButton = New("TextButton", {
-			Name = "Option",
-			Text = Option.Title or "",
-			AutomaticSize = "XY",
-			Size = UDim2.new(1, 0, 0, 22),
-			ThemeTag = { BackgroundColor3 = "Dialog", TextColor3 = "Text" },
-			BackgroundTransparency = 1,
-		})
-		OptionButton.MouseButton1Click:Connect(function()
+	local Menu = FloatingMenu.new({
+		VynxUI = Config.VynxUI,
+		Trigger = TriggerButton,
+		Items = Options,
+		OnSelect = function(Option)
 			PullDown:Set(Option.Title)
 			if Option.Callback then
 				Creator.SafeCallback(Option.Callback, Option.Value or Option.Title)
 			end
-			PullDown:Toggle(false)
-		end)
-		OptionButton.Parent = MenuList
-	end
-
-	PullDown.ElementFrame = New("Frame", {
-		Name = "PullDownButton",
-		Parent = Config.Parent,
-		BackgroundTransparency = 1,
-		AutomaticSize = "Y",
-		Size = UDim2.new(1, 0, 0, 0),
-	}, { TriggerButton, MenuList })
-	New("UIListLayout", { Parent = PullDown.ElementFrame, SortOrder = "LayoutOrder", Padding = UDim.new(0, 4) })
+		end,
+	})
 
 	function PullDown:Set(NewTitle)
 		PullDown.Title = NewTitle
 		Label.Text = NewTitle
 	end
 
-	function PullDown:Toggle(Expanded)
-		PullDown.Expanded = Expanded
-		MenuList.Visible = Expanded
-		Chevron.Rotation = Expanded and 180 or 0
-	end
-
 	TriggerButton.MouseButton1Click:Connect(function()
-		PullDown:Toggle(not PullDown.Expanded)
+		Menu.Open()
 	end)
 
 	return PullDown.__type, PullDown
 end
 
 return Element
+
