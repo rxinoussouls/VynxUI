@@ -1,4 +1,4 @@
-local VynxUI = loadstring(game:HttpGet("https://rxinoussouls.github.io/VynxUI/loader.lua"))()
+local VynxUI = loadstring(game:HttpGet("https://raw.githubusercontent.com/rxinoussouls/VynxUI/main/loader.lua"))()
 
 VynxUI:SetMotionPreset("Liquid")
 

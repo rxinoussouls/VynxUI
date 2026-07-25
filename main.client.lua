@@ -25,7 +25,7 @@ do
 			VynxUI = require(cloneref(ReplicatedStorage:WaitForChild("VynxUI"):WaitForChild("Init")))
 		else
 			VynxUI =
-				loadstring(game:HttpGet("https://rxinoussouls.github.io/VynxUI/loader.lua"))()
+				loadstring(game:HttpGet("https://raw.githubusercontent.com/rxinoussouls/VynxUI/main/loader.lua"))()
 		end
 	end
 end
@@ -566,7 +566,7 @@ do
 	})
 
 	AboutSection:Image({
-		Image = "https://rxinoussouls.github.io/VynxUI/vynxui/previews/vynxui-modded-preview.png",
+		Image = "https://raw.githubusercontent.com/rxinoussouls/VynxUI/main/website/public/vynxui/previews/vynxui-modded-preview.png",
 		AspectRatio = "16:9",
 		Radius = 9,
 	})

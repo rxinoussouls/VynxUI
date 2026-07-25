@@ -658,7 +658,7 @@ local i=a.load'a'local j=
 
 d.Heartbeat
 
-local l="https://rxinoussouls.github.io/VynxUI/vendor/icons/Main-v2.lua"
+local l="https://raw.githubusercontent.com/rxinoussouls/VynxUI/main/website/public/vendor/icons/Main-v2.lua"
 
 local m
 if d:IsStudio()or not writefile then

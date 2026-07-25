@@ -20,7 +20,7 @@ local REQUIRED_API = {
 	"DarkOverlay",
 	"LoadingProgress",
 }
-local SOURCE_URL = "https://rxinoussouls.github.io/VynxUI/dist/main.lua?v=" .. CACHE_KEY
+local SOURCE_URL = "https://raw.githubusercontent.com/rxinoussouls/VynxUI/main/dist/main.lua?v=" .. CACHE_KEY
 
 local Success, Source = pcall(function()
 	return game:HttpGet(SOURCE_URL)
