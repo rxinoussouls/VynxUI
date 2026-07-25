@@ -29,7 +29,7 @@ local function GetViewportSize()
 	return Camera and Camera.ViewportSize or Vector2.new(1280, 720)
 end
 
-function LoadingScreen.new(WindUI, Config)
+function LoadingScreen.new(VynxUI, Config)
 	Config = AsConfig(Config)
 
 	local Steps = Config.Steps or { "Theme", "Motion", "Interface" }
@@ -46,12 +46,12 @@ function LoadingScreen.new(WindUI, Config)
 	}
 
 	local Root = New("Frame", {
-		Name = Config.Name or "WindUILoadingScreen",
+		Name = Config.Name or "VynxUILoadingScreen",
 		Size = UDim2.new(1, 0, 1, 0),
 		BackgroundTransparency = 1,
 		Active = true,
 		ZIndex = Config.ZIndex or 11000,
-		Parent = Config.Parent or WindUI.ScreenGui,
+		Parent = Config.Parent or VynxUI.ScreenGui,
 	})
 
 	local Scrim = New("Frame", {
@@ -201,7 +201,7 @@ function LoadingScreen.new(WindUI, Config)
 		Size = UDim2.new(1, 0, 0, 0),
 		AutomaticSize = "Y",
 		BackgroundTransparency = 1,
-		Text = Config.Title or "WindUI",
+		Text = Config.Title or "VynxUI",
 		TextSize = 18,
 		TextXAlignment = "Left",
 		TextWrapped = true,

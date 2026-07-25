@@ -6,7 +6,7 @@ local UserInputService = cloneref(game:GetService("UserInputService"))
 local Creator = require("../../modules/Creator")
 local New = Creator.New
 
-function ScrollSlider.New(ScrollingFrame, Parent, Window, Thickness, WindUI)
+function ScrollSlider.New(ScrollingFrame, Parent, Window, Thickness, VynxUI)
 	local Slider = New("Frame", {
 		Size = UDim2.new(0, Thickness, 1, 0),
 		BackgroundTransparency = 1,
@@ -64,8 +64,8 @@ function ScrollSlider.New(ScrollingFrame, Parent, Window, Thickness, WindUI)
 	end
 
 	local function StopDrag()
-		if WindUI.CurrentInput == ScrollSliderActionId then
-			WindUI.CurrentInput = nil
+		if VynxUI.CurrentInput == ScrollSliderActionId then
+			VynxUI.CurrentInput = nil
 		end
 		isDragging = false
 		ScrollingFrame.ScrollingEnabled = true
@@ -89,11 +89,11 @@ function ScrollSlider.New(ScrollingFrame, Parent, Window, Thickness, WindUI)
 		if isDragging then
 			return
 		end
-		if WindUI.CurrentInput and WindUI.CurrentInput ~= ScrollSliderActionId then
+		if VynxUI.CurrentInput and VynxUI.CurrentInput ~= ScrollSliderActionId then
 			return
 		end
 
-		WindUI.CurrentInput = ScrollSliderActionId
+		VynxUI.CurrentInput = ScrollSliderActionId
 
 		isDragging = true
 		ScrollingFrame.ScrollingEnabled = false

@@ -2,10 +2,10 @@
 
 return [[
 {
-    "name": "windui",
+    "name": "vynxui",
     "version": "1.6.65",
     "main": "./dist/main.lua",
-    "repository": "https://github.com/article-hub-studio/WindUI-Skibidi",
+    "repository": "https://github.com/article-hub-studio/VynxUI-Skibidi",
     "discord": "https://discord.gg/ftgs-development-hub-1300692552005189632",
     "author": "Footagesus",
     "description": "Roblox UI Library for scripts",

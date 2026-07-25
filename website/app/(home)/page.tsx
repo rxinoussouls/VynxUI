@@ -21,55 +21,55 @@ import BrandName from "../data/BrandName";
 
 const previewImages = [
     {
-        src: "/windui/previews/windui-modded-preview.png",
+        src: "/vynxui/previews/vynxui-modded-preview.png",
         title: "Full interface preview",
         detail: "Desktop, mobile and liquid glass components in one frame.",
         span: "lg:col-span-2",
     },
     {
-        src: "/windui/banners/Window.png",
+        src: "/vynxui/banners/Window.png",
         title: "Window shell",
         detail: "Mac style topbar, sidebar tabs and compact content panels.",
         span: "",
     },
     {
-        src: "/windui/banners/Tab.png",
+        src: "/vynxui/banners/Tab.png",
         title: "Tab navigation",
         detail: "Sidebar navigation with grouped script pages and icons.",
         span: "",
     },
     {
-        src: "/windui/banners/Themes.png",
+        src: "/vynxui/banners/Themes.png",
         title: "Theme picker",
         detail: "Theme states, config controls and dark glass treatment.",
         span: "",
     },
     {
-        src: "/windui/banners/TabSection.png",
+        src: "/vynxui/banners/TabSection.png",
         title: "Tab section",
         detail: "Nested tab flows without wasting vertical space.",
         span: "",
     },
     {
-        src: "/windui/banners/Section.png",
+        src: "/vynxui/banners/Section.png",
         title: "Sections",
         detail: "Section headers, dense controls and clean content blocks.",
         span: "",
     },
     {
-        src: "/windui/banners/HStackVStack.png",
+        src: "/vynxui/banners/HStackVStack.png",
         title: "Layout primitives",
         detail: "HStack and VStack moved into useful layout examples.",
         span: "",
     },
     {
-        src: "/windui/banners/Notifications.png",
+        src: "/vynxui/banners/Notifications.png",
         title: "Notifications",
         detail: "Toast states and runtime feedback for script actions.",
         span: "",
     },
     {
-        src: "/windui/banners/Tag.png",
+        src: "/vynxui/banners/Tag.png",
         title: "Tags",
         detail: "Compact metadata tags for cards, rows and script status.",
         span: "",
@@ -78,34 +78,34 @@ const previewImages = [
 
 const repoPreviewImages = [
     {
-        src: "/windui/repo/banner-new.webp",
+        src: "/vynxui/repo/banner-new.webp",
         title: "Repo banner",
         detail: "Original repository banner exported as a lightweight webp.",
     },
     {
-        src: "/windui/repo/banner-dark.webp",
+        src: "/vynxui/repo/banner-dark.webp",
         title: "Dark banner",
         detail: "Large dark presentation image from the repository docs folder.",
     },
     {
-        src: "/windui/repo/banner-light.webp",
+        src: "/vynxui/repo/banner-light.webp",
         title: "Light banner",
         detail: "Light mode repository banner for contrast and docs usage.",
     },
     {
-        src: "/windui/repo/ui.png",
+        src: "/vynxui/repo/ui.png",
         title: "Classic UI capture",
         detail: "Legacy UI reference retained for visual comparison.",
     },
     {
-        src: "/windui/repo/themes-overview.png",
+        src: "/vynxui/repo/themes-overview.png",
         title: "Theme overview",
         detail: "Theme screenshot from the repo docs asset set.",
     },
     {
-        src: "/windui/main-banner.png",
+        src: "/vynxui/main-banner.png",
         title: "Main banner",
-        detail: "Primary WindUI Modded website banner.",
+        detail: "Primary VynxUI Modded website banner.",
     },
 ];
 
@@ -134,13 +134,13 @@ const elementGroups = [
         icon: LayoutDashboard,
         description: "Fast input primitives for scripts that need mobile and PC support.",
         items: [
-            ["Button", "/docs/windui/button"],
-            ["Toggle", "/docs/windui/toggle"],
-            ["Slider", "/docs/windui/slider"],
-            ["Stepper", "/docs/windui/stepper"],
-            ["Input", "/docs/windui/input"],
-            ["TextArea", "/docs/windui/textarea"],
-            ["Dropdown", "/docs/windui/dropdown"],
+            ["Button", "/docs/vynxui/button"],
+            ["Toggle", "/docs/vynxui/toggle"],
+            ["Slider", "/docs/vynxui/slider"],
+            ["Stepper", "/docs/vynxui/stepper"],
+            ["Input", "/docs/vynxui/input"],
+            ["TextArea", "/docs/vynxui/textarea"],
+            ["Dropdown", "/docs/vynxui/dropdown"],
         ],
     },
     {
@@ -148,12 +148,12 @@ const elementGroups = [
         icon: PanelsTopLeft,
         description: "Grouped selection patterns that keep mobile screens readable.",
         items: [
-            ["Segmented Control", "/docs/windui/segmentedcontrol"],
-            ["Radio Group", "/docs/windui/radiogroup"],
-            ["Checkbox Group", "/docs/windui/checkboxgroup"],
-            ["Chip List", "/docs/windui/chiplist"],
-            ["Colorpicker", "/docs/windui/colorpicker"],
-            ["Keybind", "/docs/windui/keybind"],
+            ["Segmented Control", "/docs/vynxui/segmentedcontrol"],
+            ["Radio Group", "/docs/vynxui/radiogroup"],
+            ["Checkbox Group", "/docs/vynxui/checkboxgroup"],
+            ["Chip List", "/docs/vynxui/chiplist"],
+            ["Colorpicker", "/docs/vynxui/colorpicker"],
+            ["Keybind", "/docs/vynxui/keybind"],
         ],
     },
     {
@@ -161,14 +161,14 @@ const elementGroups = [
         icon: BadgeCheck,
         description: "Cards for status, metrics, Discord links and dense script dashboards.",
         items: [
-            ["Callout", "/docs/windui/callout"],
-            ["Badge", "/docs/windui/badge"],
-            ["StatusCard", "/docs/windui/statuscard"],
-            ["StatCard", "/docs/windui/statcard"],
-            ["KeyValue", "/docs/windui/keyvalue"],
-            ["ActionList", "/docs/windui/actionlist"],
-            ["DiscordCard", "/docs/windui/discordcard"],
-            ["Card", "/docs/windui/card"],
+            ["Callout", "/docs/vynxui/callout"],
+            ["Badge", "/docs/vynxui/badge"],
+            ["StatusCard", "/docs/vynxui/statuscard"],
+            ["StatCard", "/docs/vynxui/statcard"],
+            ["KeyValue", "/docs/vynxui/keyvalue"],
+            ["ActionList", "/docs/vynxui/actionlist"],
+            ["DiscordCard", "/docs/vynxui/discordcard"],
+            ["Card", "/docs/vynxui/card"],
         ],
     },
     {
@@ -176,14 +176,14 @@ const elementGroups = [
         icon: Sparkles,
         description: "Visual elements for animated sections, previews and richer panels.",
         items: [
-            ["TabBox", "/docs/windui/tabbox"],
-            ["Timeline", "/docs/windui/timeline"],
-            ["Accordion", "/docs/windui/accordion"],
-            ["Path2D", "/docs/windui/path2d"],
-            ["Image", "/docs/windui/image"],
-            ["Video", "/docs/windui/video"],
-            ["Viewport", "/docs/windui/viewport"],
-            ["ProgressBar", "/docs/windui/progressbar"],
+            ["TabBox", "/docs/vynxui/tabbox"],
+            ["Timeline", "/docs/vynxui/timeline"],
+            ["Accordion", "/docs/vynxui/accordion"],
+            ["Path2D", "/docs/vynxui/path2d"],
+            ["Image", "/docs/vynxui/image"],
+            ["Video", "/docs/vynxui/video"],
+            ["Viewport", "/docs/vynxui/viewport"],
+            ["ProgressBar", "/docs/vynxui/progressbar"],
         ],
     },
 ];
@@ -225,7 +225,7 @@ export default function HomePage() {
                                 {BrandName}
                             </h1>
                             <p className="max-w-2xl text-base leading-7 text-white/68 sm:text-lg">
-                                A modded WindUI build focused on liquid glass
+                                A modded VynxUI build focused on liquid glass
                                 visuals, mobile support, richer elements and
                                 practical docs for executor scripts.
                             </p>
@@ -240,14 +240,14 @@ export default function HomePage() {
                                 <ArrowRight className="size-4" />
                             </Link>
                             <Link
-                                href="/docs/windui/elements-overview"
+                                href="/docs/vynxui/elements-overview"
                                 className="inline-flex h-12 items-center justify-center gap-2 rounded-full border border-white/14 bg-white/8 px-5 text-sm font-semibold text-white transition duration-200 hover:bg-white/14"
                             >
                                 Browse elements
                                 <BookOpen className="size-4" />
                             </Link>
                             <Link
-                                href="https://github.com/article-hub-studio/WindUI-Skibidi"
+                                href="https://github.com/article-hub-studio/VynxUI-Skibidi"
                                 className="inline-flex h-12 items-center justify-center gap-2 rounded-full border border-white/14 bg-black/20 px-5 text-sm font-semibold text-white/84 transition duration-200 hover:bg-white/10"
                             >
                                 GitHub
@@ -276,8 +276,8 @@ export default function HomePage() {
                         <div className="absolute -inset-3 rounded-[34px] border border-cyan-300/16 bg-cyan-300/6" />
                         <div className="relative overflow-hidden rounded-[30px] border border-white/14 bg-black/40 shadow-2xl shadow-cyan-950/50">
                             <img
-                                src={asset("/windui/previews/windui-modded-preview.png")}
-                                alt="WindUI Modded interface preview"
+                                src={asset("/vynxui/previews/vynxui-modded-preview.png")}
+                                alt="VynxUI Modded interface preview"
                                 className="aspect-[16/9] w-full object-cover"
                                 loading="eager"
                             />
@@ -313,7 +313,7 @@ export default function HomePage() {
                     </h2>
                     <p className="mt-3 text-sm leading-6 text-white/58">
                         This website and modded fork are maintained for the
-                        WindUI-Skibidi repo.
+                        VynxUI-Skibidi repo.
                     </p>
                 </div>
                 <div className="rounded-3xl border border-white/10 bg-white/[0.055] p-6">
@@ -321,10 +321,10 @@ export default function HomePage() {
                         Original credit
                     </p>
                     <h2 className="mt-3 text-2xl font-semibold tracking-tight">
-                        Original WindUI
+                        Original VynxUI
                     </h2>
                     <p className="mt-3 text-sm leading-6 text-white/58">
-                        Credit to the original WindUI project and its author.
+                        Credit to the original VynxUI project and its author.
                         This fork keeps the familiar API while documenting the
                         modded feature set.
                     </p>
@@ -438,7 +438,7 @@ export default function HomePage() {
                         </h2>
                     </div>
                     <Link
-                        href="/docs/windui/themes"
+                        href="/docs/vynxui/themes"
                         className="inline-flex h-11 w-fit items-center justify-center gap-2 rounded-full border border-white/14 bg-white/8 px-4 text-sm font-semibold text-white transition duration-200 hover:bg-white/14"
                     >
                         Theme docs
@@ -450,11 +450,11 @@ export default function HomePage() {
                     {themePreviewImages.map((theme) => (
                         <Link
                             key={theme}
-                            href="/docs/windui/themes"
+                            href="/docs/vynxui/themes"
                             className="group overflow-hidden rounded-2xl border border-white/10 bg-white/[0.055] transition duration-200 hover:border-cyan-300/30 hover:bg-cyan-300/8"
                         >
                             <img
-                                src={asset(`/windui/themes/${theme}.png`)}
+                                src={asset(`/vynxui/themes/${theme}.png`)}
                                 alt={`${theme} theme preview`}
                                 className="aspect-[5/4] w-full object-cover object-top transition duration-300 group-hover:scale-[1.04]"
                                 loading="lazy"
@@ -549,7 +549,7 @@ export default function HomePage() {
 
                 <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                     <Link
-                        href="/docs/windui/custom-theme"
+                        href="/docs/vynxui/custom-theme"
                         className="rounded-3xl border border-white/10 bg-white/[0.055] p-6 transition duration-200 hover:border-cyan-300/28 hover:bg-cyan-300/8"
                     >
                         <Palette className="size-6 text-cyan-200" />
@@ -562,7 +562,7 @@ export default function HomePage() {
                         </p>
                     </Link>
                     <Link
-                        href="/docs/windui/keysystem"
+                        href="/docs/vynxui/keysystem"
                         className="rounded-3xl border border-white/10 bg-white/[0.055] p-6 transition duration-200 hover:border-emerald-300/28 hover:bg-emerald-300/8"
                     >
                         <Gem className="size-6 text-emerald-200" />
@@ -575,7 +575,7 @@ export default function HomePage() {
                         </p>
                     </Link>
                     <Link
-                        href="/docs/windui/tabbox"
+                        href="/docs/vynxui/tabbox"
                         className="rounded-3xl border border-white/10 bg-white/[0.055] p-6 transition duration-200 hover:border-amber-300/28 hover:bg-amber-300/8"
                     >
                         <PanelsTopLeft className="size-6 text-amber-200" />
@@ -588,7 +588,7 @@ export default function HomePage() {
                         </p>
                     </Link>
                     <Link
-                        href="/docs/windui/keybind"
+                        href="/docs/vynxui/keybind"
                         className="rounded-3xl border border-white/10 bg-white/[0.055] p-6 transition duration-200 hover:border-blue-300/28 hover:bg-blue-300/8"
                     >
                         <MonitorSmartphone className="size-6 text-blue-200" />
@@ -607,11 +607,11 @@ export default function HomePage() {
                 <div className="mx-auto flex w-full max-w-7xl flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                     <p>
                         (c) {new Date().getFullYear()} article-hub-studio.
-                        WindUI Modded docs.
+                        VynxUI Modded docs.
                     </p>
                     <p>
-                        Original WindUI credit retained. Fork repo:
-                        article-hub-studio/WindUI-Skibidi.
+                        Original VynxUI credit retained. Fork repo:
+                        article-hub-studio/VynxUI-Skibidi.
                     </p>
                 </div>
             </footer>

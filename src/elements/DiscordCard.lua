@@ -48,9 +48,9 @@ local function CopyText(Text)
 	return false
 end
 
-local function Notify(WindUI, Title, Content, Icon, Style)
-	if WindUI and WindUI.Notify then
-		WindUI:Notify({
+local function Notify(VynxUI, Title, Content, Icon, Style)
+	if VynxUI and VynxUI.Notify then
+		VynxUI:Notify({
 			Title = Title,
 			Content = Content,
 			Icon = Icon,
@@ -301,10 +301,10 @@ function Element:New(Config)
 
 	local function CopyInvite(Title)
 		if CopyText(DiscordCard.Url) then
-			Notify(Config.WindUI, Title or "Discord link copied", DiscordCard.Url, "check", "Success")
+			Notify(Config.VynxUI, Title or "Discord link copied", DiscordCard.Url, "check", "Success")
 			return true
 		else
-			Notify(Config.WindUI, "Discord invite", DiscordCard.Url, "link", "Warning")
+			Notify(Config.VynxUI, "Discord invite", DiscordCard.Url, "link", "Warning")
 			return false
 		end
 	end

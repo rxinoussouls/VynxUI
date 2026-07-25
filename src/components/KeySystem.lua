@@ -15,7 +15,7 @@ end
 
 function KeySystem.new(Config, Filename, func, keyValidator)
 	local KeyDialogInit = require("./window/Dialog")
-	local KeyDialog = KeyDialogInit.Create(true, "Popup", Config.Window, Config.WindUI, Config.WindUI.ScreenGui.KeySystem)
+	local KeyDialog = KeyDialogInit.Create(true, "Popup", Config.Window, Config.VynxUI, Config.VynxUI.ScreenGui.KeySystem)
 
 	local Services = {}
 
@@ -430,8 +430,8 @@ function KeySystem.new(Config, Filename, func, keyValidator)
 	end
 
 	local function NotifyKeySystem(Content, Icon, Style)
-		if Config.WindUI and Config.WindUI.Notify then
-			Config.WindUI:Notify({
+		if Config.VynxUI and Config.VynxUI.Notify then
+			Config.VynxUI:Notify({
 				Title = "Key System",
 				Content = Content,
 				Icon = Icon or "key",
@@ -501,7 +501,7 @@ function KeySystem.new(Config, Filename, func, keyValidator)
 	if Config.KeySystem.API then
 		local ServiceEntries = {}
 		for _, i in next, Config.KeySystem.API do
-			local serviceDef = Config.WindUI.Services[i.Type]
+			local serviceDef = Config.VynxUI.Services[i.Type]
 			if serviceDef then
 				local args = {}
 				for _, argName in next, serviceDef.Args do
@@ -762,7 +762,7 @@ function KeySystem.new(Config, Filename, func, keyValidator)
 		local function Reject(Message)
 			IsChecking = false
 			SetState("Invalid key", 0.08, true)
-			Config.WindUI:Notify({
+			Config.VynxUI:Notify({
 				Title = "Key System",
 				Content = Message or "Invalid key.",
 				Icon = "triangle-alert",

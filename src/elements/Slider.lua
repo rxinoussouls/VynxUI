@@ -261,13 +261,13 @@ local Value = Slider.Value.Default
 	end
 
 	local ScrollingFrameParent = Config.Tab.UIElements.ContainerFrame
-	local CurInput = Config.WindUI.GenerateGUID()
+	local CurInput = Config.VynxUI.GenerateGUID()
 
 	local function DisconnectSliderInput()
 		local WasHolding = IsSliderHolding
 			or moveconnection ~= nil
 			or releaseconnection ~= nil
-			or Config.WindUI.CurrentInput == CurInput
+			or Config.VynxUI.CurrentInput == CurInput
 
 		if moveconnection then
 			Creator.DisconnectSignal(moveconnection)
@@ -282,8 +282,8 @@ local Value = Slider.Value.Default
 		if WasHolding then
 			ScrollingFrameParent.ScrollingEnabled = true
 		end
-		if Config.WindUI.CurrentInput == CurInput then
-			Config.WindUI.CurrentInput = nil
+		if Config.VynxUI.CurrentInput == CurInput then
+			Config.VynxUI.CurrentInput = nil
 		end
 	end
 
@@ -511,10 +511,10 @@ end
 			input.UserInputType == Enum.UserInputType.MouseButton1
 			or input.UserInputType == Enum.UserInputType.Touch
 		then
-			if Config.WindUI.CurrentInput and Config.WindUI.CurrentInput ~= CurInput then
+			if Config.VynxUI.CurrentInput and Config.VynxUI.CurrentInput ~= CurInput then
 				return
 			end
-			Config.WindUI.CurrentInput = CurInput
+			Config.VynxUI.CurrentInput = CurInput
 
 			Slider:Set(Value, input)
 

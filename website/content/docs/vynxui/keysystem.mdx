@@ -1,0 +1,233 @@
+---
+title: Key System
+description: Implement access control with key validation
+---
+
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { DynamicCodeBlock } from 'fumadocs-ui/components/dynamic-codeblock'
+import TypeTable from '@/components/TypeTable';
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { TriangleAlert } from "lucide-react";
+
+
+## Key System Overview
+
+The Key System provides access control to your VynxUI Modded window. When enabled, users must enter a valid key before accessing the interface. This is useful for restricting access to premium, admin-only, or exclusive scripts.
+
+The current key dialog uses a compact mobile-safe layout with a liquid glass progress track. The progress state updates automatically while links are copied, keys are checked and access is granted or rejected.
+
+## Basic Usage
+
+<Tabs defaultValue="simple">
+    <TabsList>
+        <TabsTrigger value="simple">Simple</TabsTrigger>
+        <TabsTrigger value="full">Full</TabsTrigger>
+    </TabsList>
+    <TabsContent value="simple">
+```luau
+local Window = VynxUI:CreateWindow({ -- creating window from /docs/vynxui/window
+    Title = "Admin Panel",
+    KeySystem = {
+        KeyValidator = function(key)
+            return key == "admin123"
+        end,
+    }
+})
+```
+    </TabsContent>
+    <TabsContent value="full">
+```luau
+local Window = VynxUI:CreateWindow({ -- creating window from /docs/vynxui/window
+    Title = "Premium Tool",
+    KeySystem = {
+        Title = "Access Required",
+        Note = "Get your key at discord.gg/example",
+        
+        KeyValidator = function(key) -- your key validation logic
+            local validKeys = {"key1", "key2", "key3"}
+            return table.find(validKeys, key) ~= nil
+        end,
+        
+        SaveKey = true,
+        URL = "https://discord.gg/example", -- link to get keys
+        
+        Thumbnail = {
+            Image = "rbxassetid://1234567890",
+            Title = "Premium Member",
+        }
+    }
+})
+```
+    </TabsContent>
+</Tabs>
+
+The KeySystem must be located inside the [Window](/docs/vynxui/window) configuration table passed to `VynxUI:CreateWindow()`
+
+## Parameters
+
+<TypeTable 
+    type={{
+        'KeyValidator': {
+            type: 'function',
+            description: 'Function that returns true if key is valid. Use this or API.',
+        },
+        'Title': {
+            type: 'string?',
+            description: 'Dialog title. Defaults to window title if not specified.',
+        },
+        'Note': {
+            type: 'string?',
+            description: 'Message shown to users in the dialog.',
+        },
+        'SaveKey': {
+            type: 'boolean?',
+            description: 'Save valid key to file for future sessions.',
+        },
+        'URL': {
+            type: 'string?',
+            description: 'Link to get keys. Copied to clipboard when button clicked.',
+        },
+        'API': {
+            type: 'table?',
+            description: 'External services for key verification. Supports luarmor, platoboost, pandadevelopment and junkiedevelopment.',
+        },
+        'Thumbnail': {
+            type: 'table?',
+            description: 'Image displayed in key dialog. Table with Image, Title, Width properties.',
+        },
+    }}
+/>
+
+## Examples
+
+### Simple Key Validation
+
+<DynamicCodeBlock className="m-0" lang="luau" code={`local Window = VynxUI:CreateWindow({
+    Title = "My Script",
+    KeySystem = {
+        KeyValidator = function(key)
+            return key == "mySecretKey"
+        end,
+    }
+})`} />
+
+### Multiple Valid Keys
+
+<DynamicCodeBlock className="m-0" lang="luau" code={`local Window = VynxUI:CreateWindow({
+    Title = "Admin Panel",
+    KeySystem = {
+        KeyValidator = function(key)
+            local validKeys = {
+                "owner_key",
+                "admin_key", 
+                "moderator_key"
+            }
+            return table.find(validKeys, key) ~= nil
+        end,
+        SaveKey = true
+    }
+})`} />
+
+### With Key Link
+
+<DynamicCodeBlock className="m-0" lang="luau" code={`local Window = VynxUI:CreateWindow({
+    Title = "Premium Features",
+    KeySystem = {
+        Title = "Premium Access",
+        Note = "Click 'Get Key' button to open Discord",
+        KeyValidator = function(key)
+            return string.len(key) > 10
+        end,
+        SaveKey = true,
+        URL = "https://discord.gg/yourserver"
+    }
+})`} />
+
+### With Luarmor API
+
+<DynamicCodeBlock className="m-0" lang="luau" code={`local Window = VynxUI:CreateWindow({
+    Title = "Premium Hub",
+    Folder = "PremiumHub",
+    KeySystem = {
+        Title = "Key System",
+        Note = "Example Key System. With luarmor.",
+        SaveKey = true,
+        API = {
+            {
+                Type = "luarmor",
+                ScriptId = 1234,
+                Discord = "https://discord.gg/yourserver",
+            },
+        },
+    },
+})`} />
+
+`Type` is case-insensitive. `ScriptId` also accepts `ScriptID`, `script_id`, `Id` and `id`; `Discord` also accepts `DiscordUrl`, `Invite` and `URL`.
+
+### With Thumbnail
+
+<DynamicCodeBlock className="m-0" lang="luau" code={`local Window = VynxUI:CreateWindow({
+    Title = "VIP Tools",
+    KeySystem = {
+        Title = "VIP Verification",
+        KeyValidator = function(key)
+            return string.sub(key, 1, 4) == "VIP-"
+        end,
+        SaveKey = true,
+        Thumbnail = {
+            Image = "rbxassetid://your_image_id",
+            Title = "VIP Member",
+            Width = 200
+        }
+    }
+})`} />
+
+## Save Key Behavior
+
+When `SaveKey` is enabled:
+
+1. User enters key in the dialog
+2. Key is validated using `KeyValidator`
+3. If valid, key is saved to `[Folder]/[player.Name].key`
+4. On future runs, saved key is loaded and validated automatically
+
+<DynamicCodeBlock className="m-0" lang="luau" code={`local Window = VynxUI:CreateWindow({
+    Title = "App",
+    Folder = "MyApp", -- key saved to "MyApp/[player.Name].key"
+    KeySystem = {
+        KeyValidator = function(key)
+            return key == "example"
+        end,
+        SaveKey = true -- enables persistence
+    }
+})`} />
+
+---
+
+<Alert className="bg-yellow-300/30 dark:bg-yellow-950/80 text-yellow-700 dark:text-yellow-200/90 border-0">
+    <TriangleAlert />
+    <AlertTitle>Deprecated: Key Property</AlertTitle>
+    <AlertDescription className="[&_p]:m-0">
+
+        The old `Key` property is deprecated. Use `KeyValidator` instead:
+
+        ```luau
+        -- Don't use this anymore
+        KeySystem = {
+            Key = "password123" -- deprecated
+        }
+
+        -- Use this instead
+        KeySystem = {
+            KeyValidator = function(key)
+                return key == "password123"
+            end
+        }
+        ```
+    </AlertDescription>
+</Alert>
+
+## Related
+
+- [Window Configuration](./window) - Other CreateWindow options
+- [Notification](./notification) - Show validation feedback

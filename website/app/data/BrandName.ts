@@ -1,1 +1,1 @@
-export default "WindUI Modded";
+export default "VynxUI Modded";

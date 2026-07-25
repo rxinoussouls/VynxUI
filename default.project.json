@@ -1,10 +1,10 @@
 {
-    "name": "WindUI",
+    "name": "VynxUI",
     "tree": {
         "$className": "DataModel",
 
         "ReplicatedStorage": {
-            "WindUI": {
+            "VynxUI": {
                 "$path": "src/"
             },
             "build": {

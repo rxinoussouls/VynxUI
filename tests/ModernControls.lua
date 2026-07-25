@@ -1,9 +1,9 @@
-local WindUI = require("../src/Init")
+local VynxUI = require("../src/Init")
 
-assert(WindUI:SetMotionPreset("Subtle").Preset == "Subtle")
-assert(WindUI:SetReducedMotion(false).Reduced == false)
+assert(VynxUI:SetMotionPreset("Subtle").Preset == "Subtle")
+assert(VynxUI:SetReducedMotion(false).Reduced == false)
 
-local Window = WindUI:CreateWindow({
+local Window = VynxUI:CreateWindow({
 	Title = "Modern Controls Test",
 	NewElements = true,
 	Motion = {
@@ -195,7 +195,7 @@ Box:Select(1)
 assert(Box:GetSelected() == Page)
 
 Window:SetBackgroundColor("#0B0F14")
-Window:SetBackgroundGradient(WindUI:Gradient({
+Window:SetBackgroundGradient(VynxUI:Gradient({
 	["0"] = { Color = "#0B0F14", Transparency = 0.1 },
 	["100"] = { Color = "#17243A", Transparency = 0.6 },
 }), 0.5)

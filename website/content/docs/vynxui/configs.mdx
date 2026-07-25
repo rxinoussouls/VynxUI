@@ -1,0 +1,87 @@
+---
+title: Configs
+description: Save and load user preferences in VynxUI Modded
+---
+
+import { DynamicCodeBlock } from 'fumadocs-ui/components/dynamic-codeblock'
+
+## Config System
+
+The VynxUI Modded config system automatically saves element states to files. Use the `Flag` property on elements to enable automatic saving.
+
+## Enable Config
+
+```luau
+-- creating window from /docs/vynxui/window
+local Window = VynxUI:CreateWindow({ 
+    Title = "My Application",
+    Folder = "MyApp", -- creates a folder to store configs
+})
+```
+
+saves at `[YOUR_EXPLOIT]/VynxUI/[WIndow.Folder]/configs/`
+
+## Save Element States
+
+Elements with a `Flag` property are automatically saved:
+
+```luau
+local MyConfig = Window.ConfigManager:Config("MyConfigFile") -- creates/loads config file `MyConfigFile.json`
+
+-- usage example
+local DarkMode = Tab:Toggle({
+    Title = "Dark Mode",
+    Flag = "dark_mode_enabled", -- [!code highlight]
+    Value = false,
+    Callback = function(state)
+        print("Dark mode:", state)
+    end
+})
+
+local Volume = Tab:Slider({
+    Title = "Volume",
+    Flag = "master_volume", -- [!code highlight]
+    Value = { Min = 0, Max = 100, Default = 75 },
+    Callback = function(value)
+        print("Volume:", value)
+    end
+})
+
+local Theme = Tab:Dropdown({
+    Title = "Theme",
+    Flag = "selected_theme", -- [!code highlight]
+    Options = { "Light", "Dark", "Auto" },
+    Default = "Dark",
+    Callback = function(selected)
+        print("Theme:", selected)
+    end
+})
+
+local Username = Tab:Input({
+    Title = "Username",
+    Flag = "user_name", -- [!code highlight]
+    Callback = function(text)
+        print("Username:", text)
+    end
+})
+
+MyConfig:Save() -- manually save config file
+```
+
+## Folder Structure
+
+```luau
+-- When you set Folder = "MyApp", VynxUI creates:
+-- /VynxUI/MyApp/            -- Main folder
+-- /VynxUI/MyApp/configs/    -- Config files
+-- /VynxUI/MyApp/assets/     -- Cached assets
+-- /MyApp/                   -- Optional backup Folder
+```
+
+## Related Documentation
+
+- [Window](./window) - Window Folder Config
+- [Toggle](./toggle) - Boolean Config
+- [Slider](./slider) - Numeric Config
+- [Input](./input) - Text Config
+- [Dropdown](./dropdown) - Selection Config

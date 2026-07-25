@@ -348,7 +348,7 @@ function NotificationModule.New(Config)
 		DarkOverlay = Config.DarkOverlay == true or Config.Overlay == true or NotificationType == "Originally",
 		Timestamp = Config.Timestamp ~= nil and tostring(Config.Timestamp)
 			or (Config.Time ~= nil and tostring(Config.Time) or nil),
-		AppName = tostring(Config.AppName or Config.Application or Config.App or "WindUI"),
+		AppName = tostring(Config.AppName or Config.Application or Config.App or "VynxUI"),
 		AppIcon = NormalizeIcon(
 			Config.AppIcon or Config.ApplicationIcon or (NotificationType == "Window" and Config.Icon) or "bell"
 		),

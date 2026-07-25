@@ -1,5 +1,5 @@
 --[[
-    WindUI Example 2
+    VynxUI Example 2
 ]]
 
 local cloneref = (cloneref or clonereference or function(instance)
@@ -8,7 +8,7 @@ end)
 local ReplicatedStorage = cloneref(game:GetService("ReplicatedStorage"))
 local RunService = cloneref(game:GetService("RunService"))
 
-local WindUI
+local VynxUI
 
 do
 	local ok, result = pcall(function()
@@ -16,23 +16,23 @@ do
 	end)
 
 	if ok then
-		WindUI = result
+		VynxUI = result
 	else
 		if RunService:IsStudio() or not writefile then
-			WindUI = require(ReplicatedStorage:WaitForChild("WindUI"):WaitForChild("Init"))
+			VynxUI = require(ReplicatedStorage:WaitForChild("VynxUI"):WaitForChild("Init"))
 		else
-			WindUI = loadstring(
-				game:HttpGet("https://article-hub-studio.github.io/WindUI-Skibidi/loader.lua")
+			VynxUI = loadstring(
+				game:HttpGet("https://article-hub-studio.github.io/VynxUI-Skibidi/loader.lua")
 			)()
 		end
 	end
 end
 
---WindUI.TransparencyValue = .9
+--VynxUI.TransparencyValue = .9
 local ThemeName = "Dark"
 
-local Window = WindUI:CreateWindow({
-	Title = "WindUI Library",
+local Window = VynxUI:CreateWindow({
+	Title = "VynxUI Library",
 	Author = "by .ftgs",
 	Icon = "solar:wind-bold",
 	Theme = ThemeName,
@@ -91,8 +91,8 @@ local InfoTab = Window:Tab({
 })
 
 InfoTab:Paragraph({
-	Title = "WindUI",
-	Desc = "WindUI is a open source UI library for Roblox Script Hubs",
+	Title = "VynxUI",
+	Desc = "VynxUI is a open source UI library for Roblox Script Hubs",
 	Buttons = {
 		{
 			Title = "GitHub",

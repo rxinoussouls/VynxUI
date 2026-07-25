@@ -118,7 +118,7 @@ function Element:New(Config)
 
 	Toggle:Set(Toggled, false, true)
 
-	local CurInput = if ToggleFunc.UseDrag then Config.WindUI.GenerateGUID() else nil
+	local CurInput = if ToggleFunc.UseDrag then Config.VynxUI.GenerateGUID() else nil
 
 	if Config.Window.NewElements and ToggleFunc.Animate and ToggleFunc.UseDrag then
 		if Toggle.Type == "Toggle" then
@@ -131,11 +131,11 @@ function Element:New(Config)
 						or Input.UserInputType == Enum.UserInputType.Touch
 					)
 				then
-					if Config.WindUI.CurrentInput and Config.WindUI.CurrentInput ~= CurInput then
+					if Config.VynxUI.CurrentInput and Config.VynxUI.CurrentInput ~= CurInput then
 						return
 					end
 
-					Config.WindUI.CurrentInput = CurInput
+					Config.VynxUI.CurrentInput = CurInput
 					ToggleFunc:Animate(Input, Toggle)
 				end
 			end)

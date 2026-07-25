@@ -1,4 +1,4 @@
-local WindUI = {
+local VynxUI = {
 	Window = nil,
 	Theme = nil,
 	Creator = require("./modules/Creator"),
@@ -27,13 +27,13 @@ local WindUI = {
 	CurrentInput = nil,
 }
 
-WindUI.IconAdapterVersion = WindUI.Creator.IconAdapterVersion
+VynxUI.IconAdapterVersion = VynxUI.Creator.IconAdapterVersion
 
-local Creator = WindUI.Creator
+local Creator = VynxUI.Creator
 
 local cloneref = require("./utils/cloneref")
 
-WindUI.cloneref = cloneref
+VynxUI.cloneref = cloneref
 
 local HttpService = cloneref(game:GetService("HttpService"))
 local Players = cloneref(game:GetService("Players"))
@@ -41,11 +41,11 @@ local CoreGui = cloneref(game:GetService("CoreGui"))
 local RunService = cloneref(game:GetService("RunService"))
 local UserInputService = cloneref(game:GetService("UserInputService"))
 
-function WindUI.GenerateGUID()
+function VynxUI.GenerateGUID()
 	return HttpService:GenerateGUID(false)
 end
 
-local CurInput = WindUI.GenerateGUID()
+local CurInput = VynxUI.GenerateGUID()
 
 Creator.AddSignal(UserInputService.InputBegan, function(Input, GameProcessed)
 	--[[if GameProcessed then
@@ -57,23 +57,23 @@ Creator.AddSignal(UserInputService.InputBegan, function(Input, GameProcessed)
 			Input.UserInputType == Enum.UserInputType.MouseButton1
 			or Input.UserInputType == Enum.UserInputType.Touch
 		then
-			if WindUI.CurrentInput and WindUI.CurrentInput ~= CurInput then
+			if VynxUI.CurrentInput and VynxUI.CurrentInput ~= CurInput then
 				return
 			end
 
-			WindUI.CurrentInput = CurInput
+			VynxUI.CurrentInput = CurInput
 			--print(CurInput)
-			--WindUI.InputStartedOnUI = false
+			--VynxUI.InputStartedOnUI = false
 		end
 	end)
 end)
 Creator.AddSignal(UserInputService.InputEnded, function(Input, GameProcessed)
 	if Input.UserInputType == Enum.UserInputType.MouseButton1 or Input.UserInputType == Enum.UserInputType.Touch then
-		if WindUI.CurrentInput and WindUI.CurrentInput ~= CurInput then
+		if VynxUI.CurrentInput and VynxUI.CurrentInput ~= CurInput then
 			return
 		end
 
-		WindUI.CurrentInput = nil
+		VynxUI.CurrentInput = nil
 	end
 end)
 
@@ -81,7 +81,7 @@ local LocalPlayer = Players.LocalPlayer or nil
 
 local Package = HttpService:JSONDecode(require("../build/package"))
 if Package then
-	WindUI.Version = Package.version
+	VynxUI.Version = Package.version
 end
 
 local KeySystem = require("./components/KeySystem")
@@ -90,7 +90,7 @@ local LoadingScreen = require("./components/LoadingScreen")
 local New = Creator.New
 
 --local Tween = Creator.Tween
---local ServicesModule = WindUI.Services
+--local ServicesModule = VynxUI.Services
 
 local Acrylic = require("./utils/Acrylic/Init")
 
@@ -99,13 +99,13 @@ local ProtectGui = protectgui or (syn and syn.protect_gui) or function() end
 local GUIParent = gethui and gethui() or (CoreGui or LocalPlayer:WaitForChild("PlayerGui"))
 
 local UIScaleObj = New("UIScale", {
-	Scale = WindUI.UIScale,
+	Scale = VynxUI.UIScale,
 })
 
-WindUI.UIScaleObj = UIScaleObj
+VynxUI.UIScaleObj = UIScaleObj
 
-WindUI.ScreenGui = New("ScreenGui", {
-	Name = "WindUI",
+VynxUI.ScreenGui = New("ScreenGui", {
+	Name = "VynxUI",
 	Parent = GUIParent,
 	IgnoreGuiInset = true,
 	ScreenInsets = "None",
@@ -132,8 +132,8 @@ WindUI.ScreenGui = New("ScreenGui", {
 	}),
 })
 
-WindUI.NotificationGui = New("ScreenGui", {
-	Name = "WindUI/Notifications",
+VynxUI.NotificationGui = New("ScreenGui", {
+	Name = "VynxUI/Notifications",
 	Parent = GUIParent,
 	IgnoreGuiInset = true,
 	ScreenInsets = "None",
@@ -141,100 +141,100 @@ WindUI.NotificationGui = New("ScreenGui", {
 	DisplayOrder = 999999,
 	ZIndexBehavior = Enum.ZIndexBehavior.Sibling,
 })
-WindUI.DropdownGui = New("ScreenGui", {
-	Name = "WindUI/Dropdowns",
+VynxUI.DropdownGui = New("ScreenGui", {
+	Name = "VynxUI/Dropdowns",
 	Parent = GUIParent,
 	IgnoreGuiInset = true,
 })
-WindUI.TooltipGui = New("ScreenGui", {
-	Name = "WindUI/Tooltips",
+VynxUI.TooltipGui = New("ScreenGui", {
+	Name = "VynxUI/Tooltips",
 	Parent = GUIParent,
 	IgnoreGuiInset = true,
 })
-ProtectGui(WindUI.ScreenGui)
-ProtectGui(WindUI.NotificationGui)
-ProtectGui(WindUI.DropdownGui)
-ProtectGui(WindUI.TooltipGui)
+ProtectGui(VynxUI.ScreenGui)
+ProtectGui(VynxUI.NotificationGui)
+ProtectGui(VynxUI.DropdownGui)
+ProtectGui(VynxUI.TooltipGui)
 
-Creator.Init(WindUI)
+Creator.Init(VynxUI)
 
-function WindUI:SetParent(parent)
-	if WindUI.ScreenGui then
-		WindUI.ScreenGui.Parent = parent
+function VynxUI:SetParent(parent)
+	if VynxUI.ScreenGui then
+		VynxUI.ScreenGui.Parent = parent
 	end
-	if WindUI.NotificationGui then
-		WindUI.NotificationGui.Parent = parent
+	if VynxUI.NotificationGui then
+		VynxUI.NotificationGui.Parent = parent
 	end
-	if WindUI.DropdownGui then
-		WindUI.DropdownGui.Parent = parent
+	if VynxUI.DropdownGui then
+		VynxUI.DropdownGui.Parent = parent
 	end
-	if WindUI.TooltipGui then
-		WindUI.TooltipGui.Parent = parent
+	if VynxUI.TooltipGui then
+		VynxUI.TooltipGui.Parent = parent
 	end
 end
-math.clamp(WindUI.TransparencyValue, 0, 1)
+math.clamp(VynxUI.TransparencyValue, 0, 1)
 
-local Holder = WindUI.NotificationModule.Init(WindUI.NotificationGui)
+local Holder = VynxUI.NotificationModule.Init(VynxUI.NotificationGui)
 
-function WindUI:Notify(Config)
+function VynxUI:Notify(Config)
 	Config.Holder = Holder.Frame
-	Config.Window = WindUI.Window
-	--Config.WindUI = WindUI
-	return WindUI.NotificationModule.New(Config)
+	Config.Window = VynxUI.Window
+	--Config.VynxUI = VynxUI
+	return VynxUI.NotificationModule.New(Config)
 end
 
-function WindUI:SetNotificationLower(Val)
+function VynxUI:SetNotificationLower(Val)
 	Holder.SetLower(Val)
 end
 
-function WindUI:RegisterIconSource(Source, Provider, Options)
+function VynxUI:RegisterIconSource(Source, Provider, Options)
 	return Creator.RegisterIconSource(Source, Provider, Options)
 end
 
-function WindUI:RegisterIconPack(Source, Icons)
+function VynxUI:RegisterIconPack(Source, Icons)
 	return Creator.RegisterIconPack(Source, Icons)
 end
 
-WindUI.AddIconSource = WindUI.RegisterIconSource
-WindUI.AddIcons = WindUI.RegisterIconPack
+VynxUI.AddIconSource = VynxUI.RegisterIconSource
+VynxUI.AddIcons = VynxUI.RegisterIconPack
 
-function WindUI:AddIcon(Source, Name, Value)
+function VynxUI:AddIcon(Source, Name, Value)
 	return Creator.AddIcon(Source, Name, Value)
 end
 
-function WindUI:AddIconSourceAlias(Alias, Source)
+function VynxUI:AddIconSourceAlias(Alias, Source)
 	return Creator.AddIconSourceAlias(Alias, Source)
 end
 
-function WindUI:SetIconSource(Source)
+function VynxUI:SetIconSource(Source)
 	return Creator.SetIconSource(Source)
 end
 
-function WindUI:GetIconSources()
+function VynxUI:GetIconSources()
 	return Creator.GetIconSources()
 end
 
-function WindUI:HasIcon(Icon, Source)
+function VynxUI:HasIcon(Icon, Source)
 	return Creator.HasIcon(Icon, Source)
 end
 
-function WindUI:LoadingScreen(Config)
-	return LoadingScreen.new(WindUI, Config)
+function VynxUI:LoadingScreen(Config)
+	return LoadingScreen.new(VynxUI, Config)
 end
 
-function WindUI:LoadingCreate(Config)
-	if WindUI.ActiveLoading and not WindUI.ActiveLoading.Closed then
-		WindUI.ActiveLoading:Close(0)
+function VynxUI:LoadingCreate(Config)
+	if VynxUI.ActiveLoading and not VynxUI.ActiveLoading.Closed then
+		VynxUI.ActiveLoading:Close(0)
 	end
 
-	WindUI.ActiveLoading = LoadingScreen.new(WindUI, Config)
-	return WindUI.ActiveLoading
+	VynxUI.ActiveLoading = LoadingScreen.new(VynxUI, Config)
+	return VynxUI.ActiveLoading
 end
 
-function WindUI:LoadingSet(Value, Status)
-	local Loader = WindUI.ActiveLoading
+function VynxUI:LoadingSet(Value, Status)
+	local Loader = VynxUI.ActiveLoading
 	if not Loader or Loader.Closed then
-		Loader = WindUI:LoadingCreate({})
+		Loader = VynxUI:LoadingCreate({})
 	end
 
 	if typeof(Value) == "table" then
@@ -268,68 +268,68 @@ function WindUI:LoadingSet(Value, Status)
 	return Loader
 end
 
-function WindUI:SetFont(FontId)
+function VynxUI:SetFont(FontId)
 	Creator.UpdateFont(FontId)
 end
 
-function WindUI:SetMotionPreset(Preset)
-	return WindUI.Motion:SetPreset(Preset)
+function VynxUI:SetMotionPreset(Preset)
+	return VynxUI.Motion:SetPreset(Preset)
 end
 
-function WindUI:SetReducedMotion(Value)
-	return WindUI.Motion:SetReducedMotion(Value)
+function VynxUI:SetReducedMotion(Value)
+	return VynxUI.Motion:SetReducedMotion(Value)
 end
 
-function WindUI:OnThemeChange(func)
-	WindUI.OnThemeChangeFunction = func
+function VynxUI:OnThemeChange(func)
+	VynxUI.OnThemeChangeFunction = func
 end
 
-function WindUI:AddTheme(LTheme)
-	WindUI.Themes[LTheme.Name] = LTheme
+function VynxUI:AddTheme(LTheme)
+	VynxUI.Themes[LTheme.Name] = LTheme
 	return LTheme
 end
 
-function WindUI:SetTheme(Value)
-	if WindUI.Themes[Value] then
-		WindUI.Theme = WindUI.Themes[Value]
-		Creator.SetTheme(WindUI.Themes[Value])
+function VynxUI:SetTheme(Value)
+	if VynxUI.Themes[Value] then
+		VynxUI.Theme = VynxUI.Themes[Value]
+		Creator.SetTheme(VynxUI.Themes[Value])
 
-		if WindUI.OnThemeChangeFunction then
-			WindUI.OnThemeChangeFunction(Value)
+		if VynxUI.OnThemeChangeFunction then
+			VynxUI.OnThemeChangeFunction(Value)
 		end
 
-		return WindUI.Themes[Value]
+		return VynxUI.Themes[Value]
 	end
 	return nil
 end
 
-function WindUI:GetThemes()
-	return WindUI.Themes
+function VynxUI:GetThemes()
+	return VynxUI.Themes
 end
-function WindUI:GetCurrentTheme()
-	return WindUI.Theme.Name
+function VynxUI:GetCurrentTheme()
+	return VynxUI.Theme.Name
 end
-function WindUI:GetTransparency()
-	return WindUI.Transparent or false
+function VynxUI:GetTransparency()
+	return VynxUI.Transparent or false
 end
-function WindUI:GetWindowSize()
-	return WindUI.Window.UIElements.Main.Size
+function VynxUI:GetWindowSize()
+	return VynxUI.Window.UIElements.Main.Size
 end
-function WindUI:Localization(LocalizationConfig)
-	return WindUI.LocalizationModule:New(LocalizationConfig, Creator)
+function VynxUI:Localization(LocalizationConfig)
+	return VynxUI.LocalizationModule:New(LocalizationConfig, Creator)
 end
 
-function WindUI:SetLanguage(Value)
+function VynxUI:SetLanguage(Value)
 	if Creator.Localization then
 		return Creator.SetLanguage(Value)
 	end
 	return false
 end
 
-function WindUI:ToggleAcrylic(Value)
-	if WindUI.Window and WindUI.Window.AcrylicPaint and WindUI.Window.AcrylicPaint.Model then
-		WindUI.Window.Acrylic = Value
-		WindUI.Window.AcrylicPaint.Model.Transparency = Value and 0.98 or 1
+function VynxUI:ToggleAcrylic(Value)
+	if VynxUI.Window and VynxUI.Window.AcrylicPaint and VynxUI.Window.AcrylicPaint.Model then
+		VynxUI.Window.Acrylic = Value
+		VynxUI.Window.AcrylicPaint.Model.Transparency = Value and 0.98 or 1
 		if Value then
 			Acrylic.Enable()
 		else
@@ -338,7 +338,7 @@ function WindUI:ToggleAcrylic(Value)
 	end
 end
 
-function WindUI:Gradient(stops, props)
+function VynxUI:Gradient(stops, props)
 	local colorSequence = {}
 	local transparencySequence = {}
 
@@ -385,24 +385,24 @@ function WindUI:Gradient(stops, props)
 	return gradientData
 end
 
-function WindUI:Popup(PopupConfig)
-	PopupConfig.WindUI = WindUI
-	return require("./components/popup/Init").new(PopupConfig, WindUI.ScreenGui.Popups)
+function VynxUI:Popup(PopupConfig)
+	PopupConfig.VynxUI = VynxUI
+	return require("./components/popup/Init").new(PopupConfig, VynxUI.ScreenGui.Popups)
 end
 
-WindUI.Themes = require("./themes/Init")(WindUI, Creator)
+VynxUI.Themes = require("./themes/Init")(VynxUI, Creator)
 
-Creator.Themes = WindUI.Themes
+Creator.Themes = VynxUI.Themes
 
-WindUI:SetTheme("Dark")
-WindUI:SetLanguage(Creator.Language)
+VynxUI:SetTheme("Dark")
+VynxUI:SetLanguage(Creator.Language)
 
-function WindUI:CreateWindow(Config)
+function VynxUI:CreateWindow(Config)
 	local CreateWindow = require("./components/window/Init")
 
 	if not RunService:IsStudio() and writefile then
-		if not isfolder("WindUI") then
-			makefolder("WindUI")
+		if not isfolder("VynxUI") then
+			makefolder("VynxUI")
 		end
 		if Config.Folder then
 			makefolder(Config.Folder)
@@ -411,16 +411,16 @@ function WindUI:CreateWindow(Config)
 		end
 	end
 
-	Config.WindUI = WindUI
-	Config.Window = WindUI.Window
-	Config.Parent = WindUI.ScreenGui.Window
+	Config.VynxUI = VynxUI
+	Config.Window = VynxUI.Window
+	Config.Parent = VynxUI.ScreenGui.Window
 
-	if WindUI.Window then
+	if VynxUI.Window then
 		warn("You cannot create more than one window")
 		return
 	end
 
-	WindUI.Motion:Configure(Config.Motion)
+	VynxUI.Motion:Configure(Config.Motion)
 
 	local CanLoadWindow = true
 	local LoaderConfig = Config.LoadingScreen or Config.Loader or Config.Loading
@@ -439,11 +439,11 @@ function WindUI:CreateWindow(Config)
 				end
 			end
 
-			Options.Title = Options.Title or Config.Title or "WindUI"
+			Options.Title = Options.Title or Config.Title or "VynxUI"
 			Options.Desc = Options.Desc or "Loading interface"
 			Options.Icon = Options.Icon or Config.Icon or "sparkles"
 			Options.Folder = Options.Folder or Config.Folder
-			Loader = LoadingScreen.new(WindUI, Options)
+			Loader = LoadingScreen.new(VynxUI, Options)
 		end
 
 		if Status then
@@ -465,11 +465,11 @@ function WindUI:CreateWindow(Config)
 	if typeof(RequestedTheme) == "table" then
 		Theme = RequestedTheme
 	elseif typeof(RequestedTheme) == "string" then
-		Theme = WindUI.Themes[RequestedTheme]
+		Theme = VynxUI.Themes[RequestedTheme]
 	end
 
-	Theme = Theme or WindUI.Theme or WindUI.Themes["Dark"]
-	WindUI.Theme = Theme
+	Theme = Theme or VynxUI.Theme or VynxUI.Themes["Dark"]
+	VynxUI.Theme = Theme
 	Creator.SetTheme(Theme)
 
 	local hwid = gethwid or function()
@@ -648,7 +648,7 @@ function WindUI:CreateWindow(Config)
 				local isSuccess = false
 
 				for _, i in next, Config.KeySystem.API do
-					local serviceData = WindUI.Services[i.Type]
+					local serviceData = VynxUI.Services[i.Type]
 					if serviceData then
 						local args = {}
 						for _, argName in next, serviceData.Args do
@@ -688,8 +688,8 @@ function WindUI:CreateWindow(Config)
 	OpenLoader("Building window", 0.72)
 	local Window = CreateWindow(Config)
 
-	WindUI.Transparent = Config.Transparent
-	WindUI.Window = Window
+	VynxUI.Transparent = Config.Transparent
+	VynxUI.Window = Window
 
 	if Config.Acrylic then
 		Acrylic.init()
@@ -702,11 +702,11 @@ function WindUI:CreateWindow(Config)
 	end
 
 	-- function Window:ToggleTransparency(Value)
-	--     WindUI.Transparent = Value
-	--     WindUI.Window.Transparent = Value
+	--     VynxUI.Transparent = Value
+	--     VynxUI.Window.Transparent = Value
 
-	--     Window.UIElements.Main.Background.BackgroundTransparency = Value and WindUI.TransparencyValue or 0
-	--     Window.UIElements.Main.Background.ImageLabel.ImageTransparency = Value and WindUI.TransparencyValue or 0
+	--     Window.UIElements.Main.Background.BackgroundTransparency = Value and VynxUI.TransparencyValue or 0
+	--     Window.UIElements.Main.Background.ImageLabel.ImageTransparency = Value and VynxUI.TransparencyValue or 0
 	--     Window.UIElements.Main.Gradient.UIGradient.Transparency = NumberSequence.new{
 	--         NumberSequenceKeypoint.new(0, 1),
 	--         NumberSequenceKeypoint.new(1, Value and 0.85 or 0.7),
@@ -716,4 +716,4 @@ function WindUI:CreateWindow(Config)
 	return Window
 end
 
-return WindUI
+return VynxUI

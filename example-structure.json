@@ -190,8 +190,8 @@
                     "TRANSPARENCY": "Window Transparency",
                     "UI_ELEMENTS": "UI Elements",
                     "UTILITIES": "Utilities",
-                    "WELCOME": "Welcome to WindUI!",
-                    "WINDUI_EXAMPLE": "WindUI Example"
+                    "WELCOME": "Welcome to VynxUI!",
+                    "VYNXUI_EXAMPLE": "VynxUI Example"
                 },
                 "ru": {
                     "APPEARANCE": "Внешний вид",
@@ -205,8 +205,8 @@
                     "TRANSPARENCY": "Прозрачность окна",
                     "UI_ELEMENTS": "UI Элементы",
                     "UTILITIES": "Инструменты",
-                    "WELCOME": "Добро пожаловать в WindUI!",
-                    "WINDUI_EXAMPLE": "WindUI Пример"
+                    "WELCOME": "Добро пожаловать в VynxUI!",
+                    "VYNXUI_EXAMPLE": "VynxUI Пример"
                 }
             }
         },
@@ -217,7 +217,7 @@
             },
             {
                 "Object": "userdata",
-                "TranslationId": "WINDUI_EXAMPLE"
+                "TranslationId": "VYNXUI_EXAMPLE"
             },
             {
                 "Object": "userdata",
@@ -225,7 +225,7 @@
             },
             {
                 "Object": "userdata",
-                "TranslationId": "WINDUI_EXAMPLE"
+                "TranslationId": "VYNXUI_EXAMPLE"
             },
             {
                 "Object": "userdata",
@@ -1705,7 +1705,7 @@
         "UpdateFont": "function",
         "UpdateLang": "function",
         "UpdateTheme": "function",
-        "WindUI": "[Circular Reference]"
+        "VynxUI": "[Circular Reference]"
     },
     "DropdownGui": "userdata",
     "GetCurrentTheme": "function",
@@ -1760,7 +1760,7 @@
             "AllConfigs": "function",
             "Configs": {},
             "CreateConfig": "function",
-            "Folder": "WindUI_Example",
+            "Folder": "VynxUI_Example",
             "GetConfig": "function",
             "Init": "function",
             "Parser": {
@@ -1789,7 +1789,7 @@
                     "Save": "function"
                 }
             },
-            "Path": "WindUI/WindUI_Example/config/",
+            "Path": "VynxUI/VynxUI_Example/config/",
             "Window": "[Circular Reference]"
         },
         "CreateTopbarButton": "function",
@@ -1799,7 +1799,7 @@
         "DisableTopbarButtons": "function",
         "Divider": "function",
         "EditOpenButton": "function",
-        "Folder": "WindUI_Example",
+        "Folder": "VynxUI_Example",
         "HideSearchBar": true,
         "Icon": "palette",
         "IsFullscreen": false,
@@ -1845,12 +1845,12 @@
                     "Dropdown": "function",
                     "Elements": [
                         {
-                            "Desc": "Explore WindUI's powerful elements",
+                            "Desc": "Explore VynxUI's powerful elements",
                             "Destroy": "function",
                             "Locked": false,
                             "ParagraphFrame": {
                                 "Color": "White",
-                                "Desc": "Explore WindUI's powerful elements",
+                                "Desc": "Explore VynxUI's powerful elements",
                                 "Destroy": "function",
                                 "Hover": false,
                                 "IconThemed": false,
@@ -2576,12 +2576,12 @@
                             "__type": "Button"
                         },
                         {
-                            "Desc": "github.com/article-hub-studio/WindUI-Skibidi",
+                            "Desc": "github.com/article-hub-studio/VynxUI-Skibidi",
                             "Destroy": "function",
                             "Locked": false,
                             "ParagraphFrame": {
                                 "Color": "Grey",
-                                "Desc": "github.com/article-hub-studio/WindUI-Skibidi",
+                                "Desc": "github.com/article-hub-studio/VynxUI-Skibidi",
                                 "Destroy": "function",
                                 "Hover": false,
                                 "IconThemed": false,
@@ -2612,7 +2612,7 @@
                             "SetTitle": "function",
                             "TextSize": 19,
                             "TextXAlignment": "Left",
-                            "Title": "Get WindUI JSON",
+                            "Title": "Get VynxUI JSON",
                             "UIElements": {
                                 "Main": "userdata"
                             },
@@ -2630,7 +2630,7 @@
                                 "SetDesc": "function",
                                 "SetTitle": "function",
                                 "ThumbnailSize": 80,
-                                "Title": "Get WindUI JSON",
+                                "Title": "Get VynxUI JSON",
                                 "UICorner": 14,
                                 "UIElements": {
                                     "Container": "userdata",
@@ -2646,7 +2646,7 @@
                             "Locked": false,
                             "SetDesc": "function",
                             "SetTitle": "function",
-                            "Title": "Get WindUI JSON",
+                            "Title": "Get VynxUI JSON",
                             "UIElements": {
                                 "ButtonIcon": "userdata"
                             },
@@ -2676,11 +2676,11 @@
                 }
             ],
             "ToolTipParent": "userdata",
-            "WindUI": "[Circular Reference]",
+            "VynxUI": "[Circular Reference]",
             "Window": "[Circular Reference]"
         },
         "Tag": "function",
-        "Title": "loc:WINDUI_EXAMPLE",
+        "Title": "loc:VYNXUI_EXAMPLE",
         "ToggleFullscreen": "function",
         "ToggleKey": "userdata",
         "ToggleTransparency": "function",

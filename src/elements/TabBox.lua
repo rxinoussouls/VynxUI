@@ -267,7 +267,7 @@ function Element:New(Config)
 			Container,
 			Config.ElementsModule.Elements,
 			Config.Window,
-			Config.WindUI,
+			Config.VynxUI,
 			function()
 				QueuePageHeightUpdate(Page, Index)
 			end,

@@ -31,7 +31,7 @@ local function NormalizeKey(Value)
 	return "None", nil
 end
 
-function KeyBindMenu.New(Window, WindUI, Config)
+function KeyBindMenu.New(Window, VynxUI, Config)
 	local MenuConfig = typeof(Window.KeyBindMenu) == "table" and Window.KeyBindMenu or {}
 	local IsMobile = (UserInputService.TouchEnabled and not UserInputService.KeyboardEnabled) or Window.IsPC == false
 	local Compact = MenuConfig.Compact == true or (MenuConfig.Compact ~= false and IsMobile)
@@ -52,8 +52,8 @@ function KeyBindMenu.New(Window, WindUI, Config)
 	}
 
 	local function Notify(Title, Content, Icon, Style)
-		if WindUI.Notify then
-			WindUI:Notify({
+		if VynxUI.Notify then
+			VynxUI:Notify({
 				Title = Title,
 				Content = Content,
 				Icon = Icon,
@@ -112,7 +112,7 @@ function KeyBindMenu.New(Window, WindUI, Config)
 		Active = false,
 		ClipsDescendants = true,
 		ZIndex = 10020,
-		Parent = WindUI.ScreenGui,
+		Parent = VynxUI.ScreenGui,
 		ThemeTag = {
 			ImageColor3 = "Background",
 		},
@@ -149,7 +149,7 @@ function KeyBindMenu.New(Window, WindUI, Config)
 		Visible = false,
 		Active = false,
 		ZIndex = 10018,
-		Parent = WindUI.ScreenGui,
+		Parent = VynxUI.ScreenGui,
 	})
 
 	local Content = New("CanvasGroup", {

@@ -226,7 +226,7 @@ function Element:New(Config)
 
 	local ElementsModule = Config.ElementsModule
 
-	ElementsModule.Load(Section, Main.Outline.Content, ElementsModule.Elements, Config.Window, Config.WindUI, function()
+	ElementsModule.Load(Section, Main.Outline.Content, ElementsModule.Elements, Config.Window, Config.VynxUI, function()
 		if not Section.Expandable then
 			Section.Expandable = true
 			ChevronIconFrame.Visible = true

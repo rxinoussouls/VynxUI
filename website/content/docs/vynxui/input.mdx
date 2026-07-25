@@ -1,0 +1,153 @@
+---
+title: Input
+description: Create text input fields in VynxUI Modded
+---
+
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { DynamicCodeBlock } from 'fumadocs-ui/components/dynamic-codeblock'
+import TypeTable from '@/components/TypeTable';
+
+
+## Input Element
+
+Input fields allow users to enter text data. They support both single-line and multi-line (textarea) inputs.
+
+<Tabs defaultValue="small">
+    <TabsList>
+        <TabsTrigger value="small">Basic</TabsTrigger>
+        <TabsTrigger value="full">Full</TabsTrigger>
+    </TabsList>
+    <TabsContent value="small">
+```luau
+local Input = Tab:Input({
+    Title = "Username",
+    Callback = function(text)
+        print("Input:", text)
+    end
+})
+```
+    </TabsContent>
+    <TabsContent value="full">
+```luau
+local Input = Tab:Input({
+    Title = "Username",
+    Desc = "Enter your username", -- optional
+    Icon = "user", -- lucide icon or "rbxassetid://". optional
+    Type = "Default", -- "Default" or "Textarea". optional
+    Placeholder = "Type here...", -- placeholder text. optional
+    Value = "", -- initial value. optional
+    Locked = false, -- disable input. optional
+    Flag = "my_input", -- for config saving. optional
+    Callback = function(text)
+        print("Text entered:", text)
+    end
+})
+```
+    </TabsContent>
+</Tabs>
+
+## Input Parameters
+
+<TypeTable
+    data={[
+        { name: "Title", type: "string", description: "Input field label text", default: "Input" },
+        { name: "Desc", type: "string?", description: "Input description shown below title", default: "nil" },
+        { name: "Icon", type: "string?", description: "Icon identifier (lucide icon or rbxassetid://)", default: "nil" },
+        { name: "Type", type: "string?", description: "Input type: 'Default' for single-line, 'Textarea' for multi-line", default: "Default" },
+        { name: "Placeholder", type: "string?", description: "Placeholder text shown when empty", default: "nil" },
+        { name: "Value", type: "string?", description: "Initial input value", default: "empty" },
+        { name: "Locked", type: "boolean?", description: "Disable input interaction", default: "false" },
+        { name: "Flag", type: "string?", description: "Configuration flag for saving state", default: "nil" },
+        { name: "Callback", type: "function?", description: "Function called when input value changes", default: "nil" },
+    ]}
+/>
+
+## Input Functions
+
+<TypeTable 
+    type={{
+        ':SetTitle': {
+            type: 'function',
+            description: 'Change input label dynamically.',
+            args: {
+                Title: {
+                    type: 'string',
+                    description: 'New input title.',
+                }
+            }
+        },
+        ':SetDesc': {
+            type: 'function',
+            description: 'Update input description.',
+            args: {
+                Description: {
+                    type: 'string',
+                    description: 'New input description.',
+                }
+            }
+        },
+        ':Set': {
+            type: 'function',
+            description: 'Change input text programmatically.',
+            args: {
+                Value: {
+                    type: 'string',
+                    description: 'New input value.',
+                }
+            }
+        },
+        ':Lock': {
+            type: 'function',
+            description: 'Disable input interaction.',
+            args: {}
+        },
+        ':Unlock': {
+            type: 'function',
+            description: 'Re-enable input interaction.',
+            args: {}
+        },
+        ':Highlight': {
+            type: 'function',
+            description: 'Visually highlight the input field.',
+            args: {}
+        },
+        ':Destroy': {
+            type: 'function',
+            description: 'Remove the input from the tab.',
+            args: {}
+        },
+    }}
+/>
+
+## Input Variants
+
+### Textarea Input
+
+```luau
+Tab:Input({
+    Title = "Description",
+    Type = "Textarea",
+    Placeholder = "Enter detailed description...",
+    Callback = function(text)
+        print("Description:", text)
+    end
+})
+```
+
+### Input with Icon
+
+```luau
+Tab:Input({
+    Title = "Icon Input",
+    Icon = "key",
+    Callback = function(v)
+        print("Entered", v)
+    end
+})
+```
+
+## Related Documentation
+
+- [Tab](./tab) - Tab container
+- [Slider](./slider) - Numeric input
+- [Validation Patterns](./dialog) - How to validate user input

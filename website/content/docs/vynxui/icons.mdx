@@ -1,0 +1,140 @@
+---
+title: Icons
+description: Built-in and custom icon sources for VynxUI elements
+---
+
+import {
+    Table,
+    TableBody,
+    TableCaption,
+    TableCell,
+    TableHead,
+    TableHeader,
+    TableRow,
+} from "@/components/ui/table"
+
+## Icon System
+
+Every VynxUI icon property uses the same resolver. It accepts built-in packs, user-registered packs, dynamic providers, Roblox assets, external image URLs, descriptor tables, and cloned image instances. A missing icon produces an empty image safely instead of breaking the element.
+
+The accepted source syntax is:
+
+```luau
+Icon = "save"                  -- default source, then safe cross-source fallback
+Icon = "solar:diskette-bold"  -- source:name
+Icon = "geist/bell"           -- source/name
+Icon = "@craft/home"          -- @source/name
+Icon = { Source = "gravity", Name = "gear" }
+```
+
+## Bundled Sources
+
+<Table className="w-140">
+    <TableCaption>Icon packs available in the hosted bundle</TableCaption>
+    <TableHeader>
+        <TableRow>
+            <TableHead>Source</TableHead>
+            <TableHead>Prefix</TableHead>
+        </TableRow>
+    </TableHeader>
+    <TableBody>
+        <TableRow><TableCell>Lucide</TableCell><TableCell>`lucide:`</TableCell></TableRow>
+        <TableRow><TableCell>Craft</TableCell><TableCell>`craft:`</TableCell></TableRow>
+        <TableRow><TableCell>Geist</TableCell><TableCell>`geist:`</TableCell></TableRow>
+        <TableRow><TableCell>Solar</TableCell><TableCell>`solar:`</TableCell></TableRow>
+        <TableRow><TableCell>SF Symbols</TableCell><TableCell>`sfsymbols:` or `sf:`</TableCell></TableRow>
+        <TableRow><TableCell>Gravity UI</TableCell><TableCell>`gravity:`</TableCell></TableRow>
+    </TableBody>
+</Table>
+
+VynxUI no longer hard-codes this list. Any source registered at runtime works with every element, including notifications and the Dynamic Island open button.
+
+## Register a Pack
+
+Values may be asset numbers, Roblox image strings, URLs, or spritesheet descriptors.
+
+```luau
+VynxUI:RegisterIconPack("myicons", {
+    rocket = 123456789,
+    cloud = "rbxassetid://987654321",
+    badge = {
+        Image = "rbxassetid://111222333",
+        ImageRectSize = Vector2.new(48, 48),
+        ImageRectPosition = Vector2.new(96, 0),
+    },
+})
+
+Tab:Button({
+    Title = "Launch",
+    Icon = "myicons:rocket",
+})
+```
+
+Add one icon or an alias without replacing the pack:
+
+```luau
+VynxUI:AddIcon("myicons", "settings", "rbxassetid://444555666")
+VynxUI:AddIconSourceAlias("mine", "myicons")
+```
+
+## Register a Dynamic Source
+
+A provider is useful when another icon module already owns the data. The callback receives the requested name and returns a Roblox-usable image value or descriptor. VynxUI does not require the provider to come from any specific website or library.
+
+```luau
+local OtherLibrary = require(path.To.OtherLibrary)
+
+VynxUI:RegisterIconSource("other", function(Name)
+    return OtherLibrary:Get(Name)
+end, {
+    Aliases = { "external", "custom" },
+})
+
+Tab:Button({
+    Title = "From another source",
+    Icon = "other:star",
+})
+```
+
+Provider return values can be:
+
+```luau
+123456789
+"rbxassetid://123456789"
+{
+    Image = "rbxassetid://123456789",
+    ImageRectSize = Vector2.new(32, 32),
+    ImageRectPosition = Vector2.new(64, 0),
+    Parts = { "other:star-fill" }, -- optional layered icon
+}
+```
+
+## Direct Images and Instances
+
+```luau
+Tab:Button({ Icon = "rbxassetid://123456789" })
+Tab:Button({ Icon = "https://example.com/icon.png" })
+Tab:Button({ Icon = existingImageLabel })
+```
+
+Use `IconThemed = true` when a monochrome asset should follow the active theme. Avatar and photo-like images should normally remain untinted.
+
+## Source Utilities
+
+```luau
+VynxUI:SetIconSource("geist")
+
+print(VynxUI:HasIcon("bell"))
+print(VynxUI:HasIcon("solar:bell-bold"))
+
+for _, Source in VynxUI:GetIconSources() do
+    print(Source)
+end
+```
+
+## Related Documentation
+
+- [Button](./button) - Icons in buttons
+- [Tab](./tab) - Icons in tabs
+- [Section](./sections) - Icons in sections
+- [Notification](./notification) - Icons and avatars in notifications

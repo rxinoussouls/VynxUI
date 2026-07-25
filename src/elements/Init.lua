@@ -42,7 +42,7 @@ return {
 		Viewport = require("./Viewport"),
 		Video = require("./Video"),
 	},
-	Load = function(tbl, Container, Elements, Window, WindUI, OnElementCreateFunction, ElementsModule, UIScale, Tab)
+	Load = function(tbl, Container, Elements, Window, VynxUI, OnElementCreateFunction, ElementsModule, UIScale, Tab)
 		for name, module in next, Elements do
 			tbl[name] = function(self, config)
 				config = config or {}
@@ -61,7 +61,7 @@ return {
 				end
 				config.Parent = Container
 				config.Window = Window
-				config.WindUI = WindUI
+				config.VynxUI = VynxUI
 				config.UIScale = UIScale
 				config.ElementsModule = ElementsModule
 
@@ -92,7 +92,7 @@ return {
 										Window.PendingConfigData[config.Flag] = nil
 									else
 										warn(
-											"[ WindUI ] Failed to apply pending config for '"
+											"[ VynxUI ] Failed to apply pending config for '"
 												.. config.Flag
 												.. "': "
 												.. tostring(err)

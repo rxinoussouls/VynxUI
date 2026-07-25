@@ -4,14 +4,14 @@ local ReplicatedStorage = cloneref(game:GetService("ReplicatedStorage"))
 local HttpService = cloneref(game:GetService("HttpService"))
 local RunService = cloneref(game:GetService("RunService"))
 
-local ICONS_URL = "https://article-hub-studio.github.io/WindUI-Skibidi/vendor/icons/Main-v2.lua"
+local ICONS_URL = "https://article-hub-studio.github.io/VynxUI-Skibidi/vendor/icons/Main-v2.lua"
 
 local function LoadBaseIcons()
 	local RemoteFunction = ReplicatedStorage:FindFirstChild("GetIcons")
 	if
 		RemoteFunction
 		and RemoteFunction:IsA("RemoteFunction")
-		and (RunService:IsStudio() or RemoteFunction:GetAttribute("WindUIIcons") == true)
+		and (RunService:IsStudio() or RemoteFunction:GetAttribute("VynxUIIcons") == true)
 	then
 		local Success, Result = pcall(function()
 			return RemoteFunction:InvokeServer()
@@ -37,7 +37,7 @@ local function LoadBaseIcons()
 		end
 	end
 
-	warn("[ WindUI.Icons ] Unable to load the base icon catalog; custom sources remain available")
+	warn("[ VynxUI.Icons ] Unable to load the base icon catalog; custom sources remain available")
 	return {}
 end
 
@@ -268,7 +268,7 @@ local function ResolveProviderIcon(Source, Name)
 
 	local Success, Value = pcall(Provider, Name, Source)
 	if not Success then
-		warn(string.format("[ WindUI.Icons ] Source '%s' failed: %s", tostring(Source), tostring(Value)))
+		warn(string.format("[ VynxUI.Icons ] Source '%s' failed: %s", tostring(Source), tostring(Value)))
 		return nil
 	end
 
@@ -386,7 +386,7 @@ function IconModule.AddIcons(PackName, IconsData)
 		elseif typeof(IconValue) == "table" and IconValue.Alias then
 			Pack.Icons[IconName] = { Alias = IconValue.Alias }
 		else
-			warn(string.format("[ WindUI.Icons ] Ignored invalid icon '%s:%s'", Source, tostring(IconName)))
+			warn(string.format("[ VynxUI.Icons ] Ignored invalid icon '%s:%s'", Source, tostring(IconName)))
 		end
 	end
 

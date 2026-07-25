@@ -1,0 +1,189 @@
+---
+title: Toggle
+description: Create toggle switches and checkboxes in VynxUI Modded
+---
+
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { DynamicCodeBlock } from 'fumadocs-ui/components/dynamic-codeblock'
+import TypeTable from '@/components/TypeTable';
+
+
+## Toggle Element
+
+Toggles are switch elements that represent binary states (on/off, true/false). They're ideal for enabling/disabling features.
+
+<Tabs defaultValue="small">
+    <TabsList>
+        <TabsTrigger value="small">Basic</TabsTrigger>
+        <TabsTrigger value="full">Full</TabsTrigger>
+    </TabsList>
+    <TabsContent value="small">
+```luau
+local Toggle = Tab:Toggle({
+    Title = "Enable Feature",
+    Callback = function(state)
+        print("Toggle state:", state)
+    end
+})
+```
+    </TabsContent>
+    <TabsContent value="full">
+```luau
+local Toggle = Tab:Toggle({
+    Title = "Enable Feature",
+    Desc = "Toggle description", -- optional
+    Icon = "power", -- lucide icon or "rbxassetid://". optional
+    Value = false, -- initial state. optional
+    Type = "Toggle", -- "Toggle" or "Checkbox". optional
+    Drag = false, -- opt in to swipe/drag interaction. optional
+    HoldAnimation = true, -- lightweight press/hold feedback. optional
+    GlassSpritesheet = false, -- opt in to the heavier animated glass frames. optional
+    Locked = false, -- disable toggle. optional
+    Flag = "my_toggle", -- for config saving. optional
+    Callback = function(state)
+        print("State changed:", state)
+    end
+})
+```
+    </TabsContent>
+</Tabs>
+
+## Toggle Parameters
+
+<TypeTable
+    data={[
+        { name: "Title", type: "string", description: "Toggle label text", default: "Toggle" },
+        { name: "Desc", type: "string?", description: "Toggle description shown below title", default: "nil" },
+        { name: "Icon", type: "string?", description: "Icon identifier (lucide icon or rbxassetid://)", default: "nil" },
+        { name: "Value", type: "boolean?", description: "Initial toggle state (true or false)", default: "false" },
+        { name: "Type", type: "string?", description: "Visual type: 'Toggle' or 'Checkbox'", default: "Toggle" },
+        { name: "Drag / Draggable / Swipe", type: "boolean?", description: "Enable swipe interaction. Tap/click is the optimized default.", default: "false" },
+        { name: "HoldAnimation / Hold", type: "boolean?", description: "Scale and soften the knob while the pointer is held, without enabling global drag listeners.", default: "true" },
+        { name: "GlassSpritesheet / Spritesheet", type: "boolean?", description: "Enable the legacy multi-frame glass knob texture.", default: "false" },
+        { name: "Locked", type: "boolean?", description: "Disable toggle interaction", default: "false" },
+        { name: "Flag", type: "string?", description: "Configuration flag for saving state", default: "nil" },
+        { name: "Callback", type: "function?", description: "Function called when toggle state changes", default: "nil" },
+    ]}
+/>
+
+The default toggle keeps the responsive hold animation but uses only local input signals and two lightweight property tweens. It does not attach global drag listeners or update an 80-frame spritesheet. Set `HoldAnimation = false` to disable press feedback, enable `Drag = true` only for controls that need swipe input, and add `GlassSpritesheet = true` only when that heavier visual is intentional.
+
+## Toggle Functions
+
+<TypeTable 
+    type={{
+        ':SetTitle': {
+            type: 'function',
+            description: 'Change toggle label dynamically.',
+            args: {
+                Title: {
+                    type: 'string',
+                    description: 'New toggle label.',
+                }
+            }
+        },
+        ':SetDesc': {
+            type: 'function',
+            description: 'Update toggle description.',
+            args: {
+                Description: {
+                    type: 'string',
+                    description: 'New toggle description.',
+                }
+            }
+        },
+        ':Set': {
+            type: 'function',
+            description: 'Change toggle state programmatically.',
+            args: {
+                Value: {
+                    type: 'boolean',
+                    description: 'true to enable, false to disable.',
+                }
+            }
+        },
+        ':Toggle': {
+            type: 'function',
+            description: 'Switch toggle to opposite state.',
+            args: {}
+        },
+        ':Lock': {
+            type: 'function',
+            description: 'Disable toggle interaction.',
+            args: {}
+        },
+        ':Unlock': {
+            type: 'function',
+            description: 'Re-enable toggle interaction.',
+            args: {}
+        },
+        ':Highlight': {
+            type: 'function',
+            description: 'Visually highlight the toggle.',
+            args: {}
+        },
+        ':Destroy': {
+            type: 'function',
+            description: 'Remove the toggle from the tab.',
+            args: {}
+        },
+    }}
+/>
+
+## Toggle Variants
+
+### Simple Toggle
+
+```luau
+Tab:Toggle({
+    Title = "Feature Enabled",
+    Value = false,
+    Callback = function(state)
+        print("Feature enabled:", state)
+    end
+})
+```
+
+### Checkbox Style Toggle
+
+```luau
+Tab:Toggle({
+    Title = "Accept Terms",
+    Type = "Checkbox",
+    Value = false,
+    Callback = function(state)
+        print("Terms accepted:", state)
+    end
+})
+```
+
+### Toggle with Icon
+
+```luau
+Tab:Toggle({
+    Title = "Enable Notifications",
+    Icon = "bell",
+    Value = true,
+    Callback = function(state)
+        print("Notifications:", state and "Enabled" or "Disabled")
+    end
+})
+```
+
+### Locked Toggle
+
+```luau
+local PremiumToggle = Tab:Toggle({
+    Title = "Premium Feature",
+    Locked = true,
+    Value = false,
+    Callback = function(state)
+        print("Premium feature:", state)
+    end
+})
+```
+
+## Related Documentation
+
+- [Tab](./tab) - Tab container
+- [Dialog](./dialog) - Dialog/prompt system

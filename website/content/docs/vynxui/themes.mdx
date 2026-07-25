@@ -1,0 +1,202 @@
+---
+title: Themes
+description: Create Themes or use existing ones
+---
+
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { DynamicCodeBlock } from "fumadocs-ui/components/dynamic-codeblock";
+import { ThemeSwatch } from "@/components/ThemeSwatch";
+import { getThemes } from "@/lib/vynxui/getThemes";
+import { Badge } from "@/components/ui/badge";
+
+import {
+    Accordion,
+    AccordionContent,
+    AccordionItem,
+    AccordionTrigger,
+} from "@/components/ui/accordion"
+
+![Themes](/vynxui/banners/Themes.png)
+
+## Set Theme
+
+### in [window](/docs/vynxui/window) creating
+```luau
+local Window = VynxUI:CreateWindow({
+    --... ,
+    Theme = "Dark" -- enter your chosen theme name
+})
+```
+
+### or with function
+
+```luau
+VynxUI:SetTheme("Dark")
+```
+
+## Create Own Theme
+
+You can create theme with `VynxUI:AddTheme()`
+
+<Tabs defaultValue="default">
+    <TabsList>
+        <TabsTrigger value="default">Minimalistic</TabsTrigger>
+        <TabsTrigger value="advanced">Advanced</TabsTrigger>
+    </TabsList>
+    <TabsContent value="default">
+```luau
+VynxUI:AddTheme({
+    Name = "Dark", -- theme name
+    
+    Accent = Color3.fromHex("#18181b"),
+    Background = Color3.fromHex("#101010"),
+    Outline = Color3.fromHex("#FFFFFF"),
+    Text = Color3.fromHex("#FFFFFF"),
+    Placeholder = Color3.fromHex("#7a7a7a"),
+    Button = Color3.fromHex("#52525b"),
+    Icon = Color3.fromHex("#a1a1aa"),
+})
+```
+    </TabsContent>
+    <TabsContent value="advanced">
+```luau
+VynxUI:AddTheme({
+    -- More soon!
+    
+    Primary = Color3.fromHex("#a1a1aa"), -- Icon
+    
+    White = Color3.new(1,1,1),
+    Black = Color3.new(0,0,0),
+    
+    Dialog = Color3.fromHex("#18181b"), -- Accent
+    
+    Background = Color3.fromHex("#101010"), -- Accent
+    BackgroundTransparency = 0,
+    Hover = Color3.fromHex("#FFFFFF"), -- Text
+
+    PanelBackground = Color3.new(1,1,1), -- White
+    PanelBackgroundTransparency = .95,
+    
+    WindowBackground = Color3.fromHex("#101010"), -- Background
+    
+    WindowShadow = Color3.new(0,0,0), -- Black
+    --WindowShadowTransparency = .7,
+    
+    WindowTopbarTitle = Color3.fromHex("#FFFFFF"), -- Text
+    WindowTopbarAuthor = Color3.fromHex("#FFFFFF"), -- Text
+    WindowTopbarIcon = Color3.fromHex("#a1a1aa"), -- Icon
+    WindowTopbarButtonIcon = Color3.fromHex("#a1a1aa"), -- Icon
+    
+    WindowSearchBarBackground = Color3.fromHex("#101010"), -- Background
+    
+    TabBackground = Color3.fromHex("#FFFFFF"), -- Hover
+    TabBackgroundHover = Color3.fromHex("#FFFFFF"), -- Hover
+    TabBackgroundHoverTransparency = .97,
+    TabBackgroundActive = Color3.fromHex("#FFFFFF"), -- Hover
+    TabBackgroundActiveTransparency = 0.93,
+    TabText = Color3.fromHex("#FFFFFF"), -- Text
+    TabTextTransparency = 0.3,
+    TabTextTransparencyActive = 0,
+    TabTitle = Color3.fromHex("#FFFFFF"), -- Text
+    TabIcon = Color3.fromHex("#a1a1aa"), -- Icon
+    TabIconTransparency = 0.4,
+    TabIconTransparencyActive = 0.1,
+    TabBorderTransparency = 1,
+    TabBorderTransparencyActive = 0.75,
+    TabBorder = Color3.new(1,1,1), -- White
+
+    
+    ElementBackground = Color3.fromHex("#FFFFFF"), -- Text
+    ElementBackgroundTransparency = .93,
+    ElementBackgroundHover = VynxUI.Creator:AddColor("ElementBackground", "#ffffff", 1/10),
+    ElementTitle = Color3.fromHex("#FFFFFF"), -- Text
+    ElementDesc = Color3.fromHex("#FFFFFF"), -- Text
+    ElementIcon = Color3.fromHex("#a1a1aa"), -- Icon
+    
+    PopupBackground = Color3.fromHex("#101010"), -- Background
+    PopupBackgroundTransparency = "BackgroundTransparency",
+    PopupTitle = Color3.fromHex("#FFFFFF"), -- Text
+    PopupContent = Color3.fromHex("#FFFFFF"), -- Text
+    PopupIcon = Color3.fromHex("#a1a1aa"), -- Icon
+    
+    DialogBackground = Color3.fromHex("#101010"), -- Background
+    DialogBackgroundTransparency = "BackgroundTransparency",
+    DialogTitle = Color3.fromHex("#FFFFFF"), -- Text
+    DialogContent = Color3.fromHex("#FFFFFF"), -- Text
+    DialogIcon = Color3.fromHex("#a1a1aa"), -- Icon
+    
+    Toggle = Color3.fromHex("#52525b"), -- Button
+    ToggleBar = Color3.new(1,1,1), -- White
+    
+    Checkbox = Color3.fromHex("#0091FF"), -- Primary
+    CheckboxIcon = Color3.new(1,1,1), -- White
+    CheckboxBorder = Color3.new(1,1,1), -- White
+    CheckboxBorderTransparency = .75,
+    
+    SliderIcon = Color3.fromHex("#a1a1aa"), -- Icon
+
+    Slider = Color3.fromHex("#0091FF"), -- Primary
+    SliderThumb = Color3.new(1,1,1), -- White
+    SliderIconFrom = Color3.fromHex("#a1a1aa"), -- SliderIcon
+    SliderIconTo = Color3.fromHex("#a1a1aa"), -- SliderIcon
+    
+    Tooltip = Color3.fromHex("4C4C4C"),
+    TooltipText = Color3.new(1,1,1), -- White
+    TooltipSecondary = Color3.fromHex("#0091FF"), -- Primary
+    TooltipSecondaryText = Color3.new(1,1,1), -- White
+
+    TabSectionIcon = Color3.fromHex("#a1a1aa"), -- Icon
+
+    SectionIcon = Color3.fromHex("#a1a1aa"), -- Icon
+    
+    SectionExpandIcon = Color3.new(1,1,1), -- White
+    SectionExpandIconTransparency = .4,
+    SectionBox = Color3.new(1,1,1), -- White
+    SectionBoxTransparency = .95,
+    SectionBoxBorder = Color3.new(1,1,1), -- White
+    SectionBoxBorderTransparency = .75,
+    SectionBoxBackground = Color3.new(1,1,1), -- White
+    SectionBoxBackgroundTransparency = .95,
+    
+    SearchBarBorder = Color3.new(1,1,1), -- White
+    SearchBarBorderTransparency = .75,
+    
+    Notification = Color3.fromHex("#1a1a1a"), -- Toast surface
+    NotificationTransparency = .08,
+    Notification2 = Color3.fromHex("#FFFFFF"), -- Subtle surface wash
+    Notification2Transparency = .985,
+    NotificationTitle = Color3.fromHex("#FFFFFF"), -- Text
+    NotificationTitleTransparency = 0,
+    NotificationContent = Color3.fromHex("#FFFFFF"), -- Text
+    NotificationContentTransparency = .32,
+    NotificationDuration = Color3.new(1,1,1), -- White
+    NotificationDurationTransparency = .94,
+    NotificationBorder = Color3.new(1,1,1), -- White
+    NotificationBorderTransparency = .76,
+    
+    DropdownTabBorder = Color3.new(1,1,1), -- White
+
+    LabelBackground = Color3.new(1,1,1), -- White
+    LabelBackgroundTransparency = .95,
+})
+```
+
+</TabsContent>
+
+</Tabs>
+
+
+<Accordion collapsible>
+    <AccordionItem value="item-1">
+            <AccordionTrigger className="text-xl font-medium items-center" >All Themes</AccordionTrigger>
+            <AccordionContent>
+<div className="flex flex-col gap-2">
+    {Object.entries(await getThemes()).map(([key, theme]) => (
+        <div key={key} className="flex items-center gap-3">
+            <ThemeSwatch theme={theme} />
+        </div>
+    ))}
+</div>
+            </AccordionContent>
+    </AccordionItem>
+</Accordion>

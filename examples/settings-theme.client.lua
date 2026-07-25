@@ -1,10 +1,10 @@
-local WindUI = loadstring(game:HttpGet("https://article-hub-studio.github.io/WindUI-Skibidi/loader.lua"))()
+local VynxUI = loadstring(game:HttpGet("https://article-hub-studio.github.io/VynxUI-Skibidi/loader.lua"))()
 
-WindUI:SetMotionPreset("Liquid")
+VynxUI:SetMotionPreset("Liquid")
 
-local Window = WindUI:CreateWindow({
-	Title = "WindUI Settings Example",
-	Folder = "WindUISettingsExample",
+local Window = VynxUI:CreateWindow({
+	Title = "VynxUI Settings Example",
+	Folder = "VynxUISettingsExample",
 	Icon = "settings",
 	NewElements = true,
 	Settings = {
@@ -17,7 +17,7 @@ local Window = WindUI:CreateWindow({
 		ButtonsType = "Mac",
 	},
 	BackgroundColor = Color3.fromHex("#0A0F16"),
-	BackgroundGradient = WindUI:Gradient({
+	BackgroundGradient = VynxUI:Gradient({
 		["0"] = { Color = Color3.fromHex("#0A0F16"), Transparency = 0.08 },
 		["58"] = { Color = Color3.fromHex("#14313A"), Transparency = 0.34 },
 		["100"] = { Color = Color3.fromHex("#211631"), Transparency = 0.5 },
@@ -71,7 +71,7 @@ SettingsTab:KeyValue({
 	Title = "Settings State",
 	Items = {
 		{ Title = "Config", Value = "mobile-settings" },
-		{ Title = "Theme", Value = WindUI:GetCurrentTheme() },
+		{ Title = "Theme", Value = VynxUI:GetCurrentTheme() },
 		{ Title = "Topbar", Value = "Mac + gear" },
 	},
 })

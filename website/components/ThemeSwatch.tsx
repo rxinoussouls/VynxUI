@@ -148,7 +148,7 @@ export function ThemeSwatch({ theme }: { theme: any }) {
             </div>
 
             <img
-                src={asset(`/windui/themes/${label}.png`)}
+                src={asset(`/vynxui/themes/${label}.png`)}
                 alt={label}
                 className="w-96 h-auto p-2 my-0!"
                 loading="lazy"

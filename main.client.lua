@@ -1,7 +1,7 @@
 local RunService = game:GetService("RunService")
 --[[
 
-    WindUI Example (wip)
+    VynxUI Example (wip)
     
 ]]
 
@@ -11,7 +11,7 @@ end)
 local ReplicatedStorage = cloneref(game:GetService("ReplicatedStorage"))
 local HttpService = cloneref(game:GetService("HttpService"))
 
-local WindUI
+local VynxUI
 
 do
 	local ok, result = pcall(function()
@@ -19,20 +19,20 @@ do
 	end)
 
 	if ok then
-		WindUI = result
+		VynxUI = result
 	else
 		if cloneref(game:GetService("RunService")):IsStudio() then
-			WindUI = require(cloneref(ReplicatedStorage:WaitForChild("WindUI"):WaitForChild("Init")))
+			VynxUI = require(cloneref(ReplicatedStorage:WaitForChild("VynxUI"):WaitForChild("Init")))
 		else
-			WindUI =
-				loadstring(game:HttpGet("https://article-hub-studio.github.io/WindUI-Skibidi/loader.lua"))()
+			VynxUI =
+				loadstring(game:HttpGet("https://article-hub-studio.github.io/VynxUI-Skibidi/loader.lua"))()
 		end
 	end
 end
 
 --[[
 
-WindUI.Creator.AddIcons("solar", {
+VynxUI.Creator.AddIcons("solar", {
     ["CheckSquareBold"] = "rbxassetid://132438947521974",
     ["CursorSquareBold"] = "rbxassetid://120306472146156",
     ["FileTextBold"] = "rbxassetid://89294979831077",
@@ -45,8 +45,8 @@ WindUI.Creator.AddIcons("solar", {
 })--]]
 
 function createPopup()
-	return WindUI:Popup({
-		Title = "Welcome to the WindUI!",
+	return VynxUI:Popup({
+		Title = "Welcome to the VynxUI!",
 		Icon = "bird",
 		Content = "Hello!",
 		Buttons = {
@@ -70,8 +70,8 @@ function createPopup()
 end
 
 -- */  Window  /* --
-local Window = WindUI:CreateWindow({
-	Title = ".ftgs hub  |  WindUI Example",
+local Window = VynxUI:CreateWindow({
+	Title = ".ftgs hub  |  VynxUI Example",
 	--Author = "by .ftgs • Footagesus",
 	Folder = "ftgshub",
 	Icon = "solar:folder-2-bold-duotone",
@@ -83,7 +83,7 @@ local Window = WindUI:CreateWindow({
 		Reduced = false,
 	},
 	BackgroundColor = Color3.fromHex("#0B0F14"),
-	BackgroundGradient = WindUI:Gradient({
+	BackgroundGradient = VynxUI:Gradient({
 		["0"] = { Color = Color3.fromHex("#0B0F14"), Transparency = 0.08 },
 		["48"] = { Color = Color3.fromHex("#17243A"), Transparency = 0.36 },
 		["100"] = { Color = Color3.fromHex("#101827"), Transparency = 0.58 },
@@ -122,7 +122,7 @@ local Window = WindUI:CreateWindow({
 -- */  Tags  /* --
 do
 	Window:Tag({
-		Title = "v" .. WindUI.Version,
+		Title = "v" .. VynxUI.Version,
 		Icon = "github",
 		Color = Color3.fromHex("#1c1c1c"),
 		Border = true,
@@ -157,7 +157,7 @@ do
 		Options = { "Subtle", "None" },
 		Value = "Subtle",
 		Callback = function(Value)
-			WindUI:SetMotionPreset(Value)
+			VynxUI:SetMotionPreset(Value)
 		end,
 	})
 
@@ -166,7 +166,7 @@ do
 		Desc = "Drop movement and keep fast opacity/state transitions",
 		Value = false,
 		Callback = function(Value)
-			WindUI:SetReducedMotion(Value)
+			VynxUI:SetReducedMotion(Value)
 		end,
 	})
 
@@ -224,7 +224,7 @@ do
 	ModernTab:TextArea({
 		Title = "Notes",
 		Placeholder = "Write a longer value...",
-		Value = "WindUI modern controls",
+		Value = "VynxUI modern controls",
 		Callback = function(Value)
 			print("TextArea:", Value)
 		end,
@@ -339,7 +339,7 @@ do
 				Icon = "bell",
 				Variant = "Primary",
 				Callback = function()
-					WindUI:Notify({
+					VynxUI:Notify({
 						Title = "Advanced Elements",
 						Content = "EmptyState action clicked.",
 					})
@@ -413,7 +413,7 @@ do
 		Title = "Cycle background",
 		Icon = "image",
 		Callback = function()
-			Window:SetBackgroundGradient(WindUI:Gradient({
+			Window:SetBackgroundGradient(VynxUI:Gradient({
 				["0"] = { Color = Color3.fromHex("#07111F"), Transparency = 0.08 },
 				["45"] = { Color = Color3.fromHex("#102D3D"), Transparency = 0.32 },
 				["100"] = { Color = Color3.fromHex("#1B1231"), Transparency = 0.56 },
@@ -553,7 +553,7 @@ end
 -- */  About Tab  /* --
 do
 	local AboutTab = Window:Tab({
-		Title = "About WindUI",
+		Title = "About VynxUI",
 		Desc = "Description Example",
 		Icon = "solar:info-square-bold",
 		IconColor = Grey,
@@ -562,11 +562,11 @@ do
 	})
 
 	local AboutSection = AboutTab:Section({
-		Title = "About WindUI",
+		Title = "About VynxUI",
 	})
 
 	AboutSection:Image({
-		Image = "https://article-hub-studio.github.io/WindUI-Skibidi/windui/previews/windui-modded-preview.png",
+		Image = "https://article-hub-studio.github.io/VynxUI-Skibidi/vynxui/previews/vynxui-modded-preview.png",
 		AspectRatio = "16:9",
 		Radius = 9,
 	})
@@ -574,7 +574,7 @@ do
 	AboutSection:Space({ Columns = 3 })
 
 	AboutSection:Section({
-		Title = "What is WindUI?",
+		Title = "What is VynxUI?",
 		TextSize = 24,
 		FontWeight = Enum.FontWeight.SemiBold,
 	})
@@ -582,7 +582,7 @@ do
 	AboutSection:Space()
 
 	AboutSection:Section({
-		Title = "WindUI is a stylish, open-source UI (User Interface) library specifically designed for Roblox Script Hubs.\nDeveloped by Footagesus (.ftgs, Footages).\nIt aims to provide developers with a modern, customizable, and easy-to-use toolkit for creating visually appealing interfaces within Roblox.\nThe project is primarily written in Lua (Luau), the scripting language used in Roblox.",
+		Title = "VynxUI is a stylish, open-source UI (User Interface) library specifically designed for Roblox Script Hubs.\nDeveloped by Footagesus (.ftgs, Footages).\nIt aims to provide developers with a modern, customizable, and easy-to-use toolkit for creating visually appealing interfaces within Roblox.\nThe project is primarily written in Lua (Luau), the scripting language used in Roblox.",
 		TextSize = 18,
 		TextTransparency = 0.35,
 		FontWeight = Enum.FontWeight.Medium,
@@ -593,15 +593,15 @@ do
 	-- Default buttons
 
 	AboutTab:Button({
-		Title = "Export WindUI JSON (copy)",
+		Title = "Export VynxUI JSON (copy)",
 		Color = Color3.fromHex("#a2ff30"),
 		Justify = "Center",
 		IconAlign = "Left",
 		Icon = "", -- removing icon
 		Callback = function()
-			tableToClipboard(WindUI)
-			WindUI:Notify({
-				Title = "WindUI JSON",
+			tableToClipboard(VynxUI)
+			VynxUI:Notify({
+				Title = "VynxUI JSON",
 				Content = "Copied to Clipboard!",
 			})
 		end,
@@ -853,9 +853,9 @@ do
 		Title = "Notify Button",
 		--Desc = "Button example",
 		Callback = function()
-			WindUI:Notify({
+			VynxUI:Notify({
 				Title = "Hello",
-				Content = "Welcome to the WindUI Example!",
+				Content = "Welcome to the VynxUI Example!",
 				Icon = "solar:bell-bold",
 				Duration = 5,
 				CanClose = false,
@@ -867,9 +867,9 @@ do
 		Title = "Notify Button 2",
 		--Desc = "Button example",
 		Callback = function()
-			WindUI:Notify({
+			VynxUI:Notify({
 				Title = "Hello",
-				Content = "Welcome to the WindUI Example!",
+				Content = "Welcome to the VynxUI Example!",
 				--Icon = "solar:bell-bold",
 				Duration = 5,
 				CanClose = false,
@@ -1181,7 +1181,7 @@ if not RunService:IsStudio() and writefile and printidentity() then
 			Border = true,
 		})
 
-		-- All elements are taken from the official documentation: https://footagesus.github.io/WindUI-Docs/docs
+		-- All elements are taken from the official documentation: https://footagesus.github.io/VynxUI-Docs/docs
 
 		-- Saving elements to the config using `Flag`
 
@@ -1395,7 +1395,7 @@ if not RunService:IsStudio() and writefile and printidentity() then
 			Callback = function()
 				Window.CurrentConfig = ConfigManager:Config(ConfigName)
 				if Window.CurrentConfig:Save() then
-					WindUI:Notify({
+					VynxUI:Notify({
 						Title = "Config Saved",
 						Desc = "Config '" .. ConfigName .. "' saved",
 						Icon = "check",
@@ -1415,7 +1415,7 @@ if not RunService:IsStudio() and writefile and printidentity() then
 			Callback = function()
 				Window.CurrentConfig = ConfigManager:CreateConfig(ConfigName)
 				if Window.CurrentConfig:Load() then
-					WindUI:Notify({
+					VynxUI:Notify({
 						Title = "Config Loaded",
 						Desc = "Config '" .. ConfigName .. "' loaded",
 						Icon = "refresh-cw",
@@ -1443,13 +1443,13 @@ do
 	local DiscordAPI = "https://discord.com/api/v10/invites/" .. InviteCode .. "?with_counts=true&with_expiration=true"
 
 	local Response = {}
-	if not RunService:IsStudio() and WindUI.Creator.Request then
+	if not RunService:IsStudio() and VynxUI.Creator.Request then
 		local Success, Result = pcall(function()
-			return WindUI.cloneref(game:GetService("HttpService")):JSONDecode(WindUI.Creator.Request({
+			return VynxUI.cloneref(game:GetService("HttpService")):JSONDecode(VynxUI.Creator.Request({
 				Url = DiscordAPI,
 				Method = "GET",
 				Headers = {
-					["User-Agent"] = "WindUI/Example",
+					["User-Agent"] = "VynxUI/Example",
 					["Accept"] = "application/json",
 				},
 			}).Body or "{}")

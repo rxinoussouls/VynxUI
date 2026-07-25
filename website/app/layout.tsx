@@ -13,13 +13,13 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-    metadataBase: new URL("https://article-hub-studio.github.io/WindUI-Skibidi"),
+    metadataBase: new URL("https://article-hub-studio.github.io/VynxUI-Skibidi"),
     title: {
         template: "%s",
-        default: "WindUI Modded Docs",
+        default: "VynxUI Modded Docs",
     },
     description:
-        "Documentation for WindUI Modded, a Roblox Luau UI library fork with mobile-focused liquid glass elements.",
+        "Documentation for VynxUI Modded, a Roblox Luau UI library fork with mobile-focused liquid glass elements.",
     authors: [
         {
             name: "article-hub-studio",

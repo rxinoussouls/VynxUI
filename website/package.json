@@ -1,9 +1,9 @@
 {
-    "name": "windui-skibidi-docs",
+    "name": "vynxui-skibidi-docs",
     "version": "0.0.0",
     "private": true,
     "author": "article-hub-studio",
-    "homepage": "https://article-hub-studio.github.io/WindUI-Skibidi/",
+    "homepage": "https://article-hub-studio.github.io/VynxUI-Skibidi/",
     "scripts": {
         "build": "next build",
         "dev": "next dev",

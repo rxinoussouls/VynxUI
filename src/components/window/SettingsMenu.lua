@@ -40,10 +40,10 @@ local function Trim(Text)
 	return Text
 end
 
-local function GetThemeList(WindUI)
+local function GetThemeList(VynxUI)
 	local Themes = {}
 
-	for Key, Theme in next, WindUI:GetThemes() or {} do
+	for Key, Theme in next, VynxUI:GetThemes() or {} do
 		table.insert(Themes, {
 			Key = Key,
 			Name = Theme.Name or Key,
@@ -57,7 +57,7 @@ local function GetThemeList(WindUI)
 	return Themes
 end
 
-function SettingsMenu.New(Window, WindUI, Config)
+function SettingsMenu.New(Window, VynxUI, Config)
 	local SettingsConfig = typeof(Window.Settings) == "table" and Window.Settings or {}
 	local DefaultConfigName = SettingsConfig.DefaultConfig or "default"
 	local RootWidth = SettingsConfig.Width or 360
@@ -80,8 +80,8 @@ function SettingsMenu.New(Window, WindUI, Config)
 	end
 
 	local function Notify(Title, Content, Icon, Style)
-		if WindUI.Notify then
-			WindUI:Notify({
+		if VynxUI.Notify then
+			VynxUI:Notify({
 				Title = Title,
 				Content = Content,
 				Icon = Icon,
@@ -200,7 +200,7 @@ function SettingsMenu.New(Window, WindUI, Config)
 		Visible = false,
 		Active = false,
 		ZIndex = 10000,
-		Parent = WindUI.ScreenGui,
+		Parent = VynxUI.ScreenGui,
 		ThemeTag = {
 			ImageColor3 = "Background",
 		},
@@ -237,7 +237,7 @@ function SettingsMenu.New(Window, WindUI, Config)
 		Visible = false,
 		Active = false,
 		ZIndex = 9998,
-		Parent = WindUI.ScreenGui,
+		Parent = VynxUI.ScreenGui,
 	})
 
 	local Content = New("CanvasGroup", {
@@ -532,7 +532,7 @@ function SettingsMenu.New(Window, WindUI, Config)
 
 	local RuntimeCard = CreatePanel(ConfigPage)
 	CreateText(RuntimeCard, "Runtime", 13, Enum.FontWeight.Bold, 0.05)
-	local ThemeMeta = CreateText(RuntimeCard, "Theme: " .. tostring(WindUI:GetCurrentTheme()), 12, Enum.FontWeight.Medium, 0.28)
+	local ThemeMeta = CreateText(RuntimeCard, "Theme: " .. tostring(VynxUI:GetCurrentTheme()), 12, Enum.FontWeight.Medium, 0.28)
 	CreateText(RuntimeCard, "Settings use glass morph layers and tabbed pages.", 12, Enum.FontWeight.Medium, 0.45)
 
 	local function GetConfigName()
@@ -564,7 +564,7 @@ function SettingsMenu.New(Window, WindUI, Config)
 		local Name = GetConfigName()
 		local Success, Result, Message = pcall(function()
 			local ConfigModule = Manager:Config(Name)
-			ConfigModule:Set("theme", WindUI:GetCurrentTheme())
+			ConfigModule:Set("theme", VynxUI:GetCurrentTheme())
 			return ConfigModule:Save()
 		end)
 
@@ -589,13 +589,13 @@ function SettingsMenu.New(Window, WindUI, Config)
 			local ConfigModule = Manager:Config(Name)
 			local Data = ConfigModule:Load()
 			if Data and Data.theme then
-				WindUI:SetTheme(Data.theme)
+				VynxUI:SetTheme(Data.theme)
 			end
 			return Data
 		end)
 
 		if Success and Result then
-			ThemeMeta.Text = "Theme: " .. tostring(WindUI:GetCurrentTheme())
+			ThemeMeta.Text = "Theme: " .. tostring(VynxUI:GetCurrentTheme())
 			Notify("Config loaded", "Loaded '" .. Name .. "'.", "refresh-cw", "Success")
 		else
 			Notify("Config load failed", tostring(Message or Result), "triangle-alert", "Error")
@@ -624,7 +624,7 @@ function SettingsMenu.New(Window, WindUI, Config)
 	})
 
 	local function UpdateThemeButtons()
-		local CurrentTheme = WindUI:GetCurrentTheme()
+		local CurrentTheme = VynxUI:GetCurrentTheme()
 		ThemeMeta.Text = "Theme: " .. tostring(CurrentTheme)
 		for Key, Data in next, Menu.ThemeButtons do
 			local Selected = Key == CurrentTheme
@@ -636,7 +636,7 @@ function SettingsMenu.New(Window, WindUI, Config)
 		end
 	end
 
-	for _, Theme in next, GetThemeList(WindUI) do
+	for _, Theme in next, GetThemeList(VynxUI) do
 		local CheckIcon = CreateIcon("check", nil, 14)
 		local ThemeButton = Creator.NewRoundFrame(12, "Squircle", {
 			Size = UDim2.new(1, 0, 0, 32),
@@ -687,13 +687,13 @@ function SettingsMenu.New(Window, WindUI, Config)
 		})
 
 		Creator.AddSignal(ThemeButton.MouseButton1Click, function()
-			WindUI:SetTheme(Theme.Key)
+			VynxUI:SetTheme(Theme.Key)
 			UpdateThemeButtons()
 		end)
 	end
 
 	local AboutCard = CreatePanel(AboutPage)
-	CreateText(AboutCard, "WindUI Settings", 13, Enum.FontWeight.Bold, 0.05)
+	CreateText(AboutCard, "VynxUI Settings", 13, Enum.FontWeight.Bold, 0.05)
 	CreateText(AboutCard, "Use Config for save/load and Theme for quick visual switching.", 12, Enum.FontWeight.Medium, 0.36)
 
 	local AboutStack = New("Frame", {
@@ -754,7 +754,7 @@ function SettingsMenu.New(Window, WindUI, Config)
 		})
 	end
 
-	CreateInfoRow("Folder", tostring(Window.Folder or "WindUI"))
+	CreateInfoRow("Folder", tostring(Window.Folder or "VynxUI"))
 	CreateInfoRow("Topbar", tostring(Window.Topbar.ButtonsType or "Default"))
 	CreateInfoRow("Motion", tostring(Motion:GetConfig().Preset))
 

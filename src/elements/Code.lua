@@ -54,7 +54,7 @@ function Element:New(Config)
 				end
 			end)
 			if not success then
-				Config.WindUI:Notify({
+				Config.VynxUI:Notify({
 					Title = "Error",
 					Content = "The " .. NewTitle .. " is not copied. Error: " .. result,
 					Icon = "x",
@@ -63,7 +63,7 @@ function Element:New(Config)
 				})
 			end
 		end
-	end, Config.WindUI.UIScale)
+	end, Config.VynxUI.UIScale)
 
 	function Code:SetCode(code)
 		CodeElement.Set(code)

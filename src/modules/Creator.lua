@@ -13,7 +13,7 @@ local RenderStepped = RunService.Heartbeat
 
 Icons.SetIconsType("lucide")
 
-local WindUI
+local VynxUI
 
 local Creator
 Creator = {
@@ -122,12 +122,12 @@ Creator = {
 	ThemeChangeCallbacks = {},
 }
 
-function Creator.Init(WindUITable)
-	WindUI = WindUITable
+function Creator.Init(VynxUITable)
+	VynxUI = VynxUITable
 
 	Creator.ThemeFallbacks = require("../themes/Fallbacks")(Creator)
 
-	Creator.UIScale = WindUITable.UIScale
+	Creator.UIScale = VynxUITable.UIScale
 
 	DynamicShapeModule:Init(Creator)
 end
@@ -171,12 +171,12 @@ function Creator.SafeCallback(Function, ...)
 
 	local Success, Event = pcall(Function, ...)
 	if not Success then
-		if WindUI and WindUI.Window and WindUI.Window.Debug then
+		if VynxUI and VynxUI.Window and VynxUI.Window.Debug then
 			local _, i = Event:find(":%d+: ")
 
-			warn("[ WindUI: DEBUG Mode ] " .. Event)
+			warn("[ VynxUI: DEBUG Mode ] " .. Event)
 
-			return WindUI:Notify({
+			return VynxUI:Notify({
 				Title = "DEBUG Mode: Error",
 				Content = not i and Event or Event:sub(i + 1),
 				Style = "Error",
@@ -187,8 +187,8 @@ function Creator.SafeCallback(Function, ...)
 end
 
 function Creator.Gradient(stops, props)
-	if WindUI and WindUI.Gradient then
-		return WindUI:Gradient(stops, props)
+	if VynxUI and VynxUI.Gradient then
+		return VynxUI:Gradient(stops, props)
 	end
 
 	local colorSequence = {}
@@ -693,7 +693,7 @@ function Creator.ApplyLinkedCornerSurface(Object, Radius, Corners, Enabled)
 		return Wrapper
 	end
 
-	local Corner = Object:FindFirstChild("WindUILinkedCorner")
+	local Corner = Object:FindFirstChild("VynxUILinkedCorner")
 	local ExistingCorner = Corner or Object:FindFirstChildWhichIsA("UICorner")
 	if not Enabled then
 		if Corner then
@@ -707,7 +707,7 @@ function Creator.ApplyLinkedCornerSurface(Object, Radius, Corners, Enabled)
 	Corner = ExistingCorner
 	if not Corner then
 		Corner = Creator.New("UICorner", {
-			Name = "WindUILinkedCorner",
+			Name = "VynxUILinkedCorner",
 			Parent = Object,
 		})
 	end
@@ -849,7 +849,7 @@ function Creator.SetDraggable(can)
 end
 
 function Creator.Drag(mainFrame, dragFrames, ondrag)
-	local CurInput = WindUI.GenerateGUID()
+	local CurInput = VynxUI.GenerateGUID()
 
 	local currentDragFrame = nil
 	local dragging = false
@@ -872,8 +872,8 @@ function Creator.Drag(mainFrame, dragFrames, ondrag)
 	end
 
 	local function StopDragging()
-		if WindUI and WindUI.CurrentInput == CurInput then
-			WindUI.CurrentInput = nil
+		if VynxUI and VynxUI.CurrentInput == CurInput then
+			VynxUI.CurrentInput = nil
 		end
 
 		local WasDragging = dragging
@@ -912,11 +912,11 @@ function Creator.Drag(mainFrame, dragFrames, ondrag)
 				input.UserInputType == Enum.UserInputType.MouseButton1
 				or input.UserInputType == Enum.UserInputType.Touch
 			then
-				if WindUI and WindUI.CurrentInput and WindUI.CurrentInput ~= CurInput then
+				if VynxUI and VynxUI.CurrentInput and VynxUI.CurrentInput ~= CurInput then
 					return
 				end
 
-				WindUI.CurrentInput = CurInput
+				VynxUI.CurrentInput = CurInput
 
 				dragging = true
 				activeInput = input
@@ -943,7 +943,7 @@ function Creator.Drag(mainFrame, dragFrames, ondrag)
 		if not dragging then
 			return
 		end
-		if WindUI.CurrentInput and WindUI.CurrentInput ~= CurInput then
+		if VynxUI.CurrentInput and VynxUI.CurrentInput ~= CurInput then
 			return
 		end
 
@@ -959,7 +959,7 @@ function Creator.Drag(mainFrame, dragFrames, ondrag)
 	end)
 
 	TrackConnection(UserInputService.InputEnded, function(input)
-		if not dragging or WindUI.CurrentInput ~= CurInput then
+		if not dragging or VynxUI.CurrentInput ~= CurInput then
 			return
 		end
 
@@ -1097,7 +1097,7 @@ function Creator.Image(Img, Name, Corner, Folder, Type, IsThemeTag, Themed, Them
 		IconLabel.Name = "ImageLabel"
 		IconLabel.Parent = ImageFrame
 	elseif IsExternalURL then
-		local FileName = "WindUI/" .. FolderName .. "/assets/." .. Type .. "-" .. Name .. ".png"
+		local FileName = "VynxUI/" .. FolderName .. "/assets/." .. Type .. "-" .. Name .. ".png"
 		local Success, ErrorMessage = pcall(function()
 			task.spawn(function()
 				local Response = Creator.Request and Creator.Request({
@@ -1114,13 +1114,13 @@ function Creator.Image(Img, Name, Corner, Folder, Type, IsThemeTag, Themed, Them
 				if AssetSuccess then
 					ImageTarget.Image = Asset
 				elseif not AssetSuccess then
-					warn(string.format("[ WindUI.Creator ] Failed to load '%s': %s", FileName, tostring(Asset)))
+					warn(string.format("[ VynxUI.Creator ] Failed to load '%s': %s", FileName, tostring(Asset)))
 				end
 			end)
 		end)
 
 		if not Success then
-			warn(string.format("[ WindUI.Creator ] URL image is unavailable: %s", tostring(ErrorMessage)))
+			warn(string.format("[ VynxUI.Creator ] URL image is unavailable: %s", tostring(ErrorMessage)))
 			ImageFrame.Visible = false
 		end
 	elseif Img == nil or Img == "" then
@@ -1130,7 +1130,7 @@ function Creator.Image(Img, Name, Corner, Folder, Type, IsThemeTag, Themed, Them
 	elseif type(Img) == "string" then
 		ImageTarget.Image = Img
 	else
-		warn(string.format("[ WindUI.Creator ] Unsupported image value: %s", typeof(Img)))
+		warn(string.format("[ VynxUI.Creator ] Unsupported image value: %s", typeof(Img)))
 		ImageFrame.Visible = false
 	end
 

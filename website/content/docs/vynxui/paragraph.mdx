@@ -1,0 +1,197 @@
+---
+title: Paragraph
+description: Display static text and media content in VynxUI Modded
+---
+
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import TypeTable from '@/components/TypeTable';
+
+## Paragraph Element
+
+Paragraph displays text content with optional icons, thumbnails, and buttons.  
+Use it for information blocks, status messages, descriptions, or annotated UI text.
+
+<Tabs defaultValue="basic">
+  <TabsList>
+    <TabsTrigger value="basic">Basic</TabsTrigger>
+    <TabsTrigger value="full">Full</TabsTrigger>
+  </TabsList>
+
+  <TabsContent value="basic">
+```luau
+Tab:Paragraph({
+    Title = "Info",
+    Desc = "Basic paragraph text"
+})
+```
+  </TabsContent>
+
+  <TabsContent value="full">
+```luau
+Tab:Paragraph({
+    Title = "Full Paragraph",
+    Desc = "This paragraph has icons, thumbnail and buttons.",
+    Image = "info",
+    ImageSize = 24,
+    Thumbnail = "rbxassetid://123456789",
+    ThumbnailSize = 64,
+    Color = Color3.fromRGB(100, 200, 255),
+    Buttons = {
+        {
+            Title = "Action",
+            Icon = "check",
+            Callback = function()
+                print("Action clicked")
+            end
+        }
+    }
+})
+```
+  </TabsContent>
+</Tabs>
+
+## Paragraph Properties
+
+<TypeTable
+    data={[
+        { name: "Title", type: "string", description: "Paragraph title text", default: "\"\"" },
+        { name: "Desc", type: "string", description: "Paragraph description/body text", default: "\"\"" },
+        { name: "Image", type: "string?", description: "Small icon or image name/URL", default: "nil" },
+        { name: "ImageSize", type: "number?", description: "Size of the Image in pixels", default: "nil" },
+        { name: "Thumbnail", type: "string?", description: "Large thumbnail image or URL", default: "nil" },
+        { name: "ThumbnailSize", type: "number?", description: "Size of the Thumbnail in pixels", default: "nil" },
+        { name: "Color", type: "string | Color3?", description: "Custom accent color", default: "nil" },
+        { name: "Buttons", type: "table?", description: "Array of action buttons", default: "nil" },
+        { name: "Locked", type: "boolean?", description: "Disable interactions (if supported)", default: "false" },
+    ]}
+/>
+
+## Button Properties
+
+<TypeTable
+    data={[
+        { name: "Title", type: "string", description: "Button text label", default: "\"\"" },
+        { name: "Icon", type: "string?", description: "Icon name shown on the button", default: "nil" },
+        { name: "Variant", type: "string?", description: "UI variant of the button (e.g., \"Tertiary\")", default: "nil" },
+        { name: "Callback", type: "function", description: "Function called when clicked", default: "nil" },
+    ]}
+/>
+
+## Paragraph Functions
+<TypeTable
+    type={{
+        ':SetTitle': {
+            type: 'function',
+            description: 'Updates the paragraph title text.',
+            args: {
+                Title: {
+                    type: 'string',
+                    description: 'New paragraph title.',
+                }
+            }
+        },
+        ':SetDesc': {
+            type: 'function',
+            description: 'Updates the paragraph description/body text.',
+            args: {
+                Description: {
+                    type: 'string',
+                    description: 'New paragraph description text.',
+                }
+            }
+        },
+        ':SetImage': {
+            type: 'function',
+            description: 'Sets or updates the paragraph icon/image.',
+            args: {
+                Image: {
+                    type: 'string',
+                    description: 'Icon name or image URL.',
+                },
+                ImageSize: {
+                    type: 'number?',
+                    description: 'Optional image size in pixels.',
+                }
+            }
+        },
+        ':SetThumbnail': {
+            type: 'function',
+            description: 'Sets or updates the paragraph thumbnail image.',
+            args: {
+                Thumbnail: {
+                    type: 'string',
+                    description: 'Thumbnail image URL or asset id.',
+                },
+                ThumbnailSize: {
+                    type: 'number?',
+                    description: 'Optional thumbnail size in pixels.',
+                }
+            }
+        },
+        ':SetColor': {
+            type: 'function',
+            description: 'Updates the paragraph accent color.',
+            args: {
+                Color: {
+                    type: 'Color3',
+                    description: 'New accent color.',
+                }
+            }
+        },
+        ':Destroy': {
+            type: 'function',
+            description: 'Removes the paragraph element.',
+            args: {}
+        },
+    }}
+/>
+
+## Examples
+
+### Simple Paragraph
+
+```luau
+Tab:Paragraph({
+    Title = "Version",
+    Desc = "App version 2.1.0"
+})
+```
+
+### With Image
+
+```luau
+Tab:Paragraph({
+    Title = "Status",
+    Desc = "All systems operational",
+    Image = "check-circle",
+    ImageSize = 20
+})
+```
+
+### With Thumbnail
+
+```luau
+Tab:Paragraph({
+    Title = "Feature Highlight",
+    Desc = "See the new UI",
+    Thumbnail = "rbxassetid://",
+    ThumbnailSize = 80
+})
+```
+
+### With Buttons
+
+```luau
+Tab:Paragraph({
+    Title = "Update Available",
+    Desc = "Version 3.0 ready to install",
+    Buttons = {
+        { Title = "Install", Icon = "download", Callback = function() end }
+    }
+})
+```
+
+## Related Documentation
+
+- [Tab](./tab)
+- [Button](./button)

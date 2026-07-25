@@ -1,19 +1,19 @@
-local WindUI =
-	loadstring(game:HttpGet("https://article-hub-studio.github.io/WindUI-Skibidi/loader.lua?v=1.6.65-ui-runtime-9"))()
+local VynxUI =
+	loadstring(game:HttpGet("https://article-hub-studio.github.io/VynxUI-Skibidi/loader.lua?v=1.6.65-ui-runtime-9"))()
 
-local HasIconSourceAPI = (tonumber(WindUI.IconAdapterVersion) or 0) >= 3
-	and type(WindUI.RegisterIconPack) == "function"
-	and type(WindUI.AddIconSourceAlias) == "function"
-	and type(WindUI.GetIconSources) == "function"
+local HasIconSourceAPI = (tonumber(VynxUI.IconAdapterVersion) or 0) >= 3
+	and type(VynxUI.RegisterIconPack) == "function"
+	and type(VynxUI.AddIconSourceAlias) == "function"
+	and type(VynxUI.GetIconSources) == "function"
 
 if HasIconSourceAPI then
-	WindUI:RegisterIconPack("demo", {
+	VynxUI:RegisterIconPack("demo", {
 		island = { Alias = "lucide:radio" },
 		notification = { Alias = "lucide:bell" },
 		corners = { Alias = "lucide:combine" },
 		success = { Alias = "lucide:circle-check" },
 	})
-	WindUI:AddIconSourceAlias("sample", "demo")
+	VynxUI:AddIconSourceAlias("sample", "demo")
 end
 
 local function DemoIcon(Name, Fallback)
@@ -24,12 +24,12 @@ local function SourceIcon(Source, Name, Fallback)
 	return if HasIconSourceAPI then { Source = Source, Name = Name } else Fallback
 end
 
-local IconSources = if HasIconSourceAPI then WindUI:GetIconSources() else { "lucide", "solar" }
+local IconSources = if HasIconSourceAPI then VynxUI:GetIconSources() else { "lucide", "solar" }
 
-WindUI:SetMotionPreset("Liquid")
+VynxUI:SetMotionPreset("Liquid")
 
-WindUI:LoadingCreate({
-	Title = "WindUI Full Example",
+VynxUI:LoadingCreate({
+	Title = "VynxUI Full Example",
 	Desc = "Preparing liquid UI kit",
 	Icon = DemoIcon("island", "radio"),
 	Width = 350,
@@ -42,9 +42,9 @@ WindUI:LoadingCreate({
 	CloseDelay = 0.18,
 })
 
-local Window = WindUI:CreateWindow({
-	Title = ".ftgs hub | WindUI Full Example",
-	Folder = "WindUIFullExample",
+local Window = VynxUI:CreateWindow({
+	Title = ".ftgs hub | VynxUI Full Example",
+	Folder = "VynxUIFullExample",
 	Icon = DemoIcon("island", "radio"),
 	Default = true,
 	NewElements = true,
@@ -71,7 +71,7 @@ local Window = WindUI:CreateWindow({
 		UseWindowBackground = true,
 	},
 	Watermark = {
-		Title = "WindUI",
+		Title = "VynxUI",
 		Desc = "liquid build",
 		Icon = "sparkles",
 		Position = "BottomRight",
@@ -93,7 +93,7 @@ local Window = WindUI:CreateWindow({
 		ButtonsType = "Mac",
 	},
 	OpenButton = {
-		Title = "WindUI",
+		Title = "VynxUI",
 		Content = "Ready",
 		Icon = DemoIcon("island", "radio"),
 		State = "Compact",
@@ -123,7 +123,7 @@ local Window = WindUI:CreateWindow({
 		Color = ColorSequence.new(Color3.fromHex("#30FF6A"), Color3.fromHex("#E7FF2F")),
 	},
 	BackgroundColor = Color3.fromHex("#08111A"),
-	BackgroundGradient = WindUI:Gradient({
+	BackgroundGradient = VynxUI:Gradient({
 		["0"] = { Color = Color3.fromHex("#08111A"), Transparency = 0.06 },
 		["45"] = { Color = Color3.fromHex("#12352F"), Transparency = 0.3 },
 		["100"] = { Color = Color3.fromHex("#24172D"), Transparency = 0.54 },
@@ -142,7 +142,7 @@ local function HasDynamicIslandAPI()
 end
 
 local function NotifyOutdatedRuntime()
-	WindUI:Notify({
+	VynxUI:Notify({
 		Title = "Runtime cache is updating",
 		Content = "Re-run the example to load the latest Dynamic Island API.",
 		Icon = "refresh-cw",
@@ -156,7 +156,7 @@ local OverviewTab = Window:Tab({
 })
 
 OverviewTab:Callout({
-	Title = "WindUI Full Example",
+	Title = "VynxUI Full Example",
 	Desc = "Full example with capsule notifications, Dynamic Island, linked corners and multi-source icons.",
 	Variant = "Info",
 })
@@ -199,7 +199,7 @@ OverviewTab:KeyValue({
 	Title = "Runtime",
 	Items = {
 		{ Title = "Loader", Value = "loadstring" },
-		{ Title = "Theme", Value = WindUI:GetCurrentTheme() },
+		{ Title = "Theme", Value = VynxUI:GetCurrentTheme() },
 		{ Title = "Topbar", Value = "Mac + Settings Gear" },
 		{ Title = "Tab holder", Value = "Compact sidebar / top" },
 		{ Title = "Icon sources", Value = tostring(#IconSources) },
@@ -244,7 +244,7 @@ FeatureCard:CardButton({
 	Title = "Notify From Card",
 	Icon = DemoIcon("notification", "bell"),
 	Callback = function()
-		WindUI:Notify({
+		VynxUI:Notify({
 			Title = "CardButton",
 			Content = "Card action callback fired.",
 			Icon = DemoIcon("success", "circle-check"),
@@ -300,17 +300,17 @@ SystemTab:ActionList({
 			Icon = "lucide:app-window",
 		},
 		{
-			Title = "Original WindUI",
-			Desc = "Classic WindUI notification layout and surface.",
+			Title = "Original VynxUI",
+			Desc = "Classic VynxUI notification layout and surface.",
 			Value = "Originally",
 			Icon = "lucide:history",
 		},
 	},
 	Callback = function(Action)
 		if Action.Value == "Window" then
-			WindUI:Notify({
+			VynxUI:Notify({
 				Type = "Window",
-				AppName = "WindUI",
+				AppName = "VynxUI",
 				AppIcon = "lucide:app-window",
 				Title = "Feature Launch Party",
 				Content = "Studio S / Ballroom\n4:00 PM, 10/31/2026",
@@ -326,15 +326,15 @@ SystemTab:ActionList({
 				Duration = false,
 			})
 		elseif Action.Value == "Originally" then
-			WindUI:Notify({
+			VynxUI:Notify({
 				Type = "Originally",
-				Title = "Original WindUI",
+				Title = "Original VynxUI",
 				Content = "Classic notification presentation with the original compact width.",
 				Icon = "lucide:bell",
 				Duration = 5,
 			})
 		elseif Action.Value == "Card" then
-			WindUI:Notify({
+			VynxUI:Notify({
 				Title = "Anonim",
 				Content = "Metadata notification with an avatar and timestamp.",
 				Appearance = "Card",
@@ -345,7 +345,7 @@ SystemTab:ActionList({
 				Duration = 5,
 			})
 		elseif Action.Value == "Decorated" then
-			WindUI:Notify({
+			VynxUI:Notify({
 				Title = "Saved successfully",
 				Content = "Native shadow, individual corners and a quiet accent rail.",
 				Appearance = "Compact",
@@ -360,7 +360,7 @@ SystemTab:ActionList({
 				},
 			})
 		elseif Action.Value == "Glass" then
-			WindUI:Notify({
+			VynxUI:Notify({
 				Title = "Persistent notification",
 				Content = "Choose an action or close this notification manually.",
 				Appearance = "Glass",
@@ -379,7 +379,7 @@ SystemTab:ActionList({
 								return
 							end
 							Window:ExpandOpenButton({
-								Title = "WindUI alert",
+								Title = "VynxUI alert",
 								Content = "Opened from a notification action",
 								Icon = DemoIcon("notification", "bell"),
 							}, 3)
@@ -389,7 +389,7 @@ SystemTab:ActionList({
 				},
 			})
 		else
-			WindUI:Notify({
+			VynxUI:Notify({
 				Type = "Normal",
 				Title = "Notification example",
 				Content = "Compact toast using a table-based Solar icon reference.",
@@ -403,7 +403,7 @@ SystemTab:ActionList({
 
 SystemTab:ActionList({
 	Title = "Dynamic Island Open Button",
-	Desc = "Preview a state by closing the window. Tap the island to reopen WindUI.",
+	Desc = "Preview a state by closing the window. Tap the island to reopen VynxUI.",
 	Actions = {
 		{
 			Title = "Push Update",
@@ -443,7 +443,7 @@ SystemTab:ActionList({
 		end
 
 		local Changes = {
-			Title = "WindUI " .. Action.Value,
+			Title = "VynxUI " .. Action.Value,
 			Content = (Action.Value == "Collapsed" or Action.Value == "Idle") and false
 				or "Dynamic Island method preview",
 			Icon = DemoIcon("island", "radio"),
@@ -610,7 +610,7 @@ PremiumTab:Button({
 	Icon = "sparkles",
 	Golden = true,
 	Callback = function()
-		WindUI:Notify({
+		VynxUI:Notify({
 			Title = "Premium",
 			Content = "Golden button callback fired.",
 			Icon = "crown",
@@ -665,7 +665,7 @@ LinkedTab:Button({
 	Icon = "mouse-pointer-click",
 	CornerGroup = "primary",
 	Callback = function()
-		WindUI:Notify({
+		VynxUI:Notify({
 			Title = "Linked corners",
 			Content = "The group keeps flat shared seams and rounded outside edges.",
 			Icon = DemoIcon("corners", "combine"),
@@ -764,13 +764,13 @@ local DiscordTab = Window:Tab({
 })
 
 local InviteCard = DiscordTab:DiscordCard({
-	Title = "WindUI Community",
+	Title = "VynxUI Community",
 	Desc = "Copy the invite or run a custom callback from one card.",
 	Invite = "ftgs-development-hub-1300692552005189632",
 	Members = "10k+",
 	Online = "Live",
 	Callback = function(Url)
-		WindUI:Notify({
+		VynxUI:Notify({
 			Title = "Discord callback",
 			Content = Url,
 			Icon = "external-link",
@@ -880,7 +880,7 @@ Controls:ActionList({
 		{ Title = "Compact mode", Icon = "panel-top", Value = "Mobile" },
 	},
 	Callback = function(Action)
-		WindUI:Notify({
+		VynxUI:Notify({
 			Title = "Action",
 			Content = Action.Title,
 			Icon = Action.Icon or "sparkles",
@@ -929,8 +929,8 @@ MotionTab:Accordion({
 })
 
 task.delay(0.7, function()
-	WindUI:Notify({
-		Title = "WindUI ready",
+	VynxUI:Notify({
+		Title = "VynxUI ready",
 		Content = "Open System UI to preview the upgraded components.",
 		Appearance = "Compact",
 		Icon = DemoIcon("success", "circle-check"),

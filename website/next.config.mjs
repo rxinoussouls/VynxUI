@@ -4,7 +4,7 @@ import { fileURLToPath } from "node:url";
 
 const withMDX = createMDX();
 const isGithubPages = process.env.NODE_ENV === "production";
-const repo = "WindUI-Skibidi";
+const repo = "VynxUI-Skibidi";
 const basePath = isGithubPages ? `/${repo}` : "";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 

@@ -1,10 +1,10 @@
-local WindUI = require("../src/Init")
+local VynxUI = require("../src/Init")
 
-local Window = WindUI:CreateWindow({
+local Window = VynxUI:CreateWindow({
 	Title = "Acrylic Theme Fallback Test",
 	Theme = "ThemeThatDoesNotExist",
 	Acrylic = true,
 })
 
 assert(Window ~= nil)
-assert(WindUI:GetCurrentTheme() == "Dark")
+assert(VynxUI:GetCurrentTheme() == "Dark")

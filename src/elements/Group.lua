@@ -42,7 +42,7 @@ function Element:New(Config)
 		GroupFrame,
 		ElementsModule.Elements,
 		Config.Window,
-		Config.WindUI,
+		Config.VynxUI,
 		function(CurrentElement, AllElements)
 			local StretchableElements = {}
 			local TotalFixedWidth = 0

@@ -1,0 +1,165 @@
+---
+title: Tag
+description: Create tag badges and labels in VynxUI Modded
+---
+
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { DynamicCodeBlock } from 'fumadocs-ui/components/dynamic-codeblock'
+import TypeTable from '@/components/TypeTable';
+
+![Tag](/vynxui/banners/Tag.png)
+
+## Tag Element
+
+Tags are compact badges used to label, categorize, or mark elements. They're useful for status indicators, labels, and badges.
+
+<Tabs defaultValue="small">
+    <TabsList>
+        <TabsTrigger value="small">Basic</TabsTrigger>
+        <TabsTrigger value="full">Full</TabsTrigger>
+    </TabsList>
+    <TabsContent value="small">
+```luau
+Tab:Tag({
+    Title = "New",
+    Color = Color3.fromRGB(100, 200, 100)
+})
+```
+    </TabsContent>
+    <TabsContent value="full">
+```luau
+Tab:Tag({
+    Title = "Featured",
+    Icon = "star", -- optional
+    Color = Color3.fromRGB(255, 200, 0), -- custom color
+})
+```
+    </TabsContent>
+</Tabs>
+
+## Tag Parameters
+
+<TypeTable
+    data={[
+        { name: "Title", type: "string", description: "Tag text/label", default: "Tag" },
+        { name: "Icon", type: "string?", description: "Icon identifier (lucide icon)", default: "nil" },
+        { name: "Color", type: "Color3?", description: "Custom tag color", default: "nil" },
+    ]}
+/>
+
+## Tag Functions
+
+<TypeTable 
+    type={{
+        ':SetTitle': {
+            type: 'function',
+            description: 'Updates the tag\'s title text.',
+            args: {
+                Title: {
+                    type: 'string',
+                    description: 'New tag title text.',
+                }
+            }
+        },
+        ':SetIcon': {
+            type: 'function',
+            description: 'Changes the tag\'s icon.',
+            args: {
+                Icon: {
+                    type: 'string',
+                    description: 'Lucide icon name.',
+                }
+            }
+        },
+        ':SetColor': {
+            type: 'function',
+            description: 'Updates the tag\'s color.',
+            args: {
+                Color: {
+                    type: 'Color3',
+                    description: 'New tag color.',
+                }
+            }
+        },
+    }}
+/>
+
+## Usage Examples
+
+### FPS Counter Tag
+
+```luau
+-- your tag
+local FPSTag = Window:Tag({
+    Title = "FPS: 0",
+    Color = Color3.fromRGB(100, 150, 255),
+})
+
+local RunService = game:GetService("RunService")
+local lastUpdate = tick()
+local frameCount = 0
+
+RunService.RenderStepped:Connect(function()
+    frameCount = frameCount + 1
+    local now = tick()
+    
+    if now - lastUpdate >= 1 then
+        local fps = math.floor(frameCount / (now - lastUpdate))
+        FPSTag:SetTitle("FPS: " .. fps)
+        
+        if fps >= 50 then
+            FPSTag:SetColor(Color3.fromRGB(0, 255, 0)) -- Green
+        elseif fps >= 30 then
+            FPSTag:SetColor(Color3.fromRGB(255, 200, 0)) -- Yellow
+        else
+            FPSTag:SetColor(Color3.fromRGB(255, 0, 0)) -- Red
+        end
+        
+        
+        frameCount = 0
+        lastUpdate = now
+    end
+end)
+```
+
+### Ping Counter Tag
+
+```luau
+local PingTag = Window:Tag({
+    Title = "Ping: 0ms",
+    Color = Color3.fromRGB(100, 200, 255),
+})
+
+task.spawn(function()
+    while true do
+        local success, ping = pcall(function()
+            local Stats = game:GetService("Stats")
+            local pingValue = Stats.Network.ServerStatsItem["Data Ping"]:GetValue()
+            return math.floor(pingValue)
+        end)
+        
+        if success and ping then
+            PingTag:SetTitle("Ping: " .. ping .. "ms")
+            
+            if ping <= 50 then
+                PingTag:SetColor(Color3.fromRGB(0, 255, 0)) -- Green
+            elseif ping <= 100 then
+                PingTag:SetColor(Color3.fromRGB(255, 200, 0)) -- Yellow
+            elseif ping <= 200 then
+                PingTag:SetColor(Color3.fromRGB(255, 150, 0)) -- Orange
+            else
+                PingTag:SetColor(Color3.fromRGB(255, 0, 0)) -- Red
+            end
+        end
+        
+        task.wait(2)
+    end
+end)
+```
+
+## Related Documentation
+
+- [Tab](./tab) - Tab container
+- [Paragraph](./paragraph) - Text display with tags
+- [Button](./button) - Similar interactive element
+- [Section](./section) - Section containers for organizing tags

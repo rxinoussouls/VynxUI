@@ -13,11 +13,11 @@ local New = Creator.New
 local CreateToolTip = require("../ui/Tooltip").New
 local CreateScrollSlider = require("../ui/ScrollSlider").New
 
-local Window, WindUI, UIScale
+local Window, VynxUI, UIScale
 
 local TabModule = {
 	--Window = nil,
-	--WindUI = nil,
+	--VynxUI = nil,
 	Tabs = {},
 	Containers = {},
 	SelectedTab = nil,
@@ -40,9 +40,9 @@ local function GetImageTarget(Object)
 	return Object:FindFirstChildWhichIsA("ImageLabel", true) or Object:FindFirstChildWhichIsA("ImageButton", true)
 end
 
-function TabModule.Init(WindowTable, WindUITable, ToolTipParent, TabHighlight)
+function TabModule.Init(WindowTable, VynxUITable, ToolTipParent, TabHighlight)
 	Window = WindowTable
-	WindUI = WindUITable
+	VynxUI = VynxUITable
 	TabModule.ToolTipParent = ToolTipParent
 	TabModule.TabHighlight = TabHighlight
 	return TabModule
@@ -475,7 +475,7 @@ function TabModule.New(Config, UIScale)
 			Tab.UIElements.ContainerFrameCanvas.ScrollSliderHolder,
 			Window,
 			4,
-			WindUI
+			VynxUI
 		)
 	end
 
@@ -581,7 +581,7 @@ function TabModule.New(Config, UIScale)
 		Tab.UIElements.ContainerFrame,
 		ElementsModule.Elements,
 		Window,
-		WindUI,
+		VynxUI,
 		nil,
 		ElementsModule,
 		UIScale,

@@ -178,10 +178,10 @@ function DynamicShapeModule:New(Radius, Type, Properties, Children, IsButton, Is
 			Wrapper.LinkedCorners = Corners
 			ApplyType("Square")
 
-			local Corner = ImageLabel:FindFirstChild("WindUILinkedCorner")
+			local Corner = ImageLabel:FindFirstChild("VynxUILinkedCorner")
 			if not Corner then
 				Corner = Creator.New("UICorner", {
-					Name = "WindUILinkedCorner",
+					Name = "VynxUILinkedCorner",
 					Parent = ImageLabel,
 				})
 			end
@@ -190,7 +190,7 @@ function DynamicShapeModule:New(Radius, Type, Properties, Children, IsButton, Is
 			Wrapper.LinkedCorners = nil
 			ApplyType(Wrapper.LinkedBaseType or "Squircle")
 			Wrapper.LinkedBaseType = nil
-			local Corner = ImageLabel:FindFirstChild("WindUILinkedCorner")
+			local Corner = ImageLabel:FindFirstChild("VynxUILinkedCorner")
 			if Corner then
 				Corner:Destroy()
 			end

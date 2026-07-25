@@ -97,7 +97,7 @@ const checks = {
 	),
 	toggleInputOwnership:
 		/local InputOwnerId/.test(toggle) &&
-		/Config\.WindUI\.CurrentInput == InputOwnerId/.test(toggle) &&
+		/Config\.VynxUI\.CurrentInput == InputOwnerId/.test(toggle) &&
 		/if WasDragging and Config\.Window then/.test(toggle),
 	colorpickerStateIsLocal:
 		/function Element:Colorpicker[\s\S]*local ActiveSlider[\s\S]*local ActiveInput/.test(colorpicker) &&

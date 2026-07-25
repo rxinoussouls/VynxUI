@@ -1,0 +1,93 @@
+---
+title: Colorpicker
+description: Create color selection elements in VynxUI Modded
+---
+
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { DynamicCodeBlock } from 'fumadocs-ui/components/dynamic-codeblock'
+import TypeTable from '@/components/TypeTable';
+
+
+## Colorpicker Element
+
+Colorpickers allow users to select colors with a visual interface. They return Color3 values for use in your application.
+
+<Tabs defaultValue="small">
+    <TabsList>
+        <TabsTrigger value="small">Basic</TabsTrigger>
+        <TabsTrigger value="full">Full</TabsTrigger>
+    </TabsList>
+    <TabsContent value="small">
+```luau
+local Colorpicker = Tab:Colorpicker({
+    Title = "Select Color",
+    Callback = function(color)
+        print("Color selected:", color)
+    end
+})
+```
+    </TabsContent>
+    <TabsContent value="full">
+```luau
+local Colorpicker = Tab:Colorpicker({
+    Title = "Select Color",
+    Desc = "Pick a color", -- optional
+    Default = Color3.fromRGB(255, 100, 100), -- default color. optional
+    Locked = false, -- disable colorpicker. optional
+    Flag = "custom_color", -- for config saving. optional
+    Callback = function(color)
+        print("Selected color:", color)
+    end
+})
+```
+    </TabsContent>
+</Tabs>
+
+## Colorpicker Parameters
+
+<TypeTable
+    data={[
+        { name: "Title", type: "string", description: "Colorpicker label text", default: "Colorpicker" },
+        { name: "Desc", type: "string?", description: "Colorpicker description", default: "nil" },
+        { name: "Default", type: "Color3?", description: "Default selected color", default: "Color3.fromRGB(255, 255, 255)" },
+        { name: "Locked", type: "boolean?", description: "Disable colorpicker interaction", default: "false" },
+        { name: "Flag", type: "string?", description: "Configuration flag for saving", default: "nil" },
+        { name: "Callback", type: "function?", description: "Function called when color changes", default: "nil" },
+    ]}
+/>
+
+## Colorpicker Functions
+
+<TypeTable 
+    type={{
+        ':Set': {
+            type: 'function',
+            description: 'Change the selected color programmatically.',
+            args: {
+                Color: {
+                    type: 'Color3',
+                    description: 'New selected color.',
+                },
+                Transparency: {
+                    type: 'number?',
+                    description: 'Optional transparency value (0-1).',
+                }
+            }
+        },
+        ':Lock': {
+            type: 'function',
+            description: 'Disable colorpicker interaction.',
+            args: {}
+        },
+        ':Unlock': {
+            type: 'function',
+            description: 'Re-enable colorpicker interaction.',
+            args: {}
+        },
+    }}
+/>
+
+## Related Documentation
+
+- [Tab](./tab) - Tab container
+- [Slider](./slider) - For numeric RGB values

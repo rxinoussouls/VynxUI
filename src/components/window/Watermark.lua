@@ -26,14 +26,14 @@ local function NormalizeConfig(Config)
 	return Config or {}
 end
 
-function Watermark.New(Window, WindUI)
+function Watermark.New(Window, VynxUI)
 	local WatermarkMain = {}
 	local Icon
 	local DragModule
 
 	local Title = New("TextLabel", {
 		BackgroundTransparency = 1,
-		Text = Window.Title or "WindUI",
+		Text = Window.Title or "VynxUI",
 		TextSize = 13,
 		TextXAlignment = "Left",
 		AutomaticSize = "XY",
@@ -45,7 +45,7 @@ function Watermark.New(Window, WindUI)
 
 	local Desc = New("TextLabel", {
 		BackgroundTransparency = 1,
-		Text = "v" .. tostring(WindUI and WindUI.Version or ""),
+		Text = "v" .. tostring(VynxUI and VynxUI.Version or ""),
 		TextSize = 11,
 		TextTransparency = 0.42,
 		TextXAlignment = "Left",

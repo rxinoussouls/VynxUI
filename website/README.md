@@ -1,8 +1,8 @@
-# WindUI Modded Docs
+# VynxUI Modded Docs
 
-WindUI Modded documentation website for the article-hub-studio/WindUI-Skibidi fork.
+VynxUI Modded documentation website for the article-hub-studio/VynxUI-Skibidi fork.
 
-Original WindUI credit is retained in the website content.
+Original VynxUI credit is retained in the website content.
 
 This is a Next.js application generated with
 [Create Fumadocs](https://github.com/fuma-nama/fumadocs).

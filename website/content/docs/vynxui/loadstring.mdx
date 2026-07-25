@@ -1,0 +1,289 @@
+---
+title: Loadstring
+description: Load VynxUI Modded using loadstring
+---
+
+import { getLatestVersion } from '@/lib/vynxui/getLatestVersion.ts'
+import { DynamicCodeBlock } from 'fumadocs-ui/components/dynamic-codeblock'
+import { Badge } from "@/components/ui/badge"
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
+import { Info, CircleAlert } from 'lucide-react'
+import TypeTable from '@/components/TypeTable';
+
+
+## Load methods
+### Pages loader <Popover><PopoverTrigger><Badge className="pl-1.25"><Info />Recommended</Badge></PopoverTrigger><PopoverContent className="bg-white rounded-xl px-2.5 py-1.5 border-0 text-black text-xs font-medium">Validates and loads only the canonical build published by this repository on GitHub Pages.</PopoverContent></Popover>
+```luau
+local VynxUI = loadstring(game:HttpGet("https://article-hub-studio.github.io/VynxUI-Skibidi/loader.lua"))()
+```
+
+### Direct Pages build
+```luau
+local VynxUI = loadstring(game:HttpGet("https://article-hub-studio.github.io/VynxUI-Skibidi/main.lua"))()
+```
+
+### Selected release
+<DynamicCodeBlock lang="luau" code={`local _version = "${await getLatestVersion()}"
+local VynxUI = loadstring(game:HttpGet("https://github.com/article-hub-studio/VynxUI-Skibidi/releases/download/" .. _version .. "/main.lua"))() `} />
+
+### Latest version
+```luau
+local VynxUI = loadstring(game:HttpGet("https://github.com/article-hub-studio/VynxUI-Skibidi/releases/latest/download/main.lua"))()
+```
+
+### CDN fallback <Popover><PopoverTrigger><Badge className="pl-1.25" variant="destructive"><CircleAlert />Unstable</Badge></PopoverTrigger><PopoverContent className="bg-destructive/70 backdrop-blur-xl rounded-xl px-2.5 py-1.5 border-0 text-white text-xs font-medium">This third-party route is not used by the canonical loader. Prefer the Pages loader whenever possible.</PopoverContent></Popover>
+
+```luau
+local VynxUI = loadstring(game:HttpGet("https://cdn.jsdelivr.net/gh/article-hub-studio/VynxUI-Skibidi@main/dist/main.lua"))()
+```
+
+## Setup (optional)
+### Set Notification Lower
+It makes notifications appear lower, ignoring the jump button on the mobile
+```luau
+VynxUI:SetNotificationLower(true)
+```
+
+### Set Library Font
+The font that will be used throughout this UI library. 
+All fonts are available here: https://create.roblox.com/store/fonts
+```luau
+VynxUI:SetFont("rbxassetid://font-id-here")
+```
+
+## `VynxUI` Functions
+<TypeTable 
+    type={{
+        ':CreateWindow': {
+            type: 'function',
+            description: (
+                <>
+                    <h4>Creates a new window with the specified configuration.</h4>
+                    <p>Example:</p>
+                    <DynamicCodeBlock
+                        lang="luau"
+                        code={`local Window = VynxUI:CreateWindow({
+    Title = "My Hub",
+    Icon = "door-open",
+    Folder = "MyHub",
+    Size = UDim2.fromOffset(580, 460),
+    Theme = "Dark",
+})`}
+                    />
+                </>
+            ),
+            args: {
+                WindowConfig: {
+                    description: ( <>
+                            <h4>Configuration object for creating a new window.</h4>
+                            <div>More <a href="/docs/vynxui/window" className="underline">here</a></div>
+                        </> ),
+                    type: 'table',
+                }
+            }
+        },
+        ':GetCurrentTheme': { type: 'function', description: ( <div>Returns the name of the currently active theme.</div> ), },
+        ':GetThemes': { type: 'function', description: ( <div>Returns a table of all available theme names.</div> ), },
+        ':AddTheme': { 
+            type: 'function',
+            description: (
+                <>
+                    <h4>Adds a custom theme</h4>
+                    <div>More <a href="/docs/vynxui/themes" className="underline">here</a></div> 
+                </>
+
+            ),
+            args: {
+                Theme: {
+                    type: 'table',
+                },
+            },
+        },
+        ':Gradient': {
+            type: 'function',
+            returns: 'table',
+            description: (
+                <>
+                    <h4>Function to get table of gradient by function</h4>
+                    <div>Example</div>
+                    <DynamicCodeBlock
+                        lang="luau"
+                        code={`VynxUI:Gradient({
+    ["0"] = { Color = Color3.fromRGB(255,255,255), Transparency = 0 },            
+    ["100"]   = { Color = Color3.fromRGB(0,0,0), Transparency = 0 },      
+}, {                                                                            
+    Rotation = 0,                                                               
+}), `}
+                    />
+                </>
+            ),
+            args: {
+                Colors: {
+                    type: 'table',
+                    description: (
+                        <>
+                            <h4>Gradient color stops</h4>
+                            <div>Keys are positions from 0 to 100</div> 
+
+                            <DynamicCodeBlock
+                                lang="luau"
+                                code={`{
+    ["0"] = { Color = Color3.fromRGB(255,255,255), Transparency = 0 },
+    ["100"] = { Color = Color3.fromRGB(0,0,0), Transparency = 0 }
+}`}
+                            />
+
+                        </>
+                    ),
+                },
+                Config: {
+                    type: 'table',
+                    description: (
+                        <>
+                            <h4>Gradient configuration</h4>
+
+                            <DynamicCodeBlock
+                                lang="luau"
+                                code={`{
+    Rotation = 0,
+    Offset = Vector2.new(0,0),
+}`}
+                            />
+                        </>
+                    ),
+                }
+            }
+        },
+        ':SetFont': {
+            type: 'function',
+            description: (<> <div>Sets a custom font for the entire VynxUI interface.</div> </>),
+            args: {
+                FontId: {
+                    type: 'string',
+                    description: (<> <div>The asset ID of the font in the format `rbxassetid://id-here`.</div> </>),
+                }
+            }
+        },
+        ':SetParent': {
+            type: 'function',
+            description: (<> <div>Sets the parent GUI object (e.g., `game.CoreGui`) where the VynxUI interface will be placed.</div> </>),
+            args: {
+                Parent: {
+                    type: 'Instance',
+                    description: (<> <div>The parent instance, typically `game.CoreGui`, `game.Players.LocalPlayer:WaitForChild("PlayerGui")`, `gethui()`, etc</div> </>),
+                }
+            }
+        },
+        ':SetLanguage': {
+            type: 'function',
+            description: (<> <h4>Manually sets the interface language.</h4><br/><div>More <a href="/docs/vynxui/localization" className="underline">here</a></div></>),
+            args: {
+                LanguageCode: {
+                    type: 'string',
+                    description: (<> <div>The language code (e.g., "en", "ru").</div> </>),
+                }
+            }
+        },
+        ':Localization': {
+            type: 'function',
+            description: (<> <h4>Configures the localization system. It can automatically detect the user's language and provides translation dictionaries.</h4><br/><div>More <a href="/docs/vynxui/localization" className="underline">here</a></div> </>),
+            args: {
+                Config: {
+                    type: 'table',
+                    description: (<> <h4>Configuration table example:</h4><br/><DynamicCodeBlock lang="luau" code={`-- Paste this before 'CreateWindow()'
+VynxUI:Localization({ -- it automatically detects the user's language 
+    Enabled = true,
+    Prefix = "loc:",
+    DefaultLanguage = "en",
+    Translations = {
+        ["ru"] = {
+            ["VYNXUI_EXAMPLE"] = "VynxUI Пример",
+            ["WELCOME"] = "Добро пожаловать в VynxUI!",
+            ["SETTINGS"] = "Настройки",
+            ["FEATURES"] = "Функционал",
+        },
+        ["en"] = {
+            ["VYNXUI_EXAMPLE"] = "VynxUI Example",
+            ["WELCOME"] = "Welcome to VynxUI!",
+            ["SETTINGS"] = "Settings",
+            ["FEATURES"] = "Features",
+        },
+        -- and more languages...
+    }
+})`} /> </>),
+                }
+            }
+        },
+        ':Notify': {
+            type: 'function',
+            description: (<> <h4>Creates a notification.</h4><br/><div>More <a href="/docs/vynxui/notification" className="underline">here</a></div> </>),
+            args: {
+                NotificationConfig: {
+                    type: 'table',
+                    description: (<> <h4>Configuration for the notification example:</h4><br/><DynamicCodeBlock lang="luau" code={`VynxUI:Notify({
+    Title = "Notification Title",
+    Content = "Notification Content example!",
+    Duration = 3, -- 3 seconds
+    Icon = "bird",
+})`} /> </>),
+                }
+            }
+        },
+        ':Popup': {
+            type: 'function',
+            description: (<> <div>Creates a modal popup with action buttons.</div> </>),
+            args: {
+                PopupConfig: {
+                    type: 'table',
+                    description: (<> <h4>Configuration for the popup example:</h4><br/><DynamicCodeBlock lang="luau" code={`VynxUI:Popup({
+    Title = "Popup Title",
+    Icon = "info",
+    Content = "Popup content",
+    Buttons = {
+        {
+            Title = "Cancel",
+            Callback = function() end,
+            Variant = "Tertiary",
+        },
+        {
+            Title = "Continue",
+            Icon = "arrow-right",
+            Callback = function() end,
+            Variant = "Primary",
+        }
+    }
+})`} /> </>),
+                }
+            }
+        },
+        ':SetNotificationLower': {
+            type: 'function',
+            description: (<> <div>It makes notifications appear lower, ignoring the jump button on the mobile
+</div> </>),
+            args: {
+                Lower: {
+                    type: 'boolean',
+                }
+            }
+        },
+        ':GetTransparency': {
+            type: 'function',
+            description: (<> <div>Returns the current base transparency level used in the window</div> </>),
+            returns: 'number'
+        },
+        ':GetWindowSize': {
+            type: 'function',
+            description: (<> <div>Returns the current base size (UDim2) applied to window</div> </>),
+            returns: 'UDim2'
+        },
+        ':ToggleAcrylic': {
+            type: 'function',
+            description: (<> <div>Enables or disables the acrylic blur background effect for window</div> </>),
+            args: {
+                Enabled: {
+                    type: 'boolean',
+                }
+            }
+        }
+    }}
+/>

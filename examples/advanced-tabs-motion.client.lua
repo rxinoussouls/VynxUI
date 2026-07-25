@@ -1,10 +1,10 @@
-local WindUI = loadstring(game:HttpGet("https://article-hub-studio.github.io/WindUI-Skibidi/loader.lua"))()
+local VynxUI = loadstring(game:HttpGet("https://article-hub-studio.github.io/VynxUI-Skibidi/loader.lua"))()
 
-WindUI:SetMotionPreset("Liquid")
+VynxUI:SetMotionPreset("Liquid")
 
-local Window = WindUI:CreateWindow({
-	Title = "WindUI Advanced Motion",
-	Folder = "WindUIAdvancedMotion",
+local Window = VynxUI:CreateWindow({
+	Title = "VynxUI Advanced Motion",
+	Folder = "VynxUIAdvancedMotion",
 	Icon = "sparkles",
 	NewElements = true,
 	Motion = {
@@ -16,7 +16,7 @@ local Window = WindUI:CreateWindow({
 		ButtonsType = "Mac",
 	},
 	BackgroundColor = Color3.fromHex("#08111A"),
-	BackgroundGradient = WindUI:Gradient({
+	BackgroundGradient = VynxUI:Gradient({
 		["0"] = { Color = Color3.fromHex("#08111A"), Transparency = 0.06 },
 		["45"] = { Color = Color3.fromHex("#12352F"), Transparency = 0.3 },
 		["100"] = { Color = Color3.fromHex("#24172D"), Transparency = 0.54 },

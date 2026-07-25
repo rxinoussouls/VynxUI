@@ -27,7 +27,7 @@ function DropdownMenu.New(Config, Dropdown, Element, Type)
 		and CenterTarget ~= "screen"
 		and CenterTarget ~= "viewport"
 		and typeof(WindowPopupRoot) == "Instance"
-	local PopupParent = if InternalCenter then WindowPopupRoot else Config.WindUI.DropdownGui
+	local PopupParent = if InternalCenter then WindowPopupRoot else Config.VynxUI.DropdownGui
 	local PersistentConnections = {}
 
 	Dropdown.InternalCenter = InternalCenter
@@ -173,8 +173,8 @@ function DropdownMenu.New(Config, Dropdown, Element, Type)
 		if InternalCenter and typeof(PopupParent) == "Instance" and PopupParent:IsA("GuiObject") then
 			return PopupParent.AbsoluteSize / GetLayoutScale()
 		end
-		if Config.WindUI.DropdownGui and Config.WindUI.DropdownGui.AbsoluteSize.X > 0 then
-			return Config.WindUI.DropdownGui.AbsoluteSize
+		if Config.VynxUI.DropdownGui and Config.VynxUI.DropdownGui.AbsoluteSize.X > 0 then
+			return Config.VynxUI.DropdownGui.AbsoluteSize
 		end
 		local CurrentCamera = Workspace.CurrentCamera or Camera
 		return CurrentCamera and CurrentCamera.ViewportSize or Vector2.new(1280, 720)

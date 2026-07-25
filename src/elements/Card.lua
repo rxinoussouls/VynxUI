@@ -429,7 +429,7 @@ function Element:New(Config)
 		Card.UIElements.Body,
 		ElementsModule.Elements,
 		Config.Window,
-		Config.WindUI,
+		Config.VynxUI,
 		nil,
 		ElementsModule,
 		Config.UIScale,

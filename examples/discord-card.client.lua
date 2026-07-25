@@ -1,8 +1,8 @@
-local WindUI = loadstring(game:HttpGet("https://article-hub-studio.github.io/WindUI-Skibidi/loader.lua"))()
+local VynxUI = loadstring(game:HttpGet("https://article-hub-studio.github.io/VynxUI-Skibidi/loader.lua"))()
 
-local Window = WindUI:CreateWindow({
-	Title = "WindUI Discord Example",
-	Folder = "WindUIDiscordExample",
+local Window = VynxUI:CreateWindow({
+	Title = "VynxUI Discord Example",
+	Folder = "VynxUIDiscordExample",
 	Icon = "message-circle",
 	NewElements = true,
 	Topbar = {
@@ -10,7 +10,7 @@ local Window = WindUI:CreateWindow({
 		ButtonsType = "Mac",
 	},
 	BackgroundColor = Color3.fromHex("#0C1018"),
-	BackgroundGradient = WindUI:Gradient({
+	BackgroundGradient = VynxUI:Gradient({
 		["0"] = { Color = Color3.fromHex("#0C1018"), Transparency = 0.1 },
 		["50"] = { Color = Color3.fromHex("#122540"), Transparency = 0.32 },
 		["100"] = { Color = Color3.fromHex("#2B2447"), Transparency = 0.48 },
@@ -26,13 +26,13 @@ local CommunityTab = Window:Tab({
 })
 
 local InviteCard = CommunityTab:DiscordCard({
-	Title = "WindUI Community",
+	Title = "VynxUI Community",
 	Desc = "Copy the invite or run a custom join callback from one card.",
 	Invite = "ftgs-development-hub-1300692552005189632",
 	Members = "10k+",
 	Online = "Live",
 	Callback = function(Url)
-		WindUI:Notify({
+		VynxUI:Notify({
 			Title = "Discord callback",
 			Content = Url,
 			Icon = "external-link",

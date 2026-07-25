@@ -1,6 +1,6 @@
-local WindUI = require("../src/Init")
+local VynxUI = require("../src/Init")
 
-local Notification = WindUI:Notify({
+local Notification = VynxUI:Notify({
 	Title = "A notification title that wraps safely on a narrow mobile viewport",
 	Content = "Long content must stay inside the card without touching the close button or progress indicator.",
 	Style = "Warning",
@@ -41,7 +41,7 @@ Notification:Update({
 assert(Notification.UIElements.Title.Text == "Updated notification")
 assert(Notification.UIElements.Content.Text == "Updated without creating a second card.")
 
-local CardNotification = WindUI:Notify({
+local CardNotification = VynxUI:Notify({
 	Title = "Anonim",
 	Content = "Metadata card notification",
 	Avatar = "rbxassetid://123456789",
@@ -55,7 +55,7 @@ assert(CardNotification.UIElements.IconBubble.Size.X.Offset == 40)
 assert(CardNotification.UIElements.Avatar:IsA("ImageLabel"))
 assert(CardNotification.UIElements.Avatar.Name == "Avatar")
 
-local GlassNotification = WindUI:Notify({
+local GlassNotification = VynxUI:Notify({
 	Title = "Liquid glass",
 	Content = "Native shadow without the dark fallback overlay",
 	LiquidGlass = true,
@@ -67,9 +67,9 @@ assert(GlassNotification.UIElements.Main:GetAttribute("LiquidGlass") == true)
 assert(GlassNotification.UIElements.Main:GetAttribute("DarkOverlay") == false)
 assert(GlassNotification.UIElements.LiquidGlass.Visible == true)
 
-local WindowNotification = WindUI:Notify({
+local WindowNotification = VynxUI:Notify({
 	Type = "Window",
-	AppName = "WindUI",
+	AppName = "VynxUI",
 	AppIcon = "app-window",
 	Title = "Feature Launch Party",
 	Content = "Studio S / Ballroom",
@@ -91,9 +91,9 @@ assert(WindowNotification.UIElements.AppHeader.Name == "AppHeader")
 assert(WindowNotification.UIElements.Selection.Name == "Selection")
 assert(WindowNotification.UIElements.SelectionValue.Text == "Going")
 
-local OriginalNotification = WindUI:Notify({
+local OriginalNotification = VynxUI:Notify({
 	Type = "Originally",
-	Title = "Classic WindUI",
+	Title = "Classic VynxUI",
 	Duration = false,
 })
 

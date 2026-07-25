@@ -187,17 +187,17 @@ ConfigManager = {
 
 function ConfigManager:Init(WindowTable)
     if not WindowTable.Folder then
-        warn("[ WindUI.ConfigManager ] Window.Folder is not specified.")
+        warn("[ VynxUI.ConfigManager ] Window.Folder is not specified.")
         return false
     end
     if RunService:IsStudio() or not writefile then
-        warn("[ WindUI.ConfigManager ] The config system doesn't work in the studio.")
+        warn("[ VynxUI.ConfigManager ] The config system doesn't work in the studio.")
         return false
     end
     
     Window = WindowTable
     ConfigManager.Folder = Window.Folder
-    ConfigManager.Path = "WindUI/" .. tostring(ConfigManager.Folder) .. "/config/"
+    ConfigManager.Path = "VynxUI/" .. tostring(ConfigManager.Folder) .. "/config/"
     
     if not isfolder(ConfigManager.Path) then
         makefolder(ConfigManager.Path)
@@ -222,7 +222,7 @@ end
 
 function ConfigManager:SetPath(customPath)
     if not customPath then
-        warn("[ WindUI.ConfigManager ] Custom path is not specified.")
+        warn("[ VynxUI.ConfigManager ] Custom path is not specified.")
         return false
     end
     
@@ -313,7 +313,7 @@ function ConfigManager:CreateConfig(configFilename, autoload)
         
         local success, loadData = pcall(function()
             local readfile = readfile or function() 
-                warn("[ WindUI.ConfigManager ] The config system doesn't work in the studio.") 
+                warn("[ VynxUI.ConfigManager ] The config system doesn't work in the studio.") 
                 return nil 
             end
             return HttpService:JSONDecode(readfile(ConfigModule.Path))
@@ -347,7 +347,7 @@ function ConfigManager:CreateConfig(configFilename, autoload)
                         ConfigManager.Parser[data.__type].Load(ConfigModule.Elements[name], data)
                     end)
                     if not success then
-                        warn("[ WindUI.ConfigManager ] Failed to load element '" .. tostring(name) .. "': " .. tostring(err))
+                        warn("[ VynxUI.ConfigManager ] Failed to load element '" .. tostring(name) .. "': " .. tostring(err))
                     end
                 end)
             end
@@ -407,9 +407,9 @@ function ConfigManager:CreateConfig(configFilename, autoload)
                     return ConfigModule:Load()
                 end)
                 if success then
-                    if Window.Debug then print("[ WindUI.ConfigManager ] AutoLoaded config: " .. configFilename) end
+                    if Window.Debug then print("[ VynxUI.ConfigManager ] AutoLoaded config: " .. configFilename) end
                 else
-                    warn("[ WindUI.ConfigManager ] Failed to AutoLoad config: " .. configFilename .. " - " .. tostring(result))
+                    warn("[ VynxUI.ConfigManager ] Failed to AutoLoad config: " .. configFilename .. " - " .. tostring(result))
                 end
             end)
         end

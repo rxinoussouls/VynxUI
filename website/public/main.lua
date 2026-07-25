@@ -9,7 +9,7 @@
     To view the source code, see the `src/` folder on the official GitHub repository.
 
     Author: Footagesus (Footages, .ftgs, oftgs)
-    Github: https://github.com/article-hub-studio/WindUI-Skibidi
+    Github: https://github.com/article-hub-studio/VynxUI-Skibidi
     Discord: https://discord.gg/ftgs-development-hub-1300692552005189632
     License: MIT
 ]]
@@ -22,7 +22,7 @@ Height:number?,
 Focused:boolean,
 
 Window:any,
-WindUI:any,
+VynxUI:any,
 Tab:any,
 Parent:Instance,
 }local a a={cache={}, load=function(b)if not a.cache[b]then a.cache[b]={c=a[b]()}end return a.cache[b].c end}do function a.a()
@@ -207,10 +207,10 @@ end
 m.LinkedCorners=v
 ApplyType"Square"
 
-local z=r:FindFirstChild"WindUILinkedCorner"
+local z=r:FindFirstChild"VynxUILinkedCorner"
 if not z then
 z=b.New("UICorner",{
-Name="WindUILinkedCorner",
+Name="VynxUILinkedCorner",
 Parent=r,
 })
 end
@@ -219,7 +219,7 @@ else
 m.LinkedCorners=nil
 ApplyType(m.LinkedBaseType or"Squircle")
 m.LinkedBaseType=nil
-local z=r:FindFirstChild"WindUILinkedCorner"
+local z=r:FindFirstChild"VynxUILinkedCorner"
 if z then
 z:Destroy()
 end
@@ -301,14 +301,14 @@ local d=b(game:GetService"ReplicatedStorage")
 local e=b(game:GetService"HttpService")
 local f=b(game:GetService"RunService")
 
-local g="https://article-hub-studio.github.io/WindUI-Skibidi/vendor/icons/Main-v2.lua"
+local g="https://article-hub-studio.github.io/VynxUI-Skibidi/vendor/icons/Main-v2.lua"
 
 local function LoadBaseIcons()
 local h=d:FindFirstChild"GetIcons"
 if
 h
 and h:IsA"RemoteFunction"
-and(f:IsStudio()or h:GetAttribute"WindUIIcons"==true)
+and(f:IsStudio()or h:GetAttribute"VynxUIIcons"==true)
 then
 local i,j=pcall(function()
 return h:InvokeServer()
@@ -334,7 +334,7 @@ end
 end
 end
 
-warn"[ WindUI.Icons ] Unable to load the base icon catalog; custom sources remain available"
+warn"[ VynxUI.Icons ] Unable to load the base icon catalog; custom sources remain available"
 return{}
 end
 
@@ -565,7 +565,7 @@ end
 
 local u,v=pcall(r,p,m)
 if not u then
-warn(string.format("[ WindUI.Icons ] Source '%s' failed: %s",tostring(m),tostring(v)))
+warn(string.format("[ VynxUI.Icons ] Source '%s' failed: %s",tostring(m),tostring(v)))
 return nil
 end
 
@@ -683,7 +683,7 @@ u.Spritesheets[z.Image]=z.Image
 elseif typeof(x)=="table"and x.Alias then
 u.Icons[v]={Alias=x.Alias}
 else
-warn(string.format("[ WindUI.Icons ] Ignored invalid icon '%s:%s'",r,tostring(v)))
+warn(string.format("[ VynxUI.Icons ] Ignored invalid icon '%s:%s'",r,tostring(v)))
 end
 end
 
@@ -1190,7 +1190,7 @@ if not u then
 if m and m.Window and m.Window.Debug then local
 x, z=v:find":%d+: "
 
-warn("[ WindUI: DEBUG Mode ] "..v)
+warn("[ VynxUI: DEBUG Mode ] "..v)
 
 return m:Notify{
 Title="DEBUG Mode: Error",
@@ -1709,7 +1709,7 @@ z:SetLinkedCorners(x and v or nil,u)
 return z
 end
 
-local A=r:FindFirstChild"WindUILinkedCorner"
+local A=r:FindFirstChild"VynxUILinkedCorner"
 local B=A or r:FindFirstChildWhichIsA"UICorner"
 if not x then
 if A then
@@ -1723,7 +1723,7 @@ end
 A=B
 if not A then
 A=p.New("UICorner",{
-Name="WindUILinkedCorner",
+Name="VynxUILinkedCorner",
 Parent=r,
 })
 end
@@ -2105,7 +2105,7 @@ N or false,
 Q.Name="ImageLabel"
 Q.Parent=P
 elseif L then
-local Q="WindUI/"..J.."/assets/."..B.."-"..x..".png"
+local Q="VynxUI/"..J.."/assets/."..B.."-"..x..".png"
 local R,S=pcall(function()
 task.spawn(function()
 local R=p.Request and p.Request{
@@ -2122,13 +2122,13 @@ local T,U=pcall(getcustomasset,Q)
 if T then
 O.Image=U
 elseif not T then
-warn(string.format("[ WindUI.Creator ] Failed to load '%s': %s",Q,tostring(U)))
+warn(string.format("[ VynxUI.Creator ] Failed to load '%s': %s",Q,tostring(U)))
 end
 end)
 end)
 
 if not R then
-warn(string.format("[ WindUI.Creator ] URL image is unavailable: %s",tostring(S)))
+warn(string.format("[ VynxUI.Creator ] URL image is unavailable: %s",tostring(S)))
 P.Visible=false
 end
 elseif v==nil or v==""then
@@ -2138,7 +2138,7 @@ O.Image="rbxassetid://"..tostring(v)
 elseif type(v)=="string"then
 O.Image=v
 else
-warn(string.format("[ WindUI.Creator ] Unsupported image value: %s",typeof(v)))
+warn(string.format("[ VynxUI.Creator ] Unsupported image value: %s",typeof(v)))
 P.Visible=false
 end
 
@@ -3208,7 +3208,7 @@ Decorated=aj,
 DarkOverlay=aa.DarkOverlay==true or aa.Overlay==true or X=="Originally",
 Timestamp=aa.Timestamp~=nil and tostring(aa.Timestamp)
 or(aa.Time~=nil and tostring(aa.Time)or nil),
-AppName=tostring(aa.AppName or aa.Application or aa.App or"WindUI"),
+AppName=tostring(aa.AppName or aa.Application or aa.App or"VynxUI"),
 AppIcon=NormalizeIcon(
 aa.AppIcon or aa.ApplicationIcon or(X=="Window"and aa.Icon)or"bell"
 ),
@@ -4911,10 +4911,10 @@ New=a.load'k'.New
 
 return[[
 {
-    "name": "windui",
+    "name": "vynxui",
     "version": "1.6.65",
     "main": "./dist/main.lua",
-    "repository": "https://github.com/article-hub-studio/WindUI-Skibidi",
+    "repository": "https://github.com/article-hub-studio/VynxUI-Skibidi",
     "discord": "https://discord.gg/ftgs-development-hub-1300692552005189632",
     "author": "Footagesus",
     "description": "Roblox UI Library for scripts",
@@ -5256,7 +5256,7 @@ UICorner=28,
 UIPadding=12,
 
 Window=ah,
-WindUI=ai,
+VynxUI=ai,
 
 UIElements={},
 }
@@ -5435,7 +5435,7 @@ end
 
 function aa.new(ai,aj,ak,al)
 local am=a.load'p'
-local an=am.Create(true,"Popup",ai.Window,ai.WindUI,ai.WindUI.ScreenGui.KeySystem)
+local an=am.Create(true,"Popup",ai.Window,ai.VynxUI,ai.VynxUI.ScreenGui.KeySystem)
 
 local ao={}
 
@@ -5850,8 +5850,8 @@ aN.AnchorPoint=Vector2.new(0,1)
 end
 
 local function NotifyKeySystem(aO,aP,aQ)
-if ai.WindUI and ai.WindUI.Notify then
-ai.WindUI:Notify{
+if ai.VynxUI and ai.VynxUI.Notify then
+ai.VynxUI:Notify{
 Title="Key System",
 Content=aO,
 Icon=aP or"key",
@@ -5921,7 +5921,7 @@ end
 if ai.KeySystem.API then
 local aO={}
 for aP,aQ in next,ai.KeySystem.API do
-local aR=ai.WindUI.Services[aQ.Type]
+local aR=ai.VynxUI.Services[aQ.Type]
 if aR then
 local aS={}
 for aT,aU in next,aR.Args do
@@ -6182,7 +6182,7 @@ local aP=tostring(ap or"empty")
 local function Reject(aQ)
 aO=false
 SetState("Invalid key",0.08,true)
-ai.WindUI:Notify{
+ai.VynxUI:Notify{
 Title="Key System",
 Content=aQ or"Invalid key.",
 Icon="triangle-alert",
@@ -6302,7 +6302,7 @@ UIElements={},
 }
 
 local an=ae("Frame",{
-Name=ah.Name or"WindUILoadingScreen",
+Name=ah.Name or"VynxUILoadingScreen",
 Size=UDim2.new(1,0,1,0),
 BackgroundTransparency=1,
 Active=true,
@@ -6457,7 +6457,7 @@ ae("TextLabel",{
 Size=UDim2.new(1,0,0,0),
 AutomaticSize="Y",
 BackgroundTransparency=1,
-Text=ah.Title or"WindUI",
+Text=ah.Title or"VynxUI",
 TextSize=18,
 TextXAlignment="Left",
 TextWrapped=true,
@@ -7148,7 +7148,7 @@ IconSize=22,
 }
 
 local ai=a.load'p'
-local aj=ai.Create(true,"Popup",af.WindUI.Window,af.WindUI,ag)
+local aj=ai.Create(true,"Popup",af.VynxUI.Window,af.VynxUI,ag)
 
 local ak=200
 
@@ -7169,7 +7169,7 @@ am=ab.Image(
 ah.Icon,
 ah.Title..":"..ah.Icon,
 0,
-af.WindUI.Window,
+af.VynxUI.Window,
 "Popup",
 true,
 af.IconThemed,
@@ -8301,17 +8301,17 @@ end
 
 function af.Init(ag,ah)
 if not ah.Folder then
-warn"[ WindUI.ConfigManager ] Window.Folder is not specified."
+warn"[ VynxUI.ConfigManager ] Window.Folder is not specified."
 return false
 end
 if ab:IsStudio()or not writefile then
-warn"[ WindUI.ConfigManager ] The config system doesn't work in the studio."
+warn"[ VynxUI.ConfigManager ] The config system doesn't work in the studio."
 return false
 end
 
 ae=ah
 af.Folder=ae.Folder
-af.Path="WindUI/"..tostring(af.Folder).."/config/"
+af.Path="VynxUI/"..tostring(af.Folder).."/config/"
 
 if not isfolder(af.Path)then
 makefolder(af.Path)
@@ -8336,7 +8336,7 @@ end
 
 function af.SetPath(ag,ah)
 if not ah then
-warn"[ WindUI.ConfigManager ] Custom path is not specified."
+warn"[ VynxUI.ConfigManager ] Custom path is not specified."
 return false
 end
 
@@ -8427,7 +8427,7 @@ end
 
 local al,am=pcall(function()
 local al=readfile or function()
-warn"[ WindUI.ConfigManager ] The config system doesn't work in the studio."
+warn"[ VynxUI.ConfigManager ] The config system doesn't work in the studio."
 return nil
 end
 return ad:JSONDecode(al(aj.Path))
@@ -8461,7 +8461,7 @@ local ap,aq=pcall(function()
 af.Parser[ao.__type].Load(aj.Elements[an],ao)
 end)
 if not ap then
-warn("[ WindUI.ConfigManager ] Failed to load element '"..tostring(an).."': "..tostring(aq))
+warn("[ VynxUI.ConfigManager ] Failed to load element '"..tostring(an).."': "..tostring(aq))
 end
 end)
 end
@@ -8521,9 +8521,9 @@ local am,an=pcall(function()
 return aj:Load()
 end)
 if am then
-if ae.Debug then print("[ WindUI.ConfigManager ] AutoLoaded config: "..ah)end
+if ae.Debug then print("[ VynxUI.ConfigManager ] AutoLoaded config: "..ah)end
 else
-warn("[ WindUI.ConfigManager ] Failed to AutoLoad config: "..ah.." - "..tostring(an))
+warn("[ VynxUI.ConfigManager ] Failed to AutoLoad config: "..ah.." - "..tostring(an))
 end
 end)
 end
@@ -9515,7 +9515,7 @@ local ak
 
 local al=ae("TextLabel",{
 BackgroundTransparency=1,
-Text=ag.Title or"WindUI",
+Text=ag.Title or"VynxUI",
 TextSize=13,
 TextXAlignment="Left",
 AutomaticSize="XY",
@@ -10386,7 +10386,7 @@ end)
 end
 
 local aM=CreatePanel(aB)
-CreateText(aM,"WindUI Settings",13,Enum.FontWeight.Bold,0.05)
+CreateText(aM,"VynxUI Settings",13,Enum.FontWeight.Bold,0.05)
 CreateText(aM,"Use Config for save/load and Theme for quick visual switching.",12,Enum.FontWeight.Medium,0.36)
 
 local aN=af("Frame",{
@@ -10447,7 +10447,7 @@ TextColor3="Text",
 })
 end
 
-CreateInfoRow("Folder",tostring(ah.Folder or"WindUI"))
+CreateInfoRow("Folder",tostring(ah.Folder or"VynxUI"))
 CreateInfoRow("Topbar",tostring(ah.Topbar.ButtonsType or"Default"))
 CreateInfoRow("Motion",tostring(ae:GetConfig().Preset))
 
@@ -13699,8 +13699,8 @@ end
 end
 
 local function ReleaseOwnedInput()
-if am.WindUI and ay and am.WindUI.CurrentInput==ay then
-am.WindUI.CurrentInput=nil
+if am.VynxUI and ay and am.VynxUI.CurrentInput==ay then
+am.VynxUI.CurrentInput=nil
 end
 ay=nil
 end
@@ -13711,7 +13711,7 @@ return
 end
 
 am.Window.IsToggleDragging=true
-ay=am.WindUI and am.WindUI.CurrentInput or nil
+ay=am.VynxUI and am.VynxUI.CurrentInput or nil
 local aF=aD.Position.X
 local aG=aD.Position.Y
 local aH=av.Frame.Position.X.Offset
@@ -14023,7 +14023,7 @@ end
 
 am:Set(ao,false,true)
 
-local ar=if aq.UseDrag then aj.WindUI.GenerateGUID()else nil
+local ar=if aq.UseDrag then aj.VynxUI.GenerateGUID()else nil
 
 if aj.Window.NewElements and aq.Animate and aq.UseDrag then
 if am.Type=="Toggle"then
@@ -14036,11 +14036,11 @@ as.UserInputType==Enum.UserInputType.MouseButton1
 or as.UserInputType==Enum.UserInputType.Touch
 )
 then
-if aj.WindUI.CurrentInput and aj.WindUI.CurrentInput~=ar then
+if aj.VynxUI.CurrentInput and aj.VynxUI.CurrentInput~=ar then
 return
 end
 
-aj.WindUI.CurrentInput=ar
+aj.VynxUI.CurrentInput=ar
 aq:Animate(as,am)
 end
 end)
@@ -14345,13 +14345,13 @@ end
 
 
 local az=ak.Tab.UIElements.ContainerFrame
-local aA=ak.WindUI.GenerateGUID()
+local aA=ak.VynxUI.GenerateGUID()
 
 local function DisconnectSliderInput()
 local aB=ap
 or an~=nil
 or ao~=nil
-or ak.WindUI.CurrentInput==aA
+or ak.VynxUI.CurrentInput==aA
 
 if an then
 af.DisconnectSignal(an)
@@ -14366,8 +14366,8 @@ ap=false
 if aB then
 az.ScrollingEnabled=true
 end
-if ak.WindUI.CurrentInput==aA then
-ak.WindUI.CurrentInput=nil
+if ak.VynxUI.CurrentInput==aA then
+ak.VynxUI.CurrentInput=nil
 end
 end
 
@@ -14534,10 +14534,10 @@ if
 aB.UserInputType==Enum.UserInputType.MouseButton1
 or aB.UserInputType==Enum.UserInputType.Touch
 then
-if ak.WindUI.CurrentInput and ak.WindUI.CurrentInput~=aA then
+if ak.VynxUI.CurrentInput and ak.VynxUI.CurrentInput~=aA then
 return
 end
-ak.WindUI.CurrentInput=aA
+ak.VynxUI.CurrentInput=aA
 
 al:Set(aq,aB)
 
@@ -15252,7 +15252,7 @@ local ay=ar.Centered
 and av~="screen"
 and av~="viewport"
 and typeof(ax)=="Instance"
-local az=if ay then ax else aq.WindUI.DropdownGui
+local az=if ay then ax else aq.VynxUI.DropdownGui
 local aA={}
 
 ar.InternalCenter=ay
@@ -15398,8 +15398,8 @@ local function GetViewportSize()
 if ay and typeof(az)=="Instance"and az:IsA"GuiObject"then
 return az.AbsoluteSize/GetLayoutScale()
 end
-if aq.WindUI.DropdownGui and aq.WindUI.DropdownGui.AbsoluteSize.X>0 then
-return aq.WindUI.DropdownGui.AbsoluteSize
+if aq.VynxUI.DropdownGui and aq.VynxUI.DropdownGui.AbsoluteSize.X>0 then
+return aq.VynxUI.DropdownGui.AbsoluteSize
 end
 local aB=ai.CurrentCamera or aj
 return aB and aB.ViewportSize or Vector2.new(1280,720)
@@ -17178,7 +17178,7 @@ an.OnCopy()
 end
 end)
 if not aq then
-am.WindUI:Notify{
+am.VynxUI:Notify{
 Title="Error",
 Content="The "..ap.." is not copied. Error: "..ar,
 Icon="x",
@@ -17187,7 +17187,7 @@ Duration=5,
 }
 end
 end
-end,am.WindUI.UIScale)
+end,am.VynxUI.UIScale)
 
 function an.SetCode(aq,ar)
 ap.Set(ar)
@@ -18135,7 +18135,7 @@ aa.AddSignal(aw.UIElements.Colorpicker.MouseButton1Click,function()
 if ax and not aw.IsShowed then
 aw.IsShowed=true
 
-at:Colorpicker(aw,av.Window,av.WindUI,function(ay,az)
+at:Colorpicker(aw,av.Window,av.VynxUI,function(ay,az)
 aw:Update(ay,az)
 aw.Default=ay
 aw.Transparency=az
@@ -19457,7 +19457,7 @@ aA:SetRange(math.min(aA.Value.Min,an.ToFiniteNumber(aM)or aA.Value.Max),aM)
 return aA.Value.Max
 end
 
-local aL=aq.WindUI.GenerateGUID()
+local aL=aq.VynxUI.GenerateGUID()
 local aM
 local aN
 local aO
@@ -19467,7 +19467,7 @@ local function DisconnectDrag()
 local aQ=aM~=nil
 or aN~=nil
 or aO~=nil
-or aq.WindUI.CurrentInput==aL
+or aq.VynxUI.CurrentInput==aL
 
 if aN then
 aj.DisconnectSignal(aN)
@@ -19480,8 +19480,8 @@ end
 if aQ and aP then
 aP.ScrollingEnabled=true
 end
-if aq.WindUI.CurrentInput==aL then
-aq.WindUI.CurrentInput=nil
+if aq.VynxUI.CurrentInput==aL then
+aq.VynxUI.CurrentInput=nil
 end
 aM=nil
 if aQ and aA.Animation then
@@ -19529,11 +19529,11 @@ and aQ.UserInputType~=Enum.UserInputType.Touch
 then
 return
 end
-if aq.WindUI.CurrentInput and aq.WindUI.CurrentInput~=aL then
+if aq.VynxUI.CurrentInput and aq.VynxUI.CurrentInput~=aL then
 return
 end
 
-aq.WindUI.CurrentInput=aL
+aq.VynxUI.CurrentInput=aL
 aM=aQ
 if aP then
 aP.ScrollingEnabled=false
@@ -21771,10 +21771,10 @@ end
 
 local function CopyInvite(aB)
 if CopyText(at.Url)then
-Notify(aq.WindUI,aB or"Discord link copied",at.Url,"check","Success")
+Notify(aq.VynxUI,aB or"Discord link copied",at.Url,"check","Success")
 return true
 else
-Notify(aq.WindUI,"Discord invite",at.Url,"link","Warning")
+Notify(aq.VynxUI,"Discord invite",at.Url,"link","Warning")
 return false
 end
 end
@@ -22109,7 +22109,7 @@ at,
 aA,
 ao.ElementsModule.Elements,
 ao.Window,
-ao.WindUI,
+ao.VynxUI,
 function()
 QueuePageHeightUpdate(at,as)
 end,
@@ -23123,7 +23123,7 @@ ap,
 ap.UIElements.Body,
 aA.Elements,
 ao.Window,
-ao.WindUI,
+ao.VynxUI,
 nil,
 aA,
 ao.UIScale,
@@ -23446,7 +23446,7 @@ end)
 
 local av=an.ElementsModule
 
-av.Load(ao,au.Outline.Content,av.Elements,an.Window,an.WindUI,function()
+av.Load(ao,au.Outline.Content,av.Elements,an.Window,an.VynxUI,function()
 if not ao.Expandable then
 ao.Expandable=true
 aq.Visible=true
@@ -23726,7 +23726,7 @@ ar,
 as,
 at.Elements,
 am.Window,
-am.WindUI,
+am.VynxUI,
 function(au,av)
 local aw={}
 local ax=0
@@ -23881,7 +23881,7 @@ ar,
 as,
 at.Elements,
 am.Window,
-am.WindUI,
+am.VynxUI,
 function(au,av)
 UpdateLayout(av)
 end,
@@ -23957,7 +23957,7 @@ ar,
 as,
 at.Elements,
 am.Window,
-am.WindUI,
+am.VynxUI,
 
 
 
@@ -24083,7 +24083,7 @@ and av.Y>=aw.Y
 and av.Y<=aw.Y+ax.Y
 end
 
-local av=ao.WindUI.GenerateGUID()
+local av=ao.VynxUI.GenerateGUID()
 
 aj.AddSignal(au.CanvasGroup.Viewport.MouseEnter,function()
 if ap.Interactive then
@@ -24106,11 +24106,11 @@ if
 (aw.UserInputType==Enum.UserInputType.MouseButton1)
 or(aw.UserInputType==Enum.UserInputType.Touch and not ar)
 then
-if ao.WindUI.CurrentInput and ao.WindUI.CurrentInput~=av then
+if ao.VynxUI.CurrentInput and ao.VynxUI.CurrentInput~=av then
 return
 end
 
-ao.WindUI.CurrentInput=av
+ao.VynxUI.CurrentInput=av
 
 aq=true
 at=aw.Position
@@ -24124,11 +24124,11 @@ if
 aw.UserInputType==Enum.UserInputType.MouseButton1
 or aw.UserInputType==Enum.UserInputType.Touch
 then
-if ao.WindUI.CurrentInput and ao.WindUI.CurrentInput~=av then
+if ao.VynxUI.CurrentInput and ao.VynxUI.CurrentInput~=av then
 return
 end
 
-ao.WindUI.CurrentInput=nil
+ao.VynxUI.CurrentInput=nil
 
 aq=false
 end
@@ -24314,7 +24314,7 @@ local as,at=pcall(function()
 return typeof(getcustomasset)=="function"and getcustomasset(ar)or ar
 end)
 if not as then
-warn("[ WindUI.Video ] Failed to load custom asset: "..tostring(at))
+warn("[ VynxUI.Video ] Failed to load custom asset: "..tostring(at))
 end
 ap=at
 else
@@ -24423,7 +24423,7 @@ av.CornerLink=ag.CornerLink or(ar and ar.CornerLink)or am.ElementConfig.CornerLi
 end
 av.Parent=aj
 av.Window=am
-av.WindUI=an
+av.VynxUI=an
 av.UIScale=aq
 av.ElementsModule=ap local
 
@@ -24454,7 +24454,7 @@ if aA then
 am.PendingConfigData[av.Flag]=nil
 else
 warn(
-"[ WindUI ] Failed to apply pending config for '"
+"[ VynxUI ] Failed to apply pending config for '"
 ..av.Flag
 .."': "
 ..tostring(aB)
@@ -24636,7 +24636,7 @@ end
 
 function ar.Init(as,at,au,av)
 Window=as
-WindUI=at
+VynxUI=at
 ar.ToolTipParent=au
 ar.TabHighlight=av
 return ar
@@ -25069,7 +25069,7 @@ aB.UIElements.ContainerFrame,
 aB.UIElements.ContainerFrameCanvas.ScrollSliderHolder,
 Window,
 4,
-WindUI
+VynxUI
 )
 end
 
@@ -25175,7 +25175,7 @@ aB,
 aB.UIElements.ContainerFrame,
 aL.Elements,
 Window,
-WindUI,
+VynxUI,
 nil,
 aL,
 at,
@@ -26388,11 +26388,11 @@ aF.Topbar={Height=52,ButtonsType="Default"}
 end
 
 if not aj:IsStudio()and aF.Folder and writefile then
-if not isfolder("WindUI/"..aF.Folder)then
-makefolder("WindUI/"..aF.Folder)
+if not isfolder("VynxUI/"..aF.Folder)then
+makefolder("VynxUI/"..aF.Folder)
 end
-if not isfolder("WindUI/"..aF.Folder.."/assets")then
-makefolder("WindUI/"..aF.Folder.."/assets")
+if not isfolder("VynxUI/"..aF.Folder.."/assets")then
+makefolder("VynxUI/"..aF.Folder.."/assets")
 end
 if not isfolder(aF.Folder)then
 makefolder(aF.Folder)
@@ -26574,7 +26574,7 @@ aF.UIElements.SideBar,
 aF.UIElements.SideBarContainer.Content,
 aF,
 3,
-ax.WindUI
+ax.VynxUI
 )
 end
 
@@ -26894,7 +26894,7 @@ if aS then
 return aT
 end
 
-warn("[ WindUI.Window.Background ] Failed to load custom asset: "..tostring(aT))
+warn("[ VynxUI.Window.Background ] Failed to load custom asset: "..tostring(aT))
 return aR
 end
 
@@ -26918,7 +26918,7 @@ end
 end)
 
 if not aU then
-warn("[ WindUI.Window.Background ] Failed to download asset: "..tostring(aV))
+warn("[ VynxUI.Window.Background ] Failed to download asset: "..tostring(aV))
 return aR
 end
 end
@@ -27116,7 +27116,7 @@ AnchorPoint=Vector2.new(0.5,0.5),
 Active=true,
 
 },{
-ax.WindUI.UIScaleObj,
+ax.VynxUI.UIScaleObj,
 aF.AcrylicPaint and aF.AcrylicPaint.Frame or nil,
 aL,
 ao.NewRoundFrame(aF.UICorner,"Squircle",{
@@ -27266,19 +27266,19 @@ PaddingBottom=UDim.new(0,aF.UIPadding),
 ao.AddSignal(aF.UIElements.Main.Main.Topbar.Left:GetPropertyChangedSignal"AbsoluteSize",function()
 local aY=0
 local aZ=aF.UIElements.Main.Main.Topbar.Right.UIListLayout.AbsoluteContentSize.X
-/ax.WindUI.UIScale
+/ax.VynxUI.UIScale
 
-aY=aF.UIElements.Main.Main.Topbar.Left.AbsoluteSize.X/ax.WindUI.UIScale
+aY=aF.UIElements.Main.Main.Topbar.Left.AbsoluteSize.X/ax.VynxUI.UIScale
 if aF.Topbar.ButtonsType~="Default"then
 aY=aY+aZ+aF.UIPadding-4
 end
 
 aF.UIElements.Main.Main.Topbar.Center.Position=
-UDim2.new(0,aY+(aF.UIPadding/ax.WindUI.UIScale),0.5,0)
+UDim2.new(0,aY+(aF.UIPadding/ax.VynxUI.UIScale),0.5,0)
 aF.UIElements.Main.Main.Topbar.Center.Size=UDim2.new(
 1,
 -aY
--(aF.UIPadding/ax.WindUI.UIScale)
+-(aF.UIPadding/ax.VynxUI.UIScale)
 -(aF.Topbar.ButtonsType=="Default"and aZ+aF.UIPadding or 0),
 1,
 0
@@ -27289,7 +27289,7 @@ if aF.Topbar.ButtonsType~="Default"then
 ao.AddSignal(aF.UIElements.Main.Main.Topbar.Right:GetPropertyChangedSignal"AbsoluteSize",function()
 aF.UIElements.Main.Main.Topbar.Left.Position=UDim2.new(
 0,
-(aF.UIElements.Main.Main.Topbar.Right.AbsoluteSize.X/ax.WindUI.UIScale)+aF.UIPadding-4,
+(aF.UIElements.Main.Main.Topbar.Right.AbsoluteSize.X/ax.VynxUI.UIScale)+aF.UIPadding-4,
 0,
 0
 )
@@ -27664,7 +27664,7 @@ local aZ=aF.BackgroundGradient
 or(aR=="Gradient"and aS or nil)
 if aZ then
 local a_=aF.BackgroundGradient and aF.BackgroundOverlayTransparency
-or(aF.Transparent and ax.WindUI.TransparencyValue or 0)
+or(aF.Transparent and ax.VynxUI.TransparencyValue or 0)
 SetBackgroundGradientObject(aZ,a_)
 end
 
@@ -27683,7 +27683,7 @@ end
 
 aF.OpenButtonMain=a.load'C'.New(aF)
 aF.OpenButtonController=aF.OpenButtonMain
-aF.WatermarkMain=a.load'D'.New(aF,ax.WindUI)
+aF.WatermarkMain=a.load'D'.New(aF,ax.VynxUI)
 
 function aF.SetWatermark(a_,a0)
 aF.Watermark=a0
@@ -27908,7 +27908,7 @@ end
 
 function aF.SetBackgroundTransparency(a_,a0)
 local a1=math.floor(tonumber(a0)*10+0.5)/10
-ax.WindUI.TransparencyValue=a1
+ax.VynxUI.TransparencyValue=a1
 aF:ToggleTransparency(a1>0)
 end
 
@@ -27945,7 +27945,7 @@ ao.Icon"minimize"
 ao.Icon"maximize"
 
 if aF.Settings~=false and aF.Topbar.Settings~=false then
-local a1=a.load'E'.New(aF,ax.WindUI,ax)
+local a1=a.load'E'.New(aF,ax.VynxUI,ax)
 local a2=aF:CreateTopbarButton(
 "Settings",
 "settings",
@@ -27966,7 +27966,7 @@ aF.SettingsMenu=a1
 end
 
 if aF.KeyBindMenu~=false and aF.Topbar.KeyBindMenu~=false then
-local a1=a.load'F'.New(aF,ax.WindUI,ax)
+local a1=a.load'F'.New(aF,ax.VynxUI,ax)
 local a2=aF:CreateTopbarButton(
 "KeyBind",
 "keyboard",
@@ -28010,9 +28010,9 @@ local function SetSize(a1)
 ap.Play(aF.UIElements.Main,"Resize",{
 Size=not aF.IsFullscreen and a0 or UDim2.new(
 0,
-(ax.WindUI.ScreenGui.AbsoluteSize.X-20)/ax.WindUI.UIScale,
+(ax.VynxUI.ScreenGui.AbsoluteSize.X-20)/ax.VynxUI.UIScale,
 0,
-(ax.WindUI.ScreenGui.AbsoluteSize.Y-20-52)/ax.WindUI.UIScale
+(ax.VynxUI.ScreenGui.AbsoluteSize.Y-20-52)/ax.VynxUI.UIScale
 ),
 Position=not aF.IsFullscreen and a_ or UDim2.new(0.5,0,0.5,26),
 },Enum.EasingStyle.Quint,Enum.EasingDirection.Out,"Fullscreen")
@@ -28039,7 +28039,7 @@ aF.IsFullscreen=not a2
 SetSize(true)
 end
 
-ao.AddSignal(ax.WindUI.ScreenGui:GetPropertyChangedSignal"AbsoluteSize",function()
+ao.AddSignal(ax.VynxUI.ScreenGui:GetPropertyChangedSignal"AbsoluteSize",function()
 if aF.IsFullscreen then
 SetSize()
 end
@@ -28083,7 +28083,7 @@ function aF.OnDestroy(a1,a2)
 aF.OnDestroyCallback=a2
 end
 
-if ax.WindUI.UseAcrylic then
+if ax.VynxUI.UseAcrylic then
 aF.AcrylicPaint.AddParent(aF.UIElements.Main)
 end
 
@@ -28125,7 +28125,7 @@ if typeof(a5)=="Instance"and a5:IsA"GuiObject"then
 a4=a5.AbsolutePosition
 end
 
-local a6=math.max(tonumber(ax.WindUI.UIScale)or 1,0.01)
+local a6=math.max(tonumber(ax.VynxUI.UIScale)or 1,0.01)
 local a7=aF.UIElements.Main.AbsoluteSize
 local a8=math.max(aF.Size.X.Offset,a7.X/a6,1)
 local a9=math.max(aF.Size.Y.Offset,a7.Y/a6,1)
@@ -28158,14 +28158,14 @@ local a4=a3 and GetWindowMorphTarget()or nil
 if a4 then
 aF.UIElements.Main.Size=aF.Size
 aF.UIElements.Main.Position=a4.Position
-ax.WindUI.UIScaleObj.Scale=a1.TargetScale or a4.Scale
+ax.VynxUI.UIScaleObj.Scale=a1.TargetScale or a4.Scale
 aF.UIElements.Main.Visible=true
 aF.UIElements.Main:WaitForChild"Main".Visible=true
 ap.Play(aF.UIElements.Main,a4.Duration,{
 Position=a1.RestorePosition,
 },Enum.EasingStyle.Quint,Enum.EasingDirection.Out,"WindowMorphPosition")
-ap.Play(ax.WindUI.UIScaleObj,a4.Duration,{
-Scale=ax.WindUI.UIScale,
+ap.Play(ax.VynxUI.UIScaleObj,a4.Duration,{
+Scale=ax.VynxUI.UIScale,
 },Enum.EasingStyle.Quint,Enum.EasingDirection.Out,"WindowMorphScale")
 else
 aF.UIElements.Main.Size=UDim2.new(aF.Size.X.Scale,aF.Size.X.Offset,0,100)
@@ -28185,7 +28185,7 @@ aF.UIElements.Main.Background.ImageTransparency=1
 end
 ap.Play(aF.UIElements.Main.Background,"WindowOpen",{
 
-ImageTransparency=aF.Transparent and ax.WindUI.TransparencyValue or 0,
+ImageTransparency=aF.Transparent and ax.VynxUI.TransparencyValue or 0,
 },Enum.EasingStyle.Exponential,Enum.EasingDirection.Out,"WindowBackground")
 
 if aQ then
@@ -28257,7 +28257,7 @@ aF.UIElements.Main.Visible=true
 
 aF.UIElements.Main:WaitForChild"Main".Visible=true
 
-ax.WindUI:ToggleAcrylic(true)
+ax.VynxUI:ToggleAcrylic(true)
 a1.Active=false
 
 end)
@@ -28287,7 +28287,7 @@ end)
 end
 
 if not a5 then
-ax.WindUI:ToggleAcrylic(false)
+ax.VynxUI:ToggleAcrylic(false)
 end
 
 if not a5 and aF.UIElements.Main and aF.UIElements.Main:WaitForChild"Main"then
@@ -28301,7 +28301,7 @@ if a5 then
 ap.Play(aF.UIElements.Main,a4.Duration,{
 Position=a4.Position,
 },Enum.EasingStyle.Quint,Enum.EasingDirection.Out,"WindowMorphPosition")
-ap.Play(ax.WindUI.UIScaleObj,a4.Duration,{
+ap.Play(ax.VynxUI.UIScaleObj,a4.Duration,{
 Scale=a4.Scale,
 },Enum.EasingStyle.Quint,Enum.EasingDirection.Out,"WindowMorphScale")
 else
@@ -28381,7 +28381,7 @@ end
 aF.UIElements.Main.Visible=false
 aF.UIElements.Main.Main.Visible=false
 if a5 then
-ax.WindUI:ToggleAcrylic(false)
+ax.VynxUI:ToggleAcrylic(false)
 if aQ and aQ:IsA"VideoFrame"then
 aQ.Visible=false
 end
@@ -28408,10 +28408,10 @@ aF.Destroyed=true
 
 task.wait(0.4)
 
-ax.WindUI.ScreenGui:Destroy()
-ax.WindUI.NotificationGui:Destroy()
-ax.WindUI.DropdownGui:Destroy()
-ax.WindUI.TooltipGui:Destroy()
+ax.VynxUI.ScreenGui:Destroy()
+ax.VynxUI.NotificationGui:Destroy()
+ax.VynxUI.DropdownGui:Destroy()
+ax.VynxUI.TooltipGui:Destroy()
 
 ao.DisconnectAll()
 
@@ -28435,11 +28435,11 @@ end
 function aF.ToggleTransparency(a2,a3)
 
 aF.Transparent=a3
-ax.WindUI.Transparent=a3
+ax.VynxUI.Transparent=a3
 
-aF.UIElements.Main.Background.ImageTransparency=a3 and ax.WindUI.TransparencyValue or 0
+aF.UIElements.Main.Background.ImageTransparency=a3 and ax.VynxUI.TransparencyValue or 0
 if aF.UIElements.BackgroundGradient then
-aF.UIElements.BackgroundGradient.ImageTransparency=a3 and ax.WindUI.TransparencyValue
+aF.UIElements.BackgroundGradient.ImageTransparency=a3 and ax.VynxUI.TransparencyValue
 or aF.BackgroundOverlayTransparency
 end
 
@@ -28484,12 +28484,12 @@ return a3
 end
 
 function aF.GetUIScale(a2,a3)
-return ax.WindUI.UIScale
+return ax.VynxUI.UIScale
 end
 
 function aF.SetUIScale(a2,a3)
-ax.WindUI.UIScale=a3
-ar(ax.WindUI.UIScaleObj,0.2,{Scale=a3},Enum.EasingStyle.Quint,Enum.EasingDirection.Out):Play()
+ax.VynxUI.UIScale=a3
+ar(ax.VynxUI.UIScaleObj,0.2,{Scale=a3},Enum.EasingStyle.Quint,Enum.EasingDirection.Out):Play()
 return aF
 end
 
@@ -28603,7 +28603,7 @@ end
 
 local a2=a.load'aD'
 local a3=a.load'aE'
-local a4=a2.Init(aF,ax.WindUI,ax.WindUI.TooltipGui)
+local a4=a2.Init(aF,ax.VynxUI,ax.VynxUI.TooltipGui)
 a4:OnChange(function(a5)
 aF.CurrentTab=a5
 end)
@@ -28612,7 +28612,7 @@ aF.TabModule=a4
 
 function aF.Tab(a5,a6)
 a6.Parent=aF.UIElements.TabHolder
-return a4.New(a6,ax.WindUI.UIScale)
+return a4.New(a6,ax.VynxUI.UIScale)
 end
 
 function aF.SelectTab(a5,a6)
@@ -28624,7 +28624,7 @@ return a3.New(
 a6,
 aF.UIElements.TabHolder,
 aF.Folder,
-ax.WindUI.UIScale,
+ax.VynxUI.UIScale,
 aF
 )
 end
@@ -28686,7 +28686,7 @@ Buttons=a7.Buttons or{},
 
 TextPadding=14,
 }
-local a9=a5.Create(false,"Dialog",aF,ax.WindUI,aF.UIElements.Main.Main)
+local a9=a5.Create(false,"Dialog",aF,ax.VynxUI,aF.UIElements.Main.Main)
 
 a9.UIElements.Main.Size=UDim2.new(0,a8.Width,0,0)
 
@@ -28925,7 +28925,7 @@ a8.Window=aF
 return av:New(a8,aF.UIElements.Main.Main.Topbar.Center.Holder)
 end
 
-local a7=ax.WindUI.GenerateGUID()
+local a7=ax.VynxUI.GenerateGUID()
 
 local function startResizing(a8)
 if aF.CanResize then
@@ -28939,11 +28939,11 @@ ar(aI.ImageLabel,0.1,{ImageTransparency=0.35}):Play()
 
 ao.AddSignal(a8.Changed,function()
 if a8.UserInputState==Enum.UserInputState.End then
-if ax.WindUI.CurrentInput and ax.WindUI.CurrentInput~=a7 then
+if ax.VynxUI.CurrentInput and ax.VynxUI.CurrentInput~=a7 then
 return
 end
 
-ax.WindUI.CurrentInput=nil
+ax.VynxUI.CurrentInput=nil
 
 isResizing=false
 aJ.Active=false
@@ -28960,10 +28960,10 @@ if
 a8.UserInputType==Enum.UserInputType.MouseButton1
 or a8.UserInputType==Enum.UserInputType.Touch
 then
-if ax.WindUI.CurrentInput and ax.WindUI.CurrentInput~=a7 then
+if ax.VynxUI.CurrentInput and ax.VynxUI.CurrentInput~=a7 then
 return
 end
-ax.WindUI.CurrentInput=a7
+ax.VynxUI.CurrentInput=a7
 
 if aF.CanResize then
 startResizing(a8)
@@ -28997,7 +28997,7 @@ end
 end)
 
 ao.AddSignal(aI.MouseEnter,function()
-if ax.WindUI.CurrentInput and ax.WindUI.CurrentInput~=a7 then
+if ax.VynxUI.CurrentInput and ax.VynxUI.CurrentInput~=a7 then
 return
 end
 if not isResizing then
@@ -29005,7 +29005,7 @@ ar(aI.ImageLabel,0.1,{ImageTransparency=0.35}):Play()
 end
 end)
 ao.AddSignal(aI.MouseLeave,function()
-if ax.WindUI.CurrentInput and ax.WindUI.CurrentInput~=a7 then
+if ax.VynxUI.CurrentInput and ax.VynxUI.CurrentInput~=a7 then
 return
 end
 if not isResizing then
@@ -29259,7 +29259,7 @@ Scale=aa.UIScale,
 aa.UIScaleObj=az
 
 aa.ScreenGui=av("ScreenGui",{
-Name="WindUI",
+Name="VynxUI",
 Parent=ay,
 IgnoreGuiInset=true,
 ScreenInsets="None",
@@ -29287,7 +29287,7 @@ Name="ToolTips",
 })
 
 aa.NotificationGui=av("ScreenGui",{
-Name="WindUI/Notifications",
+Name="VynxUI/Notifications",
 Parent=ay,
 IgnoreGuiInset=true,
 ScreenInsets="None",
@@ -29296,12 +29296,12 @@ DisplayOrder=999999,
 ZIndexBehavior=Enum.ZIndexBehavior.Sibling,
 })
 aa.DropdownGui=av("ScreenGui",{
-Name="WindUI/Dropdowns",
+Name="VynxUI/Dropdowns",
 Parent=ay,
 IgnoreGuiInset=true,
 })
 aa.TooltipGui=av("ScreenGui",{
-Name="WindUI/Tooltips",
+Name="VynxUI/Tooltips",
 Parent=ay,
 IgnoreGuiInset=true,
 })
@@ -29540,7 +29540,7 @@ return aG
 end
 
 function aa.Popup(aB,aC)
-aC.WindUI=aa
+aC.VynxUI=aa
 return a.load'w'.new(aC,aa.ScreenGui.Popups)
 end
 
@@ -29555,8 +29555,8 @@ function aa.CreateWindow(aB,aC)
 local aD=a.load'aH'
 
 if not ao:IsStudio()and writefile then
-if not isfolder"WindUI"then
-makefolder"WindUI"
+if not isfolder"VynxUI"then
+makefolder"VynxUI"
 end
 if aC.Folder then
 makefolder(aC.Folder)
@@ -29565,7 +29565,7 @@ makefolder(aC.Title)
 end
 end
 
-aC.WindUI=aa
+aC.VynxUI=aa
 aC.Window=aa.Window
 aC.Parent=aa.ScreenGui.Window
 
@@ -29593,7 +29593,7 @@ aJ[aK]=aL
 end
 end
 
-aJ.Title=aJ.Title or aC.Title or"WindUI"
+aJ.Title=aJ.Title or aC.Title or"VynxUI"
 aJ.Desc=aJ.Desc or"Loading interface"
 aJ.Icon=aJ.Icon or aC.Icon or"sparkles"
 aJ.Folder=aJ.Folder or aC.Folder

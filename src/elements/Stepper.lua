@@ -362,7 +362,7 @@ function Element:New(Config)
 		return Stepper.Value.Max
 	end
 
-	local CurInput = Config.WindUI.GenerateGUID()
+	local CurInput = Config.VynxUI.GenerateGUID()
 	local ActiveInput
 	local MoveConnection
 	local ReleaseConnection
@@ -372,7 +372,7 @@ function Element:New(Config)
 		local WasDragging = ActiveInput ~= nil
 			or MoveConnection ~= nil
 			or ReleaseConnection ~= nil
-			or Config.WindUI.CurrentInput == CurInput
+			or Config.VynxUI.CurrentInput == CurInput
 
 		if MoveConnection then
 			Creator.DisconnectSignal(MoveConnection)
@@ -385,8 +385,8 @@ function Element:New(Config)
 		if WasDragging and ScrollingFrameParent then
 			ScrollingFrameParent.ScrollingEnabled = true
 		end
-		if Config.WindUI.CurrentInput == CurInput then
-			Config.WindUI.CurrentInput = nil
+		if Config.VynxUI.CurrentInput == CurInput then
+			Config.VynxUI.CurrentInput = nil
 		end
 		ActiveInput = nil
 		if WasDragging and Stepper.Animation then
@@ -434,11 +434,11 @@ function Element:New(Config)
 		then
 			return
 		end
-		if Config.WindUI.CurrentInput and Config.WindUI.CurrentInput ~= CurInput then
+		if Config.VynxUI.CurrentInput and Config.VynxUI.CurrentInput ~= CurInput then
 			return
 		end
 
-		Config.WindUI.CurrentInput = CurInput
+		Config.VynxUI.CurrentInput = CurInput
 		ActiveInput = Input
 		if ScrollingFrameParent then
 			ScrollingFrameParent.ScrollingEnabled = false

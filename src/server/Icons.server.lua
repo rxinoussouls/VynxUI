@@ -9,7 +9,7 @@ local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
 print("[Icons] Loading icons from GitHub...")
 
-local IconsURL = "https://article-hub-studio.github.io/WindUI-Skibidi/vendor/icons/Main-v2.lua"
+local IconsURL = "https://article-hub-studio.github.io/VynxUI-Skibidi/vendor/icons/Main-v2.lua"
 local Icons = nil
 
 local success, result = pcall(function()
@@ -28,7 +28,7 @@ end
 
 local RemoteFunction = Instance.new("RemoteFunction")
 RemoteFunction.Name = "GetIcons"
-RemoteFunction:SetAttribute("WindUIIcons", true)
+RemoteFunction:SetAttribute("VynxUIIcons", true)
 RemoteFunction.Parent = ReplicatedStorage
 
 RemoteFunction.OnServerInvoke = function(player, methodName, ...)

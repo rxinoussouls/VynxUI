@@ -67,7 +67,7 @@ function Element:New(Config)
                 return typeof(getcustomasset) == "function" and getcustomasset(videoPath) or videoPath
             end)
             if not success then
-                warn("[ WindUI.Video ] Failed to load custom asset: " .. tostring(customAsset))
+                warn("[ VynxUI.Video ] Failed to load custom asset: " .. tostring(customAsset))
             end
             BGVideo = customAsset
         else

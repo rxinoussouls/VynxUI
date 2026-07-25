@@ -1,8 +1,8 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
-import { useTheme } from "../playground/windui/context/ThemeContext";
-import { themes, ThemeName } from "../playground/windui/themes";
+import { useTheme } from "../playground/vynxui/context/ThemeContext";
+import { themes, ThemeName } from "../playground/vynxui/themes";
 import { ChevronDown, Check } from "lucide-react";
 
 export function ThemeSwitcher() {

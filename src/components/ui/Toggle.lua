@@ -325,8 +325,8 @@ function Toggle.New(Value, Icon, IconSize, Parent, Callback, NewElement, Config)
 	end
 
 	local function ReleaseOwnedInput()
-		if Config.WindUI and InputOwnerId and Config.WindUI.CurrentInput == InputOwnerId then
-			Config.WindUI.CurrentInput = nil
+		if Config.VynxUI and InputOwnerId and Config.VynxUI.CurrentInput == InputOwnerId then
+			Config.VynxUI.CurrentInput = nil
 		end
 		InputOwnerId = nil
 	end
@@ -337,7 +337,7 @@ function Toggle.New(Value, Icon, IconSize, Parent, Callback, NewElement, Config)
 		end
 
 		Config.Window.IsToggleDragging = true
-		InputOwnerId = Config.WindUI and Config.WindUI.CurrentInput or nil
+		InputOwnerId = Config.VynxUI and Config.VynxUI.CurrentInput or nil
 		local StartMouseX = Input.Position.X
 		local StartMouseY = Input.Position.Y
 		local StartFrameX = ToggleFrame.Frame.Position.X.Offset

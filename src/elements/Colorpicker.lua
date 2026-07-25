@@ -20,7 +20,7 @@ local Element = {
 	--UIPadding = 8
 }
 
-function Element:Colorpicker(Config, Window, WindUI, OnApply)
+function Element:Colorpicker(Config, Window, VynxUI, OnApply)
 	local Colorpicker = {
 		__type = "Colorpicker",
 		Title = Config.Title,
@@ -36,7 +36,7 @@ function Element:Colorpicker(Config, Window, WindUI, OnApply)
 	local Connections = {}
 	local ActiveSlider
 	local ActiveInput
-	local CurInput = WindUI.GenerateGUID()
+	local CurInput = VynxUI.GenerateGUID()
 	local IsTransparency = Colorpicker.Transparency ~= nil
 
 	local function TrackConnection(Signal, Callback)
@@ -54,8 +54,8 @@ function Element:Colorpicker(Config, Window, WindUI, OnApply)
 		table.clear(Connections)
 		ActiveSlider = nil
 		ActiveInput = nil
-		if WindUI.CurrentInput == CurInput then
-			WindUI.CurrentInput = nil
+		if VynxUI.CurrentInput == CurInput then
+			VynxUI.CurrentInput = nil
 		end
 	end
 
@@ -69,7 +69,7 @@ function Element:Colorpicker(Config, Window, WindUI, OnApply)
 	Colorpicker:SetHSVFromRGB(Colorpicker.Default)
 
 	local ColorpickerModule = require("../components/window/Dialog")
-	local ColorpickerFrame = ColorpickerModule.Create(nil, "Dialog", Window, WindUI, Window.UIElements.Main.Main)
+	local ColorpickerFrame = ColorpickerModule.Create(nil, "Dialog", Window, VynxUI, Window.UIElements.Main.Main)
 
 	Colorpicker.ColorpickerFrame = ColorpickerFrame
 
@@ -725,14 +725,14 @@ function Element:Colorpicker(Config, Window, WindUI, OnApply)
 			return
 		end
 
-		if WindUI.CurrentInput and WindUI.CurrentInput ~= CurInput then
+		if VynxUI.CurrentInput and VynxUI.CurrentInput ~= CurInput then
 			return
 		end
 		if ActiveSlider then
 			return
 		end
 
-		WindUI.CurrentInput = CurInput
+		VynxUI.CurrentInput = CurInput
 		ActiveSlider = "SatVib"
 		ActiveInput = input
 
@@ -747,14 +747,14 @@ function Element:Colorpicker(Config, Window, WindUI, OnApply)
 			return
 		end
 
-		if WindUI.CurrentInput and WindUI.CurrentInput ~= CurInput then
+		if VynxUI.CurrentInput and VynxUI.CurrentInput ~= CurInput then
 			return
 		end
 		if ActiveSlider then
 			return
 		end
 
-		WindUI.CurrentInput = CurInput
+		VynxUI.CurrentInput = CurInput
 		ActiveSlider = "Hue"
 		ActiveInput = input
 
@@ -770,14 +770,14 @@ function Element:Colorpicker(Config, Window, WindUI, OnApply)
 				return
 			end
 
-			if WindUI.CurrentInput and WindUI.CurrentInput ~= CurInput then
+			if VynxUI.CurrentInput and VynxUI.CurrentInput ~= CurInput then
 				return
 			end
 			if ActiveSlider then
 				return
 			end
 
-			WindUI.CurrentInput = CurInput
+			VynxUI.CurrentInput = CurInput
 			ActiveSlider = "Transparency"
 			ActiveInput = input
 
@@ -799,8 +799,8 @@ function Element:Colorpicker(Config, Window, WindUI, OnApply)
 
 		ActiveSlider = nil
 		ActiveInput = nil
-		if WindUI.CurrentInput == CurInput then
-			WindUI.CurrentInput = nil
+		if VynxUI.CurrentInput == CurInput then
+			VynxUI.CurrentInput = nil
 		end
 	end)
 
@@ -893,7 +893,7 @@ function Element:New(Config)
 		if CanCallback and not Colorpicker.IsShowed then
 			Colorpicker.IsShowed = true
 
-			Element:Colorpicker(Colorpicker, Config.Window, Config.WindUI, function(color, transparency)
+			Element:Colorpicker(Colorpicker, Config.Window, Config.VynxUI, function(color, transparency)
 				Colorpicker:Update(color, transparency)
 				Colorpicker.Default = color
 				Colorpicker.Transparency = transparency

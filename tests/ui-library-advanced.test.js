@@ -20,7 +20,7 @@ const publicDistRuntime = fs.readFileSync("website/public/dist/main.lua")
 const checks = {
 	multiSourceParser:
 		/ParseIconReference/.test(icons) &&
-		/source:name/.test(fs.readFileSync("website/content/docs/windui/icons.mdx", "utf8")) &&
+		/source:name/.test(fs.readFileSync("website/content/docs/vynxui/icons.mdx", "utf8")) &&
 		/Value\.Source or Value\.Pack or Value\.Library/.test(icons),
 	dynamicIconSources:
 		/function IconModule\.RegisterIconSource/.test(icons) &&
@@ -102,7 +102,7 @@ const checks = {
 		/Corner\.BottomLeftRadius/.test(creator) &&
 		/Corner\.BottomRightRadius/.test(creator) &&
 		/function Wrapper:SetLinkedCorners/.test(dynamicShape) &&
-		/WindUILinkedCorner/.test(dynamicShape) &&
+		/VynxUILinkedCorner/.test(dynamicShape) &&
 		/content\.CornerGroup = config\.CornerGroup/.test(elementsInit) &&
 		/config\.CornerLink = tbl\.CornerLink/.test(elementsInit),
 	centeredDropdown:
@@ -149,7 +149,7 @@ const checks = {
 		/pcall\(Chunk\)/.test(loader),
 	canonicalRuntimeLoader:
 		/SOURCE_URL/.test(loader) &&
-		/article-hub-studio\.github\.io\/WindUI-Skibidi\/dist\/main\.lua/.test(loader) &&
+		/article-hub-studio\.github\.io\/VynxUI-Skibidi\/dist\/main\.lua/.test(loader) &&
 		!/MIRRORS/.test(loader) &&
 		!/cdn\.jsdelivr\.net/.test(loader),
 	publishedRuntimeSynced: runtime.equals(publicRuntime) && runtime.equals(publicDistRuntime),
@@ -162,7 +162,7 @@ const checks = {
 		runtime.includes("LayoutVersion") &&
 		runtime.includes("LiquidGlass") &&
 		runtime.includes("AutoHide") &&
-		runtime.includes("WindUILinkedCorner") &&
+		runtime.includes("VynxUILinkedCorner") &&
 		runtime.includes("WindowMorphScale") &&
 		runtime.includes("DropdownBackdrop") &&
 		runtime.includes("InternalCenter") &&

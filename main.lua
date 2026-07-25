@@ -2,16 +2,16 @@
 -- This is just an example.
 -- old example
 
-local WindUI = require("./src/Init")
+local VynxUI = require("./src/Init")
 
-local Localization = WindUI:Localization({
+local Localization = VynxUI:Localization({
     Enabled = true,
     Prefix = "loc:",
     DefaultLanguage = "en",
     Translations = {
         ["en"] = {
-            ["WINDUI_EXAMPLE"] = "WindUI Example",
-            ["WELCOME"] = "Welcome to WindUI!",
+            ["VYNXUI_EXAMPLE"] = "VynxUI Example",
+            ["WELCOME"] = "Welcome to VynxUI!",
             ["LIB_DESC"] = "Beautiful UI library for Roblox",
             ["SETTINGS"] = "Settings",
             ["APPEARANCE"] = "Appearance",
@@ -29,8 +29,8 @@ local Localization = WindUI:Localization({
 })
 
 
-WindUI.TransparencyValue = 0.2
-WindUI:SetTheme("Dark")
+VynxUI.TransparencyValue = 0.2
+VynxUI:SetTheme("Dark")
 
 local function gradient(text, startColor, endColor)
     local result = ""
@@ -44,8 +44,8 @@ local function gradient(text, startColor, endColor)
     return result
 end
 
-WindUI:Popup({
-    Title = gradient("WindUI Demo", Color3.fromHex("#6A11CB"), Color3.fromHex("#2575FC")),
+VynxUI:Popup({
+    Title = gradient("VynxUI Demo", Color3.fromHex("#6A11CB"), Color3.fromHex("#2575FC")),
     Icon = "sparkles",
     Content = "loc:LIB_DESC",
     Buttons = {
@@ -61,7 +61,7 @@ WindUI:Popup({
 
 -- Add your service to get key 
 --[[
-WindUI.Services.mysuperservicetogetkey = {
+VynxUI.Services.mysuperservicetogetkey = {
     Name = "My Super Service",
     Icon = "droplet", -- lucide or rbxassetid or raw link to img
     
@@ -98,17 +98,17 @@ WindUI.Services.mysuperservicetogetkey = {
 ]]
 
 
-local Window = WindUI:CreateWindow({
-    Title = "loc:WINDUI_EXAMPLE",
+local Window = VynxUI:CreateWindow({
+    Title = "loc:VYNXUI_EXAMPLE",
     Icon = "geist:window",
     Author = "loc:WELCOME",
-    Folder = "WindUI_Example",
+    Folder = "VynxUI_Example",
     Size = UDim2.fromOffset(580, 490),
     Theme = "Dark",
     
     HidePanelBackground = false,
     NewElements = false,
-    -- Background = WindUI:Gradient({
+    -- Background = VynxUI:Gradient({
     --     ["0"] = { Color = Color3.fromHex("#0f0c29"), Transparency = 1 },
     --     ["100"] = { Color = Color3.fromHex("#302b63"), Transparency = 0.9 },
     -- }, {
@@ -116,12 +116,12 @@ local Window = WindUI:CreateWindow({
     -- }),
     --Background = "video:https://cdn.discordapp.com/attachments/1337368451865645096/1402703845657673878/VID_20250616_180732_158.webm?ex=68958a01&is=68943881&hm=164c5b04d1076308b38055075f7eb0653c1d73bec9bcee08e918a31321fe3058&",
     --Background = "rbxassetid://88271032881974",
-    --Background = "https://footagesus.github.io/WindUI-Docs/banners/thumbnail2.jpg",
+    --Background = "https://footagesus.github.io/VynxUI-Docs/banners/thumbnail2.jpg",
     User = {
         Enabled = true,
         Anonymous = true,
         Callback = function()
-            WindUI:Notify({
+            VynxUI:Notify({
                 Title = "User Profile",
                 Content = "User profile clicked!",
                 Duration = 3
@@ -151,7 +151,7 @@ local Window = WindUI:CreateWindow({
     -- KeySystem = { -- 
     --     -- Key = { "1234", "5678" },  
     --     Note = "Example Key System. With platoboost, etc.",
-    --     -- URL = "https://github.com/article-hub-studio/WindUI-Skibidi",
+    --     -- URL = "https://github.com/article-hub-studio/VynxUI-Skibidi",
     --     -- Thumbnail = {
     --     --     Image = "rbxassetid://",
     --     --     Title = "Thumbnail",
@@ -172,7 +172,7 @@ local Window = WindUI:CreateWindow({
     --             -- Icon = "rbxassetid://", -- optional
     
     --             Type = "pandadevelopment", -- type: platoboost, ...
-    --             ServiceId = "windui", -- service id
+    --             ServiceId = "vynxui", -- service id
     --         },
     --         {   
     --             Type = "luarmor",
@@ -220,7 +220,7 @@ local TimeTag = Window:Tag({
     Title = "--:--",
     Radius = 0,
     --Color = Color3.fromHex("#000000"),
-    Color = WindUI:Gradient({
+    Color = VynxUI:Gradient({
         ["0"]   = { Color = Color3.fromHex("#FF0F7B"), Transparency = 0 },
         ["100"] = { Color = Color3.fromHex("#F89B29"), Transparency = 0 },
     }, {
@@ -250,10 +250,10 @@ end)
 
 
 Window:CreateTopbarButton("theme-switcher", "moon", function()
-    WindUI:SetTheme(WindUI:GetCurrentTheme() == "Dark" and "Light" or "Dark")
-    WindUI:Notify({
+    VynxUI:SetTheme(VynxUI:GetCurrentTheme() == "Dark" and "Light" or "Dark")
+    VynxUI:Notify({
         Title = "Theme Changed",
-        Content = "Current theme: "..WindUI:GetCurrentTheme(),
+        Content = "Current theme: "..VynxUI:GetCurrentTheme(),
         Duration = 2
     })
 end, 990)
@@ -277,7 +277,7 @@ local Tabs = {
 
 -- Tabs.Elements:Paragraph({
 --     Title = "Interactive Components",
---     Desc = "Explore WindUI's powerful elements",
+--     Desc = "Explore VynxUI's powerful elements",
 --     Image = "component",
 --     ImageSize = 20,
 --     Color = Color3.fromHex("#30ff6a"),
@@ -289,7 +289,7 @@ Tabs.Elements:Section({
 })
 
 Tabs.Elements:Section({
-    Title = "Explore WindUI's powerful elements",
+    Title = "Explore VynxUI's powerful elements",
     TextSize = 16,
     TextTransparency = .25,
 })
@@ -329,7 +329,7 @@ local featureToggle = ElementsSection:Toggle({
     Value = false,
     Callback = function(state) 
         toggleState = state
-        WindUI:Notify({
+        VynxUI:Notify({
             Title = "Features",
             Content = state and "Features Enabled" or "Features Disabled",
             Icon = state and "check" or "x",
@@ -357,7 +357,7 @@ local values = {}
 local values2 = {}
 
 -- random lucide icons
-local icons = WindUI.Creator.Icons.Icons.lucide -- getting all lucide icons
+local icons = VynxUI.Creator.Icons.Icons.lucide -- getting all lucide icons
 local iconNames = {}
 
 for name, _ in next, icons do
@@ -383,7 +383,7 @@ local testDropdown = ElementsSection:Dropdown({
     SearchBarEnabled = true,
     Value = "Test 1",
     Callback = function(option)
-        -- WindUI:Notify({
+        -- VynxUI:Notify({
         --     Title = "Dropdown",
         --     Content = "Selected: "..option,
         --     Duration = 2
@@ -426,7 +426,7 @@ local testDropdown3 = ElementsSection:Dropdown({
     SearchBarEnabled = true,
     Value = "Test 1",
     Callback = function(option)
-        -- WindUI:Notify({
+        -- VynxUI:Notify({
         --     Title = "Dropdown",
         --     Content = "Selected: "..option,
         --     Duration = 2
@@ -443,8 +443,8 @@ ElementsSection:Button({
     Title = "Show Notification",
     Icon = "bell",
     Callback = function()
-        WindUI:Notify({
-            Title = "Hello WindUI!",
+        VynxUI:Notify({
+            Title = "Hello VynxUI!",
             Content = "This is a sample notification",
             Icon = "bell",
             Duration = 3
@@ -458,7 +458,7 @@ ElementsSection:Colorpicker({
     Default = Color3.fromHex("#30ff6a"),
     Transparency = 0, -- enable transparency
     Callback = function(color, transparency)
-        WindUI:Notify({
+        VynxUI:Notify({
             Title = "Color Changed",
             Content = "New color: "..color:ToHex().."\nTransparency: "..transparency,
             Duration = 2
@@ -483,7 +483,7 @@ Tabs.Appearance:Paragraph({
 })
 
 local themes = {}
-for themeName, _ in pairs(WindUI:GetThemes()) do
+for themeName, _ in pairs(VynxUI:GetThemes()) do
     table.insert(themes, themeName)
 end
 table.sort(themes)
@@ -502,8 +502,8 @@ local themeDropdown = Tabs.Appearance:Dropdown({
     Value = "Dark",
     Callback = function(theme)
         canchangedropdown = false
-        WindUI:SetTheme(theme)
-        WindUI:Notify({
+        VynxUI:SetTheme(theme)
+        VynxUI:Notify({
             Title = "Theme Applied",
             Content = theme,
             Icon = "palette",
@@ -534,7 +534,7 @@ local ThemeToggle = Tabs.Appearance:Toggle({
     Value = true,
     Callback = function(state)
         if canchangetheme then
-            WindUI:SetTheme(state and "Dark" or "Light")
+            VynxUI:SetTheme(state and "Dark" or "Light")
         end
         if canchangedropdown then
             themeDropdown:Select(state and "Dark" or "Light")
@@ -542,7 +542,7 @@ local ThemeToggle = Tabs.Appearance:Toggle({
     end
 })
 
-WindUI:OnThemeChange(function(theme)
+VynxUI:OnThemeChange(function(theme)
     canchangetheme = false
     ThemeToggle:Set(theme == "Dark")
     canchangetheme = true
@@ -627,14 +627,14 @@ if ConfigManager then
             configFile:Set("lastSave", os.date("%Y-%m-%d %H:%M:%S"))
             
             if configFile:Save() then
-                WindUI:Notify({ 
+                VynxUI:Notify({ 
                     Title = "loc:SAVE_CONFIG", 
                     Content = "Saved as: "..configName,
                     Icon = "check",
                     Duration = 3
                 })
             else
-                WindUI:Notify({ 
+                VynxUI:Notify({ 
                     Title = "Error", 
                     Content = "Failed to save config",
                     Icon = "x",
@@ -663,7 +663,7 @@ if ConfigManager then
                 end
                 
                 local lastSave = loadedData.lastSave or "Unknown"
-                WindUI:Notify({ 
+                VynxUI:Notify({ 
                     Title = "loc:LOAD_CONFIG", 
                     Content = "Loaded: "..configName.."\nLast save: "..lastSave,
                     Icon = "refresh-cw",
@@ -678,7 +678,7 @@ if ConfigManager then
                         table.concat(MyPlayerData.inventory, ", "))
                 })
             else
-                WindUI:Notify({ 
+                VynxUI:Notify({ 
                     Title = "Error", 
                     Content = "Failed to load config",
                     Icon = "x",
@@ -701,10 +701,10 @@ else
 end
 
 
-local footerSection = Window:Section({ Title = "WindUI " .. WindUI.Version })
+local footerSection = Window:Section({ Title = "VynxUI " .. VynxUI.Version })
 Tabs.Config:Paragraph({
     Title = "Github Repository",
-    Desc = "github.com/article-hub-studio/WindUI-Skibidi",
+    Desc = "github.com/article-hub-studio/VynxUI-Skibidi",
     Image = "github",
     ImageSize = 20,
     Color = "Grey",
@@ -714,8 +714,8 @@ Tabs.Config:Paragraph({
             Icon = "copy",
             Variant = "Tertiary",
             Callback = function()
-                setclipboard("https://github.com/article-hub-studio/WindUI-Skibidi")
-                WindUI:Notify({
+                setclipboard("https://github.com/article-hub-studio/VynxUI-Skibidi")
+                VynxUI:Notify({
                     Title = "Copied!",
                     Content = "GitHub link copied to clipboard",
                     Duration = 2
@@ -762,7 +762,7 @@ if Window:GetUnlocked() and #Window:GetUnlocked() > 0 then
     for _, lockedelement in next, Window:GetUnlocked() do
         local title = lockedelement.Title
         if string.find(title, Localization.Prefix) then
-            local translations = Localization.Translations[WindUI.Creator.Language] or Localization.Translations[Localization.DefaultLanguage]
+            local translations = Localization.Translations[VynxUI.Creator.Language] or Localization.Translations[Localization.DefaultLanguage]
             title = translations[ title:gsub("^" .. Localization.Prefix, "") ]
         end
         print("- " .. (title or "Unknown"))

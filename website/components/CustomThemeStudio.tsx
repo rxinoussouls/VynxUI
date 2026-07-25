@@ -57,7 +57,7 @@ function toBase64(value: string) {
 export default function CustomThemeStudio() {
     const [theme, setTheme] = useState<ThemeDraft>(defaultTheme);
     const [owner, setOwner] = useState("article-hub-studio");
-    const [repo, setRepo] = useState("WindUI-Skibidi");
+    const [repo, setRepo] = useState("VynxUI-Skibidi");
     const [branch, setBranch] = useState("main");
     const [path, setPath] = useState("themes/custom/custom-liquid.json");
     const [token, setToken] = useState("");
@@ -113,7 +113,7 @@ export default function CustomThemeStudio() {
                 method: "PUT",
                 headers,
                 body: JSON.stringify({
-                    message: `Add ${theme.Name} WindUI theme`,
+                    message: `Add ${theme.Name} VynxUI theme`,
                     content: toBase64(json),
                     branch,
                     sha,

@@ -23,7 +23,7 @@ export const baseOptions: BaseLayoutProps & { links: NavLink[] } = {
     links: [
         {
             text: "Github",
-            url: "https://github.com/article-hub-studio/WindUI-Skibidi",
+            url: "https://github.com/article-hub-studio/VynxUI-Skibidi",
         },
         {
             text: "Discord",

@@ -103,7 +103,7 @@ function Element:New(Config)
 		HStackFrame,
 		ElementsModule.Elements,
 		Config.Window,
-		Config.WindUI,
+		Config.VynxUI,
 		function(CurrentElement, AllElements)
 			UpdateLayout(AllElements)
 		end,

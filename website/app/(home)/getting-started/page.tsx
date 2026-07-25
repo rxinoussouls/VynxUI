@@ -11,7 +11,7 @@ export default function GettingStartedPage() {
                 staggerDelay={150}
             >
                 <p className="rounded-full border border-white/12 bg-white/8 px-3 py-1 text-sm font-medium text-white/64">
-                    WindUI Modded
+                    VynxUI Modded
                 </p>
                 <h1 className="text-center text-3xl font-semibold tracking-tight">
                     Getting Started With Loadstring
@@ -19,7 +19,7 @@ export default function GettingStartedPage() {
 
                 <p className="max-w-xl text-center text-sm leading-6 text-white/58">
                     Use the current article-hub-studio repo build. The API still
-                    exposes the `WindUI` variable in examples, so existing
+                    exposes the `VynxUI` variable in examples, so existing
                     scripts stay familiar.
                 </p>
 
@@ -31,13 +31,13 @@ export default function GettingStartedPage() {
 
                 <div className="flex flex-col gap-2 sm:flex-row">
                     <Link
-                        href="/docs/windui/elements-overview"
+                        href="/docs/vynxui/elements-overview"
                         className="rounded-full bg-white px-5 py-2 text-sm font-semibold text-black"
                     >
                         Elements overview
                     </Link>
                     <Link
-                        href="/docs/windui/loadstring"
+                        href="/docs/vynxui/loadstring"
                         className="rounded-full border border-white/12 bg-white/8 px-5 py-2 text-sm font-semibold text-white"
                     >
                         Loadstring docs
