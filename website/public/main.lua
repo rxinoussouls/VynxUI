@@ -301,7 +301,7 @@ local d=b(game:GetService"ReplicatedStorage")
 local e=b(game:GetService"HttpService")
 local f=b(game:GetService"RunService")
 
-local g="https://rxinoussouls.github.io/VynxUI/vendor/icons/Main-v2.lua"
+local g="https://raw.githubusercontent.com/rxinoussouls/VynxUI/main/website/public/vendor/icons/Main-v2.lua"
 
 local function LoadBaseIcons()
 local h=d:FindFirstChild"GetIcons"

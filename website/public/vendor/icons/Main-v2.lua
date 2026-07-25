@@ -45,22 +45,22 @@ local IconModule = {
 
 	Icons = {
 		lucide = IsExploit() and Loadstring(
-			Get("https://rxinoussouls.github.io/VynxUI/vendor/icons/lucide/dist/Icons.lua")
+			Get("https://raw.githubusercontent.com/rxinoussouls/VynxUI/main/website/public/vendor/icons/lucide/dist/Icons.lua")
 		)() or require("./lucide/dist/Icons"),
 		solar = IsExploit() and Loadstring(
-			Get("https://rxinoussouls.github.io/VynxUI/vendor/icons/solar/dist/Icons.lua")
+			Get("https://raw.githubusercontent.com/rxinoussouls/VynxUI/main/website/public/vendor/icons/solar/dist/Icons.lua")
 		)() or require("./solar/dist/Icons"),
 		craft = IsExploit() and Loadstring(
-			Get("https://rxinoussouls.github.io/VynxUI/vendor/icons/craft/dist/Icons.lua")
+			Get("https://raw.githubusercontent.com/rxinoussouls/VynxUI/main/website/public/vendor/icons/craft/dist/Icons.lua")
 		)() or require("./craft/dist/Icons"),
 		geist = IsExploit() and Loadstring(
-			Get("https://rxinoussouls.github.io/VynxUI/vendor/icons/geist/dist/Icons.lua")
+			Get("https://raw.githubusercontent.com/rxinoussouls/VynxUI/main/website/public/vendor/icons/geist/dist/Icons.lua")
 		)() or require("./geist/dist/Icons"),
 		sfsymbols = IsExploit() and Loadstring(
-			Get("https://rxinoussouls.github.io/VynxUI/vendor/icons/sfsymbols/dist/Icons.lua")
+			Get("https://raw.githubusercontent.com/rxinoussouls/VynxUI/main/website/public/vendor/icons/sfsymbols/dist/Icons.lua")
 		)() or require("./sfsymbols/dist/Icons"),
 		gravity = IsExploit() and Loadstring(
-			Get("https://rxinoussouls.github.io/VynxUI/vendor/icons/gravity/dist/Icons.lua")
+			Get("https://raw.githubusercontent.com/rxinoussouls/VynxUI/main/website/public/vendor/icons/gravity/dist/Icons.lua")
 		)() or require("./gravity/dist/Icons"),
 	},
 }
