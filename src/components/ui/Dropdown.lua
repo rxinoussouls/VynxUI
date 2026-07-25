@@ -50,13 +50,33 @@ function DropdownMenu.New(Config, Dropdown, Element, Type)
 			ThemeTag = {
 				ImageColor3 = "DropdownBackground",
 			},
-			ImageTransparency = 1, -- 0.05
+			-- restyled to match the Cascade-derived card language
+			-- (FloatingMenu.lua's Dialog background + 0.9-transparency
+			-- stroke, and Section's now-opaque Box background) -- the
+			-- previous ImageTransparency = 1 made this panel fully
+			-- invisible on its own (there's no Acrylic/blur wired to
+			-- this element to fill in for it). Dropdown.Glass keeps a
+			-- lighter, translucent variant since "SquircleGlass" isn't
+			-- an actual acrylic material here (not defined in
+			-- Creator.lua's image map) -- just a see-through fill.
+			ImageTransparency = Dropdown.Glass and 0.15 or 0,
 			Size = UDim2.new(1, 0, 1, 0),
 			AnchorPoint = Vector2.new(1, 0),
 			Position = UDim2.new(1, 0, 0, 0),
 			ZIndex = 242,
 		},
 		{
+			-- hairline border, same "SquircleOutline" image-shape
+			-- convention Section.lua's boxed cards use -- a plain
+			-- UIStroke would draw straight rectangular corners over
+			-- this squircle's curved ones, so the border has to be
+			-- its own matching image layer, not an Instance stroke.
+			Creator.NewRoundFrame(Element.MenuCorner, "SquircleOutline", {
+				Size = UDim2.new(1, 0, 1, 0),
+				ThemeTag = { ImageColor3 = "SectionBoxBorder" },
+				ImageTransparency = 0.9,
+				ZIndex = 243,
+			}),
 			New("UIPadding", {
 				PaddingTop = UDim.new(0, Element.MenuPadding),
 				PaddingLeft = UDim.new(0, Element.MenuPadding),

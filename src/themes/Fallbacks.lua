@@ -176,7 +176,12 @@ return function(Creator)
 
 		DropdownTabBorder = "White",
 		DropdownTabBackground = "ElementBackground",
-		DropdownBackground = "Background",
+		-- raised to "Dialog" (an elevated surface, distinct from the
+		-- flat window Background) to match FloatingMenu.lua's Cascade-
+		-- style floating menus and Cascade's Controls.MenuButton
+		-- .MenuBackground, which is a separate, lighter tone from
+		-- Controls.Background.
+		DropdownBackground = "Dialog",
 
 		LabelBackground = "White",
 		LabelBackgroundTransparency = 0.95,
