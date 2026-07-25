@@ -43,6 +43,7 @@ return {
 		Video = require("./Video"),
 		Symbol = require("./Symbol"), -- ported from Cascade
 		TitleStack = require("./TitleStack"), -- ported from Cascade
+		PullDownButton = require("./PullDownButton"), -- ported from Cascade (simplified, see file header)
 	},
 	Load = function(tbl, Container, Elements, Window, VynxUI, OnElementCreateFunction, ElementsModule, UIScale, Tab)
 		for name, module in next, Elements do
