@@ -176,3 +176,37 @@ back: (a) does the Sequoia/Cascade-styled UI look right, and (b) is the
 icon-catalog crash from earlier in the session actually gone now. Do not make
 further code changes until at least one of those is confirmed, since next steps
 depend entirely on what (if anything) is still broken.
+
+## 10. Phase 1 update (window chrome) — done this turn
+Key discovery: VynxUI already had a native macOS-style "Mac" topbar mode built in
+(`Window.Topbar.ButtonsType == "Mac"` in `src/components/window/Init.lua`,
+`Window:CreateTopbarButton` function, ~line 1155) — real traffic-light dots
+(colored round Squircle frames), NOT icon buttons. It was already turned on in
+`main_example.lua`'s `Topbar = { Height = 44, ButtonsType = "Mac" }`. So Cascade's
+`structures/WindowControls.luau`/`Window.luau` did NOT need to be ported — the
+equivalent already existed, just needed color tuning. Sidebar mode
+(`TabHolderType = "sidebar", SidebarCompact = true`) was also already on in the demo.
+
+Changes made:
+- ASCII banner in `build/header.lua`, `Main.lua`, `website/public/main.lua`:
+  "WindUI" figlet art -> "VYNX UI" (smslant font via `figlet -f smslant "VYNX UI"`).
+  `dist/main.lua` gets this automatically from `build/header.lua` on rebuild.
+- Traffic-light colors tuned to exact macOS/Cascade hex in
+  `src/components/window/Init.lua`: Fullscreen/Zoom `#60C762`->`#28C840` (line
+  ~1849), Minimize `#F4C948`->`#FEBC2E` (line ~1918), Close/Exit `#F4695F`->`#FF5F57`
+  (line ~2762).
+- Rebuilt `dist/main.lua` via darklua, synced `website/public/dist/main.lua`.
+- Commit `0bed695`, pushed cleanly (`22e364d..0bed695`).
+
+**IMPORTANT implication for the "UI still looks the same" report:** since Mac-style
+traffic lights + sidebar were ALREADY configured in the demo before this phase even
+started, the user testing the demo should have already been seeing a Mac-style
+topbar, not VynxUI's plain default icon-button topbar. That they reported "looks
+exactly like before" suggests the window may not be rendering fully at all when they
+test (e.g. the icon-catalog crash from `6cf459f` might still be happening, or
+they're testing a cached/old loadstring in Roblox, or they're not actually running
+`main_example.lua`). **Next session: don't assume this phase's color/asset tuning
+alone will look different to the user — first confirm the window is rendering at
+all, then whether it now looks Mac-styled.** This is the same unresolved
+confirmation gap noted in §5/§6 above, now compounded by a second layer of "why
+doesn't it look different" that may have the same root cause.
