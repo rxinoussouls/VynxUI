@@ -1,8 +1,8 @@
 --[[
-     _      ___         ____  ______
-    | | /| / (_)__  ___/ / / / /  _/
-    | |/ |/ / / _ \/ _  / /_/ // /
-    |__/|__/_/_//_/\_,_/\____/___/
+     _   ____  ___  ___  __  __  ______
+    | | / /\ \/ / |/ / |/_/ / / / /  _/
+    | |/ /  \  /    />  <  / /_/ // /
+    |___/   /_/_/|_/_/|_|  \____/___/
 
     v1.6.65  |  2026-07-26  |  Roblox UI Library for scripts
 
@@ -28696,7 +28696,7 @@ aE:ToggleFullscreen()
 end,
 (aE.Topbar.ButtonsType=="Default"and 998 or 999),
 true,
-Color3.fromHex"#60C762",
+Color3.fromHex"#28C840",
 aE.Topbar.ButtonsType=="Mac"and 9 or nil
 )
 
@@ -28765,7 +28765,7 @@ end
 
 
 
-end,(aE.Topbar.ButtonsType=="Default"and 997 or 998),nil,Color3.fromHex"#F4C948")
+end,(aE.Topbar.ButtonsType=="Default"and 997 or 998),nil,Color3.fromHex"#FEBC2E")
 
 function aE.OnOpen(a0,a1)
 aE.OnOpenCallback=a1
@@ -29609,7 +29609,7 @@ else
 aE:Destroy()
 end
 end
-end,(aE.Topbar.ButtonsType=="Default"and 999 or 997),nil,Color3.fromHex"#F4695F")
+end,(aE.Topbar.ButtonsType=="Default"and 999 or 997),nil,Color3.fromHex"#FF5F57")
 
 function aE.Tag(a6,a7)
 if aE.UIElements.Main.Main.Topbar.Center.Visible==false then

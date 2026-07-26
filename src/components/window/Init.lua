@@ -1846,7 +1846,7 @@ return function(Config)
 		end,
 		(Window.Topbar.ButtonsType == "Default" and 998 or 999),
 		true,
-		Color3.fromHex("#60C762"),
+		Color3.fromHex("#28C840"),
 		Window.Topbar.ButtonsType == "Mac" and 9 or nil
 	)
 
@@ -1915,7 +1915,7 @@ return function(Config)
 		--         Duration = 5,
 		--     })
 		-- end
-	end, (Window.Topbar.ButtonsType == "Default" and 997 or 998), nil, Color3.fromHex("#F4C948"))
+	end, (Window.Topbar.ButtonsType == "Default" and 997 or 998), nil, Color3.fromHex("#FEBC2E"))
 
 	function Window:OnOpen(func)
 		Window.OnOpenCallback = func
@@ -2759,7 +2759,7 @@ return function(Config)
 				Window:Destroy()
 			end
 		end
-	end, (Window.Topbar.ButtonsType == "Default" and 999 or 997), nil, Color3.fromHex("#F4695F"))
+	end, (Window.Topbar.ButtonsType == "Default" and 999 or 997), nil, Color3.fromHex("#FF5F57"))
 
 	function Window:Tag(TagConfig)
 		if Window.UIElements.Main.Main.Topbar.Center.Visible == false then
