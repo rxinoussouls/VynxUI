@@ -13534,7 +13534,7 @@ math.floor(au/at.Cols)*at.Size.Y
 )
 end
 
-local ar=12
+local ar=8
 local as
 local at=if ah and ah~=""then ab.Icon(ah)else nil
 if at then
@@ -13553,7 +13553,7 @@ ImageColor3=Color3.new(0,0,0),
 end
 
 local au=ae("Frame",{
-Size=UDim2.new(0,2,0,26),
+Size=UDim2.new(0,2,0,18),
 BackgroundTransparency=1,
 Parent=aj,
 })
@@ -13564,7 +13564,7 @@ ThemeTag={
 ImageColor3="Text",
 },
 Parent=au,
-Size=UDim2.new(0,al and 52 or 41,0,24),
+Size=UDim2.new(0,al and 36 or 30,0,16),
 AnchorPoint=Vector2.new(1,0.5),
 Position=UDim2.new(0,0,0.5,0),
 Name="ToggleFrame",
@@ -13592,7 +13592,7 @@ NumberSequenceKeypoint.new(1,1),
 }),
 }),
 ab.NewRoundFrame(ar,"Squircle",{
-Size=UDim2.new(0,al and 30 or 20,0,20),
+Size=UDim2.new(0,al and 22 or 13,0,13),
 Position=UDim2.new(0,2,0.5,0),
 AnchorPoint=Vector2.new(0,0.5),
 ImageTransparency=1,
@@ -13667,7 +13667,7 @@ Text="",
 local aw
 local ax
 local ay
-local az=if al then 30 else 20
+local az=if al then 22 else 13
 local aA=av.Size.X.Offset
 local aB
 

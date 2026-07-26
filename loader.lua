@@ -1,4 +1,4 @@
-local CACHE_KEY = "1.6.65-ui-runtime-v8-input"
+local CACHE_KEY = "1.6.65-ui-runtime-v9-toggle"
 local REQUIRED_API = {
 	"RegisterIconPack",
 	"GetIconSources",

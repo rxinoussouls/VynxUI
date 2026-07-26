@@ -53,7 +53,7 @@ function Toggle.New(Value, Icon, IconSize, Parent, Callback, NewElement, Config)
 			)
 	end
 
-	local Radius = 12
+	local Radius = 8
 	local IconToggleFrame
 	local IconData = if Icon and Icon ~= "" then Creator.Icon(Icon) else nil
 	if IconData then
@@ -72,7 +72,7 @@ function Toggle.New(Value, Icon, IconSize, Parent, Callback, NewElement, Config)
 	end
 
 	local ToggleContainer = New("Frame", {
-		Size = UDim2.new(0, 2, 0, 26),
+		Size = UDim2.new(0, 2, 0, 18),
 		BackgroundTransparency = 1,
 		Parent = Parent,
 	})
@@ -83,7 +83,7 @@ function Toggle.New(Value, Icon, IconSize, Parent, Callback, NewElement, Config)
 			ImageColor3 = "Text",
 		},
 		Parent = ToggleContainer,
-		Size = UDim2.new(0, NewElement and 52 or 41, 0, 24),
+		Size = UDim2.new(0, NewElement and 36 or 30, 0, 16),
 		AnchorPoint = Vector2.new(1, 0.5),
 		Position = UDim2.new(0, 0, 0.5, 0),
 		Name = "ToggleFrame",
@@ -111,7 +111,7 @@ function Toggle.New(Value, Icon, IconSize, Parent, Callback, NewElement, Config)
 			}),
 		}),
 		Creator.NewRoundFrame(Radius, "Squircle", {
-			Size = UDim2.new(0, NewElement and 30 or 20, 0, 20),
+			Size = UDim2.new(0, NewElement and 22 or 13, 0, 13),
 			Position = UDim2.new(0, 2, 0.5, 0),
 			AnchorPoint = Vector2.new(0, 0.5),
 			ImageTransparency = 1,
@@ -186,7 +186,7 @@ function Toggle.New(Value, Icon, IconSize, Parent, Callback, NewElement, Config)
 	local DragConnection
 	local EndConnection
 	local InputOwnerId
-	local FrameWidth = if NewElement then 30 else 20
+	local FrameWidth = if NewElement then 22 else 13
 	local ToggleWidth = ToggleFrame.Size.X.Offset
 	local RenderedValue
 
