@@ -134,7 +134,7 @@ function Toggle.New(Value, Icon, IconSize, Parent, Callback, NewElement, Config)
 						Size = UDim2.new(1, 1, 1, 1),
 						ImageColor3 = Color3.new(1, 1, 1),
 						Name = "SquircleGlass",
-						ImageTransparency = 0.5,
+						ImageTransparency = 0.25,
 						AnchorPoint = Vector2.new(0.5, 0.5),
 						Position = UDim2.fromScale(0.5, 0.5),
 					}),
