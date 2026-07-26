@@ -260,3 +260,31 @@ the top-level `VynxUI:SetTheme("Sequoia")` call that might override it), OR just
 re-grep `main_example.lua` directly next session for a second theme-setting call
 before touching anything else -- the pink accent needs an explanation before layout
 work (items 1-2 above) begins.
+
+## 13. CRITICAL ROOT CAUSE FOUND — read this before debugging "nothing changed" again
+`loader.lua` has a hardcoded `CACHE_KEY` constant used to cache-bust its fetch of
+`dist/main.lua` from raw.githubusercontent.com. **This constant was never bumped
+across an entire session's worth of commits** (stayed `"1.6.65-ui-runtime-9"` from
+before session 2 all the way through several rebuilds). Because the query string
+never changed, GitHub's CDN could -- and did -- intermittently serve a STALE cached
+copy of `dist/main.lua` regardless of how many times the actual file content was
+updated and pushed. This is the real explanation for the whole confusing pattern of
+"title text changes worked, but sidebar labels / theme / dividers sometimes didn't"
+-- it was never a code bug in those features, it was inconsistent CDN caching of the
+one file that actually matters at runtime.
+
+**Fixed in commit `0c2c291`**: bumped `CACHE_KEY` to
+`"1.6.65-ui-runtime-v5-cache-fix"`.
+
+**Rule for all future sessions: bump `CACHE_KEY` in `loader.lua` (and its
+`website/public/loader.lua` mirror) every single time `dist/main.lua` is rebuilt and
+pushed.** A random/incrementing suffix is fine -- what matters is that the query
+string actually changes every time, unlike this session's mistake of leaving it
+static. Do this BEFORE telling the user to re-test, not after they report "nothing
+changed" again.
+
+Also note: `main_example.lua`'s own outer loadstring query string (the one the user
+pastes into Roblox) was being bumped correctly all session (`?v=1.6.65-cascade-test-v3`,
+`-v4`, etc) -- that part was never the problem. The bug was purely in the SECOND hop
+(`loader.lua` -> `dist/main.lua`), which is easy to forget about since it's not the
+URL visible in the chat.
