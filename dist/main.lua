@@ -7753,6 +7753,36 @@ LabelBackgroundTransparency=0.5,
 ElementBackground=Color3.fromHex"#1F1F21",
 ElementBackgroundTransparency=0,
 },
+
+
+
+["Sequoia Light"]={
+Name="Sequoia Light",
+
+Accent=Color3.fromHex"#FCFCFC",
+Dialog=Color3.fromHex"#EAEAEA",
+Outline=Color3.fromHex"#000000",
+Text=Color3.fromHex"#000000",
+Placeholder=Color3.fromHex"#808080",
+Background=Color3.fromHex"#FFFFFF",
+Button=Color3.fromHex"#E5E5E5",
+Icon=Color3.fromHex"#808080",
+Toggle=Color3.fromHex"#478CF6",
+Slider=Color3.fromHex"#007AFF",
+Checkbox=Color3.fromHex"#007AFF",
+
+PanelBackground=Color3.fromHex"#000000",
+PanelBackgroundTransparency=0.95,
+
+SliderIcon=Color3.fromHex"#808080",
+Primary=Color3.fromHex"#007AFF",
+
+LabelBackground=Color3.fromHex"#FFFFFF",
+LabelBackgroundTransparency=0.5,
+
+ElementBackground=Color3.fromHex"#FCFCFC",
+ElementBackgroundTransparency=0,
+},
 }
 end end function a.z()
 

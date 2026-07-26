@@ -473,6 +473,7 @@ SystemTab:ActionList({
 
 SystemTab:KeyValue({
 	Title = "Icon Resolver",
+	Divided = true,
 	Items = {
 		{ Title = "Custom pack", Value = "demo:*" },
 		{ Title = "Alias", Value = "sample:*" },
@@ -647,6 +648,7 @@ PremiumRow:Button({
 
 PremiumTab:KeyValue({
 	Title = "Premium API",
+	Divided = true,
 	Items = {
 		{ Title = "Tab", Value = "Golden = true" },
 		{ Title = "Button", Value = "Premium = true" },
@@ -760,6 +762,7 @@ LinkedTab:Space()
 
 LinkedTab:KeyValue({
 	Title = "Corner Mode",
+	Divided = true,
 	Items = {
 		{ Title = "Surface", Value = "Native UICorner radii" },
 		{ Title = "Tab", Value = "LinkCorners + CornerLink" },

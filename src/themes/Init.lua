@@ -409,5 +409,35 @@ return function(VynxUI, Creator)
 			ElementBackground = Color3.fromHex("#1F1F21"), -- Controls.View
 			ElementBackgroundTransparency = 0,
 		},
+
+		-- ported from Cascade (cascadeui/Cascade, src/themes/Light.luau +
+		-- accents.luau "Blue") -- light counterpart to Sequoia above.
+		["Sequoia Light"] = {
+			Name = "Sequoia Light",
+
+			Accent = Color3.fromHex("#FCFCFC"), -- Controls.View
+			Dialog = Color3.fromHex("#EAEAEA"), -- Controls.Sidebar
+			Outline = Color3.fromHex("#000000"),
+			Text = Color3.fromHex("#000000"),
+			Placeholder = Color3.fromHex("#808080"), -- Text.Secondary approx.
+			Background = Color3.fromHex("#FFFFFF"), -- Controls.Background
+			Button = Color3.fromHex("#E5E5E5"), -- Controls.Button.FillSecondary approx.
+			Icon = Color3.fromHex("#808080"),
+			Toggle = Color3.fromHex("#478CF6"), -- Controls.Toggle.SwitchOn
+			Slider = Color3.fromHex("#007AFF"), -- accents.Blue.Light.Selection*
+			Checkbox = Color3.fromHex("#007AFF"),
+
+			PanelBackground = Color3.fromHex("#000000"),
+			PanelBackgroundTransparency = 0.95,
+
+			SliderIcon = Color3.fromHex("#808080"),
+			Primary = Color3.fromHex("#007AFF"),
+
+			LabelBackground = Color3.fromHex("#FFFFFF"),
+			LabelBackgroundTransparency = 0.5,
+
+			ElementBackground = Color3.fromHex("#FCFCFC"), -- Controls.View
+			ElementBackgroundTransparency = 0,
+		},
 	}
 end
