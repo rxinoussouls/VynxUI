@@ -27117,7 +27117,7 @@ aE.TopBarButtonIconSize=aE.TopBarButtonIconSize or(aE.Topbar.ButtonsType=="Mac"a
 
 aE.ElementConfig={
 UIPadding=(aE.NewElements and 10 or 13),
-UICorner=aE.ElementsRadius or(aE.NewElements and 23 or 16),
+UICorner=aE.ElementsRadius or(aE.NewElements and 12 or 10),
 Transparency=aE.ElementTransparency,
 GlassTransparency=aE.ElementGlassTransparency or 0.24,
 LiquidGlass=aE.LiquidGlass,

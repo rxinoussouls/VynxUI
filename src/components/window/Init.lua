@@ -210,7 +210,7 @@ return function(Config)
 
 	Window.ElementConfig = {
 		UIPadding = (Window.NewElements and 10 or 13),
-		UICorner = Window.ElementsRadius or (Window.NewElements and 23 or 16),
+		UICorner = Window.ElementsRadius or (Window.NewElements and 12 or 10),
 		Transparency = Window.ElementTransparency,
 		GlassTransparency = Window.ElementGlassTransparency or 0.24,
 		LiquidGlass = Window.LiquidGlass,

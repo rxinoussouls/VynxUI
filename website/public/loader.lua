@@ -1,4 +1,4 @@
-local CACHE_KEY = "1.6.65-ui-runtime-v10-radius"
+local CACHE_KEY = "1.6.65-ui-runtime-v11-elradius"
 local REQUIRED_API = {
 	"RegisterIconPack",
 	"GetIconSources",
