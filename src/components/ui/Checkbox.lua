@@ -10,7 +10,7 @@ function Checkbox.New(Value, Icon, IconSize, Parent, Callback, Config)
     
     Icon = Icon or "sfsymbols:checkmark"
     
-    local Radius = 9
+    local Radius = 6
     
     local IconCheckboxFrame = Creator.Image(
         Icon,
@@ -33,7 +33,7 @@ function Checkbox.New(Value, Icon, IconSize, Parent, Callback, Config)
             ImageColor3 = "Text"
         },
         Parent = Parent,
-        Size = UDim2.new(0,26,0,26),
+        Size = UDim2.new(0,20,0,20),
     }, {
         Creator.NewRoundFrame(Radius, "Squircle", {
             Size = UDim2.new(1,0,1,0),

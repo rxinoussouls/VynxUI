@@ -1,4 +1,4 @@
-local CACHE_KEY = "1.6.65-ui-runtime-v5-cache-fix"
+local CACHE_KEY = "1.6.65-ui-runtime-v6"
 local REQUIRED_API = {
 	"RegisterIconPack",
 	"GetIconSources",

@@ -13921,7 +13921,7 @@ local al={}
 
 ag=ag or"sfsymbols:checkmark"
 
-local am=9
+local am=6
 
 local an=ab.Image(
 ag,
@@ -13944,7 +13944,7 @@ ThemeTag={
 ImageColor3="Text"
 },
 Parent=ai,
-Size=UDim2.new(0,26,0,26),
+Size=UDim2.new(0,20,0,20),
 },{
 ab.NewRoundFrame(am,"Squircle",{
 Size=UDim2.new(1,0,1,0),
