@@ -20494,7 +20494,7 @@ au,
 ao.Divided and ap<#ao.Items and ai("Frame",{
 Name="RowDivider",
 Size=UDim2.new(1,0,0,1),
-BackgroundTransparency=0.88,
+BackgroundTransparency=0.65,
 ThemeTag={
 BackgroundColor3="Text",
 },

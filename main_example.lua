@@ -1,7 +1,7 @@
 local VynxUI =
-	loadstring(game:HttpGet("https://raw.githubusercontent.com/rxinoussouls/VynxUI/main/loader.lua?v=1.6.65-cascade-test-v3"))()
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/rxinoussouls/VynxUI/main/loader.lua?v=1.6.65-cascade-test-v4"))()
 
-VynxUI:SetTheme("Sequoia")
+VynxUI:SetTheme("Sequoia Light")
 
 local HasIconSourceAPI = (tonumber(VynxUI.IconAdapterVersion) or 0) >= 3
 	and type(VynxUI.RegisterIconPack) == "function"
@@ -153,8 +153,8 @@ local function NotifyOutdatedRuntime()
 end
 
 VynxUI:Notify({
-	Title = "VYNX UI test build loaded",
-	Content = "If you see this, the latest code is running (labeled sidebar + hairline rows).",
+	Title = "VYNX UI v4 — Light theme test",
+	Content = "Window should now be LIGHT (Sequoia Light), not dark, if this is the latest build.",
 	Icon = "circle-check",
 	Style = "Success",
 })

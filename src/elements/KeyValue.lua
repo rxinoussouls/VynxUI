@@ -128,7 +128,7 @@ function Element:New(Config)
 				KeyValue.Divided and Index < #KeyValue.Items and New("Frame", {
 					Name = "RowDivider",
 					Size = UDim2.new(1, 0, 0, 1),
-					BackgroundTransparency = 0.88,
+					BackgroundTransparency = 0.65,
 					ThemeTag = {
 						BackgroundColor3 = "Text",
 					},
