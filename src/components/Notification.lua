@@ -9,7 +9,7 @@ local HOLDER_TOP = 58
 local HOLDER_BOTTOM = 72
 local HOLDER_MAX_WIDTH = 420
 local HOLDER_MIN_WIDTH = 240
-local CARD_RADIUS = 18
+local CARD_RADIUS = 13
 local CARD_PADDING = 10
 local CARD_GAP = 8
 local ICON_SIZE = 30
@@ -384,7 +384,7 @@ function NotificationModule.New(Config)
 	)
 	local CardPadding = if IsWindow or IsOriginally then 14 elseif IsCard then 12 else CARD_PADDING
 	local CardRadius = math.max(
-		tonumber(Config.Radius) or (IsWindow and 20 or (IsOriginally and 18 or (IsCard and 20 or CARD_RADIUS))),
+		tonumber(Config.Radius) or (IsWindow and 14 or (IsOriginally and 13 or (IsCard and 14 or CARD_RADIUS))),
 		8
 	)
 	local CornerConfig = if typeof(Config.Corners or Config.CornerRadii) == "table"

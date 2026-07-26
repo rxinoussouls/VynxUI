@@ -2892,7 +2892,7 @@ local h=58
 local i=72
 local j=420
 local m=240
-local p=18
+local p=13
 local r=10
 local u=8
 local v=30
@@ -3267,7 +3267,7 @@ m
 )
 local aq=if am or an then 14 elseif ao then 12 else r
 local ar=math.max(
-tonumber(aa.Radius)or(am and 20 or(an and 18 or(ao and 20 or p))),
+tonumber(aa.Radius)or(am and 14 or(an and 13 or(ao and 14 or p))),
 8
 )
 local as=if typeof(aa.Corners or aa.CornerRadii)=="table"
@@ -26985,7 +26985,7 @@ aw.LinkElementCorners and(tonumber(az)or 1)or 8
 aw.ElementTransparency=PickAlias(aw.ElementTransparency,aw.ElementsTransparency,0.18)
 aw.BackgroundOverlayTransparency=Pick(aw.BackgroundOverlayTransparency,0.5)
 aw.BackgroundColor=Pick(aw.BackgroundColor,Color3.fromHex"#101821")
-aw.Radius=Pick(aw.Radius,20)
+aw.Radius=Pick(aw.Radius,12)
 aw.SideBarWidth=Pick(aw.SideBarWidth,210)
 aw.Topbar=aw.Topbar or{
 Height=48,

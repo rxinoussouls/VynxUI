@@ -78,7 +78,7 @@ return function(Config)
 		Config.ElementTransparency = PickAlias(Config.ElementTransparency, Config.ElementsTransparency, 0.18)
 		Config.BackgroundOverlayTransparency = Pick(Config.BackgroundOverlayTransparency, 0.5)
 		Config.BackgroundColor = Pick(Config.BackgroundColor, Color3.fromHex("#101821"))
-		Config.Radius = Pick(Config.Radius, 20)
+		Config.Radius = Pick(Config.Radius, 12)
 		Config.SideBarWidth = Pick(Config.SideBarWidth, 210)
 		Config.Topbar = Config.Topbar or {
 			Height = 48,
