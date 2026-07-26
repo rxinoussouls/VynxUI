@@ -25379,7 +25379,7 @@ or((ar.Golden==true or ar.Premium==true)and Color3.fromRGB(255,222,105)or nil),
 IconShape=ar.IconShape,
 IconThemed=ar.IconThemed,
 Locked=ar.Locked,
-ShowTabTitle=ar.ShowTabTitle,
+ShowTabTitle=if ar.ShowTabTitle~=nil then ar.ShowTabTitle else not av,
 TabTitleAlign=ar.TabTitleAlign or"Left",
 CustomEmptyPage=(ar.CustomEmptyPage and next(ar.CustomEmptyPage)~=nil)and ar.CustomEmptyPage
 or{Icon="lucide:frown",IconSize=48,Title="This tab is Empty",Desc=nil},

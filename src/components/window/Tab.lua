@@ -73,7 +73,7 @@ function TabModule.New(Config, UIScale)
 		IconShape = Config.IconShape,
 		IconThemed = Config.IconThemed,
 		Locked = Config.Locked,
-		ShowTabTitle = Config.ShowTabTitle,
+		ShowTabTitle = if Config.ShowTabTitle ~= nil then Config.ShowTabTitle else not IsIconOnly,
 		TabTitleAlign = Config.TabTitleAlign or "Left",
 		CustomEmptyPage = (Config.CustomEmptyPage and next(Config.CustomEmptyPage) ~= nil) and Config.CustomEmptyPage
 			or { Icon = "lucide:frown", IconSize = 48, Title = "This tab is Empty", Desc = nil },
