@@ -6,7 +6,7 @@ local New = Creator.New
 
 function Input.New(Placeholder, Icon, Parent, Type, Callback, OnChange, Radius, ClearTextOnFocus, RemoveGlass)
 	Type = Type or "Input"
-	local Radius = Radius or 10
+	local Radius = Radius or 7
 	local IconInputFrame
 	if Icon and Icon ~= "" then
 		IconInputFrame = New("ImageLabel", {
@@ -85,7 +85,7 @@ function Input.New(Placeholder, Icon, Parent, Type, Callback, OnChange, Radius, 
 	})
 
 	local InputFrame = New("Frame", {
-		Size = UDim2.new(1, 0, 0, 42),
+		Size = UDim2.new(1, 0, 0, 34),
 		Parent = Parent,
 		BackgroundTransparency = 1,
 	}, {

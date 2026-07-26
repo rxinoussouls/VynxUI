@@ -5124,7 +5124,7 @@ local ae=ab.New
 
 function aa.New(af,ag,ah,ai,aj,ak,al,am,an)
 ai=ai or"Input"
-local ao=al or 10
+local ao=al or 7
 local ap
 if ag and ag~=""then
 ap=ae("ImageLabel",{
@@ -5203,7 +5203,7 @@ ar,
 })
 
 local av=ae("Frame",{
-Size=UDim2.new(1,0,0,42),
+Size=UDim2.new(1,0,0,34),
 Parent=ah,
 BackgroundTransparency=1,
 },{
