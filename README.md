@@ -20,6 +20,10 @@
 
 ## Credits
 
+#### UI (https://github.com/cascadeui/Cascade)
+
+- `Symbol`, `TitleStack`, `PullDownButton`, `PopUpButton`, `ImageSurface` elements and the `Sequoia` theme are ported/adapted from [Cascade](https://github.com/cascadeui/Cascade)
+
 #### Icons (https://github.com/Footagesus/Icons)
 
 - [Lucide-Icons](https://github.com/lucide-icons/lucide)

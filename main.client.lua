@@ -30,7 +30,7 @@ do
 	end
 end
 
-VynxUI:SetTheme("Cascade")
+VynxUI:SetTheme("Sequoia")
 
 --[[
 

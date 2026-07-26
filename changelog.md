@@ -1,3 +1,12 @@
+# 1.6.67
+
+## Changelog
+
+- added `ImageSurface` element, ported from [Cascade](https://github.com/cascadeui/Cascade) (`src/components/ImageSurface`)
+- added `Sequoia` theme, translated from Cascade's macOS-Sequoia `Dark` theme + `Blue` accent
+- added `ImageSurfaceBackground` fallback theme key (`src/themes/Fallbacks.lua`) so `ImageSurface` themes correctly on every existing theme without per-theme edits
+- **note:** `dist/main.lua` / `Main.lua` are generated bundles -- run `npm run build` (requires `aftman install` for `darklua`) to regenerate them after this source change
+
 # 1.6.66
 
 ## Changelog

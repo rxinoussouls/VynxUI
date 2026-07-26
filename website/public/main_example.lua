@@ -1,7 +1,7 @@
 local VynxUI =
 	loadstring(game:HttpGet("https://raw.githubusercontent.com/rxinoussouls/VynxUI/main/loader.lua?v=1.6.65-ui-runtime-9"))()
 
-VynxUI:SetTheme("Cascade")
+VynxUI:SetTheme("Sequoia")
 
 local HasIconSourceAPI = (tonumber(VynxUI.IconAdapterVersion) or 0) >= 3
 	and type(VynxUI.RegisterIconPack) == "function"

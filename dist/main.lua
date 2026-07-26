@@ -4,7 +4,7 @@
     | |/ |/ / / _ \/ _  / /_/ // /
     |__/|__/_/_//_/\_,_/\____/___/
 
-    v1.6.65  |  2026-07-23  |  Roblox UI Library for scripts
+    v1.6.65  |  2026-07-26  |  Roblox UI Library for scripts
 
     To view the source code, see the `src/` folder on the official GitHub repository.
 
@@ -914,6 +914,12 @@ BadgeBackground="Primary",
 BadgeText="White",
 BadgeIcon="White",
 
+
+
+
+
+ImageSurfaceBackground="ElementBackground",
+
 KeyValueIcon="Icon",
 ChipListBackground="ElementBackground",
 TimelineLine="Text",
@@ -973,12 +979,16 @@ SectionIcon="Icon",
 
 SectionExpandIcon="Icon",
 SectionExpandIconTransparency=0.4,
-SectionBox="Text",
-SectionBoxTransparency=0.95,
+
+
+
+
+SectionBox="ElementBackground",
+SectionBoxTransparency=0,
 SectionBoxBorder="White",
-SectionBoxBorderTransparency=0.75,
-SectionBoxBackground="Text",
-SectionBoxBackgroundTransparency=0.97,
+SectionBoxBorderTransparency=0.9,
+SectionBoxBackground="ElementBackground",
+SectionBoxBackgroundTransparency=0,
 
 SearchBarBorder="White",
 SearchBarBorderTransparency=0.75,
@@ -1004,7 +1014,12 @@ NotificationBorderTransparency=0.76,
 
 DropdownTabBorder="White",
 DropdownTabBackground="ElementBackground",
-DropdownBackground="Background",
+
+
+
+
+
+DropdownBackground="Dialog",
 
 LabelBackground="White",
 LabelBackgroundTransparency=0.95,
@@ -7706,26 +7721,36 @@ Button=aa:Gradient({
 Icon=Color3.fromHex"#ffffff",
 },
 
-Cascade={
-Name="Cascade",
-Accent=Color3.fromHex"#1F1F21",
-Dialog=Color3.fromHex"#1F1F21",
+
+
+
+
+
+Sequoia={
+Name="Sequoia",
+
+Accent=Color3.fromHex"#1f1f21",
+Dialog=Color3.fromHex"#202023",
 Outline=Color3.fromHex"#FFFFFF",
 Text=Color3.fromHex"#FFFFFF",
-Placeholder=Color3.fromHex"#8E8E93",
+Placeholder=Color3.fromHex"#98989D",
 Background=Color3.fromHex"#1C1C1E",
 Button=Color3.fromHex"#3A3A3C",
-Icon=Color3.fromHex"#8E8E93",
-Toggle=Color3.fromHex"#0A84FF",
-Slider=Color3.fromHex"#007AFF",
-Checkbox=Color3.fromHex"#007AFF",
-PanelBackground=Color3.fromHex"#FFFFFF",
-PanelBackgroundTransparency=0.95,
+Icon=Color3.fromHex"#98989D",
+Toggle=Color3.fromHex"#478CF6",
+Slider=Color3.fromHex"#0A84FF",
+Checkbox=Color3.fromHex"#0A84FF",
+
+PanelBackground=Color3.fromHex"#202023",
+PanelBackgroundTransparency=0.16,
+
 SliderIcon=Color3.fromHex"#98989D",
 Primary=Color3.fromHex"#0A84FF",
+
 LabelBackground=Color3.fromHex"#000000",
-LabelBackgroundTransparency=0.83,
-ElementBackground=Color3.fromHex"#232325",
+LabelBackgroundTransparency=0.5,
+
+ElementBackground=Color3.fromHex"#1F1F21",
 ElementBackgroundTransparency=0,
 },
 }
@@ -15408,13 +15433,33 @@ ar.Glass and"SquircleGlass"or"Squircle",
 ThemeTag={
 ImageColor3="DropdownBackground",
 },
-ImageTransparency=1,
+
+
+
+
+
+
+
+
+
+ImageTransparency=ar.Glass and 0.15 or 0,
 Size=UDim2.new(1,0,1,0),
 AnchorPoint=Vector2.new(1,0),
 Position=UDim2.new(1,0,0,0),
 ZIndex=242,
 },
 {
+
+
+
+
+
+al.NewRoundFrame(as.MenuCorner,"SquircleOutline",{
+Size=UDim2.new(1,0,1,0),
+ThemeTag={ImageColor3="SectionBoxBorder"},
+ImageTransparency=0.9,
+ZIndex=243,
+}),
 an("UIPadding",{
 PaddingTop=UDim.new(0,as.MenuPadding),
 PaddingLeft=UDim.new(0,as.MenuPadding),
@@ -23364,8 +23409,12 @@ IconThemed=am.IconThemed,
 TextXAlignment=am.TextXAlignment or"Left",
 TextSize=am.TextSize or 19,
 DescTextSize=am.DescTextSize or 16,
-Box=am.Box or false,
-BoxBorder=am.BoxBorder or false,
+
+
+
+
+Box=am.Box==nil or am.Box,
+BoxBorder=am.BoxBorder==nil or am.BoxBorder,
 FontWeight=am.FontWeight or Enum.FontWeight.SemiBold,
 DescFontWeight=am.DescFontWeight or Enum.FontWeight.Medium,
 TextTransparency=am.TextTransparency or 0.05,
@@ -24492,6 +24541,507 @@ end
 
 return ai end function a.aE()
 
+
+
+
+
+
+
+local aa=a.load'e'
+local af=aa.New
+
+local ai={}
+
+function ai.New(ak,al)
+local am=al.Style or"Primary"
+
+
+
+
+
+local an=aa.Image(
+al.Icon or"circle",
+al.Icon or"circle",
+0,
+al.Window and al.Window.Folder,
+"Element",
+true,
+true,
+"Text"
+)
+an.Size=al.Size or UDim2.fromOffset(20,20)
+if am=="Secondary"then
+an.ImageTransparency=math.clamp((an.ImageTransparency or 0)+0.35,0,1)
+end
+
+local ao=af("Frame",{
+Name="Symbol",
+Parent=al.Parent,
+BackgroundTransparency=1,
+Size=al.Size or UDim2.fromOffset(20,20),
+AutomaticSize="XY",
+},{an})
+
+local ap={
+__type="Symbol",
+Style=am,
+UIElements={Icon=an},
+ElementFrame=ao,
+}
+
+function ap.SetStyle(aq,ar)
+ap.Style=ar
+aa.SetThemeTag(an,"Text")
+if ar=="Secondary"then
+an.ImageTransparency=math.clamp((an.ImageTransparency or 0)+0.35,0,1)
+end
+end
+
+return ap.__type,ap
+end
+
+return ai end function a.aF()
+
+
+
+
+
+
+
+
+
+local aa=a.load'e'
+local af=aa.New
+local ai=a.load'ah'
+
+local ak={}
+
+function ak.New(al,am)
+local an={
+__type="TitleStack",
+Title=am.Title or"Title",
+Subtitle=am.Subtitle,
+UIElements={},
+}
+
+an.UIElements.Title=ai.CreateText(af,aa,an.Title,15,Enum.FontWeight.SemiBold,0)
+
+local ao={an.UIElements.Title}
+
+if an.Subtitle then
+an.UIElements.Subtitle=ai.CreateText(af,aa,an.Subtitle,13,Enum.FontWeight.Medium,0.3)
+table.insert(ao,an.UIElements.Subtitle)
+end
+
+an.ElementFrame=af("Frame",{
+Name="TitleStack",
+Parent=am.Parent,
+BackgroundTransparency=1,
+AutomaticSize="Y",
+Size=UDim2.new(1,0,0,0),
+},ao)
+
+af("UIListLayout",{
+Parent=an.ElementFrame,
+SortOrder="LayoutOrder",
+Padding=UDim.new(0,2),
+})
+
+function an.SetTitle(ap,aq)
+an.Title=aq
+an.UIElements.Title.Text=aq
+end
+
+function an.SetSubtitle(ap,aq)
+an.Subtitle=aq
+if not an.UIElements.Subtitle then
+an.UIElements.Subtitle=
+ai.CreateText(af,aa,aq,13,Enum.FontWeight.Medium,0.3)
+an.UIElements.Subtitle.Parent=an.ElementFrame
+else
+an.UIElements.Subtitle.Visible=true
+an.UIElements.Subtitle.Text=aq
+end
+end
+
+return an.__type,an
+end
+
+return ak end function a.aG()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+local aa=a.load'e'
+local af=aa.New
+
+local ai={}
+
+
+function ai.new(ak)
+local al=ak.VynxUI
+local am=ak.Trigger
+
+local an=af("ScrollingFrame",{
+Name="FloatingMenu",
+AutomaticSize="Y",
+Size=UDim2.new(0,math.max(am.AbsoluteSize.X,140),0,0),
+AutomaticCanvasSize="Y",
+CanvasSize=UDim2.new(),
+ScrollBarThickness=3,
+BackgroundTransparency=0,
+Visible=false,
+ZIndex=1000,
+ThemeTag={BackgroundColor3="Dialog",ScrollBarImageColor3="Text"},
+})
+af("UICorner",{Parent=an,CornerRadius=UDim.new(0,8)})
+af("UIStroke",{Parent=an,Transparency=0.9})
+af("UIListLayout",{Parent=an,SortOrder="LayoutOrder",Padding=UDim.new(0,1)})
+af("UIPadding",{
+Parent=an,
+PaddingLeft=UDim.new(0,4),
+PaddingRight=UDim.new(0,4),
+PaddingTop=UDim.new(0,4),
+PaddingBottom=UDim.new(0,4),
+})
+
+local ao=af("Frame",{
+Name="FloatingMenuOverlay",
+BackgroundTransparency=1,
+Size=UDim2.fromScale(1,1),
+Visible=false,
+ZIndex=999,
+},{an})
+
+ao.Parent=al.ScreenGui
+
+for ap,aq in ipairs(ak.Items or{})do
+local ar=af("TextButton",{
+Name="Item",
+Text=aq.Title or"",
+TextXAlignment="Left",
+AutomaticSize="XY",
+Size=UDim2.new(1,0,0,26),
+BackgroundTransparency=1,
+LayoutOrder=ap,
+ThemeTag={TextColor3="Text"},
+})
+af("UIPadding",{Parent=ar,PaddingLeft=UDim.new(0,8),PaddingRight=UDim.new(0,8)})
+ar.Parent=an
+ar.MouseButton1Click:Connect(function()
+ai.Close(ao)
+if ak.OnSelect then
+aa.SafeCallback(ak.OnSelect,aq,ap)
+end
+end)
+end
+
+function ai.Open()
+local ap=am.AbsolutePosition
+local aq=am.AbsoluteSize
+an.Position=UDim2.fromOffset(ap.X,ap.Y+aq.Y+4)
+ao.Visible=true
+end
+
+function ai.Close(ap)
+(ap or ao).Visible=false
+end
+
+ao.InputBegan:Connect(function(ap)
+if ap.UserInputType==Enum.UserInputType.MouseButton1 or ap.UserInputType==Enum.UserInputType.Touch then
+
+ai.Close(ao)
+end
+end)
+
+return{
+Overlay=ao,
+Menu=an,
+Open=ai.Open,
+Close=function()
+ai.Close(ao)
+end,
+}
+end
+
+return ai end function a.aH()
+
+
+
+
+
+
+
+local aa=a.load'e'
+local af=aa.New
+local ai=a.load'ah'
+local ak=a.load'aG'
+
+local al={}
+
+function al.New(am,an)
+local ao=an.Options or{}
+
+local ap={
+__type="PullDownButton",
+Title=an.Title or"Select",
+Options=ao,
+UIElements={},
+}
+
+local aq=ai.CreateText(af,aa,ap.Title,14,Enum.FontWeight.Medium,0)
+
+local ar=af("TextLabel",{
+Name="Chevron",
+BackgroundTransparency=1,
+Text="v",
+TextSize=12,
+Size=UDim2.fromOffset(14,14),
+ThemeTag={TextColor3="Text"},
+})
+
+local as=af("TextButton",{
+Name="PullDownButton",
+Text="",
+AutoButtonColor=false,
+AutomaticSize="XY",
+Size=UDim2.new(0,0,0,24),
+ThemeTag={BackgroundColor3="Dialog"},
+},{aq,ar})
+af("UICorner",{Parent=as,CornerRadius=UDim.new(0,6)})
+af("UIListLayout",{
+Parent=as,
+FillDirection="Horizontal",
+Padding=UDim.new(0,6),
+VerticalAlignment="Center",
+SortOrder="LayoutOrder",
+})
+af("UIPadding",{
+Parent=as,
+PaddingLeft=UDim.new(0,10),
+PaddingRight=UDim.new(0,8),
+PaddingTop=UDim.new(0,4),
+PaddingBottom=UDim.new(0,4),
+})
+
+ap.ElementFrame=as
+as.Parent=an.Parent
+
+local at=ak.new{
+VynxUI=an.VynxUI,
+Trigger=as,
+Items=ao,
+OnSelect=function(at)
+ap:Set(at.Title)
+if at.Callback then
+aa.SafeCallback(at.Callback,at.Value or at.Title)
+end
+end,
+}
+
+function ap.Set(au,av)
+ap.Title=av
+aq.Text=av
+end
+
+as.MouseButton1Click:Connect(function()
+at.Open()
+end)
+
+return ap.__type,ap
+end
+
+return al end function a.aI()
+
+
+
+
+
+
+
+
+
+
+local aa=a.load'e'
+local af=aa.New
+local ai=a.load'ah'
+local ak=a.load'aG'
+
+local al={}
+
+function al.New(am,an)
+local ao=an.Options or{}
+
+local ap={
+__type="PopUpButton",
+Value=an.Value,
+Options=ao,
+Callback=an.Callback or function()end,
+UIElements={},
+}
+
+local function OptionTitle(aq)
+return type(aq)=="table"and(aq.Title or"")or tostring(aq)
+end
+
+local aq=ai.CreateText(af,aa,"None",14,Enum.FontWeight.Medium,0)
+
+local ar=af("TextButton",{
+Name="PopUpButton",
+Text="",
+AutoButtonColor=false,
+AutomaticSize="XY",
+Size=UDim2.new(0,0,0,24),
+ThemeTag={BackgroundColor3="Dialog"},
+},{aq})
+af("UICorner",{Parent=ar,CornerRadius=UDim.new(0,6)})
+af("UIPadding",{
+Parent=ar,
+PaddingLeft=UDim.new(0,10),
+PaddingRight=UDim.new(0,10),
+PaddingTop=UDim.new(0,4),
+PaddingBottom=UDim.new(0,4),
+})
+
+ap.ElementFrame=ar
+ar.Parent=an.Parent
+
+local as=ak.new{
+VynxUI=an.VynxUI,
+Trigger=ar,
+Items=(function()
+local as={}
+for at,au in ipairs(ao)do
+table.insert(as,{Title=OptionTitle(au)})
+end
+return as
+end)(),
+OnSelect=function(as,at)
+ap:Set(ao[at])
+end,
+}
+
+function ap.Set(at,au)
+ap.Value=au
+aq.Text=au and OptionTitle(au)or"None"
+aa.SafeCallback(ap.Callback,au)
+end
+
+ar.MouseButton1Click:Connect(function()
+as.Open()
+end)
+
+if ap.Value then
+ap:Set(ap.Value)
+end
+
+return ap.__type,ap
+end
+
+return al end function a.aJ()
+
+
+
+
+
+
+
+
+local aa=a.load'e'
+local af=aa.New
+
+local ai={}
+
+function ai.New(ak,al)
+local am=al.Size or UDim2.fromOffset(26,26)
+local an=al.ImageSize or UDim2.fromOffset(20,20)
+local ao=al.Rounding or UDim.new(0,5)
+local ap=al.Gradient~=false
+
+local aq=af("ImageLabel",{
+Name="Image",
+AnchorPoint=Vector2.new(0.5,0.5),
+Position=UDim2.fromScale(0.5,0.5),
+Size=an,
+BackgroundTransparency=1,
+Image=al.Image or"",
+ScaleType=al.ScaleType or Enum.ScaleType.Fit,
+ThemeTag={
+ImageColor3="White",
+},
+})
+
+local ar=af("UIGradient",{
+Name="UIGradient",
+Rotation=al.GradientRotation or 90,
+Enabled=ap,
+Color=ColorSequence.new{
+ColorSequenceKeypoint.new(0,Color3.fromRGB(255,255,255)),
+ColorSequenceKeypoint.new(1,Color3.fromRGB(190,190,190)),
+},
+})
+
+local as=af("UICorner",{
+CornerRadius=ao,
+})
+
+local at=af("Frame",{
+Name="Surface",
+AnchorPoint=Vector2.new(0.5,0.5),
+Position=UDim2.fromScale(0.5,0.5),
+Size=UDim2.new(1,-2,1,-2),
+BorderSizePixel=0,
+ThemeTag={
+BackgroundColor3="ImageSurfaceBackground",
+},
+},{aq,as,ar})
+
+local au=af("Frame",{
+Name="ImageSurface",
+Parent=al.Parent,
+Size=am,
+BackgroundTransparency=1,
+},{at})
+
+local av={
+__type="ImageSurface",
+UIElements={Surface=at,Image=aq,Gradient=ar},
+ElementFrame=au,
+}
+
+function av.SetImage(aw,ax)
+aq.Image=ax
+end
+
+function av.SetGradient(aw,ax)
+ar.Enabled=ax and true or false
+end
+
+function av.SetSurfaceColor(aw,ax)
+
+
+at.BackgroundColor3=ax
+end
+
+return av.__type,av
+end
+
+return ai end function a.aK()
+
 local aa=a.load'e'
 
 return{
@@ -24535,6 +25085,11 @@ HStack=a.load'aA',
 VStack=a.load'aB',
 Viewport=a.load'aC',
 Video=a.load'aD',
+Symbol=a.load'aE',
+TitleStack=a.load'aF',
+PullDownButton=a.load'aH',
+PopUpButton=a.load'aI',
+ImageSurface=a.load'aJ',
 },
 Load=function(af,ai,ak,al,am,an,ao,ap,aq)
 for ar,as in next,ak do
@@ -24720,7 +25275,7 @@ end
 end
 end
 end,
-}end function a.aF()
+}end function a.aL()
 
 local aa=a.load'a'
 
@@ -25298,7 +25853,7 @@ end
 
 
 
-local aK=a.load'aE'
+local aK=a.load'aK'
 
 aK.Load(
 aA,
@@ -25564,7 +26119,7 @@ aq.OnChangeFunc(as)
 end
 end
 
-return aq end function a.aG()
+return aq end function a.aM()
 
 local aa={}
 
@@ -25573,7 +26128,7 @@ local af=a.load'e'
 local ai=af.New
 local ak=af.Tween
 
-local al=a.load'aF'
+local al=a.load'aL'
 
 function aa.New(am,an,ao,ap,aq)
 local ar={
@@ -25742,7 +26297,7 @@ return ar
 end
 
 
-return aa end function a.aH()
+return aa end function a.aN()
 return{
 Tab="table-of-contents",
 Paragraph="type",
@@ -25754,7 +26309,7 @@ Input="text-cursor-input",
 Dropdown="chevrons-up-down",
 Code="terminal",
 Colorpicker="palette",
-}end function a.aI()
+}end function a.aO()
 local aa=a.load'a'
 
 aa(game:GetService"UserInputService")
@@ -25776,7 +26331,7 @@ Radius=22,
 Width=400,
 MaxHeight=380,
 
-Icons=a.load'aH',
+Icons=a.load'aN',
 }
 
 local aq=ak("TextBox",{
@@ -26291,7 +26846,7 @@ end)
 return ap
 end
 
-return af end function a.aJ()
+return af end function a.aP()
 
 
 
@@ -28740,8 +29295,8 @@ if aE.OpenButton and typeof(aE.OpenButton)=="table"then
 aE:EditOpenButton(aE.OpenButton)
 end
 
-local a1=a.load'aF'
-local a2=a.load'aG'
+local a1=a.load'aL'
+local a2=a.load'aM'
 local a3=a1.Init(aE,aw.VynxUI,aw.VynxUI.TooltipGui)
 a3:OnChange(function(a4)
 aE.CurrentTab=a4
@@ -29198,7 +29753,7 @@ end)
 
 
 if aE.TabHolderType=="sidebar"and not aE.HideSearchBar then
-local ba=a.load'aI'
+local ba=a.load'aO'
 local bb=false
 
 
@@ -29689,7 +30244,7 @@ aa:SetTheme"Dark"
 aa:SetLanguage(af.Language)
 
 function aa.CreateWindow(aA,aB)
-local aC=a.load'aJ'
+local aC=a.load'aP'
 
 if not an:IsStudio()and writefile then
 if not isfolder"VynxUI"then

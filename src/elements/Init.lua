@@ -41,6 +41,11 @@ return {
 		VStack = require("./VStack"),
 		Viewport = require("./Viewport"),
 		Video = require("./Video"),
+		Symbol = require("./Symbol"), -- ported from Cascade
+		TitleStack = require("./TitleStack"), -- ported from Cascade
+		PullDownButton = require("./PullDownButton"), -- ported from Cascade (floating menu via FloatingMenu.lua)
+		PopUpButton = require("./PopUpButton"), -- ported from Cascade (floating menu via FloatingMenu.lua)
+		ImageSurface = require("./ImageSurface"), -- ported from Cascade (src/components/ImageSurface)
 	},
 	Load = function(tbl, Container, Elements, Window, VynxUI, OnElementCreateFunction, ElementsModule, UIScale, Tab)
 		for name, module in next, Elements do

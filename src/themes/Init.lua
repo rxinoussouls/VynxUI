@@ -377,31 +377,36 @@ return function(VynxUI, Creator)
 			Icon = Color3.fromHex("#ffffff"),
 		},
 
-		Cascade = {
-			Name = "Cascade",
+		-- ported from Cascade (cascadeui/Cascade, src/themes/Dark.luau +
+		-- accents.luau "Blue") -- Cascade's theme objects are layered
+		-- {Color3, alpha} pairs meant for a retained-mode binder, so these
+		-- are the closest flat-Color3 equivalents for VynxUI's theme
+		-- schema (System Blue accent, near-black macOS Sequoia surfaces).
+		Sequoia = {
+			Name = "Sequoia",
 
-			Accent = Color3.fromHex("#1F1F21"),
-			Dialog = Color3.fromHex("#1F1F21"),
+			Accent = Color3.fromHex("#1f1f21"), -- Controls.View
+			Dialog = Color3.fromHex("#202023"), -- Controls.Sidebar
 			Outline = Color3.fromHex("#FFFFFF"),
 			Text = Color3.fromHex("#FFFFFF"),
-			Placeholder = Color3.fromHex("#8E8E93"),
-			Background = Color3.fromHex("#1C1C1E"),
-			Button = Color3.fromHex("#3A3A3C"),
-			Icon = Color3.fromHex("#8E8E93"),
-			Toggle = Color3.fromHex("#0A84FF"),
-			Slider = Color3.fromHex("#007AFF"),
-			Checkbox = Color3.fromHex("#007AFF"),
+			Placeholder = Color3.fromHex("#98989D"), -- Text.Secondary approx.
+			Background = Color3.fromHex("#1C1C1E"), -- Controls.Background
+			Button = Color3.fromHex("#3A3A3C"), -- Controls.Button.FillSecondary approx.
+			Icon = Color3.fromHex("#98989D"),
+			Toggle = Color3.fromHex("#478CF6"), -- Controls.Toggle.SwitchOn
+			Slider = Color3.fromHex("#0A84FF"), -- accents.Blue.Dark.Selection*
+			Checkbox = Color3.fromHex("#0A84FF"),
 
-			PanelBackground = Color3.fromHex("#FFFFFF"),
-			PanelBackgroundTransparency = 0.95,
+			PanelBackground = Color3.fromHex("#202023"),
+			PanelBackgroundTransparency = 0.16, -- Controls.Sidebar alpha 84
 
 			SliderIcon = Color3.fromHex("#98989D"),
 			Primary = Color3.fromHex("#0A84FF"),
 
 			LabelBackground = Color3.fromHex("#000000"),
-			LabelBackgroundTransparency = 0.83,
+			LabelBackgroundTransparency = 0.5,
 
-			ElementBackground = Color3.fromHex("#232325"),
+			ElementBackground = Color3.fromHex("#1F1F21"), -- Controls.View
 			ElementBackgroundTransparency = 0,
 		},
 	}

@@ -76,6 +76,12 @@ return function(Creator)
 		BadgeText = "White",
 		BadgeIcon = "White",
 
+		-- ported from Cascade (Controls.ImageSurface.Gradient) -- flattened
+		-- to a single background + a top->bottom UIGradient overlay, since
+		-- VynxUI themes are flat Color3s rather than Cascade's alpha-layer
+		-- theme objects.
+		ImageSurfaceBackground = "ElementBackground",
+
 		KeyValueIcon = "Icon",
 		ChipListBackground = "ElementBackground",
 		TimelineLine = "Text",
@@ -135,12 +141,16 @@ return function(Creator)
 
 		SectionExpandIcon = "Icon",
 		SectionExpandIconTransparency = 0.4,
-		SectionBox = "Text",
-		SectionBoxTransparency = 0.95,
+		-- restyled to match Cascade's Form (cascadeui/Cascade,
+		-- src/components/Form.luau): opaque Controls.View-style card
+		-- background + a subtle ~10%-opacity hairline stroke, replacing
+		-- the old near-invisible "Text" tint (0.97 transparency) default.
+		SectionBox = "ElementBackground",
+		SectionBoxTransparency = 0,
 		SectionBoxBorder = "White",
-		SectionBoxBorderTransparency = 0.75,
-		SectionBoxBackground = "Text",
-		SectionBoxBackgroundTransparency = 0.97,
+		SectionBoxBorderTransparency = 0.9,
+		SectionBoxBackground = "ElementBackground",
+		SectionBoxBackgroundTransparency = 0,
 
 		SearchBarBorder = "White",
 		SearchBarBorderTransparency = 0.75,
@@ -166,7 +176,12 @@ return function(Creator)
 
 		DropdownTabBorder = "White",
 		DropdownTabBackground = "ElementBackground",
-		DropdownBackground = "Background",
+		-- raised to "Dialog" (an elevated surface, distinct from the
+		-- flat window Background) to match FloatingMenu.lua's Cascade-
+		-- style floating menus and Cascade's Controls.MenuButton
+		-- .MenuBackground, which is a separate, lighter tone from
+		-- Controls.Background.
+		DropdownBackground = "Dialog",
 
 		LabelBackground = "White",
 		LabelBackgroundTransparency = 0.95,
