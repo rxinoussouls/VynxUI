@@ -2498,7 +2498,32 @@ return function(Config)
 		end
 	end
 
-	function Window:Divider()
+	function Window:Divider(DividerConfig)
+		-- DividerConfig may be a plain string (back-compat / quick title) or a
+		-- table {Title = "..."}. Ported look: Cascade's small-caps gray
+		-- "Section Title" caption above each sidebar group.
+		local Title = if typeof(DividerConfig) == "string"
+			then DividerConfig
+			elseif typeof(DividerConfig) == "table" then DividerConfig.Title
+			else nil
+
+		local TitleLabel
+		if Title then
+			TitleLabel = New("TextLabel", {
+				Name = "SectionTitle",
+				Size = UDim2.new(1, 0, 0, 16),
+				BackgroundTransparency = 1,
+				Text = string.upper(Title),
+				TextSize = 11,
+				TextTransparency = 0.45,
+				TextXAlignment = "Left",
+				FontFace = Font.new(Creator.Font, Enum.FontWeight.SemiBold),
+				ThemeTag = {
+					TextColor3 = "Placeholder",
+				},
+			})
+		end
+
 		local Divider = New("Frame", {
 			Size = UDim2.new(1, 0, 0, 1),
 			Position = UDim2.new(0.5, 0, 0, 0),
@@ -2511,10 +2536,20 @@ return function(Config)
 		local MainDivider = New("Frame", {
 			Parent = Window.UIElements.SideBar.Frame,
 			--AutomaticSize = "Y",
-			Size = UDim2.new(1, -7, 0, 5),
+			Size = UDim2.new(1, -7, 0, TitleLabel and 22 or 5),
+			AutomaticSize = if TitleLabel then "Y" else nil,
 			BackgroundTransparency = 1,
 		}, {
-			Divider,
+			New("UIListLayout", {
+				FillDirection = "Vertical",
+				Padding = UDim.new(0, 6),
+			}),
+			New("UIPadding", {
+				PaddingLeft = UDim.new(0, 8),
+				PaddingRight = UDim.new(0, 8),
+			}),
+			TitleLabel,
+			(not TitleLabel) and Divider or nil,
 		})
 
 		return MainDivider

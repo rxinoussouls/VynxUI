@@ -12,6 +12,9 @@ function Element:New(Config)
 		Title = Config.Title or "Details",
 		Desc = Config.Desc,
 		Items = Utils.NormalizeItems(Config.Items or Config.Rows or Config.Values or {}, "Key", "Value"),
+		-- Cascade's Row/Form pattern: flat rows in one panel separated by a
+		-- hairline, instead of each row floating as its own card.
+		Divided = Config.Divided == true,
 		UIElements = {},
 		Rows = {},
 	}
@@ -38,7 +41,7 @@ function Element:New(Config)
 		Parent = KeyValue.KeyValueFrame.UIElements.Container,
 	}, {
 		New("UIListLayout", {
-			Padding = UDim.new(0, 8),
+			Padding = UDim.new(0, KeyValue.Divided and 0 or 8),
 			FillDirection = "Vertical",
 			VerticalAlignment = "Top",
 			HorizontalAlignment = "Left",
@@ -89,13 +92,11 @@ function Element:New(Config)
 				},
 			})
 
-			local Row = New("Frame", {
-				Name = "Row",
-				LayoutOrder = Index,
+			local RowContent = New("Frame", {
+				Name = "RowContent",
 				Size = UDim2.new(1, 0, 0, 0),
 				AutomaticSize = "Y",
 				BackgroundTransparency = 1,
-				Parent = KeyValue.UIElements.List,
 			}, {
 				New("UIListLayout", {
 					Padding = UDim.new(0, 8),
@@ -106,6 +107,32 @@ function Element:New(Config)
 				Icon,
 				Key,
 				Value,
+			})
+
+			local Row = New("Frame", {
+				Name = "Row",
+				LayoutOrder = Index,
+				Size = UDim2.new(1, 0, 0, 0),
+				AutomaticSize = "Y",
+				BackgroundTransparency = 1,
+				Parent = KeyValue.UIElements.List,
+			}, {
+				New("UIListLayout", {
+					FillDirection = "Vertical",
+					Padding = UDim.new(0, KeyValue.Divided and 9 or 0),
+				}),
+				KeyValue.Divided and New("UIPadding", {
+					PaddingTop = UDim.new(0, 9),
+				}) or nil,
+				RowContent,
+				KeyValue.Divided and Index < #KeyValue.Items and New("Frame", {
+					Name = "RowDivider",
+					Size = UDim2.new(1, 0, 0, 1),
+					BackgroundTransparency = 0.88,
+					ThemeTag = {
+						BackgroundColor3 = "Text",
+					},
+				}) or nil,
 			})
 
 			table.insert(KeyValue.Rows, Row)

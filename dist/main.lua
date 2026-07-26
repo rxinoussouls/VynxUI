@@ -20348,6 +20348,9 @@ __type="KeyValue",
 Title=an.Title or"Details",
 Desc=an.Desc,
 Items=ak.NormalizeItems(an.Items or an.Rows or an.Values or{},"Key","Value"),
+
+
+Divided=an.Divided==true,
 UIElements={},
 Rows={},
 }
@@ -20374,7 +20377,7 @@ BackgroundTransparency=1,
 Parent=ao.KeyValueFrame.UIElements.Container,
 },{
 ai("UIListLayout",{
-Padding=UDim.new(0,8),
+Padding=UDim.new(0,ao.Divided and 0 or 8),
 FillDirection="Vertical",
 VerticalAlignment="Top",
 HorizontalAlignment="Left",
@@ -20426,12 +20429,10 @@ TextColor3="Text",
 })
 
 local au=ai("Frame",{
-Name="Row",
-LayoutOrder=ap,
+Name="RowContent",
 Size=UDim2.new(1,0,0,0),
 AutomaticSize="Y",
 BackgroundTransparency=1,
-Parent=ao.UIElements.List,
 },{
 ai("UIListLayout",{
 Padding=UDim.new(0,8),
@@ -20444,7 +20445,33 @@ as,
 at,
 })
 
-table.insert(ao.Rows,au)
+local av=ai("Frame",{
+Name="Row",
+LayoutOrder=ap,
+Size=UDim2.new(1,0,0,0),
+AutomaticSize="Y",
+BackgroundTransparency=1,
+Parent=ao.UIElements.List,
+},{
+ai("UIListLayout",{
+FillDirection="Vertical",
+Padding=UDim.new(0,ao.Divided and 9 or 0),
+}),
+ao.Divided and ai("UIPadding",{
+PaddingTop=UDim.new(0,9),
+})or nil,
+au,
+ao.Divided and ap<#ao.Items and ai("Frame",{
+Name="RowDivider",
+Size=UDim2.new(1,0,0,1),
+BackgroundTransparency=0.88,
+ThemeTag={
+BackgroundColor3="Text",
+},
+})or nil,
+})
+
+table.insert(ao.Rows,av)
 end
 end
 
@@ -29348,8 +29375,33 @@ end
 end
 end
 
-function aE.Divider(a4)
-local a5=ap("Frame",{
+function aE.Divider(a4,a5)
+
+
+
+local a6=if typeof(a5)=="string"
+then a5
+elseif typeof(a5)=="table"then a5.Title
+else nil
+
+local a7
+if a6 then
+a7=ap("TextLabel",{
+Name="SectionTitle",
+Size=UDim2.new(1,0,0,16),
+BackgroundTransparency=1,
+Text=string.upper(a6),
+TextSize=11,
+TextTransparency=0.45,
+TextXAlignment="Left",
+FontFace=Font.new(an.Font,Enum.FontWeight.SemiBold),
+ThemeTag={
+TextColor3="Placeholder",
+},
+})
+end
+
+local a8=ap("Frame",{
 Size=UDim2.new(1,0,0,1),
 Position=UDim2.new(0.5,0,0,0),
 AnchorPoint=Vector2.new(0.5,0),
@@ -29358,16 +29410,26 @@ ThemeTag={
 BackgroundColor3="Text",
 },
 })
-local a6=ap("Frame",{
+local a9=ap("Frame",{
 Parent=aE.UIElements.SideBar.Frame,
 
-Size=UDim2.new(1,-7,0,5),
+Size=UDim2.new(1,-7,0,a7 and 22 or 5),
+AutomaticSize=if a7 then"Y"else nil,
 BackgroundTransparency=1,
 },{
-a5,
+ap("UIListLayout",{
+FillDirection="Vertical",
+Padding=UDim.new(0,6),
+}),
+ap("UIPadding",{
+PaddingLeft=UDim.new(0,8),
+PaddingRight=UDim.new(0,8),
+}),
+a7,
+(not a7)and a8 or nil,
 })
 
-return a6
+return a9
 end
 
 local a4=a.load'q'

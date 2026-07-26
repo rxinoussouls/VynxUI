@@ -53,7 +53,7 @@ local Window = VynxUI:CreateWindow({
 	ElementTransparency = 0.18,
 	ElementGap = 1,
 	TabHolderType = "sidebar", -- "sidebar" or "top"
-	SidebarCompact = true, -- icon-only sidebar; ignored when TabHolderType = "top"
+	SidebarCompact = false, -- labeled sidebar (Cascade-style); set true for icon-only
 	LinkElementCorners = true,
 	CornerLink = {
 		InnerRadius = 0,
@@ -199,11 +199,12 @@ OverviewTab:Path2D({
 
 OverviewTab:KeyValue({
 	Title = "Runtime",
+	Divided = true,
 	Items = {
 		{ Title = "Loader", Value = "loadstring" },
 		{ Title = "Theme", Value = VynxUI:GetCurrentTheme() },
 		{ Title = "Topbar", Value = "Mac + Settings Gear" },
-		{ Title = "Tab holder", Value = "Compact sidebar / top" },
+		{ Title = "Tab holder", Value = "Labeled sidebar / top" },
 		{ Title = "Icon sources", Value = tostring(#IconSources) },
 	},
 })
@@ -472,6 +473,8 @@ SystemTab:KeyValue({
 		{ Title = "Structured", Value = '{ Source = "solar", Name = "bell-bold" }' },
 	},
 })
+
+Window:Divider({ Title = "Configuration" })
 
 local SettingsTab = Window:Tab({
 	Title = "Settings",
@@ -805,6 +808,8 @@ DiscordTab:Timeline({
 		{ Title = "Join callback", Value = "Enabled" },
 	},
 })
+
+Window:Divider({ Title = "Development" })
 
 local MotionTab = Window:Tab({
 	Title = "Motion",
