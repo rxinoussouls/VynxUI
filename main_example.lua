@@ -1,5 +1,5 @@
 local VynxUI =
-	loadstring(game:HttpGet("https://raw.githubusercontent.com/rxinoussouls/VynxUI/main/loader.lua?v=1.6.65-ui-runtime-9"))()
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/rxinoussouls/VynxUI/main/loader.lua?v=1.6.65-cascade-test-v3"))()
 
 VynxUI:SetTheme("Sequoia")
 
@@ -45,7 +45,7 @@ VynxUI:LoadingCreate({
 })
 
 local Window = VynxUI:CreateWindow({
-	Title = ".ftgs hub | VynxUI Full Example",
+	Title = "VYNX UI — v3 CASCADE TEST BUILD",
 	Folder = "VynxUIFullExample",
 	Icon = DemoIcon("island", "radio"),
 	Default = true,
@@ -151,6 +151,13 @@ local function NotifyOutdatedRuntime()
 		Style = "Notice",
 	})
 end
+
+VynxUI:Notify({
+	Title = "VYNX UI test build loaded",
+	Content = "If you see this, the latest code is running (labeled sidebar + hairline rows).",
+	Icon = "circle-check",
+	Style = "Success",
+})
 
 local OverviewTab = Window:Tab({
 	Title = "Overview",
