@@ -30,6 +30,8 @@ do
 	end
 end
 
+VynxUI:SetTheme("Cascade")
+
 --[[
 
 VynxUI.Creator.AddIcons("solar", {

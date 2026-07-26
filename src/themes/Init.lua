@@ -376,5 +376,33 @@ return function(VynxUI, Creator)
 
 			Icon = Color3.fromHex("#ffffff"),
 		},
+
+		Cascade = {
+			Name = "Cascade",
+
+			Accent = Color3.fromHex("#1F1F21"),
+			Dialog = Color3.fromHex("#1F1F21"),
+			Outline = Color3.fromHex("#FFFFFF"),
+			Text = Color3.fromHex("#FFFFFF"),
+			Placeholder = Color3.fromHex("#8E8E93"),
+			Background = Color3.fromHex("#1C1C1E"),
+			Button = Color3.fromHex("#3A3A3C"),
+			Icon = Color3.fromHex("#8E8E93"),
+			Toggle = Color3.fromHex("#0A84FF"),
+			Slider = Color3.fromHex("#007AFF"),
+			Checkbox = Color3.fromHex("#007AFF"),
+
+			PanelBackground = Color3.fromHex("#FFFFFF"),
+			PanelBackgroundTransparency = 0.95,
+
+			SliderIcon = Color3.fromHex("#98989D"),
+			Primary = Color3.fromHex("#0A84FF"),
+
+			LabelBackground = Color3.fromHex("#000000"),
+			LabelBackgroundTransparency = 0.83,
+
+			ElementBackground = Color3.fromHex("#232325"),
+			ElementBackgroundTransparency = 0,
+		},
 	}
 end

@@ -29,7 +29,7 @@ do
 end
 
 --VynxUI.TransparencyValue = .9
-local ThemeName = "Dark"
+local ThemeName = "Cascade"
 
 local Window = VynxUI:CreateWindow({
 	Title = "VynxUI Library",
