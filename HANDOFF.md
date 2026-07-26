@@ -210,3 +210,53 @@ alone will look different to the user — first confirm the window is rendering 
 all, then whether it now looks Mac-styled.** This is the same unresolved
 confirmation gap noted in §5/§6 above, now compounded by a second layer of "why
 doesn't it look different" that may have the same root cause.
+
+## 11. Session 2 end — confirmed working + next-phase plan (context limit hit)
+**CONFIRMED via user screenshot: main_example.lua now renders successfully in
+Roblox.** Traffic-light topbar (red/yellow/green) visible and correctly colored,
+window opens, content renders, no crash. The icon-catalog crash from `6cf459f` and
+everything after it through `2918a81` is resolved. Do not re-litigate this — it
+works.
+
+However user's screenshot shows the render uses a pink/magenta-tinted accent color,
+NOT the near-black/system-blue Sequoia palette. **Unexplained — next session should
+check why main_example.lua isn't visually reading as Sequoia** (possible causes:
+another `SetTheme`/`Theme=` override later in the file taking precedence, a
+per-element `Color`/`ThemeTag` override, or the screenshot's window just uses
+Accent/Dialog colors that happen to render pinkish under Sequoia's actual hex --
+verify by re-reading `src/themes/Init.lua`'s Sequoia block against the rendered
+colors before assuming it's a bug).
+
+User then shared a Cascade reference screenshot (macOS System Settings light-mode
+style: labeled+indented sidebar with section headers/chevrons, flat inset list rows
+with hairline dividers instead of floating cards, breadcrumb nav arrows, search bar)
+and asked for a comparison + plan only -- NOT further code changes this turn (context
+limit). Plan given to user, for next session to execute:
+
+1. **Sidebar**: current VynxUI render is icon-only compact. Cascade reference wants
+   labeled list items grouped under section headers with visual indent hierarchy.
+   VynxUI's sidebar currently only supports flat tab lists (icon or icon+label,
+   `SidebarCompact` true/false) -- there is no existing "grouped/indented section"
+   sidebar mode. This is new component work, not a config toggle.
+2. **Content layout**: current VynxUI renders floating/rounded card panels per
+   section. Cascade uses flat inset list rows separated by hairline dividers inside
+   one continuous panel (their `Form`/`Row`/`Section` components). This is a real
+   layout-paradigm difference -- would need a new "List/Form style" content
+   container, distinct from VynxUI's existing Card-based Section element.
+3. **Unexplained pink/magenta accent** -- investigate before anything else next
+   session (see above); don't build new components on top of an unexplained color
+   bug.
+4. **Light mode**: Cascade reference is light; VynxUI currently only has Sequoia
+   (dark). A "Sequoia Light" counterpart theme would need the same
+   Cascade-source-value treatment as Sequoia (derive from Cascade's `Light.luau`,
+   not guessed).
+
+None of items 1-4 have been started. Do not assume any progress on them.
+
+## 12. Immediate next action (supersedes §9)
+Ask the user to check what theme/accent `main_example.lua` is actually set to at
+the point they screenshotted (search the file for any `SetTheme`/`Theme =` after
+the top-level `VynxUI:SetTheme("Sequoia")` call that might override it), OR just
+re-grep `main_example.lua` directly next session for a second theme-setting call
+before touching anything else -- the pink accent needs an explanation before layout
+work (items 1-2 above) begins.
