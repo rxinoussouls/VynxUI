@@ -12295,6 +12295,11 @@ ai.Window.ElementConfig.LiquidGlass
 Golden=ai.Golden==true
 or ai.Premium==true
 or(ai.ParentConfig and(ai.ParentConfig.Golden==true or ai.ParentConfig.Premium==true)),
+
+
+
+
+FlatList=Coalesce(ai.FlatList,ai.ParentConfig and ai.ParentConfig.FlatList,false),
 CornerStyle=Coalesce(
 ai.CornerStyle,
 ai.ParentConfig and ai.ParentConfig.CornerStyle,
@@ -12685,6 +12690,9 @@ return nil
 end
 
 local function GetBackgroundTransparency()
+if aj.FlatList then
+return 1
+end
 if aq~=nil then
 return aq
 end
@@ -12790,6 +12798,23 @@ PaddingRight=UDim.new(0,aj.UIPadding),
 PaddingBottom=UDim.new(0,aj.UIPadding),
 })
 )
+
+if aj.FlatList then
+table.insert(
+aM,
+ad("Frame",{
+Name="FlatListDivider",
+AnchorPoint=Vector2.new(0.5,1),
+Position=UDim2.new(0.5,0,1,0),
+Size=UDim2.new(1,aj.UIPadding*2,0,1),
+BackgroundTransparency=0.85,
+ZIndex=2,
+ThemeTag={
+BackgroundColor3="Text",
+},
+})
+)
+end
 
 local aN,aO=ae(aj.UICorner,"Squircle",{
 Size=UDim2.new(1,0,0,0),

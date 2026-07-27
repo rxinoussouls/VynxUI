@@ -104,6 +104,11 @@ return function(Config)
 		Golden = Config.Golden == true
 			or Config.Premium == true
 			or (Config.ParentConfig and (Config.ParentConfig.Golden == true or Config.ParentConfig.Premium == true)),
+		-- Cascade Form/Row style: continuous flat list instead of a floating
+		-- card, when explicitly opted into (per-element or inherited from a
+		-- parent Section's Divided config). Defaults to false everywhere —
+		-- zero behavior change unless explicitly set.
+		FlatList = Coalesce(Config.FlatList, Config.ParentConfig and Config.ParentConfig.FlatList, false),
 		CornerStyle = Coalesce(
 			Config.CornerStyle,
 			Config.ParentConfig and Config.ParentConfig.CornerStyle,
@@ -494,6 +499,9 @@ return function(Config)
 	end
 
 	local function GetBackgroundTransparency()
+		if Element.FlatList then
+			return 1
+		end
 		if ElementTransparency ~= nil then
 			return ElementTransparency
 		end
@@ -599,6 +607,23 @@ return function(Config)
 			PaddingBottom = UDim.new(0, Element.UIPadding),
 		})
 	)
+
+	if Element.FlatList then
+		table.insert(
+			MainChildren,
+			New("Frame", {
+				Name = "FlatListDivider",
+				AnchorPoint = Vector2.new(0.5, 1),
+				Position = UDim2.new(0.5, 0, 1, 0),
+				Size = UDim2.new(1, Element.UIPadding * 2, 0, 1),
+				BackgroundTransparency = 0.85,
+				ZIndex = 2,
+				ThemeTag = {
+					BackgroundColor3 = "Text",
+				},
+			})
+		)
+	end
 
 	local Main, MainTable = NewRoundFrame(Element.UICorner, "Squircle", {
 		Size = UDim2.new(1, 0, 0, 0),

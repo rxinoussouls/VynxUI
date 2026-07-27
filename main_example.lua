@@ -509,6 +509,39 @@ SettingsTab:Toggle({
 	Keybind = "T",
 })
 
+local FlatListSection = SettingsTab:Section({
+	Title = "General Options",
+	Desc = "Cascade-style continuous list (FlatList) instead of floating cards.",
+	Box = true,
+	BoxBorder = true,
+	Opened = true,
+})
+
+FlatListSection:Toggle({
+	Title = "Auto Attach",
+	Desc = "Automatically attach when a server is ready.",
+	Value = true,
+	FlatList = true,
+})
+FlatListSection:Toggle({
+	Title = "Check for Updates",
+	Desc = "Check for a newer build on load.",
+	Value = true,
+	FlatList = true,
+})
+FlatListSection:Toggle({
+	Title = "Save Settings",
+	Desc = "Persist settings between sessions.",
+	Value = false,
+	FlatList = true,
+})
+FlatListSection:Toggle({
+	Title = "Show Notifications",
+	Desc = "Show in-app notifications.",
+	Value = true,
+	FlatList = true,
+})
+
 SettingsTab:SegmentedControl({
 	Title = "Demo Mode",
 	Options = { "Clean", "Dense", "Glass" },
