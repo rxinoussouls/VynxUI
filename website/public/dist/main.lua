@@ -4,7 +4,7 @@
     | |/ /  \  /    />  <  / /_/ // /
     |___/   /_/_/|_/_/|_|  \____/___/
 
-    v1.6.65  |  2026-07-26  |  Roblox UI Library for scripts
+    v1.6.65  |  2026-07-27  |  Roblox UI Library for scripts
 
     To view the source code, see the `src/` folder on the official GitHub repository.
 
@@ -4977,7 +4977,7 @@ local ae=ab.Tween
 
 function aa.New(af,ag,ah,ai,aj,ak,al,am)
 ai=ai or"Primary"
-local an=am or(not al and 10 or 999)
+local an=am or(not al and 7 or 999)
 local ao
 if ag and ag~=""then
 ao=ad("ImageLabel",{
