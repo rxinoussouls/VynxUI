@@ -27077,7 +27077,7 @@ DragFrameSize=160,
 
 Position=UDim2.new(0.5,0,0.5,0),
 UICorner=16,
-UIPadding=14,
+UIPadding=11,
 UIElements={},
 CanDropdown=true,
 Closed=false,
