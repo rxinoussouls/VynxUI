@@ -107,7 +107,7 @@ function Element:New(Config)
 				nil,
 				Config.Window.NewElements and 999 or 10
 			)
-			ButtonFrame.Size = UDim2.new(1, 0, 0, 36)
+			ButtonFrame.Size = UDim2.new(1, 0, 0, 30)
 		end
 	end
 

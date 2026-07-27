@@ -19,9 +19,9 @@ local Element = {
 	MenuCorner = 14,
 	MenuPadding = 4,
 	TabPadding = 8,
-	SearchBarHeight = 36,
+	SearchBarHeight = 32,
 	TabIcon = 16,
-	ItemHeight = 32,
+	ItemHeight = 28,
 }
 
 function Element:New(Config)

@@ -13287,7 +13287,7 @@ local ai=a.load'K'(ag)
 ah.ParagraphFrame=ai
 if ag.Buttons and#ag.Buttons>0 then
 local aj=ab("Frame",{
-Size=UDim2.new(1,0,0,38),
+Size=UDim2.new(1,0,0,32),
 BackgroundTransparency=1,
 AutomaticSize="Y",
 Parent=ai.UIElements.Container,
@@ -13309,7 +13309,7 @@ nil,
 nil,
 ag.Window.NewElements and 999 or 10
 )
-am.Size=UDim2.new(1,0,0,38)
+am.Size=UDim2.new(1,0,0,32)
 
 end
 end
@@ -16687,9 +16687,9 @@ UIPadding=12,
 MenuCorner=14,
 MenuPadding=4,
 TabPadding=8,
-SearchBarHeight=36,
+SearchBarHeight=32,
 TabIcon=16,
-ItemHeight=32,
+ItemHeight=28,
 }
 
 function am.New(an,ao)
@@ -18596,7 +18596,7 @@ TextColor3="RadioGroupText",
 
 local av=aa.NewRoundFrame(12,"Squircle",{
 Name="Option",
-Size=UDim2.new(1,0,0,36),
+Size=UDim2.new(1,0,0,30),
 LayoutOrder=ar,
 ImageTransparency=0.94,
 Active=not aq.Disabled,
@@ -18867,7 +18867,7 @@ TextColor3="CheckboxGroupText",
 
 local ax=aa.NewRoundFrame(12,"Squircle",{
 Name="Option",
-Size=UDim2.new(1,0,0,36),
+Size=UDim2.new(1,0,0,30),
 LayoutOrder=ar,
 ImageTransparency=0.94,
 Active=not aq.Disabled,
@@ -20632,7 +20632,7 @@ TextColor3="Text",
 
 local at=aa.NewRoundFrame(999,"Squircle",{
 Name="Chip",
-Size=UDim2.new(1,0,0,30),
+Size=UDim2.new(1,0,0,26),
 LayoutOrder=ar,
 ImageTransparency=0.94,
 Active=not aq.Disabled,
@@ -21667,7 +21667,7 @@ nil,
 nil,
 an.Window.NewElements and 999 or 10
 )
-au.Size=UDim2.new(1,0,0,36)
+au.Size=UDim2.new(1,0,0,30)
 end
 end
 
@@ -21943,7 +21943,7 @@ CreateStat("online",as.Online,Color3.fromHex"#23A55A")
 end
 
 local az=ai("Frame",{
-Size=UDim2.new(1,0,0,36),
+Size=UDim2.new(1,0,0,30),
 BackgroundTransparency=1,
 Parent=as.UIElements.Main,
 },{

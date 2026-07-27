@@ -241,7 +241,7 @@ function Element:New(Config)
 	end
 
 	local Actions = New("Frame", {
-		Size = UDim2.new(1, 0, 0, 36),
+		Size = UDim2.new(1, 0, 0, 30),
 		BackgroundTransparency = 1,
 		Parent = DiscordCard.UIElements.Main,
 	}, {

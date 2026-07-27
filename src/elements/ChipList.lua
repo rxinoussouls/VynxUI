@@ -111,7 +111,7 @@ function Element:New(Config)
 
 		local Button = Creator.NewRoundFrame(999, "Squircle", {
 			Name = "Chip",
-			Size = UDim2.new(1, 0, 0, 30),
+			Size = UDim2.new(1, 0, 0, 26),
 			LayoutOrder = Index,
 			ImageTransparency = 0.94,
 			Active = not Option.Disabled,

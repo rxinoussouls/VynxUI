@@ -151,7 +151,7 @@ function Element:New(Config)
 
 		local Row = Creator.NewRoundFrame(12, "Squircle", {
 			Name = "Option",
-			Size = UDim2.new(1, 0, 0, 36),
+			Size = UDim2.new(1, 0, 0, 30),
 			LayoutOrder = Index,
 			ImageTransparency = 0.94,
 			Active = not Option.Disabled,

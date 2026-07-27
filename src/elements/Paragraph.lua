@@ -23,7 +23,7 @@ function Element:New(ElementConfig)
 	ParagraphModule.ParagraphFrame = Paragraph
 	if ElementConfig.Buttons and #ElementConfig.Buttons > 0 then
 		local ButtonsContainer = New("Frame", {
-			Size = UDim2.new(1, 0, 0, 38),
+			Size = UDim2.new(1, 0, 0, 32),
 			BackgroundTransparency = 1,
 			AutomaticSize = "Y",
 			Parent = Paragraph.UIElements.Container,
@@ -45,7 +45,7 @@ function Element:New(ElementConfig)
 				nil,
 				ElementConfig.Window.NewElements and 999 or 10
 			)
-			ButtonFrame.Size = UDim2.new(1, 0, 0, 38)
+			ButtonFrame.Size = UDim2.new(1, 0, 0, 32)
 			--ButtonFrame.AutomaticSize = "X"
 		end
 	end
