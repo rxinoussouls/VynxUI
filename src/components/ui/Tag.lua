@@ -13,7 +13,7 @@ function Tag:New(TagConfig, Parent)
 		Border = TagConfig.Border or false,
 
 		TagFrame = nil,
-		Height = 26,
+		Height = 22,
 		Padding = 10,
 		TextSize = 14,
 		IconSize = 16,

@@ -1,4 +1,4 @@
-local CACHE_KEY = "1.6.65-ui-runtime-v13-padding"
+local CACHE_KEY = "1.6.65-ui-runtime-v14-tag-label"
 local REQUIRED_API = {
 	"RegisterIconPack",
 	"GetIconSources",

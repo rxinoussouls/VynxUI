@@ -5,7 +5,7 @@ local New = Creator.New
 local Tween = Creator.Tween
 
 function Label.New(Text, Icon, Parent, IsPlaceholder, Radius, RemoveGlass)
-	local Radius = Radius or 10
+	local Radius = Radius or 7
 	local IconLabelFrame
 	if Icon and Icon ~= "" then
 		IconLabelFrame = New("ImageLabel", {

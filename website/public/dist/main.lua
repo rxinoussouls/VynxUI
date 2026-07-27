@@ -7793,7 +7793,7 @@ local ad=ab.New local ae=
 ab.Tween
 
 function aa.New(af,ag,ah,ai,aj,ak)
-local al=aj or 10
+local al=aj or 7
 local am
 if ag and ag~=""then
 am=ad("ImageLabel",{
@@ -8041,7 +8041,7 @@ Radius=ag.Radius or 999,
 Border=ag.Border or false,
 
 TagFrame=nil,
-Height=26,
+Height=22,
 Padding=10,
 TextSize=14,
 IconSize=16,
